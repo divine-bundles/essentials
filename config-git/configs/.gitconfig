@@ -1,0 +1,63 @@
+#:title:        Divine asset sample: .gitconfig
+#:author:       Grove Pyree
+#:email:        grayarea@protonmail.ch
+#:revnumber:    1.0.0-RELEASE
+#:revdate:      2019.06.30
+#:revremark:    Release version
+#:created_at:   2019.04.11
+
+[user]
+  name = Divine Gitster
+  email = email@example.com
+
+[core]
+  editor = vim
+  pager = less
+  attributesFile = ~/.gitattributes
+
+  eol = native
+  safecrlf = warn
+
+[rerere]
+  enabled = true
+  autoUpdate = true
+
+[push]
+  default = matching
+
+[http]
+  postBuffer = 524288000
+
+[help]
+  autocorrect = 10
+
+
+##
+## Colors
+##
+
+[color]
+  ui = auto
+
+[color "branch"]
+  current = yellow bold
+  local = green bold
+  remote = cyan bold
+
+[color "diff"]
+  meta = yellow bold
+  frag = magenta bold
+  old = red bold
+  new = green bold
+  whitespace = red reverse
+
+[color "status"]
+  added = green bold
+  changed = yellow bold
+  untracked = red bold
+
+[filter "lfs"]
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
+  required = true

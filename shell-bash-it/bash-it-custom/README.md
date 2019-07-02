@@ -1,0 +1,1 @@
+Put any custom assets you regularly install for Bash-it framework into these directories, following given examples, then (re-)install `bash-it` deployment.

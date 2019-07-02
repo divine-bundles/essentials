@@ -1,0 +1,1 @@
+# Container for box-specific Bash startup commands

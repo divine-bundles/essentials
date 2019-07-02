@@ -1,0 +1,83 @@
+# Divine deployments `*core*`
+:toc:
+
+++++
+<p align="center">
+<em>Deployments for <a href="https://github.com/no-simpler/divine-dotfiles">Divine.dotfiles framework</a></em>
+<br>
+<em style="font-size: small;">(Bash framework for dotfiles and everything Bash)</em>
+</p>
+++++
+
+## Description
+
+[.lead]
+Divine deployments `*core*` package is an opinionated set of system set-up scripts.
+It is intended as a useful starting point for new users of https://github.com/no-simpler/divine-dotfiles[Divine.dotfiles framework].
+
+It contains the following deployments:
+
+[horizontal]
+`*Divinefile*`:: Maintains a stable set of installed system packages across platforms
+`*config-git*`:: Maintains global config for `git`
+`*config-shell*`:: Maintains custom `.bashrc` & `.zshrc`
+`*config-vim*`:: Maintains global config for `vim`
+`*dutils*`:: Exposes a couple of useful utilities from under the framework’s hood, for command line use
+`*fonts*`:: Maintains personal library of font faces
+`*home-dirs*`:: Maintains stable set of directories under `~`
+`*macos-brewfile*`:: Maintains https://brew.sh[Homebrew]’s https://github.com/Homebrew/homebrew-bundle[Brewfile] across macOS installations
+`*shell-bash-it*`:: Maintains https://github.com/Bash-it/bash-it[Bash-it framework] for `bash`
+`*shell-oh-my-zsh*`:: Maintains https://ohmyz.sh/[oh-my-zsh framework] for `zsh`
+`*shell-zsh-default*`:: Maintains `zsh` as default shell
+
+[NOTE]
+Where relevant, these deployments provide useful default versions of configuration files.
+Look for them in `~/.divine/grail/assets`.
+
+## Installation/removal
+
+Install via any Terminal.
+
+[NOTE]
+--
+This will *_not_* clobber any of pre-existing files or mess up your system.
+For example:
+
+* If you already have a custom `.bashrc`, it will be moved to backups directory and restored upon removal.
+* If you already have https://ohmyz.sh/[oh-my-zsh] installed, it will just be re-used.
+* `*Divinefile*` will ensure `git` is installed. Upon removal, `git` will only be un-installed if it was `*Divinefile*` that installed it in the first place.
+--
+
+### Don’t have Divine.dotfiles installed?
+
+*Install both framework & this package* in one fell swoop (it’s fully removable):
+
+[source,bash]
+----
+bash -c "$( URL=https://raw.github.com/no-simpler/divine-dotfiles/master/lib/install/install.sh; if command -v curl >/dev/null 2>&1; then curl -fsSL $URL; elif command -v wget >/dev/null 2>&1; then wget -qO - $URL; else printf >&2 '\n==> Unable to install: failed to detect neither curl nor wget\n'; fi )" --yes
+----
+
+Afterward, if you don’t like it, here’s the ‘**undo**’ command (removes/restores _everything_):
+
+[source,bash]
+----
+bash -c "$( URL=https://raw.github.com/no-simpler/divine-dotfiles/master/lib/uninstall/uninstall.sh; if command -v curl >/dev/null 2>&1; then curl -fsSL $URL; elif command -v wget >/dev/null 2>&1; then wget -qO - $URL; else printf >&2 '\n==> Unable to uninstall: failed to detect neither curl nor wget\n'; fi )" --yes
+----
+
+### Already a Divine.dotfiles user?
+
+Attach these deployments to your copy of Divine.dotfiles as such:
+
+[source,bash]
+----
+di attach --yes core
+----
+
+Then install each deployment as usual.
+
+If ever removing this package, make sure you uninstall everything first, and then:
+
+[source,bash]
+----
+di detach --yes core
+----

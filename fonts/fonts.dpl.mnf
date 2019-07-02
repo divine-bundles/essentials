@@ -1,0 +1,6 @@
+# Readme file
+README.md
+
+# Any .otf or .ttf fonts distributed with this deployment, if any
+[regex] *.otf
+[regex] *.ttf

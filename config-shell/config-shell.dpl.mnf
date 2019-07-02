@@ -1,0 +1,10 @@
+# Runcom files for Bash
+.bash_profile
+.bashrc
+
+# Runcom files for zsh
+.zprofile
+.zshrc
+
+# Directory with additional runcom files
+.runcoms
