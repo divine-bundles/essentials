@@ -12,7 +12,6 @@ D_DPL_PRIORITY=3333
 D_DPL_FLAGS=
 D_DPL_WARNING=
 
-D_DPL_DIR+='/oh-my-zsh-custom'
 D_OH_MY_ZSH_PATH="$HOME/.oh-my-zsh"
 D_OH_MY_ZSH_REPO='https://github.com/robbyrussell/oh-my-zsh.git'
 

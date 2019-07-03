@@ -1,3 +1,5 @@
+(prefix:bash-it-custom)
+
 aliases
 completion
 lib

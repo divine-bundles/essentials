@@ -12,7 +12,6 @@ D_DPL_PRIORITY=333
 D_DPL_FLAGS=
 D_DPL_WARNING=
 
-D_DPL_DIR+='/configs'
 D_DPL_TARGET_DIR="$HOME"
 
 # Delegate to built-in helpers

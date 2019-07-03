@@ -1,3 +1,5 @@
+(prefix:runcoms)
+
 # Runcom files for Bash
 .bash_profile
 .bashrc

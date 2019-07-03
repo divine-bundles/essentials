@@ -12,9 +12,6 @@ D_DPL_PRIORITY=4096
 D_DPL_FLAGS=
 D_DPL_WARNING=
 
-# Modify dpl location
-D_DPL_DIR+="/font-files"
-
 # Destinations for font files
 D_DPL_TARGET_DIR_MACOS="$HOME/Library/Fonts"
 D_DPL_TARGET_DIR_UBUNTU='/usr/share/fonts'

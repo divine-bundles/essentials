@@ -12,7 +12,6 @@ D_DPL_PRIORITY=3333
 D_DPL_FLAGS=
 D_DPL_WARNING=
 
-D_DPL_DIR+='/bash-it-custom'
 D_BASH_IT_PATH="$HOME/.bash-it"
 D_BASH_IT_REPO='https://github.com/Bash-it/bash-it.git'
 

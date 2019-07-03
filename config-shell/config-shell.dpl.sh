@@ -12,7 +12,6 @@ D_DPL_PRIORITY=333
 D_DPL_FLAGS=
 D_DPL_WARNING=
 
-D_RUNCOMS_DIRNAME='runcoms'
 D_BLANKS_DIRNAME='blanks'
 D_BLANK_RELPATHS=( \
   '.runcoms.bash' \
@@ -21,7 +20,6 @@ D_BLANK_RELPATHS=( \
   '.hushlogin' \
 )
 
-D_DPL_DIR+="/$D_RUNCOMS_DIRNAME"
 D_DPL_TARGET_DIR="$HOME"
 
 # Delegate to built-in checking routine
@@ -74,7 +72,7 @@ __d__rc_add_blanks_to_queue()
   __split_queue
 
   # Compose path to directory containing blank files
-  local blanks_dir="${D_DPL_DIR%"/$D_RUNCOMS_DIRNAME"}/$D_BLANKS_DIRNAME"
+  local blanks_dir="$D_DPL_DIR/$D_BLANKS_DIRNAME"
 
   # Storage variable
   local relpath

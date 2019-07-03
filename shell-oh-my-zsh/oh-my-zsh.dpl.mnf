@@ -1,3 +1,5 @@
+(prefix:oh-my-zsh-custom)
+
 plugins
 themes
 README.md
