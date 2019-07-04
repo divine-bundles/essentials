@@ -226,8 +226,10 @@ dinstall()
     dstash -s set old_shell "$old_shell"
     dstash -s set new_shell "$D_ZSH_PATH"
     dstash -s set installed
+    return 0
   else
     dprint_debug 'Failed to change default shell to:' -i "$D_ZSH_PATH"
+    return 1
   fi
 }
 
