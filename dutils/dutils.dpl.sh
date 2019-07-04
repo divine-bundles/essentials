@@ -46,7 +46,7 @@ __d__queue_hlp__item_is_installed()
 {
   # Construct util’s name and location within framework and as installed
   local util_name="$D_DPL_ITEM_TITLE"
-  local util_fmwk_path="${D_FMWK_DIR_UTILS}/${util_name}${D_SUFFIX_UTIL}"
+  local util_fmwk_path="${D_DIR_UTILS}/${util_name}${D_SUFFIX_UTIL}"
   local util_install_path="$D_DPL_ITEM_STASH_VALUE"
 
   # Storage variables
@@ -155,7 +155,7 @@ __d__queue_hlp__install_item()
 {
   # Construct util’s name and location within framework
   local util_name="$D_DPL_ITEM_TITLE"
-  local util_fmwk_path="${D_FMWK_DIR_UTILS}/${util_name}${D_SUFFIX_UTIL}"
+  local util_fmwk_path="${D_DIR_UTILS}/${util_name}${D_SUFFIX_UTIL}"
   local util_install_dir util_install_path
   local tempfile="$( mktemp )"
   
