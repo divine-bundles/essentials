@@ -157,7 +157,7 @@ __d__queue_hlp__install_item()
   local util_name="$D_DPL_ITEM_TITLE"
   local util_fmwk_path="${D_FMWK_DIR_UTILS}/${util_name}${D_SUFFIX_UTIL}"
   local util_install_dir util_install_path
-  local temp="$( mktemp )"
+  local tempfile="$( mktemp )"
   
   # Announce
   dprint_debug "Installing utility '$util_name' from:" -i "$util_fmwk_path"
