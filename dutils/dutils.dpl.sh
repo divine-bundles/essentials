@@ -213,6 +213,10 @@ EOF
     if [ -w "$util_install_dir" ]; then
       mv -n -- "$tempfile" "$util_install_path"
     else
+      if ! sudo -n true 2>/dev/null; then
+        dprint_start -l \
+          "Installation to $util_install_dir requires sudo password"
+      fi
       sudo mv -n -- "$tempfile" "$util_install_path"
     fi
 
@@ -252,11 +256,15 @@ __d__queue_hlp__remove_item()
   # Construct util’s name and location within framework and as installed
   local util_name="$D_DPL_ITEM_TITLE"
   local util_install_path="$D_DPL_ITEM_STASH_VALUE"
+  local util_install_dir="$( dirname -- "$util_install_path" )"
 
   # Check if removal premission is granted for path
-  if [ -w "$util_install_path" ]; then
+  if [ -w "$util_install_dir" ]; then
     rm -f -- "$util_install_path"
   else
+    if ! sudo -n true 2>/dev/null; then
+      dprint_start -l "Removal inside $util_install_dir requires sudo password"
+    fi
     sudo rm -f -- "$util_install_path"
   fi
 

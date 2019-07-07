@@ -203,6 +203,9 @@ dinstall()
     if [ -w /etc/shells ]; then
       printf '%s\n' "$D_ZSH_PATH" >>/etc/shells
     else
+      if ! sudo -n true 2>/dev/null; then
+        dprint_start -l 'Modifying /etc/shells requires sudo password'
+      fi
       sudo tee -a /etc/shells &>/dev/null <<<"$D_ZSH_PATH"
     fi
       
@@ -274,6 +277,9 @@ dremove()
       if [ -w /etc/shells ]; then
         printf '%s\n' "$old_shell" >>/etc/shells
       else
+        if ! sudo -n true 2>/dev/null; then
+          dprint_start -l 'Modifying /etc/shells requires sudo password'
+        fi
         sudo tee -a /etc/shells &>/dev/null <<<"$old_shell"
       fi
         
@@ -340,6 +346,9 @@ dremove()
     if [ -w /etc/shells ]; then
       mv -f -- "$temp" /etc/shells
     else
+      if ! sudo -n true 2>/dev/null; then
+        dprint_start -l 'Modifying /etc/shells requires sudo password'
+      fi
       sudo mv -f -- "$temp" /etc/shells
     fi
 
