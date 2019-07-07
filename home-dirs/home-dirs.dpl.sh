@@ -9,8 +9,8 @@
 D_DPL_NAME='home-dirs'
 D_DPL_DESC='Commonly used directories within home directory'
 D_DPL_PRIORITY=500
-D_DPL_FLAGS=r
-D_DPL_WARNING='Directories might not be empty'
+D_DPL_FLAGS=
+D_DPL_WARNING=
 
 # Where to grab main queue file
 D_DPL_QUE_PATH="$D_DPL_ASSETS_DIR/home-dirs.cfg"
@@ -32,7 +32,15 @@ __d__queue_hlp__item_is_installed()
   # Check if directory exists
   if [ -d "$dir" ]; then
 
-    # Directory exists: return
+    # Directory exists
+    
+    # If in removal routine: make another prompt
+    if [ "$D_REQ_ROUTINE" = remove ]; then
+      D_ANOTHER_PROMPT=true
+      D_ANOTHER_WARNING='Directories might not be empty'
+    fi
+
+    # Return appropriate status
     return 1
 
   else

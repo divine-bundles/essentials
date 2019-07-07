@@ -9,8 +9,8 @@
 D_DPL_NAME='brewfile'
 D_DPL_DESC='Taps, bottles, and casks from Brewfile (no upgrades)'
 D_DPL_PRIORITY=3000
-D_DPL_FLAGS=a!
-D_DPL_WARNING='Checking is inconclusive; uninstalling — plain dangerous'
+D_DPL_FLAGS=!
+D_DPL_WARNING=
 
 ## Exit codes and their meaning:
 #.  0 - Unknown
@@ -31,6 +31,17 @@ dcheck()
     dprint_debug 'Failed to read Brewfile at:' -i "$D_DPL_ASSETS_DIR/Brewfile"
     return 3
   }
+
+  # Additional warnings
+  case $D_REQ_ROUTINE; then
+    check)    dprompt_key -- 'Checking Brewfile is not very reliable'
+              case $? in 1) return 3;; *) :;; esac
+              ;;
+    remove)   D_ANOTHER_PROMPT=true
+              D_ANOTHER_WARNING='Uninstalling Brewfile might be dangerous'
+              ;;
+    *)        :;;
+  esac  
 
   # brew bundle requires Brewfile to be in current directory
   cd "$D_DPL_ASSETS_DIR"
