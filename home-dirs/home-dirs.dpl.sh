@@ -33,11 +33,19 @@ __d__queue_hlp__item_is_installed()
   if [ -d "$dir" ]; then
 
     # Directory exists
-    
-    # If in removal routine: make another prompt
+
+    # Check if in removal routine
     if [ "$D_REQ_ROUTINE" = remove ]; then
-      D_ANOTHER_PROMPT=true
-      D_ANOTHER_WARNING='Directories might not be empty'
+
+      # Check if directory contains anything
+      if [ -n "$( ls -A -- "$dir" )" ]; then
+
+        # Set up another user prompt
+        D_ANOTHER_PROMPT=true
+        D_ANOTHER_WARNING='At least one of the directories is not empty'
+
+      fi
+
     fi
 
     # Return appropriate status
@@ -100,10 +108,20 @@ __d__queue_hlp__remove_item()
     return 0
   fi
 
-  # Prompt for directory removal
-  dprompt_key -b --color "$RED" --prompt 'Erase?' --or-quit -- \
-    "This will ${BOLD}completely erase${NORMAL} directory at:" \
-    -i "${BOLD}${RED}${REVERSE} ${dir} ${NORMAL}"
+  # Check if directory is empty
+  if [ -n "$( ls -A -- "$dir" )" ]; then
+
+    # Directory is not empty: prompt for directory removal
+    dprompt_key -b --color "$RED" --prompt 'Erase?' --or-quit -- \
+      "This will ${BOLD}completely erase${NORMAL} non-empty directory at:" \
+      -i "${BOLD}${RED}${REVERSE} ${dir} ${NORMAL}"
+
+  else
+
+    # Directory is empty: remove without asking
+    :
+
+  fi
 
   # Check user’s answer
   case $? in
