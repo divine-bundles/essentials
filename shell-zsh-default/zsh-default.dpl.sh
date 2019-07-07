@@ -224,6 +224,7 @@ dinstall()
   local old_shell="$SHELL"
 
   # Now, CHange SHell with chsh (user password will be prompted for)
+  dprint_start -l 'Changing default shell requires sudo password'
   if chsh -s "$D_ZSH_PATH"; then
     dprint_debug 'Successfully changed default shell to:' -i "$D_ZSH_PATH"
     dstash -s set old_shell "$old_shell"
@@ -294,6 +295,9 @@ dremove()
     fi
 
     # Execute change
+    if $shell_is_ok; then
+      dprint_start -l 'Changing default shell requires sudo password'
+    fi
     if $shell_is_ok && chsh -s "$old_shell"; then
       dprint_debug 'Successfully restored default shell to:' -i "$old_shell"
       dstash -s unset new_shell
