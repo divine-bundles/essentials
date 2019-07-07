@@ -33,7 +33,7 @@ dcheck()
   }
 
   # Additional warnings
-  case $D_REQ_ROUTINE; then
+  case $D_REQ_ROUTINE in
     check)    dprompt_key -- 'Checking Brewfile is not very reliable'
               case $? in 1) return 3;; *) :;; esac
               ;;
