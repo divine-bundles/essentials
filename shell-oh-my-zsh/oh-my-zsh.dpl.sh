@@ -15,68 +15,25 @@ D_DPL_WARNING=
 D_OH_MY_ZSH_PATH="$HOME/.oh-my-zsh"
 D_OH_MY_ZSH_REPO='https://github.com/robbyrussell/oh-my-zsh.git'
 
-## Exit codes and their meaning:
-#.  0 - Unknown
-#.  1 - Installed
-#.  2 - Not installed
-#.  3 - Irrelevant
-#.  4 - Partly installed
+# Delegate to built-in checking routine
 dcheck()
 {
-  # Task 1: framework itself
-  d_omz_dcheck; __catch_dcheck_code
+  # Compile task names; and split queue in two parts
+  D_DPL_TASK_NAMES+=( omz_fmwk )
+  D_DPL_TASK_NAMES+=( omz_assets )
 
-  # Task 2: framework assets (use dln queue)
+  # Assemble assets
   d_assemble_asset_queue
-  __dln_hlp__dcheck; __catch_dcheck_code
 
-  # Tie them all up
-  __reconcile_dcheck_codes
+  # Delegate to built-in helper
+  __multitask_hlp__dcheck
 }
 
-## Exit codes and their meaning:
-#.  0   - Successfully installed
-#.  1   - Failed to install
-#.  2   - Skipped completely
-#.  100 - Reboot needed
-#.  101 - User attention needed
-#.  666 - Critical failure
-dinstall()
-{
-  # Task 1: framework itself
-  __task_is_installable && d_omz_dinstall
-  __catch_dinstall_code || return $?
+# dinstall and dremove are fully delegated to built-in helpers
+dinstall()  {   __multitask_hlp__dinstall;  }
+dremove()   {   __multitask_hlp__dremove;   }
 
-  # Task 2: framework assets (use dln queue)
-  __task_is_installable && __dln_hlp__dinstall
-  __catch_dinstall_code || return $?
-
-  # Tie them all up
-  __reconcile_dinstall_codes
-}
-
-## Exit codes and their meaning:
-#.  0   - Successfully removed
-#.  1   - Failed to remove
-#.  2   - Skipped completely
-#.  100 - Reboot needed
-#.  101 - User attention needed
-#.  666 - Critical failure
-dremove()
-{
-  # Task 1: framework itself
-  __task_is_removable && d_omz_dremove
-  __catch_dremove_code || return $?
-
-  # Task 2: framework assets (use dln queue)
-  __task_is_removable && __dln_hlp__dremove
-  __catch_dremove_code || return $?
-
-  # Tie them all up
-  __reconcile_dremove_codes
-}
-
-d_omz_dcheck()
+d_omz_fmwk_dcheck()
 {
   # Rely on stashing
   dstash ready || return 3
@@ -118,7 +75,7 @@ d_omz_dcheck()
   fi
 }
 
-d_omz_dinstall()
+d_omz_fmwk_dinstall()
 {
   # Check if oh-my-zsh path exists
   if [ -e "$D_OH_MY_ZSH_PATH" ]; then
@@ -175,7 +132,7 @@ d_omz_dinstall()
   fi
 }
 
-d_omz_dremove()
+d_omz_fmwk_dremove()
 {
   # Check if already removed
   if ! [ -e "$D_OH_MY_ZSH_PATH" ]; then

@@ -25,50 +25,35 @@ D_DPL_TARGET_DIR="$HOME"
 # Delegate to built-in checking routine
 dcheck()
 {
-  # Task 1: primary runcom files (use dln queue)
-  __dln_hlp__dcheck; __catch_dcheck_code
+  # Compile task names; and split queue in two parts
+  D_DPL_TASK_NAMES+=( runcoms )
+  D_DPL_TASK_NAMES+=( blanks )
 
-  # Task 2: blank runcoms and hushlogin file (use cp queue)
+  # Split queue in two parts: first is done via manifest; second — manually
   d_add_blanks_to_queue
-  __cp_hlp__dcheck; __catch_dcheck_code
 
-  # Tie them all up
-  __reconcile_dcheck_codes
+  # Delegate to built-in helper
+  __multitask_hlp__dcheck
 }
 
-# Modify built-in installation routine
-dinstall()
-{
-  # Task 1: primary runcom files (use dln queue)
-  __task_is_installable && __dln_hlp__dinstall
-  __catch_dinstall_code || return $?
+# dinstall and dremove are fully delegated to built-in helpers
+dinstall()  {   __multitask_hlp__dinstall;  }
+dremove()   {   __multitask_hlp__dremove;   }
 
-  # Task 2: blank runcoms and hushlogin file (use cp queue)
-  __task_is_installable && __cp_hlp__dinstall
-  __catch_dinstall_code || return $?
+# Implement primaries for runcoms
+d_runcoms_dcheck()    { __dln_hlp__dcheck;    }
+d_runcoms_dinstall()  { __dln_hlp__dinstall;  }
+d_runcoms_dremove()   { __dln_hlp__dremove;   }
 
-  # Tie them all up
-  __reconcile_dinstall_codes
-}
+# Implement primaries for blanks
+d_blanks_dcheck()     { __cp_hlp__dcheck;     }
+d_blanks_dinstall()   { __cp_hlp__dinstall;   }
+d_blanks_dremove()    { __cp_hlp__dremove;    }
 
-# Modify built-in removal routine
-dremove()
-{
-  # Task 1: primary runcom files (use dln queue)
-  __task_is_removable && __dln_hlp__dremove
-  __catch_dremove_code || return $?
-
-  # Task 2: blank runcoms and hushlogin file (use cp queue)
-  __task_is_removable && __cp_hlp__dremove
-  __catch_dremove_code || return $?
-
-  # Tie them all up
-  __reconcile_dremove_codes
-}
-
+# Add second chunk of the queue
 d_add_blanks_to_queue()
 {
-  # Split queue at current length
+  # Split queue at current length (which is number of items in manifest)
   __split_queue
 
   # Compose path to directory containing blank files
@@ -82,6 +67,6 @@ d_add_blanks_to_queue()
     D_DPL_QUEUE_MAIN+=( "$relpath" )
     D_DPL_ASSET_RELPATHS+=( "$relpath" )
     D_DPL_ASSET_PATHS+=( "$blanks_dir/$relpath" )
-    D_DPL_TARGET_PATHS+=( "$HOME/$relpath" )
+    D_DPL_TARGET_PATHS+=( "$D_DPL_TARGET_DIR/$relpath" )
   done
 }
