@@ -22,9 +22,6 @@ dcheck()
   D_DPL_TASK_NAMES+=( bash_it_fmwk )
   D_DPL_TASK_NAMES+=( bash_it_assets )
 
-  # Assemble assets
-  d_assemble_asset_queue
-
   # Delegate to built-in helper
   __multitask_hlp__dcheck
 }
@@ -312,6 +309,6 @@ d_assemble_asset_queue()
 }
 
 # Implement primaries for assets
-d_bash_it_assets_dcheck()    { __dln_hlp__dcheck;    }
+d_bash_it_assets_dcheck()    { d_assemble_asset_queue; __dln_hlp__dcheck; }
 d_bash_it_assets_dinstall()  { __dln_hlp__dinstall;  }
 d_bash_it_assets_dremove()   { __dln_hlp__dremove;   }

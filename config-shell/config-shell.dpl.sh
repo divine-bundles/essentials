@@ -29,9 +29,6 @@ dcheck()
   D_DPL_TASK_NAMES+=( runcoms )
   D_DPL_TASK_NAMES+=( blanks )
 
-  # Split queue in two parts: first is done via manifest; second — manually
-  d_add_blanks_to_queue
-
   # Delegate to built-in helper
   __multitask_hlp__dcheck
 }
@@ -46,7 +43,7 @@ d_runcoms_dinstall()  { __dln_hlp__dinstall;  }
 d_runcoms_dremove()   { __dln_hlp__dremove;   }
 
 # Implement primaries for blanks
-d_blanks_dcheck()     { __cp_hlp__dcheck;     }
+d_blanks_dcheck()     { d_add_blanks_to_queue; __cp_hlp__dcheck; }
 d_blanks_dinstall()   { __cp_hlp__dinstall;   }
 d_blanks_dremove()    { __cp_hlp__dremove;    }
 

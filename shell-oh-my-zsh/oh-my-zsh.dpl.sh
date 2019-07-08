@@ -22,9 +22,6 @@ dcheck()
   D_DPL_TASK_NAMES+=( omz_fmwk )
   D_DPL_TASK_NAMES+=( omz_assets )
 
-  # Assemble assets
-  d_assemble_asset_queue
-
   # Delegate to built-in helper
   __multitask_hlp__dcheck
 }
@@ -238,3 +235,8 @@ d_assemble_asset_queue()
   # Return success
   return 0
 }
+
+# Implement primaries for assets
+d_omz_assets_dcheck()    { d_assemble_asset_queue; __dln_hlp__dcheck; }
+d_omz_assets_dinstall()  { __dln_hlp__dinstall;  }
+d_omz_assets_dremove()   { __dln_hlp__dremove;   }
