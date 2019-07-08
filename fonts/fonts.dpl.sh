@@ -103,7 +103,7 @@ dremove()
   __cp_hlp__dremove
 }
 
-__d__cp_hlp__pre_process()
+d__cp_hlp__pre_process()
 {
   # Store current case sensitivity setting, then turn it off
   local restore_nocasematch="$( shopt -p nocasematch )"

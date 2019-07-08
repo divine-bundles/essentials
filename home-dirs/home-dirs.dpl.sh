@@ -24,7 +24,7 @@ dremove()   { __queue_hlp__dremove;   }
 #.  1 - Installed
 #.  2 - Not installed
 #.  3 - Invalid
-__d__queue_hlp__item_is_installed()
+d__queue_hlp__item_is_installed()
 {
   # Compose directory path
   local dir="$HOME/$D_DPL_ITEM_TITLE"
@@ -70,7 +70,7 @@ __d__queue_hlp__item_is_installed()
 #.  2 - Invalid item
 #.  3 - Success: stop any further installations
 #.  4 - Failure: stop any further installations
-__d__queue_hlp__install_item()
+d__queue_hlp__install_item()
 {
   # Compose directory path
   local dir="$HOME/$D_DPL_ITEM_TITLE"
@@ -96,7 +96,7 @@ __d__queue_hlp__install_item()
 #.  2 - Invalid item
 #.  3 - Success: stop any further removals
 #.  4 - Failure: stop any further removals
-__d__queue_hlp__remove_item()
+d__queue_hlp__remove_item()
 {
   # Compose directory path
   local dir="$HOME/$D_DPL_ITEM_TITLE"

@@ -29,7 +29,7 @@ dcheck()
   __dln_hlp__dcheck; __catch_dcheck_code
 
   # Task 2: blank runcoms and hushlogin file (use cp queue)
-  __d__rc_add_blanks_to_queue
+  d_add_blanks_to_queue
   __cp_hlp__dcheck; __catch_dcheck_code
 
   # Tie them all up
@@ -66,7 +66,7 @@ dremove()
   __reconcile_dremove_codes
 }
 
-__d__rc_add_blanks_to_queue()
+d_add_blanks_to_queue()
 {
   # Split queue at current length
   __split_queue

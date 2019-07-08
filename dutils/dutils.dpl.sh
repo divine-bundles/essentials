@@ -32,7 +32,7 @@ dcheck()    { __queue_hlp__dcheck;    }
 dinstall()  { __queue_hlp__dinstall;  }
 dremove()   { __queue_hlp__dremove;   }
 
-__d__queue_hlp__provide_stash_key()
+d__queue_hlp__provide_stash_key()
 {
   D_DPL_ITEM_STASH_KEY="$D_DPL_ITEM_TITLE"
 }
@@ -42,7 +42,7 @@ __d__queue_hlp__provide_stash_key()
 #.  1 - Installed
 #.  2 - Not installed
 #.  3 - Invalid
-__d__queue_hlp__item_is_installed()
+d__queue_hlp__item_is_installed()
 {
   # Construct util’s name and location within framework and as installed
   local util_name="$D_DPL_ITEM_TITLE"
@@ -151,7 +151,7 @@ __d__queue_hlp__item_is_installed()
 #.  0 - Successfully installed
 #.  1 - Failed to install
 #.  2 - Invalid item
-__d__queue_hlp__install_item()
+d__queue_hlp__install_item()
 {
   # Construct util’s name and location within framework
   local util_name="$D_DPL_ITEM_TITLE"
@@ -251,7 +251,7 @@ EOF
 #.  0 - Successfully removed
 #.  1 - Failed to remove
 #.  2 - Invalid item
-__d__queue_hlp__remove_item()
+d__queue_hlp__remove_item()
 {
   # Construct util’s name and location within framework and as installed
   local util_name="$D_DPL_ITEM_TITLE"

@@ -24,10 +24,10 @@ D_OH_MY_ZSH_REPO='https://github.com/robbyrussell/oh-my-zsh.git'
 dcheck()
 {
   # Task 1: framework itself
-  __d__omz_fmwk_dcheck; __catch_dcheck_code
+  d_omz_dcheck; __catch_dcheck_code
 
   # Task 2: framework assets (use dln queue)
-  __d__omz_assemble_asset_queue
+  d_assemble_asset_queue
   __dln_hlp__dcheck; __catch_dcheck_code
 
   # Tie them all up
@@ -44,7 +44,7 @@ dcheck()
 dinstall()
 {
   # Task 1: framework itself
-  __task_is_installable && __d__omz_fmwk_dinstall
+  __task_is_installable && d_omz_dinstall
   __catch_dinstall_code || return $?
 
   # Task 2: framework assets (use dln queue)
@@ -65,7 +65,7 @@ dinstall()
 dremove()
 {
   # Task 1: framework itself
-  __task_is_removable && __d__omz_fmwk_dremove
+  __task_is_removable && d_omz_dremove
   __catch_dremove_code || return $?
 
   # Task 2: framework assets (use dln queue)
@@ -76,7 +76,7 @@ dremove()
   __reconcile_dremove_codes
 }
 
-__d__omz_fmwk_dcheck()
+d_omz_dcheck()
 {
   # Rely on stashing
   dstash ready || return 3
@@ -118,7 +118,7 @@ __d__omz_fmwk_dcheck()
   fi
 }
 
-__d__omz_fmwk_dinstall()
+d_omz_dinstall()
 {
   # Check if oh-my-zsh path exists
   if [ -e "$D_OH_MY_ZSH_PATH" ]; then
@@ -175,7 +175,7 @@ __d__omz_fmwk_dinstall()
   fi
 }
 
-__d__omz_fmwk_dremove()
+d_omz_dremove()
 {
   # Check if already removed
   if ! [ -e "$D_OH_MY_ZSH_PATH" ]; then
@@ -204,11 +204,11 @@ __d__omz_fmwk_dremove()
   fi
 }
 
-__d__omz_assemble_asset_queue()
+d_assemble_asset_queue()
 {
   # Storage variables
-  local restore_opts cmd orig_path replacement_path
-  local d_orig=() d_replacements=() d_relatives=()
+  local restore_opts cmd target_path asset_path
+  local target_paths=() asset_paths=() asset_relpaths=()
 
   # Save current state of ‘dotglob’ and ‘nullglob’ options
   restore_opts=( "$( shopt -p dotglob )" "$( shopt -p nullglob )" )
@@ -219,49 +219,49 @@ __d__omz_assemble_asset_queue()
   #
   # Populate themes
   #
-  for replacement_path in "$D_DPL_ASSETS_DIR/themes/"*.zsh-theme; do
+  for asset_path in "$D_DPL_ASSETS_DIR/themes/"*.zsh-theme; do
 
     # Check if replacement if a readable file
-    [ -r "$replacement_path" -a -f "$replacement_path" ] || {
+    [ -r "$asset_path" -a -f "$asset_path" ] || {
       dprint_debug \
-        "Ignoring custom asset: $replacement_path (not a readable file)"
+        "Ignoring custom asset: $asset_path (not a readable file)"
       continue
     }
 
     # Compose target path
-    orig_path="$D_OH_MY_ZSH_PATH/custom/themes/$( basename -- \
-      "$replacement_path" )"
+    target_path="$D_OH_MY_ZSH_PATH/custom/themes/$( basename -- \
+      "$asset_path" )"
 
     # Push pair of paths onto the stack
-    d_orig+=( "$orig_path" )
-    d_replacements+=( "$replacement_path" )
-    d_relatives+=("${replacement_path#"$D_DPL_ASSETS_DIR/"}")
+    target_paths+=( "$target_path" )
+    asset_paths+=( "$asset_path" )
+    asset_relpaths+=("${asset_path#"$D_DPL_ASSETS_DIR/"}")
     
   done
 
   #
   # Populate plugins
   #
-  for replacement_path in "$D_DPL_ASSETS_DIR/plugins/"*/*.plugin.zsh; do
+  for asset_path in "$D_DPL_ASSETS_DIR/plugins/"*/*.plugin.zsh; do
 
     # Make actual replacement the parent directory
-    replacement_path="$( dirname -- "$replacement_path" )"
+    asset_path="$( dirname -- "$asset_path" )"
 
     # Check if replacement if a readable directory
-    [ -r "$replacement_path" -a -d "$replacement_path" ] || {
+    [ -r "$asset_path" -a -d "$asset_path" ] || {
       dprint_debug \
-        "Ignoring custom asset: $replacement_path (not a readable dir)"
+        "Ignoring custom asset: $asset_path (not a readable dir)"
       continue
     }
 
     # Compose target path
-    orig_path="$D_OH_MY_ZSH_PATH/custom/plugins/$( basename -- \
-      "$replacement_path" )"
+    target_path="$D_OH_MY_ZSH_PATH/custom/plugins/$( basename -- \
+      "$asset_path" )"
 
     # Push pair of paths onto the stack
-    d_orig+=( "$orig_path" )
-    d_replacements+=( "$replacement_path" )
-    d_relatives+=("${replacement_path#"$D_DPL_ASSETS_DIR/"}")
+    target_paths+=( "$target_path" )
+    asset_paths+=( "$asset_path" )
+    asset_relpaths+=("${asset_path#"$D_DPL_ASSETS_DIR/"}")
     
   done
 
@@ -273,10 +273,10 @@ __d__omz_assemble_asset_queue()
   for cmd in "${restore_opts[@]}"; do $cmd; done
 
   # Populate globals
-  D_DPL_TARGET_PATHS=( "${d_orig[@]}" )
-  D_DPL_ASSET_PATHS=( "${d_replacements[@]}" )
-  D_DPL_ASSET_RELPATHS=( "${d_relatives[@]}" )
-  D_DPL_QUEUE_MAIN=( "${d_relatives[@]}" )
+  D_DPL_TARGET_PATHS=( "${target_paths[@]}" )
+  D_DPL_ASSET_PATHS=( "${asset_paths[@]}" )
+  D_DPL_ASSET_RELPATHS=( "${asset_relpaths[@]}" )
+  D_DPL_QUEUE_MAIN=( "${asset_relpaths[@]}" )
 
   # Return success
   return 0
