@@ -109,7 +109,8 @@ d_omz_fmwk_dinstall()
   fi
 
   # Clone repo to install directory
-  if /usr/bin/env git clone --depth=1 "$D_OH_MY_ZSH_REPO" "$D_OH_MY_ZSH_PATH"
+  if /usr/bin/env git clone --depth=1 "$D_OH_MY_ZSH_REPO" "$D_OH_MY_ZSH_PATH" \
+    &>/dev/null
   then
 
     ## Cloned successfully, no further installation required (oh-my-zsh is 

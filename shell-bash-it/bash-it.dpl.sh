@@ -101,13 +101,31 @@ d_bash_it_fmwk_dinstall()
   }
 
   # Clone repo to install directory
-  if /usr/bin/env git clone --depth=1 "$D_BASH_IT_REPO" "$D_BASH_IT_PATH"
+  if /usr/bin/env git clone --depth=1 "$D_BASH_IT_REPO" "$D_BASH_IT_PATH" \
+    &>/dev/null
   then
 
     ## Run installation script without modifying RC files. (Bash-it is 
-    #. supported by ‘shell-rc’ deployment.)
+    #. supported by ‘shell-rc’ deployment.) Mind verbosity.
     #
-    if "$D_BASH_IT_PATH"/install.sh --no-modify-config; then
+    if $D_OPT_QUIET; then
+      
+      # Run script quietly
+      "$D_BASH_IT_PATH"/install.sh --no-modify-config &>/dev/null
+
+    else
+
+      # Run script normally, but re-paint output
+      local line
+      "$D_BASH_IT_PATH"/install.sh --no-modify-config 2>&1 \
+        | while IFS= read -r line || [ -n "$line" ]; do
+        printf "${CYAN}==> %s${NORMAL}\n" "$line"
+      done
+
+    fi
+
+    # Check return status
+    if [ "${PIPESTATUS[0]}" -eq 0 ]; then
 
       # Successfully installed: report and set stash record
       dprint_debug "Cloned and installed Bash-it from: $D_BASH_IT_REPO" \
