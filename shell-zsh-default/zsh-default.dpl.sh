@@ -186,8 +186,26 @@ dinstall()
       return 1
     fi
 
-    # User agreed to auto-install chsh
-    if os_pkgmgr dinstall chsh; then
+    # Auto-install chsh with verbosity in mind
+    if $D_OPT_QUIET; then
+
+      # Launch quietly
+      os_pkgmgr dinstall chsh &>/dev/null
+
+    else
+
+      # Launch normally, but re-paint output
+      local os_pkgmgr_out_line
+      os_pkgmgr dinstall chsh 2>&1 \
+        | while IFS= read -r os_pkgmgr_out_line || [ -n "$os_pkgmgr_out_line" ]
+        do
+          printf "${CYAN}==> %s${NORMAL}\n" "$os_pkgmgr_out_line"
+        done
+      
+    fi
+
+    # Check return status
+    if [ "${PIPESTATUS[0]}" -eq 0 ]; then
       # Successfully installed: record this to stash
       dprint_debug 'Auto-installed chsh'
       dstash -s set chsh_installed
@@ -354,7 +372,26 @@ dremove()
   # Attempt to uninstall chsh
   if [ "$chsh_installed" = yes -a -n "${OS_PKGMGR+isset}" ]; then
 
-    if os_pkgmgr dremove chsh; then
+    # Auto-uninstall chsh with verbosity in mind
+    if $D_OPT_QUIET; then
+
+      # Launch quietly
+      os_pkgmgr dremove chsh &>/dev/null
+
+    else
+
+      # Launch normally, but re-paint output
+      local os_pkgmgr_out_line
+      os_pkgmgr dremove chsh 2>&1 \
+        | while IFS= read -r os_pkgmgr_out_line || [ -n "$os_pkgmgr_out_line" ]
+        do
+          printf "${CYAN}==> %s${NORMAL}\n" "$os_pkgmgr_out_line"
+        done
+      
+    fi
+
+    # Check return status
+    if [ "${PIPESTATUS[0]}" -eq 0 ]; then
       # Successfully removed
       dprint_debug 'Auto-removed chsh'
       dstash -s unset chsh_installed
