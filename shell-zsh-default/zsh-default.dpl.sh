@@ -239,8 +239,9 @@ dinstall()
     # Announce success
     dprint_debug 'Successfully changed default shell to:' -i "$D_ZSH_PATH"
 
-    # Change $SHELL value for current session
-    SHELL="$D_ZSH_PATH"
+    # Ask user to reload shell
+    dprint_start -l \
+      'Please, reload your shell to finilize current installation'
 
     # Flip stash flags
     dstash -s set old_shell "$old_shell"
@@ -316,17 +317,31 @@ dremove()
 
     fi
 
-    # Execute change
+    # Warn about upcoming password prompt
     if $shell_is_ok; then
       dprint_start -l 'Changing default shell requires user password'
     fi
+
+    # CHange SHell back to old default
     if $shell_is_ok && chsh -s "$old_shell"; then
+
+      # Announce success
       dprint_debug 'Successfully restored default shell to:' -i "$old_shell"
+
+      # Ask user to reload shell
+      dprint_start -l \
+        'Please, reload your shell to finilize current removal'
+
+      # Flip stash flags
       dstash -s unset new_shell
       dstash -s unset old_shell
-      dstash -s unset installed
+      # dstash -s unset installed
+
     else
+
+      # Announce failure
       dprint_debug 'Failed to restore default shell to:' -i "$old_shell"
+
     fi
   
   else
