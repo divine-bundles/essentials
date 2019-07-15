@@ -284,7 +284,7 @@ dremove()
 
   # Attempt to change shell back
   if [ "$SHELL" != "$old_shell" ] \
-    && type -P chsh \
+    && type -P chsh &>/dev/null \
     && [ -x "$old_shell" ]
   then
 
