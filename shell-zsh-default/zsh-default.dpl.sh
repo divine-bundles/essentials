@@ -56,6 +56,7 @@ dcheck()
   # Check if there is a stash record of this deployment being installed
   if dstash -s has installed; then
 
+    # Stash record exists: extract parts of it
     local old_shell="$( dstash -s get old_shell )"
     local new_shell="$( dstash -s get new_shell )"
     local chsh_installed="$( dstash -s has chsh_installed \
@@ -63,71 +64,77 @@ dcheck()
     local etc_added="$( dstash -s has etc_added \
       && printf yes || printf no )"
 
-    # Stash record exists
+    # Print debug summary
     dprint_debug 'Detected record of previous installation:' \
-      -i 'Old shell:' "$( dstash -s get old_shell )" \
+      -i 'Old shell:' "$old_shell" \
       -i 'New shell:' "$new_shell" \
       -i 'chsh installed:' "$chsh_installed" \
       -i '/etc/shells record added:' "$etc_added"
 
     # Check if old shell still exists
-    [ -x "$old_shell" ] || {
-      dprint_debug "Recorded previous shell '$old_shell' is not found"
+    if ! [ -x "$old_shell" ]; then
+      dprint_debug "Previous shell '$old_shell' is currently not installed"
       D_GOOD_STASH=false
-    }
+    fi
 
     # Check if old shell is still in /etc/shells
-    grep ^"$old_shell"$ /etc/shells &>/dev/null || {
+    if ! grep -Fxq "$old_shell" /etc/shells &>/dev/null; then
       dprint_debug \
-        "Recorded previous shell '$old_shell' is not listed in '/etc/shells'"
+        "Previous shell '$old_shell' is currently not listed in '/etc/shells'"
       D_GOOD_STASH=false
-    }
+    fi
 
     # Check if detected zsh is the one installed
-    [ "$SHELL" = "$new_shell" ] || {
-      dprint_debug "Current shell '$SHELL' does not match records"
-      D_GOOD_STASH=false
-    }
-
-    # Check if chsh that has been installed is still installed
-    if [ "$chsh_installed" = yes ] && ! type -P chsh &>/dev/null; then
-      dprint_debug 'Current status of chsh does not match records'
+    if ! [ "$SHELL" = "$new_shell" ]; then
+      dprint_debug \
+        'Despite record of previously changing default shell' \
+        "to '$new_shell'," \
+        -n "current default shell is '$SHELL'"
       D_GOOD_STASH=false
     fi
 
-    # Check if chsh that has been installed is still installed
+    # Check if previously installed chsh is still installed
+    if [ "$chsh_installed" = yes ] && ! type -P chsh &>/dev/null; then
+      dprint_debug \
+        "Previously installed 'chsh' is currently not found on \$PATH"
+      D_GOOD_STASH=false
+    fi
+
+    # Check if previously added /etc/shells record is still in place
     if [ "$etc_added" = yes ] \
-      && ! grep ^"$new_shell"$ /etc/shells &>/dev/null
+      && ! grep -Fxq "$new_shell" /etc/shells &>/dev/null
     then
       dprint_debug \
-        "Presence of '$new_shell' in '/etc/shells' does not match records"
+        "Line '$new_shell', previously added to '/etc/shells'," \
+        'is currently not found'
       D_GOOD_STASH=false
     fi
 
-    # If stash is reliable, return installed
-    $D_GOOD_STASH && return 1
+    # Check if stash is reliable
+    if $D_GOOD_STASH; then
 
-    # With unreliable stash, prompt user
-    if dprompt_key --bare --prompt 'Proceed anyway?' -- \
-      'Records of previous installation are inconsistent, which speaks to' \
-      -n 'botched installation or manual tinkering'
-    then
-
-      dprint_debug 'Working with inconsistent stash'
-
-      # Check if current default shell is already zsh
-      [ "$( basename -- "$SHELL" )" = zsh ] && {
-        dprint_debug 'Current default shell is already zsh'
-        return 1
-      }
-
-      # Otherwise, return not installed
-      return 2
+      # Reliable stash, dpl is installed
+      return 1
 
     else
 
-      # Ignoring this deployment
-      return 3
+      # Unreliable stash: announce the fact loudly
+      dprint_start -l 'Stash records are inconsistent with current set-up'
+
+      # Check if current default shell is already zsh
+      if [ "$( basename -- "$SHELL" )" = zsh ]; then
+
+        # Current default is still zsh: report and return installed
+        dprint_debug "Current default shell is still zsh ('$SHELL')"
+        return 1
+      
+      else
+
+        # Current default is not zsh: report and return not installed
+        dprint_debug "Current default shell is not zsh ('$SHELL')"
+        return 2
+
+      fi
 
     fi
 
@@ -223,17 +230,32 @@ dinstall()
   # Record current (old) shell
   local old_shell="$SHELL"
 
-  # Now, CHange SHell with chsh (user password will be prompted for)
+  # Warn about upcoming password prompt
   dprint_start -l 'Changing default shell requires user password'
+
+  # Now, CHange SHell with chsh
   if chsh -s "$D_ZSH_PATH"; then
+
+    # Announce success
     dprint_debug 'Successfully changed default shell to:' -i "$D_ZSH_PATH"
+
+    # Change $SHELL value for current session
+    SHELL="$D_ZSH_PATH"
+
+    # Flip stash flags
     dstash -s set old_shell "$old_shell"
     dstash -s set new_shell "$D_ZSH_PATH"
     dstash -s set installed
+
+    # Return success
     return 0
+
   else
+
+    # Announce and return failure
     dprint_debug 'Failed to change default shell to:' -i "$D_ZSH_PATH"
     return 1
+
   fi
 }
 
