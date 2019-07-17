@@ -23,35 +23,35 @@ D_BLANK_RELPATHS=( \
 )
 
 # Delegate to built-in checking routine
-dcheck()
+d_dpl_check()
 {
   # Compile task names
   D__DPL_TASK_NAMES+=( runcoms )
   D__DPL_TASK_NAMES+=( blanks )
 
   # Delegate to built-in helper
-  __multitask_hlp__dcheck
+  d__multitask_check
 }
 
-# dinstall and dremove are fully delegated to built-in helpers
-dinstall()  {   __multitask_hlp__dinstall;  }
-dremove()   {   __multitask_hlp__dremove;   }
+# d_dpl_install and d_dpl_remove are fully delegated to built-in helpers
+d_dpl_install()  {   d__multitask_install;  }
+d_dpl_remove()   {   d__multitask_remove;   }
 
 # Implement primaries for runcoms
-d_runcoms_dcheck()    { __dln_hlp__dcheck;    }
-d_runcoms_dinstall()  { __dln_hlp__dinstall;  }
-d_runcoms_dremove()   { __dln_hlp__dremove;   }
+d_runcoms_check()    { d__link_queue_check;    }
+d_runcoms_install()  { d__link_queue_install;  }
+d_runcoms_remove()   { d__link_queue_remove;   }
 
 # Implement primaries for blanks
-d_blanks_dcheck()     { d_add_blanks_to_queue; __cp_hlp__dcheck; }
-d_blanks_dinstall()   { __cp_hlp__dinstall;   }
-d_blanks_dremove()    { __cp_hlp__dremove;    }
+d_blanks_check()     { d_add_blanks_to_queue; d__copy_queue_check; }
+d_blanks_install()   { d__copy_queue_install;   }
+d_blanks_remove()    { d__copy_queue_remove;    }
 
 # Add second chunk of the queue
 d_add_blanks_to_queue()
 {
   # Split queue at current length (which is number of items in manifest)
-  __split_queue
+  d__queue_split
 
   # Compose path to directory containing blank files
   local blanks_dir="$D__DPL_DIR/$D_BLANKS_DIRNAME"

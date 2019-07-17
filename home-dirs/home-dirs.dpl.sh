@@ -15,16 +15,16 @@ D__DPL_WARNING=
 # Where to grab main queue file
 D__DPL_QUE_PATH="$D__DPL_ASSETS_DIR/home-dirs.cfg"
 
-dcheck()    { __queue_hlp__dcheck;    }
-dinstall()  { __queue_hlp__dinstall;  }
-dremove()   { __queue_hlp__dremove;   }
+d_dpl_check()    { d__queue_check;    }
+d_dpl_install()  { d__queue_install;  }
+d_dpl_remove()   { d__queue_remove;   }
 
 ## Exit codes and their meaning:
 #.  0 - Unknown
 #.  1 - Installed
 #.  2 - Not installed
 #.  3 - Invalid
-d__queue_hlp__item_is_installed()
+d_queue_item_is_installed()
 {
   # Compose directory path
   local dir="$HOME/$D__DPL_ITEM_TITLE"
@@ -70,7 +70,7 @@ d__queue_hlp__item_is_installed()
 #.  2 - Invalid item
 #.  3 - Success: stop any further installations
 #.  4 - Failure: stop any further installations
-d__queue_hlp__install_item()
+d_queue_item_install()
 {
   # Compose directory path
   local dir="$HOME/$D__DPL_ITEM_TITLE"
@@ -96,7 +96,7 @@ d__queue_hlp__install_item()
 #.  2 - Invalid item
 #.  3 - Success: stop any further removals
 #.  4 - Failure: stop any further removals
-d__queue_hlp__remove_item()
+d_queue_item_remove()
 {
   # Compose directory path
   local dir="$HOME/$D__DPL_ITEM_TITLE"

@@ -28,11 +28,11 @@ D_UTIL_DESTINATION_DIR_CANDIDATES=( \
   '/bin' \
 )
 
-dcheck()    { __queue_hlp__dcheck;    }
-dinstall()  { __queue_hlp__dinstall;  }
-dremove()   { __queue_hlp__dremove;   }
+d_dpl_check()    { d__queue_check;    }
+d_dpl_install()  { d__queue_install;  }
+d_dpl_remove()   { d__queue_remove;   }
 
-d__queue_hlp__provide_stash_key()
+d_queue_item_pre_check()
 {
   D__DPL_ITEM_STASH_KEY="$D__DPL_ITEM_TITLE"
 }
@@ -42,7 +42,7 @@ d__queue_hlp__provide_stash_key()
 #.  1 - Installed
 #.  2 - Not installed
 #.  3 - Invalid
-d__queue_hlp__item_is_installed()
+d_queue_item_is_installed()
 {
   # Construct util’s name and location within framework and as installed
   local util_name="$D__DPL_ITEM_TITLE"
@@ -151,7 +151,7 @@ d__queue_hlp__item_is_installed()
 #.  0 - Successfully installed
 #.  1 - Failed to install
 #.  2 - Invalid item
-d__queue_hlp__install_item()
+d_queue_item_install()
 {
   # Construct util’s name and location within framework
   local util_name="$D__DPL_ITEM_TITLE"
@@ -251,7 +251,7 @@ EOF
 #.  0 - Successfully removed
 #.  1 - Failed to remove
 #.  2 - Invalid item
-d__queue_hlp__remove_item()
+d_queue_item_remove()
 {
   # Construct util’s name and location within framework and as installed
   local util_name="$D__DPL_ITEM_TITLE"

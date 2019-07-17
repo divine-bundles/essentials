@@ -16,30 +16,30 @@ D_BASH_IT_PATH="$HOME/.bash-it"
 D_BASH_IT_REPO='https://github.com/Bash-it/bash-it.git'
 
 # Delegate to built-in checking routine
-dcheck()
+d_dpl_check()
 {
   # Compile task names; and split queue in two parts
   D__DPL_TASK_NAMES+=( bash_it_fmwk )
   D__DPL_TASK_NAMES+=( bash_it_assets )
 
   # Delegate to built-in helper
-  __multitask_hlp__dcheck
+  d__multitask_check
 }
 
-# dinstall and dremove are fully delegated to built-in helpers
-dinstall()  {   __multitask_hlp__dinstall;  }
-dremove()   {   __multitask_hlp__dremove;   }
+# d_dpl_install and d_dpl_remove are fully delegated to built-in helpers
+d_dpl_install()  {   d__multitask_install;  }
+d_dpl_remove()   {   d__multitask_remove;   }
 
-d_bash_it_fmwk_dcheck()
+d_bash_it_fmwk_check()
 {
   # Rely on stashing
-  dstash ready || return 3
+  d__stash ready || return 3
 
   # Check if framework directory is readable
   if [ -r "$D_BASH_IT_PATH" -a -d "$D_BASH_IT_PATH" ]; then
   
     # Check if there is record of previous installation
-    if dstash -s has fmwk_installed; then
+    if d__stash -s has fmwk_installed; then
       dprint_debug 'Bash-it framework appears to be installed'
       D__USER_OR_OS=false
     else
@@ -72,7 +72,7 @@ d_bash_it_fmwk_dcheck()
   fi
 }
 
-d_bash_it_fmwk_dinstall()
+d_bash_it_fmwk_install()
 {
   # Check if Bash-it path exists
   if [ -e "$D_BASH_IT_PATH" ]; then
@@ -130,7 +130,7 @@ d_bash_it_fmwk_dinstall()
       # Successfully installed: report and set stash record
       dprint_debug "Cloned and installed Bash-it from: $D_BASH_IT_REPO" \
         -n "to: $D_BASH_IT_PATH"
-      dstash -s set fmwk_installed
+      d__stash -s set fmwk_installed
       return 0
 
     else
@@ -152,14 +152,14 @@ d_bash_it_fmwk_dinstall()
   fi
 }
 
-d_bash_it_fmwk_dremove()
+d_bash_it_fmwk_remove()
 {
   # Check if already removed
   if ! [ -e "$D_BASH_IT_PATH" ]; then
 
     # Report
     dprint_debug "Already does not exist: $D_BASH_IT_PATH"
-    dstash -s unset fmwk_installed
+    d__stash -s unset fmwk_installed
     return 0
 
   fi
@@ -169,7 +169,7 @@ d_bash_it_fmwk_dremove()
     
     # Report, unset stash record, and return
     dprint_debug "Erased Bash-it path at: $D_BASH_IT_PATH"
-    dstash -s unset fmwk_installed
+    d__stash -s unset fmwk_installed
     return 0
 
   else
@@ -327,6 +327,6 @@ d_assemble_asset_queue()
 }
 
 # Implement primaries for assets
-d_bash_it_assets_dcheck()    { d_assemble_asset_queue; __dln_hlp__dcheck; }
-d_bash_it_assets_dinstall()  { __dln_hlp__dinstall;  }
-d_bash_it_assets_dremove()   { __dln_hlp__dremove;   }
+d_bash_it_assets_check()    { d_assemble_asset_queue; d__link_queue_check; }
+d_bash_it_assets_install()  { d__link_queue_install;  }
+d_bash_it_assets_remove()   { d__link_queue_remove;   }

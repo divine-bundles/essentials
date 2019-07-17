@@ -26,7 +26,7 @@ D__DPL_WARNING=
 #.  2 - Not installed
 #.  3 - Irrelevant
 #.  4 - Partly installed
-dcheck()
+d_dpl_check()
 {
   # Rely on $SHELL to be populated
   [ -n "$SHELL" ] || {
@@ -36,7 +36,7 @@ dcheck()
   }
 
   # Rely on stashing
-  dstash ready || return 3
+  d__stash ready || return 3
 
   # Assume that first zsh on the PATH is the one desired
   D_ZSH_PATH="$( type -P zsh 2>/dev/null )"
@@ -54,14 +54,14 @@ dcheck()
   D_GOOD_STASH=true
 
   # Check if there is a stash record of this deployment being installed
-  if dstash -s has installed; then
+  if d__stash -s has installed; then
 
     # Stash record exists: extract parts of it
-    local old_shell="$( dstash -s get old_shell )"
-    local new_shell="$( dstash -s get new_shell )"
-    local chsh_installed="$( dstash -s has chsh_installed \
+    local old_shell="$( d__stash -s get old_shell )"
+    local new_shell="$( d__stash -s get new_shell )"
+    local chsh_installed="$( d__stash -s has chsh_installed \
       && printf yes || printf no )"
-    local etc_added="$( dstash -s has etc_added \
+    local etc_added="$( d__stash -s has etc_added \
       && printf yes || printf no )"
 
     # Print debug summary
@@ -162,7 +162,7 @@ dcheck()
 #.  100 - Reboot needed
 #.  101 - User attention needed
 #.  666 - Critical failure
-dinstall()
+d_dpl_install()
 {
   # Rely on chsh to be available
   if ! type -P chsh &>/dev/null; then
@@ -208,7 +208,7 @@ dinstall()
     if [ "${PIPESTATUS[0]}" -eq 0 ]; then
       # Successfully installed: record this to stash
       dprint_debug 'Auto-installed chsh'
-      dstash -s set chsh_installed
+      d__stash -s set chsh_installed
     else
       # Failed to install
       dprint_debug 'chsh is required but not found' \
@@ -241,7 +241,7 @@ dinstall()
 
     # Successfully added: record this to stash
     dprint_debug "Added '$D_ZSH_PATH' to '/etc/shells'"
-    dstash -s set etc_added
+    d__stash -s set etc_added
 
   fi
 
@@ -262,9 +262,9 @@ dinstall()
       'Please, reload your shell to finilize current installation'
 
     # Flip stash flags
-    dstash -s set old_shell "$old_shell"
-    dstash -s set new_shell "$D_ZSH_PATH"
-    dstash -s set installed
+    d__stash -s set old_shell "$old_shell"
+    d__stash -s set new_shell "$D_ZSH_PATH"
+    d__stash -s set installed
 
     # Return success
     return 0
@@ -285,20 +285,20 @@ dinstall()
 #.  100 - Reboot needed
 #.  101 - User attention needed
 #.  666 - Critical failure
-dremove()
+d_dpl_remove()
 {
   # Check if there is record of previous installation
-  dstash -s has installed || {
+  d__stash -s has installed || {
     dprint_debug 'No record of previous installation'
     return 2
   }
 
   # Otherwise, undo what can be undone
-  local old_shell="$( dstash -s get old_shell )"
-  local new_shell="$( dstash -s get new_shell )"
-  local chsh_installed="$( dstash -s has chsh_installed \
+  local old_shell="$( d__stash -s get old_shell )"
+  local new_shell="$( d__stash -s get new_shell )"
+  local chsh_installed="$( d__stash -s has chsh_installed \
     && printf yes || printf no )"
-  local etc_added="$( dstash -s has etc_added \
+  local etc_added="$( d__stash -s has etc_added \
     && printf yes || printf no )"
 
   # Attempt to change shell back
@@ -351,9 +351,9 @@ dremove()
         'Please, reload your shell to finilize current removal'
 
       # Flip stash flags
-      dstash -s unset new_shell
-      dstash -s unset old_shell
-      # dstash -s unset installed
+      d__stash -s unset new_shell
+      d__stash -s unset old_shell
+      # d__stash -s unset installed
 
     else
 
@@ -364,7 +364,7 @@ dremove()
   
   else
 
-    # Reasoning should be apparent from dcheck output
+    # Reasoning should be apparent from d_dpl_check output
     dprint_debug 'Skipped restoring original shell'
 
   fi
@@ -394,7 +394,7 @@ dremove()
     if [ "${PIPESTATUS[0]}" -eq 0 ]; then
       # Successfully removed
       dprint_debug 'Auto-removed chsh'
-      dstash -s unset chsh_installed
+      d__stash -s unset chsh_installed
     else
       # Failed to remove
       dprint_debug 'Failed to auto-remove chsh'
@@ -443,12 +443,12 @@ dremove()
   fi
 
   # Clean up stash and return
-  if ! dstash -s has old_shell \
-    && ! dstash -s has new_shell \
-    && ! dstash -s has chsh_installed \
-    && ! dstash -s has etc_filled
+  if ! d__stash -s has old_shell \
+    && ! d__stash -s has new_shell \
+    && ! d__stash -s has chsh_installed \
+    && ! d__stash -s has etc_filled
   then
-    dstash -s unset installed
+    d__stash -s unset installed
     return 0
   else
     return 1

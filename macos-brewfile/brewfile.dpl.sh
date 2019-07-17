@@ -18,7 +18,7 @@ D__DPL_WARNING=
 #.  2 - Not installed
 #.  3 - Irrelevant
 #.  4 - Partly installed
-dcheck()
+d_dpl_check()
 {
   # Quickly check package manager
   [ "$D__OS_PKGMGR" = brew ] || {
@@ -59,7 +59,7 @@ dcheck()
 #.  100 - Reboot needed
 #.  101 - User attention needed
 #.  666 - Critical failure
-dinstall()
+d_dpl_install()
 {
   # brew bundle requires Brewfile in current directory
   cd "$D__DPL_ASSETS_DIR"
@@ -75,7 +75,7 @@ dinstall()
 #.  100 - Reboot needed
 #.  101 - User attention needed
 #.  666 - Critical failure
-dremove()
+d_dpl_remove()
 {
   ## Homebrew’s bundler does not provide removal mechanism. Below code simply 
   #. reads Brewfile in reverse order and calls uninstall commands. This really 

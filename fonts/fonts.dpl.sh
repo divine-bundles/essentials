@@ -22,7 +22,7 @@ D__DPL_TARGET_DIR_UBUNTU='/usr/share/fonts'
 #.  2 - Not installed
 #.  3 - Irrelevant
 #.  4 - Partly installed
-dcheck()
+d_dpl_check()
 {
   # Populate essential global variables for helper functions
   D__DPL_QUEUE_MAIN=()
@@ -74,7 +74,7 @@ dcheck()
   fi
 
   # Delegate to helper function
-  __cp_hlp__dcheck
+  d__copy_queue_check
 }
 
 ## Exit codes and their meaning:
@@ -84,10 +84,10 @@ dcheck()
 #.  100 - Reboot needed
 #.  101 - User attention needed
 #.  666 - Critical failure
-dinstall()
+d_dpl_install()
 {
   # Delegate to helper function
-  __cp_hlp__dinstall
+  d__copy_queue_install
 }
 
 ## Exit codes and their meaning:
@@ -97,13 +97,13 @@ dinstall()
 #.  100 - Reboot needed
 #.  101 - User attention needed
 #.  666 - Critical failure
-dremove()
+d_dpl_remove()
 {
   # Delegate to helper function
-  __cp_hlp__dremove
+  d__copy_queue_remove
 }
 
-d__cp_hlp__pre_process()
+d_copy_queue_pre_process()
 {
   # Store current case sensitivity setting, then turn it off
   local restore_nocasematch="$( shopt -p nocasematch )"
