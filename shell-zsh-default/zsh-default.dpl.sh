@@ -195,11 +195,11 @@ dinstall()
     else
 
       # Launch normally, but re-paint output
-      local os_pkgmgr_out_line
+      local stdout_line
       d__os_pkgmgr install chsh 2>&1 \
-        | while IFS= read -r os_pkgmgr_out_line || [ -n "$os_pkgmgr_out_line" ]
+        | while IFS= read -r stdout_line || [ -n "$stdout_line" ]
         do
-          printf "${CYAN}==> %s${NORMAL}\n" "$os_pkgmgr_out_line"
+          printf "${CYAN}==> %s${NORMAL}\n" "$stdout_line"
         done
       
     fi
@@ -381,11 +381,11 @@ dremove()
     else
 
       # Launch normally, but re-paint output
-      local os_pkgmgr_out_line
+      local stdout_line
       d__os_pkgmgr remove chsh 2>&1 \
-        | while IFS= read -r os_pkgmgr_out_line || [ -n "$os_pkgmgr_out_line" ]
+        | while IFS= read -r stdout_line || [ -n "$stdout_line" ]
         do
-          printf "${CYAN}==> %s${NORMAL}\n" "$os_pkgmgr_out_line"
+          printf "${CYAN}==> %s${NORMAL}\n" "$stdout_line"
         done
       
     fi
