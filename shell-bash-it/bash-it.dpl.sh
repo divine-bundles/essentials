@@ -6,11 +6,11 @@
 #:revremark:    Release version
 #:created_at:   2019.06.30
 
-D_DPL_NAME='bash-it'
-D_DPL_DESC='A community Bash framework'
-D_DPL_PRIORITY=3333
-D_DPL_FLAGS=
-D_DPL_WARNING=
+D__DPL_NAME='bash-it'
+D__DPL_DESC='A community Bash framework'
+D__DPL_PRIORITY=3333
+D__DPL_FLAGS=
+D__DPL_WARNING=
 
 D_BASH_IT_PATH="$HOME/.bash-it"
 D_BASH_IT_REPO='https://github.com/Bash-it/bash-it.git'
@@ -19,8 +19,8 @@ D_BASH_IT_REPO='https://github.com/Bash-it/bash-it.git'
 dcheck()
 {
   # Compile task names; and split queue in two parts
-  D_DPL_TASK_NAMES+=( bash_it_fmwk )
-  D_DPL_TASK_NAMES+=( bash_it_assets )
+  D__DPL_TASK_NAMES+=( bash_it_fmwk )
+  D__DPL_TASK_NAMES+=( bash_it_assets )
 
   # Delegate to built-in helper
   __multitask_hlp__dcheck
@@ -41,10 +41,10 @@ d_bash_it_fmwk_dcheck()
     # Check if there is record of previous installation
     if dstash -s has fmwk_installed; then
       dprint_debug 'Bash-it framework appears to be installed'
-      D_USER_OR_OS=false
+      D__USER_OR_OS=false
     else
       dprint_debug 'Bash-it framework appears to be installed by user'
-      D_USER_OR_OS=true
+      D__USER_OR_OS=true
     fi
 
     # Return
@@ -108,7 +108,7 @@ d_bash_it_fmwk_dinstall()
     ## Run installation script without modifying RC files. (Bash-it is 
     #. supported by ‘shell-rc’ deployment.) Mind verbosity.
     #
-    if $D_OPT_QUIET; then
+    if $D__OPT_QUIET; then
       
       # Run script quietly
       "$D_BASH_IT_PATH"/install.sh --no-modify-config &>/dev/null
@@ -196,7 +196,7 @@ d_assemble_asset_queue()
   #
   # Populate aliases
   #
-  for asset_path in "$D_DPL_ASSETS_DIR/aliases/"*.aliases.bash; do
+  for asset_path in "$D__DPL_ASSETS_DIR/aliases/"*.aliases.bash; do
 
     # Check if replacement if a readable file
     [ -r "$asset_path" -a -f "$asset_path" ] || {
@@ -212,14 +212,14 @@ d_assemble_asset_queue()
     # Push pair of paths onto the stack
     target_paths+=( "$target_path" )
     asset_paths+=( "$asset_path" )
-    asset_relpaths+=("${asset_path#"$D_DPL_ASSETS_DIR/"}")
+    asset_relpaths+=("${asset_path#"$D__DPL_ASSETS_DIR/"}")
     
   done
 
   #
   # Populate completions
   #
-  for asset_path in "$D_DPL_ASSETS_DIR/completion/"*.completion.bash; do
+  for asset_path in "$D__DPL_ASSETS_DIR/completion/"*.completion.bash; do
 
     # Check if replacement if a readable file
     [ -r "$asset_path" -a -f "$asset_path" ] || {
@@ -235,14 +235,14 @@ d_assemble_asset_queue()
     # Push pair of paths onto the stack
     target_paths+=( "$target_path" )
     asset_paths+=( "$asset_path" )
-    asset_relpaths+=("${asset_path#"$D_DPL_ASSETS_DIR/"}")
+    asset_relpaths+=("${asset_path#"$D__DPL_ASSETS_DIR/"}")
     
   done
 
   #
   # Populate lib
   #
-  for asset_path in "$D_DPL_ASSETS_DIR/lib/"*.bash; do
+  for asset_path in "$D__DPL_ASSETS_DIR/lib/"*.bash; do
 
     # Check if replacement if a readable file
     [ -r "$asset_path" -a -f "$asset_path" ] || {
@@ -257,14 +257,14 @@ d_assemble_asset_queue()
     # Push pair of paths onto the stack
     target_paths+=( "$target_path" )
     asset_paths+=( "$asset_path" )
-    asset_relpaths+=("${asset_path#"$D_DPL_ASSETS_DIR/"}")
+    asset_relpaths+=("${asset_path#"$D__DPL_ASSETS_DIR/"}")
     
   done
 
   #
   # Populate plugins
   #
-  for asset_path in "$D_DPL_ASSETS_DIR/plugins/"*.plugin.bash; do
+  for asset_path in "$D__DPL_ASSETS_DIR/plugins/"*.plugin.bash; do
 
     # Check if replacement if a readable file
     [ -r "$asset_path" -a -f "$asset_path" ] || {
@@ -280,14 +280,14 @@ d_assemble_asset_queue()
     # Push pair of paths onto the stack
     target_paths+=( "$target_path" )
     asset_paths+=( "$asset_path" )
-    asset_relpaths+=("${asset_path#"$D_DPL_ASSETS_DIR/"}")
+    asset_relpaths+=("${asset_path#"$D__DPL_ASSETS_DIR/"}")
     
   done
 
   #
   # Populate themes
   #
-  for asset_path in "$D_DPL_ASSETS_DIR/themes/"*/*.theme.bash; do
+  for asset_path in "$D__DPL_ASSETS_DIR/themes/"*/*.theme.bash; do
 
     # Make actual replacement the parent directory
     asset_path="$( dirname -- "$asset_path" )"
@@ -305,7 +305,7 @@ d_assemble_asset_queue()
     # Push pair of paths onto the stack
     target_paths+=( "$target_path" )
     asset_paths+=( "$asset_path" )
-    asset_relpaths+=("${asset_path#"$D_DPL_ASSETS_DIR/"}")
+    asset_relpaths+=("${asset_path#"$D__DPL_ASSETS_DIR/"}")
     
   done
 
@@ -317,10 +317,10 @@ d_assemble_asset_queue()
   for cmd in "${restore_opts[@]}"; do $cmd; done
 
   # Populate globals
-  D_DPL_TARGET_PATHS=( "${target_paths[@]}" )
-  D_DPL_ASSET_PATHS=( "${asset_paths[@]}" )
-  D_DPL_ASSET_RELPATHS=( "${asset_relpaths[@]}" )
-  D_DPL_QUEUE_MAIN=( "${asset_relpaths[@]}" )
+  D__DPL_TARGET_PATHS=( "${target_paths[@]}" )
+  D__DPL_ASSET_PATHS=( "${asset_paths[@]}" )
+  D__DPL_ASSET_RELPATHS=( "${asset_relpaths[@]}" )
+  D__DPL_QUEUE_MAIN=( "${asset_relpaths[@]}" )
 
   # Return success
   return 0

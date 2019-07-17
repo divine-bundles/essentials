@@ -6,11 +6,11 @@
 #:revremark:    Release version
 #:created_at:   2019.06.30
 
-D_DPL_NAME='brewfile'
-D_DPL_DESC='Taps, bottles, and casks from Brewfile (no upgrades)'
-D_DPL_PRIORITY=3000
-D_DPL_FLAGS=!
-D_DPL_WARNING=
+D__DPL_NAME='brewfile'
+D__DPL_DESC='Taps, bottles, and casks from Brewfile (no upgrades)'
+D__DPL_PRIORITY=3000
+D__DPL_FLAGS=!
+D__DPL_WARNING=
 
 ## Exit codes and their meaning:
 #.  0 - Unknown
@@ -27,24 +27,24 @@ dcheck()
   }
 
   # Check if Brewfile is readable
-  [ -r "$D_DPL_ASSETS_DIR/Brewfile" -a -f "$D_DPL_ASSETS_DIR/Brewfile" ] || {
-    dprint_debug 'Failed to read Brewfile at:' -i "$D_DPL_ASSETS_DIR/Brewfile"
+  [ -r "$D__DPL_ASSETS_DIR/Brewfile" -a -f "$D__DPL_ASSETS_DIR/Brewfile" ] || {
+    dprint_debug 'Failed to read Brewfile at:' -i "$D__DPL_ASSETS_DIR/Brewfile"
     return 3
   }
 
   # Additional warnings
-  case $D_REQ_ROUTINE in
+  case $D__REQ_ROUTINE in
     check)    dprompt_key -- 'Checking Brewfile is not very reliable'
               case $? in 1) return 3;; *) :;; esac
               ;;
-    remove)   D_ANOTHER_PROMPT=true
-              D_ANOTHER_WARNING='Uninstalling Brewfile might be dangerous'
+    remove)   D__ANOTHER_PROMPT=true
+              D__ANOTHER_WARNING='Uninstalling Brewfile might be dangerous'
               ;;
     *)        :;;
   esac  
 
   # brew bundle requires Brewfile to be in current directory
-  cd "$D_DPL_ASSETS_DIR"
+  cd "$D__DPL_ASSETS_DIR"
 
   ## Non-zero exit code of brew bundle check does not translate exactly to 
   #. ‘Not installed.’ It is rather ‘Not fully installed or not up to date, or 
@@ -62,7 +62,7 @@ dcheck()
 dinstall()
 {
   # brew bundle requires Brewfile in current directory
-  cd "$D_DPL_ASSETS_DIR"
+  cd "$D__DPL_ASSETS_DIR"
 
   # Launch the routine
   brew bundle install --verbose --no-upgrade && return 0 || return 1
@@ -102,13 +102,13 @@ dremove()
   local all_green=true
 
   # Get number of lines in Brewfile
-  num_of_lines=$( awk '{ print $1 }' <( wc -l "$D_DPL_ASSETS_DIR/Brewfile" ) )
+  num_of_lines=$( awk '{ print $1 }' <( wc -l "$D__DPL_ASSETS_DIR/Brewfile" ) )
 
   # Iterate over line numbers in reverse order
   for (( i=$num_of_lines; i>0; i-- )); do
 
     # Extract a line from Brewfile by its number
-    line="$( sed "${i}q;d" "$D_DPL_ASSETS_DIR/Brewfile" )"
+    line="$( sed "${i}q;d" "$D__DPL_ASSETS_DIR/Brewfile" )"
 
     # Trim line from whitespace and comments
     line=$( dtrim -h -- "$line" )
@@ -124,19 +124,19 @@ dremove()
       # Untap
       brew untap "$name" || {
         all_green=false
-        $D_OPT_FORCE || break
+        $D__OPT_FORCE || break
       }
     elif [[ $line == cask* ]]; then
       # Uninstall cask
       brew cask uninstall "$name" || {
         all_green=false
-        $D_OPT_FORCE || break
+        $D__OPT_FORCE || break
       }
     elif [[ $line == brew* ]]; then
       # Uninstall bottle
       brew uninstall "$name" || {
         all_green=false
-        $D_OPT_FORCE || break
+        $D__OPT_FORCE || break
       }
     fi
 
@@ -146,7 +146,7 @@ dremove()
   if $all_green; then
     return 0
   else
-    if $D_OPT_FORCE; then
+    if $D__OPT_FORCE; then
       dprint_failure -l 'At least one uninstallation failed'
       return 1
     else

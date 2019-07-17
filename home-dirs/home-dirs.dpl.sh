@@ -6,14 +6,14 @@
 #:revremark:    Release version
 #:created_at:   2019.06.30
 
-D_DPL_NAME='home-dirs'
-D_DPL_DESC='Commonly used directories within home directory'
-D_DPL_PRIORITY=500
-D_DPL_FLAGS=
-D_DPL_WARNING=
+D__DPL_NAME='home-dirs'
+D__DPL_DESC='Commonly used directories within home directory'
+D__DPL_PRIORITY=500
+D__DPL_FLAGS=
+D__DPL_WARNING=
 
 # Where to grab main queue file
-D_DPL_QUE_PATH="$D_DPL_ASSETS_DIR/home-dirs.cfg"
+D__DPL_QUE_PATH="$D__DPL_ASSETS_DIR/home-dirs.cfg"
 
 dcheck()    { __queue_hlp__dcheck;    }
 dinstall()  { __queue_hlp__dinstall;  }
@@ -27,7 +27,7 @@ dremove()   { __queue_hlp__dremove;   }
 d__queue_hlp__item_is_installed()
 {
   # Compose directory path
-  local dir="$HOME/$D_DPL_ITEM_TITLE"
+  local dir="$HOME/$D__DPL_ITEM_TITLE"
 
   # Check if directory exists
   if [ -d "$dir" ]; then
@@ -35,14 +35,14 @@ d__queue_hlp__item_is_installed()
     # Directory exists
 
     # Check if in removal routine
-    if [ "$D_REQ_ROUTINE" = remove ]; then
+    if [ "$D__REQ_ROUTINE" = remove ]; then
 
       # Check if directory contains anything
       if [ -n "$( ls -A -- "$dir" )" ]; then
 
         # Set up another user prompt
-        D_ANOTHER_PROMPT=true
-        D_ANOTHER_WARNING='At least one of the directories is not empty'
+        D__ANOTHER_PROMPT=true
+        D__ANOTHER_WARNING='At least one of the directories is not empty'
 
       fi
 
@@ -73,7 +73,7 @@ d__queue_hlp__item_is_installed()
 d__queue_hlp__install_item()
 {
   # Compose directory path
-  local dir="$HOME/$D_DPL_ITEM_TITLE"
+  local dir="$HOME/$D__DPL_ITEM_TITLE"
 
   # Make directory and check result
   if mkdir -p -m 0700 -- "$dir" &>/dev/null; then
@@ -99,7 +99,7 @@ d__queue_hlp__install_item()
 d__queue_hlp__remove_item()
 {
   # Compose directory path
-  local dir="$HOME/$D_DPL_ITEM_TITLE"
+  local dir="$HOME/$D__DPL_ITEM_TITLE"
 
   # Check if directory is already non-existent
   if ! [ -e "$dir" ]; then

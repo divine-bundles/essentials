@@ -6,11 +6,11 @@
 #:revremark:    Release version
 #:created_at:   2019.06.30
 
-D_DPL_NAME='zsh-default'
-D_DPL_DESC='zsh as system’s default shell'
-D_DPL_PRIORITY=1333
-D_DPL_FLAGS=
-D_DPL_WARNING=
+D__DPL_NAME='zsh-default'
+D__DPL_DESC='zsh as system’s default shell'
+D__DPL_PRIORITY=1333
+D__DPL_FLAGS=
+D__DPL_WARNING=
 
 ## Ensures zsh is default shell
 #
@@ -176,7 +176,7 @@ dinstall()
 
     # If chsh is not available, offer to install it
     if ! dprompt_key --bare --prompt 'Attempt to install?' \
-      --answer "$D_OPT_ANSWER" -- \
+      --answer "$D__OPT_ANSWER" -- \
       'Deployment relies on chsh, but it is not found on $PATH' \
       -n "It may be possible to install it using $OS_PKGMGR"
     then
@@ -187,7 +187,7 @@ dinstall()
     fi
 
     # Auto-install chsh with verbosity in mind
-    if $D_OPT_QUIET; then
+    if $D__OPT_QUIET; then
 
       # Launch quietly
       os_pkgmgr dinstall chsh &>/dev/null
@@ -373,7 +373,7 @@ dremove()
   if [ "$chsh_installed" = yes -a -n "${OS_PKGMGR+isset}" ]; then
 
     # Auto-uninstall chsh with verbosity in mind
-    if $D_OPT_QUIET; then
+    if $D__OPT_QUIET; then
 
       # Launch quietly
       os_pkgmgr dremove chsh &>/dev/null

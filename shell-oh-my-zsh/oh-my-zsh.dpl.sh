@@ -6,11 +6,11 @@
 #:revremark:    Release version
 #:created_at:   2019.06.30
 
-D_DPL_NAME='oh-my-zsh'
-D_DPL_DESC='Your terminal never felt this good before'
-D_DPL_PRIORITY=3333
-D_DPL_FLAGS=
-D_DPL_WARNING=
+D__DPL_NAME='oh-my-zsh'
+D__DPL_DESC='Your terminal never felt this good before'
+D__DPL_PRIORITY=3333
+D__DPL_FLAGS=
+D__DPL_WARNING=
 
 D_OH_MY_ZSH_PATH="$HOME/.oh-my-zsh"
 D_OH_MY_ZSH_REPO='https://github.com/robbyrussell/oh-my-zsh.git'
@@ -19,8 +19,8 @@ D_OH_MY_ZSH_REPO='https://github.com/robbyrussell/oh-my-zsh.git'
 dcheck()
 {
   # Compile task names; and split queue in two parts
-  D_DPL_TASK_NAMES+=( omz_fmwk )
-  D_DPL_TASK_NAMES+=( omz_assets )
+  D__DPL_TASK_NAMES+=( omz_fmwk )
+  D__DPL_TASK_NAMES+=( omz_assets )
 
   # Delegate to built-in helper
   __multitask_hlp__dcheck
@@ -41,10 +41,10 @@ d_omz_fmwk_dcheck()
     # Check if there is record of previous installation
     if dstash -s has fmwk_installed; then
       dprint_debug 'oh-my-zsh framework appears to be installed'
-      D_USER_OR_OS=false
+      D__USER_OR_OS=false
     else
       dprint_debug 'oh-my-zsh framework appears to be installed by user'
-      D_USER_OR_OS=true
+      D__USER_OR_OS=true
     fi
 
     # Return
@@ -174,7 +174,7 @@ d_assemble_asset_queue()
   #
   # Populate themes
   #
-  for asset_path in "$D_DPL_ASSETS_DIR/themes/"*.zsh-theme; do
+  for asset_path in "$D__DPL_ASSETS_DIR/themes/"*.zsh-theme; do
 
     # Check if replacement if a readable file
     [ -r "$asset_path" -a -f "$asset_path" ] || {
@@ -190,14 +190,14 @@ d_assemble_asset_queue()
     # Push pair of paths onto the stack
     target_paths+=( "$target_path" )
     asset_paths+=( "$asset_path" )
-    asset_relpaths+=("${asset_path#"$D_DPL_ASSETS_DIR/"}")
+    asset_relpaths+=("${asset_path#"$D__DPL_ASSETS_DIR/"}")
     
   done
 
   #
   # Populate plugins
   #
-  for asset_path in "$D_DPL_ASSETS_DIR/plugins/"*/*.plugin.zsh; do
+  for asset_path in "$D__DPL_ASSETS_DIR/plugins/"*/*.plugin.zsh; do
 
     # Make actual replacement the parent directory
     asset_path="$( dirname -- "$asset_path" )"
@@ -216,7 +216,7 @@ d_assemble_asset_queue()
     # Push pair of paths onto the stack
     target_paths+=( "$target_path" )
     asset_paths+=( "$asset_path" )
-    asset_relpaths+=("${asset_path#"$D_DPL_ASSETS_DIR/"}")
+    asset_relpaths+=("${asset_path#"$D__DPL_ASSETS_DIR/"}")
     
   done
 
@@ -228,10 +228,10 @@ d_assemble_asset_queue()
   for cmd in "${restore_opts[@]}"; do $cmd; done
 
   # Populate globals
-  D_DPL_TARGET_PATHS=( "${target_paths[@]}" )
-  D_DPL_ASSET_PATHS=( "${asset_paths[@]}" )
-  D_DPL_ASSET_RELPATHS=( "${asset_relpaths[@]}" )
-  D_DPL_QUEUE_MAIN=( "${asset_relpaths[@]}" )
+  D__DPL_TARGET_PATHS=( "${target_paths[@]}" )
+  D__DPL_ASSET_PATHS=( "${asset_paths[@]}" )
+  D__DPL_ASSET_RELPATHS=( "${asset_relpaths[@]}" )
+  D__DPL_QUEUE_MAIN=( "${asset_relpaths[@]}" )
 
   # Return success
   return 0

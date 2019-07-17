@@ -6,14 +6,14 @@
 #:revremark:    Release version
 #:created_at:   2019.06.30
 
-D_DPL_NAME='dutils'
-D_DPL_DESC='Some of Divine utils, adapted for interactive use'
-D_DPL_PRIORITY=3500
-D_DPL_FLAGS=
-D_DPL_WARNING=
+D__DPL_NAME='dutils'
+D__DPL_DESC='Some of Divine utils, adapted for interactive use'
+D__DPL_PRIORITY=3500
+D__DPL_FLAGS=
+D__DPL_WARNING=
 
 # Make following Divine.dotfiles utilities available on $PATH
-D_DPL_QUEUE_MAIN=( \
+D__DPL_QUEUE_MAIN=( \
   'dln' \
   'dmv' \
   'dreadlink' \
@@ -34,7 +34,7 @@ dremove()   { __queue_hlp__dremove;   }
 
 d__queue_hlp__provide_stash_key()
 {
-  D_DPL_ITEM_STASH_KEY="$D_DPL_ITEM_TITLE"
+  D__DPL_ITEM_STASH_KEY="$D__DPL_ITEM_TITLE"
 }
 
 ## Exit codes and their meaning:
@@ -45,9 +45,9 @@ d__queue_hlp__provide_stash_key()
 d__queue_hlp__item_is_installed()
 {
   # Construct util’s name and location within framework and as installed
-  local util_name="$D_DPL_ITEM_TITLE"
-  local util_fmwk_path="${D_DIR_UTILS}/${util_name}${D_SUFFIX_UTIL}"
-  local util_install_path="$D_DPL_ITEM_STASH_VALUE"
+  local util_name="$D__DPL_ITEM_TITLE"
+  local util_fmwk_path="${D__DIR_UTILS}/${util_name}${D__SUFFIX_UTIL}"
+  local util_install_path="$D__DPL_ITEM_STASH_VALUE"
 
   # Storage variables
   local installed=true not_installed=true report_card=()
@@ -110,11 +110,11 @@ d__queue_hlp__item_is_installed()
     report_card+=( -n "Utility named '$util_name' is on \$PATH" )
 
     # Check if command behaves like it is part of framework
-    if $util_name --version 2>&1 | grep -Fq "$D_FMWK_NAME"; then
+    if $util_name --version 2>&1 | grep -Fq "$D__FMWK_NAME"; then
 
       # Add to report card
       report_card+=( -n \
-        "Utility named '$util_name' is properly part of $D_FMWK_NAME" \
+        "Utility named '$util_name' is properly part of $D__FMWK_NAME" \
       )
 
     else
@@ -122,7 +122,7 @@ d__queue_hlp__item_is_installed()
       # Flip flag and add to report card
       installed=false
       report_card+=( -n \
-        "Utility named '$util_name' is NOT part of $D_FMWK_NAME" \
+        "Utility named '$util_name' is NOT part of $D__FMWK_NAME" \
       )
 
     fi
@@ -154,8 +154,8 @@ d__queue_hlp__item_is_installed()
 d__queue_hlp__install_item()
 {
   # Construct util’s name and location within framework
-  local util_name="$D_DPL_ITEM_TITLE"
-  local util_fmwk_path="${D_DIR_UTILS}/${util_name}${D_SUFFIX_UTIL}"
+  local util_name="$D__DPL_ITEM_TITLE"
+  local util_fmwk_path="${D__DIR_UTILS}/${util_name}${D__SUFFIX_UTIL}"
   local util_install_dir util_install_path
   local tempfile="$( mktemp )"
   
@@ -237,7 +237,7 @@ EOF
     # Announce success
     dprint_debug "Successfully installed utility '$util_name' to:" \
       -i "$util_install_path"
-    D_DPL_ITEM_STASH_VALUE="$util_install_path"
+    D__DPL_ITEM_STASH_VALUE="$util_install_path"
     return 0
     
   done
@@ -254,8 +254,8 @@ EOF
 d__queue_hlp__remove_item()
 {
   # Construct util’s name and location within framework and as installed
-  local util_name="$D_DPL_ITEM_TITLE"
-  local util_install_path="$D_DPL_ITEM_STASH_VALUE"
+  local util_name="$D__DPL_ITEM_TITLE"
+  local util_install_path="$D__DPL_ITEM_STASH_VALUE"
   local util_install_dir="$( dirname -- "$util_install_path" )"
 
   # Check if removal premission is granted for path

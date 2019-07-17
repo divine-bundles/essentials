@@ -6,15 +6,15 @@
 #:revremark:    Release version
 #:created_at:   2019.06.30
 
-D_DPL_NAME='fonts'
-D_DPL_DESC='Personal collection of hard-to-come-by font faces'
-D_DPL_PRIORITY=4096
-D_DPL_FLAGS=
-D_DPL_WARNING=
+D__DPL_NAME='fonts'
+D__DPL_DESC='Personal collection of hard-to-come-by font faces'
+D__DPL_PRIORITY=4096
+D__DPL_FLAGS=
+D__DPL_WARNING=
 
 # Destinations for font files
-D_DPL_TARGET_DIR_MACOS="$HOME/Library/Fonts"
-D_DPL_TARGET_DIR_UBUNTU='/usr/share/fonts'
+D__DPL_TARGET_DIR_MACOS="$HOME/Library/Fonts"
+D__DPL_TARGET_DIR_UBUNTU='/usr/share/fonts'
 
 ## Exit codes and their meaning:
 #.  0 - Unknown
@@ -25,9 +25,9 @@ D_DPL_TARGET_DIR_UBUNTU='/usr/share/fonts'
 dcheck()
 {
   # Populate essential global variables for helper functions
-  D_DPL_QUEUE_MAIN=()
-  D_DPL_ASSET_PATHS=()
-  D_DPL_ASSET_RELPATHS=()
+  D__DPL_QUEUE_MAIN=()
+  D__DPL_ASSET_PATHS=()
+  D__DPL_ASSET_RELPATHS=()
 
   # Save current state of ‘dotglob’, ‘nullglob’, ‘nocasematch’ options
   local restore_opts cmd
@@ -42,7 +42,7 @@ dcheck()
 
   # Scan fonts
   local font_filepath font_relpath
-  for font_filepath in "$D_DPL_ASSETS_DIR/"*.otf "$D_DPL_ASSETS_DIR/"*.ttf; do
+  for font_filepath in "$D__DPL_ASSETS_DIR/"*.otf "$D__DPL_ASSETS_DIR/"*.ttf; do
 
     # Skip symlinks (to stay consistent with ‘find’ behavior above)
     [ -L "$font_filepath" ] && continue
@@ -54,12 +54,12 @@ dcheck()
     }
 
     # Extract relpath
-    font_relpath="${font_filepath#"$D_DPL_ASSETS_DIR/"}"
+    font_relpath="${font_filepath#"$D__DPL_ASSETS_DIR/"}"
 
     # Push source path
-    D_DPL_QUEUE_MAIN+=( "$font_relpath" )
-    D_DPL_ASSET_PATHS+=( "$font_filepath" )
-    D_DPL_ASSET_RELPATHS+=( "$font_relpath" )
+    D__DPL_QUEUE_MAIN+=( "$font_relpath" )
+    D__DPL_ASSET_PATHS+=( "$font_filepath" )
+    D__DPL_ASSET_RELPATHS+=( "$font_relpath" )
 
   done
 
@@ -67,9 +67,9 @@ dcheck()
   for cmd in "${restore_opts[@]}"; do $cmd; done
 
   # Check if at least one path is present
-  if [ ${#D_DPL_ASSET_PATHS[@]} -eq 0 ]; then
+  if [ ${#D__DPL_ASSET_PATHS[@]} -eq 0 ]; then
     dprint_debug 'No font files detected in assets directory at:' \
-      -i "$D_DPL_ASSETS_DIR"
+      -i "$D__DPL_ASSETS_DIR"
     return 3
   fi
 
@@ -112,12 +112,12 @@ d__cp_hlp__pre_process()
   # For Ubuntu, modify target location of *.otf files
   if [[ $OS_DISTRO = ubuntu ]]; then
 
-    # Iterate over entries in $D_DPL_TARGET_PATHS
+    # Iterate over entries in $D__DPL_TARGET_PATHS
     local i dest_filepath dest_filename
-    for (( i=0; i<${#D_DPL_TARGET_PATHS[@]}; i++ )); do
+    for (( i=0; i<${#D__DPL_TARGET_PATHS[@]}; i++ )); do
 
       # Extract array member
-      dest_filepath="${D_DPL_TARGET_PATHS[$i]}"
+      dest_filepath="${D__DPL_TARGET_PATHS[$i]}"
 
       # Check if *.otf file
       if [[ $dest_filepath = *.otf ]]; then
@@ -126,7 +126,7 @@ d__cp_hlp__pre_process()
         dest_filename="$( basename -- "$dest_filepath" )"
 
         # On Ubuntu, install *.otf fonts into ‘opentype’ sub-directory
-        D_DPL_TARGET_PATHS[$i]="$D_DPL_TARGET_DIR/opentype/$dest_filename"
+        D__DPL_TARGET_PATHS[$i]="$D__DPL_TARGET_DIR/opentype/$dest_filename"
 
       fi
     
