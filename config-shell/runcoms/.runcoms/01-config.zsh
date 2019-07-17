@@ -27,7 +27,7 @@ cdpath=($HOME/Developer)
 ## macOS-specific configuration
 ##
 
-if [ "$OS_PKGMGR" = brew ]; then
+if [ "$D__OS_PKGMGR" = brew ]; then
   # Homebrew zsh-completions
   fpath=(/usr/local/share/zsh-completions $fpath)
 

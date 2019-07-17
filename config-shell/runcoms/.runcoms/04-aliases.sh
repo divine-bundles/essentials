@@ -41,7 +41,7 @@ fi
 ## Shorthand for listing directory contents
 ##
 
-if [ "$OS_FAMILY" = macos -o "$OS_FAMILY" = bsd ]; then
+if [ "$D__OS_FAMILY" = macos -o "$D__OS_FAMILY" = bsd ]; then
 
   # BSD ls
 
@@ -50,7 +50,7 @@ if [ "$OS_FAMILY" = macos -o "$OS_FAMILY" = bsd ]; then
   #.  -G  - Colorize output
   alias ls='ls -FG'
 
-elif [ "$OS_FAMILY" = linux ]; then
+elif [ "$D__OS_FAMILY" = linux ]; then
 
   # GNU ls
 

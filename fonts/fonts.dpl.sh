@@ -110,7 +110,7 @@ d__cp_hlp__pre_process()
   shopt -s nocasematch
 
   # For Ubuntu, modify target location of *.otf files
-  if [[ $OS_DISTRO = ubuntu ]]; then
+  if [[ $D__OS_DISTRO = ubuntu ]]; then
 
     # Iterate over entries in $D__DPL_TARGET_PATHS
     local i dest_filepath dest_filename

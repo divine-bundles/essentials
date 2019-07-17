@@ -168,7 +168,7 @@ dinstall()
   if ! type -P chsh &>/dev/null; then
 
     # If package manager is not detected, there are no options
-    if [ -z ${OS_PKGMGR+isset} ]; then
+    if [ -z ${D__OS_PKGMGR+isset} ]; then
       dprint_debug 'chsh is required but not found' \
         '(no way to auto-install)'
       return 1
@@ -178,7 +178,7 @@ dinstall()
     if ! dprompt_key --bare --prompt 'Attempt to install?' \
       --answer "$D__OPT_ANSWER" -- \
       'Deployment relies on chsh, but it is not found on $PATH' \
-      -n "It may be possible to install it using $OS_PKGMGR"
+      -n "It may be possible to install it using $D__OS_PKGMGR"
     then
       # User declined
       dprint_debug 'chsh is required but not found' \
@@ -190,13 +190,13 @@ dinstall()
     if $D__OPT_QUIET; then
 
       # Launch quietly
-      os_pkgmgr dinstall chsh &>/dev/null
+      d__os_pkgmgr install chsh &>/dev/null
 
     else
 
       # Launch normally, but re-paint output
       local os_pkgmgr_out_line
-      os_pkgmgr dinstall chsh 2>&1 \
+      d__os_pkgmgr install chsh 2>&1 \
         | while IFS= read -r os_pkgmgr_out_line || [ -n "$os_pkgmgr_out_line" ]
         do
           printf "${CYAN}==> %s${NORMAL}\n" "$os_pkgmgr_out_line"
@@ -370,19 +370,19 @@ dremove()
   fi
 
   # Attempt to uninstall chsh
-  if [ "$chsh_installed" = yes -a -n "${OS_PKGMGR+isset}" ]; then
+  if [ "$chsh_installed" = yes -a -n "${D__OS_PKGMGR+isset}" ]; then
 
     # Auto-uninstall chsh with verbosity in mind
     if $D__OPT_QUIET; then
 
       # Launch quietly
-      os_pkgmgr dremove chsh &>/dev/null
+      d__os_pkgmgr remove chsh &>/dev/null
 
     else
 
       # Launch normally, but re-paint output
       local os_pkgmgr_out_line
-      os_pkgmgr dremove chsh 2>&1 \
+      d__os_pkgmgr remove chsh 2>&1 \
         | while IFS= read -r os_pkgmgr_out_line || [ -n "$os_pkgmgr_out_line" ]
         do
           printf "${CYAN}==> %s${NORMAL}\n" "$os_pkgmgr_out_line"

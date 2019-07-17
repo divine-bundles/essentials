@@ -101,7 +101,7 @@ d_omz_fmwk_dinstall()
   }
 
   # On Cygwin, require particular git
-  if [[ $OS_FAMILY =~ ^(cygwin|msys)$ ]] \
+  if [[ $D__OS_FAMILY =~ ^(cygwin|msys)$ ]] \
     && git --version | grep msysgit >/dev/null
   then
     dprint_debug 'Windows/MSYS Git is not supported on Cygwin'

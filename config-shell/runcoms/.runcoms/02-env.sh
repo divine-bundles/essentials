@@ -22,7 +22,7 @@
 ## macOS Homebrew: No analytics
 ##
 
-[ "$OS_PKGMGR" = brew ] && export HOMEBREW_NO_ANALYTICS=1
+[ "$D__OS_PKGMGR" = brew ] && export HOMEBREW_NO_ANALYTICS=1
 
 
 ##

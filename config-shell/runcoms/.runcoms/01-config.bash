@@ -21,7 +21,7 @@ unset MAILCHECK
 ## macOS-specific configuration
 ##
 
-if [ "$OS_PKGMGR" = brew ]; then
+if [ "$D__OS_PKGMGR" = brew ]; then
   # Homebrew bash_completion
   [ -f /usr/local/etc/bash_completion ] \
     && source /usr/local/etc/bash_completion
@@ -32,7 +32,7 @@ fi
 ## Linux-specific configuration
 ##
 
-if [ "$OS_FAMILY" = linux ]; then
+if [ "$D__OS_FAMILY" = linux ]; then
   # bash_completion
   if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
       source /etc/bash_completion

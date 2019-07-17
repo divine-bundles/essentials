@@ -21,7 +21,7 @@ D__DPL_WARNING=
 dcheck()
 {
   # Quickly check package manager
-  [ "$OS_PKGMGR" = brew ] || {
+  [ "$D__OS_PKGMGR" = brew ] || {
     dprint_debug 'Brewfile is only relevant for macOS Homebrew'
     return 3
   }
