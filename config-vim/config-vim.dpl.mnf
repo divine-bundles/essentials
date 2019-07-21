@@ -1,4 +1,4 @@
 (prefix:configs)
 .ideavimrc
-.vim
+.vim/keymap/shifted.vim
 .vimrc
