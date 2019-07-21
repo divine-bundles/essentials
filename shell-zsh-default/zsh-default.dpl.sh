@@ -6,11 +6,11 @@
 #:revremark:    Release version
 #:created_at:   2019.06.30
 
-D__DPL_NAME='zsh-default'
-D__DPL_DESC='zsh as system’s default shell'
-D__DPL_PRIORITY=1333
-D__DPL_FLAGS=
-D__DPL_WARNING=
+D_DPL_NAME='zsh-default'
+D_DPL_DESC='zsh as system’s default shell'
+D_DPL_PRIORITY=1333
+D_DPL_FLAGS=
+D_DPL_WARNING=
 
 ## Ensures zsh is default shell
 #

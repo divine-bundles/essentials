@@ -6,14 +6,14 @@
 #:revremark:    Release version
 #:created_at:   2019.06.30
 
-D__DPL_NAME='dutils'
-D__DPL_DESC='Some of Divine utils, adapted for interactive use'
-D__DPL_PRIORITY=3500
-D__DPL_FLAGS=
-D__DPL_WARNING=
+D_DPL_NAME='dutils'
+D_DPL_DESC='Some of Divine utils, adapted for interactive use'
+D_DPL_PRIORITY=3500
+D_DPL_FLAGS=
+D_DPL_WARNING=
 
 # Make following Divine.dotfiles utilities available on $PATH
-D__DPL_QUEUE_MAIN=( \
+D__QUEUE_MAIN=( \
   'dln' \
   'dmv' \
   'dreadlink' \
@@ -34,7 +34,7 @@ d_dpl_remove()   { d__queue_remove;   }
 
 d_queue_item_pre_check()
 {
-  D__DPL_ITEM_STASH_KEY="$D__DPL_ITEM_TITLE"
+  D__QUEUE_ITEM_STASH_KEY="$D__QUEUE_ITEM_TITLE"
 }
 
 ## Exit codes and their meaning:
@@ -45,9 +45,9 @@ d_queue_item_pre_check()
 d_queue_item_is_installed()
 {
   # Construct util’s name and location within framework and as installed
-  local util_name="$D__DPL_ITEM_TITLE"
+  local util_name="$D__QUEUE_ITEM_TITLE"
   local util_fmwk_path="${D__DIR_UTILS}/${util_name}${D__SUFFIX_UTIL}"
-  local util_install_path="$D__DPL_ITEM_STASH_VALUE"
+  local util_install_path="$D__QUEUE_ITEM_STASH_VALUE"
 
   # Storage variables
   local installed=true not_installed=true report_card=()
@@ -154,7 +154,7 @@ d_queue_item_is_installed()
 d_queue_item_install()
 {
   # Construct util’s name and location within framework
-  local util_name="$D__DPL_ITEM_TITLE"
+  local util_name="$D__QUEUE_ITEM_TITLE"
   local util_fmwk_path="${D__DIR_UTILS}/${util_name}${D__SUFFIX_UTIL}"
   local util_install_dir util_install_path
   local tempfile="$( mktemp )"
@@ -237,7 +237,7 @@ EOF
     # Announce success
     dprint_debug "Successfully installed utility '$util_name' to:" \
       -i "$util_install_path"
-    D__DPL_ITEM_STASH_VALUE="$util_install_path"
+    D__QUEUE_ITEM_STASH_VALUE="$util_install_path"
     return 0
     
   done
@@ -254,8 +254,8 @@ EOF
 d_queue_item_remove()
 {
   # Construct util’s name and location within framework and as installed
-  local util_name="$D__DPL_ITEM_TITLE"
-  local util_install_path="$D__DPL_ITEM_STASH_VALUE"
+  local util_name="$D__QUEUE_ITEM_TITLE"
+  local util_install_path="$D__QUEUE_ITEM_STASH_VALUE"
   local util_install_dir="$( dirname -- "$util_install_path" )"
 
   # Check if removal premission is granted for path

@@ -6,13 +6,13 @@
 #:revremark:    Release version
 #:created_at:   2019.06.30
 
-D__DPL_NAME='config-shell'
-D__DPL_DESC='Startup commands for common shells (Bash, zsh)'
-D__DPL_PRIORITY=333
-D__DPL_FLAGS=
-D__DPL_WARNING=
+D_DPL_NAME='config-shell'
+D_DPL_DESC='Startup commands for common shells (Bash, zsh)'
+D_DPL_PRIORITY=333
+D_DPL_FLAGS=
+D_DPL_WARNING=
 
-D__DPL_TARGET_DIR="$HOME"
+D_DPL_TARGET_DIR="$HOME"
 
 D_BLANKS_DIRNAME='blanks'
 D_BLANK_RELPATHS=( \
@@ -26,8 +26,8 @@ D_BLANK_RELPATHS=( \
 d_dpl_check()
 {
   # Compile task names
-  D__DPL_TASK_NAMES+=( runcoms )
-  D__DPL_TASK_NAMES+=( blanks )
+  D_MULTITASK_NAMES+=( runcoms )
+  D_MULTITASK_NAMES+=( blanks )
 
   # Delegate to built-in helper
   d__multitask_check
@@ -61,9 +61,9 @@ d_add_blanks_to_queue()
 
   # Add files to main queue and other arrays
   for relpath in "${D_BLANK_RELPATHS[@]}"; do
-    D__DPL_QUEUE_MAIN+=( "$relpath" )
-    D__DPL_ASSET_RELPATHS+=( "$relpath" )
-    D__DPL_ASSET_PATHS+=( "$blanks_dir/$relpath" )
-    D__DPL_TARGET_PATHS+=( "$D__DPL_TARGET_DIR/$relpath" )
+    D__QUEUE_MAIN+=( "$relpath" )
+    D_DPL_ASSET_RELPATHS+=( "$relpath" )
+    D_DPL_ASSET_PATHS+=( "$blanks_dir/$relpath" )
+    D_DPL_TARGET_PATHS+=( "$D_DPL_TARGET_DIR/$relpath" )
   done
 }

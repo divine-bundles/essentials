@@ -6,13 +6,13 @@
 #:revremark:    Release version
 #:created_at:   2019.06.30
 
-D__DPL_NAME='config-vim'
-D__DPL_DESC='Vim - configuration and startup commands'
-D__DPL_PRIORITY=333
-D__DPL_FLAGS=
-D__DPL_WARNING=
+D_DPL_NAME='config-vim'
+D_DPL_DESC='Vim - configuration and startup commands'
+D_DPL_PRIORITY=333
+D_DPL_FLAGS=
+D_DPL_WARNING=
 
-D__DPL_TARGET_DIR="$HOME"
+D_DPL_TARGET_DIR="$HOME"
 
 # Delegate to built-in helpers
 d_dpl_check()    { d__link_queue_check;    }
