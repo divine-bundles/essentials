@@ -8,7 +8,7 @@
 
 ## Universal shell utility aliases. Must use compatible syntax.
 #
-## Expect $D_SHELL to be set to name of shell being initialized, e.g., ‘bash’.
+## Expect $D__SHELL to be set to name of shell being initialized, e.g., ‘bash’.
 
 ##
 ## Specific directory access
@@ -106,10 +106,10 @@ alias .....='\cd ../../../..'
 ## Shell switching aliases
 ##
 
-if [ "$D_SHELL" = bash ]; then
+if [ "$D__SHELL" = bash ]; then
   # Switch to zsh
   alias zsh='/usr/bin/env zsh'
-elif [ "$D_SHELL" = zsh ]; then
+elif [ "$D__SHELL" = zsh ]; then
   # Switch to bash
   alias bash='/usr/bin/env bash'
 fi

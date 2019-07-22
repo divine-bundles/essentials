@@ -14,8 +14,10 @@ D_DPL_WARNING=
 
 D_DPL_TARGET_DIR="$HOME"
 
+D_ENV_FILEPATH="$HOME/.env.sh"
 D_BLANKS_DIRNAME='blanks'
 D_BLANK_RELPATHS=( \
+  '.env.sh' \
   '.runcoms.bash' \
   '.runcoms.sh' \
   '.runcoms.zsh' \
@@ -26,6 +28,7 @@ D_BLANK_RELPATHS=( \
 d_dpl_check()
 {
   # Compile task names
+  D_MULTITASK_NAMES+=( env_vars )
   D_MULTITASK_NAMES+=( runcoms )
   D_MULTITASK_NAMES+=( blanks )
 
@@ -47,7 +50,7 @@ d_blanks_check()     { d_add_blanks_to_queue; d__copy_queue_check; }
 d_blanks_install()   { d__copy_queue_install;   }
 d_blanks_remove()    { d__copy_queue_remove;    }
 
-# Add second chunk of the queue
+# Implement addition of second chunk of the queue
 d_add_blanks_to_queue()
 {
   # Split queue at current length (which is number of items in manifest)
@@ -66,4 +69,286 @@ d_add_blanks_to_queue()
     D_DPL_ASSET_PATHS+=( "$blanks_dir/$relpath" )
     D_DPL_TARGET_PATHS+=( "$D_DPL_TARGET_DIR/$relpath" )
   done
+}
+
+#
+# Implement primaries for env_vars
+#
+
+# Implement checking of whether env file is properly populated
+d_env_vars_check()
+{
+  # Status variable (a total of 3 chunks must be installed)
+  local num_of_chunks_installed=0
+
+  # Check if env file exists
+  if ! [ -f "$D_ENV_FILEPATH" ]; then
+
+    # No env file: return not installed
+    return 2
+
+  fi
+
+  # Check if OS_FAMILY line is present in temp file
+  if grep -q "^[[:space:]]*export D__OS_FAMILY='$D__OS_FAMILY'" \
+    "$D_ENV_FILEPATH" 2>/dev/null
+  then
+
+    # Chunk 1: OS_FAMILY line
+    (( ++num_of_chunks_installed ))
+
+  fi
+
+  # Check if OS_DISTRO line is present in temp file
+  if grep -q "^[[:space:]]*export D__OS_DISTRO='$D__OS_DISTRO'" \
+    "$D_ENV_FILEPATH" 2>/dev/null
+  then
+
+    # Chunk 1: OS_DISTRO line
+    (( ++num_of_chunks_installed ))
+
+  fi
+
+  # Check if OS_PKGMGR line is present in temp file
+  if grep -q "^[[:space:]]*export D__OS_PKGMGR='$D__OS_PKGMGR'" \
+    "$D_ENV_FILEPATH" 2>/dev/null
+  then
+
+    # Chunk 1: OS_PKGMGR line
+    (( ++num_of_chunks_installed ))
+
+  fi
+
+  # Report based on number of chunks installed
+  if [ $num_of_chunks_installed -eq 0 ]; then
+    
+    # Return not installed
+    return 2
+
+  elif [ $num_of_chunks_installed -ge 3 ]; then
+
+    # Return fully installed
+    return 1
+  
+  else
+
+    # Return partly installed
+    return 4
+
+  fi
+}
+
+# Implement populating env file
+d_env_vars_install()
+{
+  # Storage variables
+  local temp_filepath=$( mktemp ) sed_cmd sed_cmds=() all_good=true
+  
+  # Dump current env file content into a temp file
+  cat "$D_ENV_FILEPATH" >$temp_filepath 2>/dev/null
+
+  # Check if OS_FAMILY line is present in temp file
+  if grep -q '^[[:space:]]*export D__OS_FAMILY=' $temp_filepath 2>/dev/null
+  then
+
+    # At least one line is present: save sed command for future correction
+    sed_cmd='s/^([[:space:]]*)export D__OS_FAMILY=.*$/'
+    sed_cmd+="\\1export D__OS_FAMILY='$D_OS_FAMILY'/"
+    sed_cmds+=( -e "$sed_cmd" )
+
+  fi
+
+  # Check if OS_DISTRO line is present in temp file
+  if grep -q '^[[:space:]]*export D__OS_DISTRO=' $temp_filepath 2>/dev/null
+  then
+
+    # At least one line is present: save sed command for future correction
+    sed_cmd='s/^([[:space:]]*)export D__OS_DISTRO=.*$/'
+    sed_cmd+="\\1export D__OS_DISTRO='$D_OS_DISTRO'/"
+    sed_cmds+=( -e "$sed_cmd" )
+
+  else
+
+    # Line not present: append it to the bottom of temp file
+    printf 'export D__OS_DISTRO=%s\n' "$D__OS_DISTRO" >>"$temp_filepath" \
+      || all_good=false
+
+  fi
+
+  # Check if OS_PKGMGR line is present in temp file
+  if grep -q '^[[:space:]]*export D__OS_PKGMGR=' $temp_filepath 2>/dev/null
+  then
+
+    # At least one line is present: save sed command for future correction
+    sed_cmd='s/^([[:space:]]*)export D__OS_PKGMGR=.*$/'
+    sed_cmd+="\\1export D__OS_PKGMGR='$D_OS_PKGMGR'/"
+    sed_cmds+=( -e "$sed_cmd" )
+
+  else
+
+    # Line not present: append it to the bottom of temp file
+    printf 'export D__OS_PKGMGR=%s\n' "$D__OS_PKGMGR" >>"$temp_filepath" \
+      || all_good=false
+
+  fi
+
+  # If any sed commands must be carried out, do so
+  if [ ${#sed_cmds[@]} -gt 0 ]; then
+    # Fork depending of version of sed available
+    if sed -r &>/dev/null; then
+      sed -r "${sed_cmds[@]}" $temp_filepath >$temp_filepath
+    else
+      sed -E "${sed_cmds[@]}" $temp_filepath >$temp_filepath
+    fi
+    [ $? -eq 0 ] || all_good=false
+  fi
+
+  # Check if there were errors
+  if ! $all_good; then
+
+    # Failed to properly modify temp file
+
+    # Expunge temp file
+    rm -f -- $temp_filepath
+
+    # Report and return error
+    dprint_debug "Failed to modify temporary copy of ~/.env.sh file"
+    return 1
+
+  fi
+
+  # Remove original file
+  if ! rm -f -- "$D_ENV_FILEPATH"; then
+
+    # Expunge temp file
+    rm -f -- $temp_filepath
+
+    # Report and return error
+    dprint_debug "Failed to overwrite ~/.env.sh file"
+    return 1
+
+  fi
+
+  # Move modified temporary file into place
+  if mv -n -- $temp_filepath "$D_ENV_FILEPATH"; then
+
+    # All good: return success
+    return 0
+
+  else
+
+    # Expunge temp file
+    rm -f -- $temp_filepath
+
+    # Failed to move: report and return error
+    dprint_debug "Failed to move ~/.env.sh file into place"
+    return 1
+  
+  fi
+}
+
+# Implement removing env file
+d_env_vars_remove()
+{
+  # Check if env file exists
+  if ! [ -f "$D_ENV_FILEPATH" ]; then
+
+    # Nothing to do: report and return success
+    dprint_debug 'Not an existing file: ~/.env.sh'
+    return 0
+
+  fi
+
+  # Storage variables
+  local temp_filepath=$( mktemp ) sed_cmd sed_cmds=() all_good=true
+  
+  # Dump current env file content into a temp file
+  cat "$D_ENV_FILEPATH" >$temp_filepath 2>/dev/null
+
+  # Check if OS_FAMILY line is present in temp file
+  if grep -q '^[[:space:]]*export D__OS_FAMILY=' $temp_filepath 2>/dev/null
+  then
+
+    # At least one line is present: save sed command for future correction
+    sed_cmd='s/^([[:space:]]*)export D__OS_FAMILY=.*$/'
+    sed_cmd+="\\1export D__OS_FAMILY=/"
+    sed_cmds+=( -e "$sed_cmd" )
+
+  fi
+
+  # Check if OS_DISTRO line is present in temp file
+  if grep -q '^[[:space:]]*export D__OS_DISTRO=' $temp_filepath 2>/dev/null
+  then
+
+    # At least one line is present: save sed command for future correction
+    sed_cmd='s/^([[:space:]]*)export D__OS_DISTRO=.*$/'
+    sed_cmd+="\\1export D__OS_DISTRO=/"
+    sed_cmds+=( -e "$sed_cmd" )
+
+  fi
+
+  # Check if OS_PKGMGR line is present in temp file
+  if grep -q '^[[:space:]]*export D__OS_PKGMGR=' $temp_filepath 2>/dev/null
+  then
+
+    # At least one line is present: save sed command for future correction
+    sed_cmd='s/^([[:space:]]*)export D__OS_PKGMGR=.*$/'
+    sed_cmd+="\\1export D__OS_PKGMGR=/"
+    sed_cmds+=( -e "$sed_cmd" )
+
+  fi
+
+  # If any sed commands must be carried out, do so
+  if [ ${#sed_cmds[@]} -gt 0 ]; then
+    # Fork depending of version of sed available
+    if sed -r &>/dev/null; then
+      sed -r "${sed_cmds[@]}" $temp_filepath >$temp_filepath
+    else
+      sed -E "${sed_cmds[@]}" $temp_filepath >$temp_filepath
+    fi
+    [ $? -eq 0 ] || all_good=false
+  fi
+
+  # Check if there were errors
+  if ! $all_good; then
+
+    # Failed to properly modify temp file
+
+    # Expunge temp file
+    rm -f -- $temp_filepath
+
+    # Report and return error
+    dprint_debug "Failed to modify temporary copy of ~/.env.sh file"
+    return 1
+
+  fi
+
+  # Remove original file
+  if ! rm -f -- "$D_ENV_FILEPATH"; then
+
+    # Expunge temp file
+    rm -f -- $temp_filepath
+
+    # Report and return error
+    dprint_debug "Failed to overwrite ~/.env.sh file"
+    return 1
+
+  fi
+
+  # Move modified temporary file into place
+  if mv -n -- $temp_filepath "$D_ENV_FILEPATH"; then
+
+    # All good: return success
+    return 0
+
+  else
+
+    # Expunge temp file
+    rm -f -- $temp_filepath
+
+    # Failed to move: report and return error
+    dprint_debug "Failed to move ~/.env.sh file into place"
+    return 1
+  
+  fi
 }

@@ -8,7 +8,7 @@
 
 ## Universal shell bug fixes. Must use compatible syntax.
 #
-## Expect $D_SHELL to be set to name of shell being initialized, e.g., ‘bash’.
+## Expect $D__SHELL to be set to name of shell being initialized, e.g., ‘bash’.
 
 ##
 ## Locale fix
@@ -38,4 +38,4 @@ fi
 ## https://github.com/zeit/hyper/issues/2144#issuecomment-326741620
 ##
 
-[ "$D_SHELL" = zsh ] && unsetopt PROMPT_SP
+[ "$D__SHELL" = zsh ] && unsetopt PROMPT_SP

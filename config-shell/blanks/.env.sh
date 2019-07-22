@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-#:title:        Divine.dotfiles, 'config-shell', .runcoms.bash
+#:title:        Divine.dotfiles, 'config-shell', .env.sh
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
 #:revnumber:    0.0.1-SNAPSHOT
@@ -14,5 +14,5 @@
 #
 ## Deployment 'config-shell': maintains configuration files for Bash & zsh
 #
-## .runcoms.bash: container for box-specific Bash startup commands
+## .env.sh: Container for box-specific environment variables
 #

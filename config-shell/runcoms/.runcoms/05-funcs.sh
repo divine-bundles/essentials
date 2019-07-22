@@ -8,7 +8,7 @@
 
 ## Universal shell utility functions. Must use compatible syntax.
 #
-## Expect $D_SHELL to be set to name of shell being initialized, e.g., ‘bash’.
+## Expect $D__SHELL to be set to name of shell being initialized, e.g., ‘bash’.
 
 ##
 ## General purpose helper functions

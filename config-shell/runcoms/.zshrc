@@ -10,6 +10,7 @@
 #
 ## Content:
 #.  * Fail-safe against non-interactive shells
+#.  * Set and export environmental D__* variables
 #.  * Source all *.zsh and *.sh files in ~/.runcoms dir, sorted 
 #.    alphanumerically
 #.  * Source ~/.runcoms.zsh, if it exists, for box-specific corrections
@@ -25,6 +26,17 @@
 
 
 ##
+## Set and export environmental D__* variables
+##
+
+# Current shell is zsh, obviously
+export D__SHELL=zsh
+
+# Source ~/.env.sh, if it exists, for box-specific environment variables
+[ -f ~/.env.sh -a -r ~/.env.sh ] && source ~/.env.sh
+
+
+##
 ## Source all *.zsh and *.sh files in ~/.runcoms dir, sorted 
 #. alphanumerically
 ##
@@ -35,8 +47,7 @@
 ## Globbing sorts entries alphanumerically. This can be taken advantage of to 
 #. provide for overriding.
 for script_path in ~/.runcoms/*(D); do
-  [[ $script_path = *.zsh || $script_path = *.sh ]] \
-    && D_SHELL=zsh source "$script_path"
+  [[ $script_path = *.zsh || $script_path = *.sh ]] && source "$script_path"
 done; unset script_path
 
 # Restore state of ‘nullglob’ option
@@ -48,10 +59,8 @@ $restore_nullglob; unset restore_nullglob
 ## Source ~/.runcoms.sh, if it exists, for box-specific corrections
 ##
 
-[ -f ~/.runcoms.zsh -a -r ~/.runcoms.zsh ] \
-  && D_SHELL=zsh source ~/.runcoms.zsh
-[ -f ~/.runcoms.sh -a -r ~/.runcoms.sh ] \
-  && D_SHELL=zsh source ~/.runcoms.sh
+[ -f ~/.runcoms.zsh -a -r ~/.runcoms.zsh ] && source ~/.runcoms.zsh
+[ -f ~/.runcoms.sh -a -r ~/.runcoms.sh ] && source ~/.runcoms.sh
 
 
 ##
