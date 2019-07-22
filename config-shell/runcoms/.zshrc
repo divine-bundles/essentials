@@ -1,9 +1,9 @@
 #:title:        Divine runcom: .zshrc
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
-#:revnumber:    1.0.0-RELEASE
-#:revdate:      2019.06.30
-#:revremark:    Release version
+#:revnumber:    3
+#:revdate:      2019.07.22
+#:revremark:    New revisioning system
 #:created_at:   2019.04.05
 
 ## Startup file for interactive zsh shells

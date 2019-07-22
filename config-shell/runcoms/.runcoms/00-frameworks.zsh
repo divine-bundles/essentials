@@ -1,9 +1,9 @@
 #:title:        Divine zsh runcom: 00-frameworks
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
-#:revnumber:    1.0.0-RELEASE
-#:revdate:      2019.06.30
-#:revremark:    Release version
+#:revnumber:    2
+#:revdate:      2019.07.22
+#:revremark:    New revisioning system
 #:created_at:   2019.04.09
 
 # zsh shell framework initialization
