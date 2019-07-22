@@ -78,16 +78,22 @@ d_add_blanks_to_queue()
 # Implement checking of whether env file is properly populated
 d_env_vars_check()
 {
-  # Status variable (a total of 3 chunks must be installed)
-  local num_of_chunks_installed=0
-
   # Check if env file exists
-  if ! [ -f "$D_ENV_FILEPATH" ]; then
+  if [ -f "$D_ENV_FILEPATH" ]; then
 
-    # No env file: return not installed
+    # Announce
+    dprint_debug -n 'Checking content of ~/.env.sh'
+
+  else
+
+    # No env file: announce and return not installed
+    dprint_debug -n 'Not an existing file: ~/.env.sh'
     return 2
 
   fi
+
+  # Status variable (a total of 3 chunks must be installed)
+  local num_of_chunks_installed=0
 
   # Check if OS_FAMILY line is present in temp file
   if grep -q "^[[:space:]]*export D__OS_FAMILY='$D__OS_FAMILY'" \
@@ -95,7 +101,15 @@ d_env_vars_check()
   then
 
     # Chunk 1: OS_FAMILY line
+
+    # Announce status and increment counter
+    dprint_debug 'Installed        : D__OS_FAMILY variable definition'
     (( ++num_of_chunks_installed ))
+
+  else
+
+    # Announce status
+    dprint_debug 'Not installed    : D__OS_FAMILY variable definition'
 
   fi
 
@@ -104,8 +118,16 @@ d_env_vars_check()
     "$D_ENV_FILEPATH" 2>/dev/null
   then
 
-    # Chunk 1: OS_DISTRO line
+    # Chunk 2: OS_DISTRO line
+
+    # Announce status and increment counter
+    dprint_debug 'Installed        : D__OS_DISTRO variable definition'
     (( ++num_of_chunks_installed ))
+
+  else
+
+    # Announce status
+    dprint_debug 'Not installed    : D__OS_DISTRO variable definition'
 
   fi
 
@@ -114,8 +136,16 @@ d_env_vars_check()
     "$D_ENV_FILEPATH" 2>/dev/null
   then
 
-    # Chunk 1: OS_PKGMGR line
+    # Chunk 3: OS_PKGMGR line
+
+    # Announce status and increment counter
+    dprint_debug 'Installed        : D__OS_PKGMGR variable definition'
     (( ++num_of_chunks_installed ))
+
+  else
+
+    # Announce status
+    dprint_debug 'Not installed    : D__OS_PKGMGR variable definition'
 
   fi
 
@@ -141,6 +171,9 @@ d_env_vars_check()
 # Implement populating env file
 d_env_vars_install()
 {
+  # Announce start
+  dprint_debug -n 'Installing ~/.env.sh file'
+
   # Storage variables
   local temp_filepath=$( mktemp ) sed_cmd sed_cmds=() all_good=true
   
@@ -153,8 +186,28 @@ d_env_vars_install()
 
     # At least one line is present: save sed command for future correction
     sed_cmd='s/^([[:space:]]*)export D__OS_FAMILY=.*$/'
-    sed_cmd+="\\1export D__OS_FAMILY='$D_OS_FAMILY'/"
+    sed_cmd+="\\1export D__OS_FAMILY='$D__OS_FAMILY'/"
     sed_cmds+=( -e "$sed_cmd" )
+
+    # Announce status
+    dprint_debug 'Will modify      : D__OS_FAMILY variable definition'
+
+  else
+
+    # Line not present: append it to the bottom of temp file
+    if printf 'export D__OS_FAMILY=%s\n' "$D__OS_FAMILY" >>"$temp_filepath"
+    then
+
+      # Announce status
+      dprint_debug 'Appended         : D__OS_FAMILY variable definition'
+
+    else
+
+      # Announce and mark failure
+      dprint_debug 'Failed to append : D__OS_FAMILY variable definition'
+      all_good=false
+
+    fi
 
   fi
 
@@ -164,14 +217,28 @@ d_env_vars_install()
 
     # At least one line is present: save sed command for future correction
     sed_cmd='s/^([[:space:]]*)export D__OS_DISTRO=.*$/'
-    sed_cmd+="\\1export D__OS_DISTRO='$D_OS_DISTRO'/"
+    sed_cmd+="\\1export D__OS_DISTRO='$D__OS_DISTRO'/"
     sed_cmds+=( -e "$sed_cmd" )
+
+    # Announce status
+    dprint_debug 'Will modify      : D__OS_DISTRO variable definition'
 
   else
 
     # Line not present: append it to the bottom of temp file
-    printf 'export D__OS_DISTRO=%s\n' "$D__OS_DISTRO" >>"$temp_filepath" \
-      || all_good=false
+    if printf 'export D__OS_DISTRO=%s\n' "$D__OS_DISTRO" >>"$temp_filepath"
+    then
+
+      # Announce status
+      dprint_debug 'Appended         : D__OS_DISTRO variable definition'
+
+    else
+
+      # Announce and mark failure
+      dprint_debug 'Failed to append : D__OS_DISTRO variable definition'
+      all_good=false
+
+    fi
 
   fi
 
@@ -181,26 +248,55 @@ d_env_vars_install()
 
     # At least one line is present: save sed command for future correction
     sed_cmd='s/^([[:space:]]*)export D__OS_PKGMGR=.*$/'
-    sed_cmd+="\\1export D__OS_PKGMGR='$D_OS_PKGMGR'/"
+    sed_cmd+="\\1export D__OS_PKGMGR='$D__OS_PKGMGR'/"
     sed_cmds+=( -e "$sed_cmd" )
+
+    # Announce status
+    dprint_debug 'Will modify      : D__OS_PKGMGR variable definition'
 
   else
 
     # Line not present: append it to the bottom of temp file
-    printf 'export D__OS_PKGMGR=%s\n' "$D__OS_PKGMGR" >>"$temp_filepath" \
-      || all_good=false
+    if printf 'export D__OS_PKGMGR=%s\n' "$D__OS_PKGMGR" >>"$temp_filepath"
+    then
+
+      # Announce status
+      dprint_debug 'Appended         : D__OS_PKGMGR variable definition'
+
+    else
+
+      # Announce and mark failure
+      dprint_debug 'Failed to append : D__OS_PKGMGR variable definition'
+      all_good=false
+
+    fi
 
   fi
 
   # If any sed commands must be carried out, do so
   if [ ${#sed_cmds[@]} -gt 0 ]; then
+
     # Fork depending of version of sed available
     if sed -r &>/dev/null; then
       sed -r "${sed_cmds[@]}" $temp_filepath >$temp_filepath
     else
       sed -E "${sed_cmds[@]}" $temp_filepath >$temp_filepath
     fi
-    [ $? -eq 0 ] || all_good=false
+
+    # Check status
+    if [ $? -eq 0 ]; then
+
+      # Announce status
+      dprint_debug 'Modified         : Pre-existing variable definitions'
+
+    else
+    
+      # Announce and mark failure
+      dprint_debug 'Failed to modify : Pre-existing variable definitions'
+      all_good=false
+    
+    fi
+
   fi
 
   # Check if there were errors
@@ -251,10 +347,15 @@ d_env_vars_install()
 d_env_vars_remove()
 {
   # Check if env file exists
-  if ! [ -f "$D_ENV_FILEPATH" ]; then
+  if [ -f "$D_ENV_FILEPATH" ]; then
 
-    # Nothing to do: report and return success
-    dprint_debug 'Not an existing file: ~/.env.sh'
+    # Announce
+    dprint_debug -n 'Cleaning content of ~/.env.sh'
+
+  else
+
+    # No env file: announce and return success
+    dprint_debug -n 'Nothing to remove: ~/.env.sh is not an existing file'
     return 0
 
   fi
@@ -274,6 +375,9 @@ d_env_vars_remove()
     sed_cmd+="\\1export D__OS_FAMILY=/"
     sed_cmds+=( -e "$sed_cmd" )
 
+    # Announce status
+    dprint_debug 'Will modify      : D__OS_FAMILY variable definition'
+
   fi
 
   # Check if OS_DISTRO line is present in temp file
@@ -284,6 +388,9 @@ d_env_vars_remove()
     sed_cmd='s/^([[:space:]]*)export D__OS_DISTRO=.*$/'
     sed_cmd+="\\1export D__OS_DISTRO=/"
     sed_cmds+=( -e "$sed_cmd" )
+
+    # Announce status
+    dprint_debug 'Will modify      : D__OS_DISTRO variable definition'
 
   fi
 
@@ -296,17 +403,35 @@ d_env_vars_remove()
     sed_cmd+="\\1export D__OS_PKGMGR=/"
     sed_cmds+=( -e "$sed_cmd" )
 
+    # Announce status
+    dprint_debug 'Will modify      : D__OS_PKGMGR variable definition'
+
   fi
 
   # If any sed commands must be carried out, do so
   if [ ${#sed_cmds[@]} -gt 0 ]; then
+
     # Fork depending of version of sed available
     if sed -r &>/dev/null; then
       sed -r "${sed_cmds[@]}" $temp_filepath >$temp_filepath
     else
       sed -E "${sed_cmds[@]}" $temp_filepath >$temp_filepath
     fi
-    [ $? -eq 0 ] || all_good=false
+
+    # Check status
+    if [ $? -eq 0 ]; then
+
+      # Announce status
+      dprint_debug 'Cleared          : Pre-existing variable definitions'
+
+    else
+    
+      # Announce and mark failure
+      dprint_debug 'Failed to clear  : Pre-existing variable definitions'
+      all_good=false
+    
+    fi
+
   fi
 
   # Check if there were errors
