@@ -37,8 +37,8 @@ d_dpl_check()
     check)    dprompt_key -- 'Checking Brewfile is not very reliable'
               case $? in 1) return 3;; *) :;; esac
               ;;
-    remove)   D__ANOTHER_PROMPT=true
-              D__ANOTHER_WARNING='Uninstalling Brewfile might be dangerous'
+    remove)   D_DPL_NEEDS_ANOTHER_PROMPT=true
+              D_DPL_NEEDS_ANOTHER_WARNING='Uninstalling Brewfile is dangerous'
               ;;
     *)        :;;
   esac  

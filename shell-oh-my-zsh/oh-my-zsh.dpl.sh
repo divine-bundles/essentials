@@ -41,10 +41,10 @@ d_omz_fmwk_check()
     # Check if there is record of previous installation
     if d__stash -s has fmwk_installed; then
       dprint_debug 'oh-my-zsh framework appears to be installed'
-      D__USER_OR_OS=false
+      D_DPL_INSTALLED_BY_USER_OR_OS=false
     else
       dprint_debug 'oh-my-zsh framework appears to be installed by user'
-      D__USER_OR_OS=true
+      D_DPL_INSTALLED_BY_USER_OR_OS=true
     fi
 
     # Return

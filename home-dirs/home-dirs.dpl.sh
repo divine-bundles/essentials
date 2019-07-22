@@ -41,8 +41,8 @@ d_queue_item_is_installed()
       if [ -n "$( ls -A -- "$dir" )" ]; then
 
         # Set up another user prompt
-        D__ANOTHER_PROMPT=true
-        D__ANOTHER_WARNING='At least one of the directories is not empty'
+        D_DPL_NEEDS_ANOTHER_PROMPT=true
+        D_DPL_NEEDS_ANOTHER_WARNING='At least one of the dirs is not empty'
 
       fi
 
