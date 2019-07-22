@@ -28,9 +28,9 @@ D_BLANK_RELPATHS=( \
 d_dpl_check()
 {
   # Compile task names
-  D_MULTITASK_NAMES+=( env_vars )
   D_MULTITASK_NAMES+=( runcoms )
   D_MULTITASK_NAMES+=( blanks )
+  D_MULTITASK_NAMES+=( env_vars )
 
   # Delegate to built-in helper
   d__multitask_check
