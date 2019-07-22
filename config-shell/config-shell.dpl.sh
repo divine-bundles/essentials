@@ -195,7 +195,7 @@ d_env_vars_install()
   else
 
     # Line not present: append it to the bottom of temp file
-    if printf 'export D__OS_FAMILY=%s\n' "$D__OS_FAMILY" >>"$temp_filepath"
+    if printf "export D__OS_FAMILY='%s'\n" "$D__OS_FAMILY" >>"$temp_filepath"
     then
 
       # Announce status
@@ -226,7 +226,7 @@ d_env_vars_install()
   else
 
     # Line not present: append it to the bottom of temp file
-    if printf 'export D__OS_DISTRO=%s\n' "$D__OS_DISTRO" >>"$temp_filepath"
+    if printf "export D__OS_DISTRO='%s'\n" "$D__OS_DISTRO" >>"$temp_filepath"
     then
 
       # Announce status
@@ -257,7 +257,7 @@ d_env_vars_install()
   else
 
     # Line not present: append it to the bottom of temp file
-    if printf 'export D__OS_PKGMGR=%s\n' "$D__OS_PKGMGR" >>"$temp_filepath"
+    if printf "export D__OS_PKGMGR='%s'\n" "$D__OS_PKGMGR" >>"$temp_filepath"
     then
 
       # Announce status
