@@ -1,9 +1,9 @@
 #:title:        Divine deployment: config-shell
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
-#:revnumber:    13
-#:revdate:      2019.07.22
-#:revremark:    New revisioning system
+#:revnumber:    14
+#:revdate:      2019.07.24
+#:revremark:    Fix erroneous application of sed
 #:created_at:   2019.06.30
 
 D_DPL_NAME='config-shell'
@@ -175,13 +175,14 @@ d_env_vars_install()
   dprint_debug -n 'Installing ~/.env.sh file'
 
   # Storage variables
-  local temp_filepath=$( mktemp ) sed_cmd sed_cmds=() all_good=true
+  local copy_filepath=$( mktemp ) sed_cmd sed_cmds=() all_good=true
+  local temp_filepath
   
   # Dump current env file content into a temp file
-  cat "$D_ENV_FILEPATH" >$temp_filepath 2>/dev/null
+  cat "$D_ENV_FILEPATH" >$copy_filepath 2>/dev/null
 
   # Check if OS_FAMILY line is present in temp file
-  if grep -q '^[[:space:]]*export D__OS_FAMILY=' $temp_filepath 2>/dev/null
+  if grep -q '^[[:space:]]*export D__OS_FAMILY=' $copy_filepath 2>/dev/null
   then
 
     # At least one line is present: save sed command for future correction
@@ -195,7 +196,7 @@ d_env_vars_install()
   else
 
     # Line not present: append it to the bottom of temp file
-    if printf "export D__OS_FAMILY='%s'\n" "$D__OS_FAMILY" >>"$temp_filepath"
+    if printf "export D__OS_FAMILY='%s'\n" "$D__OS_FAMILY" >>"$copy_filepath"
     then
 
       # Announce status
@@ -212,7 +213,7 @@ d_env_vars_install()
   fi
 
   # Check if OS_DISTRO line is present in temp file
-  if grep -q '^[[:space:]]*export D__OS_DISTRO=' $temp_filepath 2>/dev/null
+  if grep -q '^[[:space:]]*export D__OS_DISTRO=' $copy_filepath 2>/dev/null
   then
 
     # At least one line is present: save sed command for future correction
@@ -226,7 +227,7 @@ d_env_vars_install()
   else
 
     # Line not present: append it to the bottom of temp file
-    if printf "export D__OS_DISTRO='%s'\n" "$D__OS_DISTRO" >>"$temp_filepath"
+    if printf "export D__OS_DISTRO='%s'\n" "$D__OS_DISTRO" >>"$copy_filepath"
     then
 
       # Announce status
@@ -243,7 +244,7 @@ d_env_vars_install()
   fi
 
   # Check if OS_PKGMGR line is present in temp file
-  if grep -q '^[[:space:]]*export D__OS_PKGMGR=' $temp_filepath 2>/dev/null
+  if grep -q '^[[:space:]]*export D__OS_PKGMGR=' $copy_filepath 2>/dev/null
   then
 
     # At least one line is present: save sed command for future correction
@@ -257,7 +258,7 @@ d_env_vars_install()
   else
 
     # Line not present: append it to the bottom of temp file
-    if printf "export D__OS_PKGMGR='%s'\n" "$D__OS_PKGMGR" >>"$temp_filepath"
+    if printf "export D__OS_PKGMGR='%s'\n" "$D__OS_PKGMGR" >>"$copy_filepath"
     then
 
       # Announce status
@@ -276,20 +277,26 @@ d_env_vars_install()
   # If any sed commands must be carried out, do so
   if [ ${#sed_cmds[@]} -gt 0 ]; then
 
+    # Make temporary file
+    temp_filepath=$( mktemp )
+
     # Fork depending of version of sed available
     if sed -r &>/dev/null; then
-      sed -r "${sed_cmds[@]}" $temp_filepath >$temp_filepath
+      sed -r "${sed_cmds[@]}" $copy_filepath >$temp_filepath
     else
-      sed -E "${sed_cmds[@]}" $temp_filepath >$temp_filepath
+      sed -E "${sed_cmds[@]}" $copy_filepath >$temp_filepath
     fi
 
     # Check status
-    if [ $? -eq 0 ]; then
+    if [ $? -eq 0 ] && mv -f -- $temp_filepath $copy_filepath; then
 
       # Announce status
       dprint_debug 'Modified         : Pre-existing variable definitions'
 
     else
+
+      # Expunge temp file
+      rm -f -- $temp_filepath
     
       # Announce and mark failure
       dprint_debug 'Failed to modify : Pre-existing variable definitions'
@@ -305,7 +312,7 @@ d_env_vars_install()
     # Failed to properly modify temp file
 
     # Expunge temp file
-    rm -f -- $temp_filepath
+    rm -f -- $copy_filepath
 
     # Report and return error
     dprint_debug "Failed to modify temporary copy of ~/.env.sh file"
@@ -313,20 +320,8 @@ d_env_vars_install()
 
   fi
 
-  # Remove original file
-  if ! rm -f -- "$D_ENV_FILEPATH"; then
-
-    # Expunge temp file
-    rm -f -- $temp_filepath
-
-    # Report and return error
-    dprint_debug "Failed to overwrite ~/.env.sh file"
-    return 1
-
-  fi
-
   # Move modified temporary file into place
-  if mv -n -- $temp_filepath "$D_ENV_FILEPATH"; then
+  if mv -f -- $copy_filepath "$D_ENV_FILEPATH"; then
 
     # All good: return success
     return 0
@@ -334,7 +329,7 @@ d_env_vars_install()
   else
 
     # Expunge temp file
-    rm -f -- $temp_filepath
+    rm -f -- $copy_filepath
 
     # Failed to move: report and return error
     dprint_debug "Failed to move ~/.env.sh file into place"
@@ -361,13 +356,14 @@ d_env_vars_remove()
   fi
 
   # Storage variables
-  local temp_filepath=$( mktemp ) sed_cmd sed_cmds=() all_good=true
+  local copy_filepath=$( mktemp ) sed_cmd sed_cmds=() all_good=true
+  local temp_filepath
   
   # Dump current env file content into a temp file
-  cat "$D_ENV_FILEPATH" >$temp_filepath 2>/dev/null
+  cat "$D_ENV_FILEPATH" >$copy_filepath 2>/dev/null
 
   # Check if OS_FAMILY line is present in temp file
-  if grep -q '^[[:space:]]*export D__OS_FAMILY=' $temp_filepath 2>/dev/null
+  if grep -q '^[[:space:]]*export D__OS_FAMILY=' $copy_filepath 2>/dev/null
   then
 
     # At least one line is present: save sed command for future correction
@@ -381,7 +377,7 @@ d_env_vars_remove()
   fi
 
   # Check if OS_DISTRO line is present in temp file
-  if grep -q '^[[:space:]]*export D__OS_DISTRO=' $temp_filepath 2>/dev/null
+  if grep -q '^[[:space:]]*export D__OS_DISTRO=' $copy_filepath 2>/dev/null
   then
 
     # At least one line is present: save sed command for future correction
@@ -395,7 +391,7 @@ d_env_vars_remove()
   fi
 
   # Check if OS_PKGMGR line is present in temp file
-  if grep -q '^[[:space:]]*export D__OS_PKGMGR=' $temp_filepath 2>/dev/null
+  if grep -q '^[[:space:]]*export D__OS_PKGMGR=' $copy_filepath 2>/dev/null
   then
 
     # At least one line is present: save sed command for future correction
@@ -411,20 +407,26 @@ d_env_vars_remove()
   # If any sed commands must be carried out, do so
   if [ ${#sed_cmds[@]} -gt 0 ]; then
 
+    # Make temporary file
+    temp_filepath=$( mktemp )
+
     # Fork depending of version of sed available
     if sed -r &>/dev/null; then
-      sed -r "${sed_cmds[@]}" $temp_filepath >$temp_filepath
+      sed -r "${sed_cmds[@]}" $copy_filepath >$temp_filepath
     else
-      sed -E "${sed_cmds[@]}" $temp_filepath >$temp_filepath
+      sed -E "${sed_cmds[@]}" $copy_filepath >$temp_filepath
     fi
 
     # Check status
-    if [ $? -eq 0 ]; then
+    if [ $? -eq 0 ] && mv -f -- $temp_filepath $copy_filepath; then
 
       # Announce status
       dprint_debug 'Cleared          : Pre-existing variable definitions'
 
     else
+
+      # Expunge temp file
+      rm -f -- $temp_filepath
     
       # Announce and mark failure
       dprint_debug 'Failed to clear  : Pre-existing variable definitions'
@@ -440,7 +442,7 @@ d_env_vars_remove()
     # Failed to properly modify temp file
 
     # Expunge temp file
-    rm -f -- $temp_filepath
+    rm -f -- $copy_filepath
 
     # Report and return error
     dprint_debug "Failed to modify temporary copy of ~/.env.sh file"
@@ -448,20 +450,8 @@ d_env_vars_remove()
 
   fi
 
-  # Remove original file
-  if ! rm -f -- "$D_ENV_FILEPATH"; then
-
-    # Expunge temp file
-    rm -f -- $temp_filepath
-
-    # Report and return error
-    dprint_debug "Failed to overwrite ~/.env.sh file"
-    return 1
-
-  fi
-
   # Move modified temporary file into place
-  if mv -n -- $temp_filepath "$D_ENV_FILEPATH"; then
+  if mv -f -- $copy_filepath "$D_ENV_FILEPATH"; then
 
     # All good: return success
     return 0
@@ -469,7 +459,7 @@ d_env_vars_remove()
   else
 
     # Expunge temp file
-    rm -f -- $temp_filepath
+    rm -f -- $copy_filepath
 
     # Failed to move: report and return error
     dprint_debug "Failed to move ~/.env.sh file into place"
