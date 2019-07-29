@@ -1,9 +1,9 @@
 #:title:        Divine shared runcom: 02-env
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
-#:revnumber:    6
+#:revnumber:    7
 #:revdate:      2019.07.29
-#:revremark:    Fix skipped revision number
+#:revremark:    Fix gem env call
 #:created_at:   2019.04.09
 
 ## Universal shell environment variables. Must use compatible syntax.
@@ -30,7 +30,7 @@
 ## Ruby gems
 ##
 
-if command -v gem &>/dev/null; then
+if gem env gemdir &>/dev/null; then
   GEMS_DIR="$( gem env gemdir )/bin"
   [ -d "$GEMS_DIR" ] && export PATH="$GEMS_DIR:$PATH"
   unset GEMS_DIR
