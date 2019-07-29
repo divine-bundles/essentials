@@ -16,6 +16,7 @@
 
 [ -d "$HOME/.bin" ] && export PATH="$PATH:$HOME/.bin"
 [ -d "$HOME/bin" ] && export PATH="$PATH:$HOME/bin"
+[ -d "$HOME/.pbin" ] && export PATH="$PATH:$HOME/.pbin"
 
 
 ##
