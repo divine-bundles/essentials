@@ -1,9 +1,9 @@
 #:title:        Divine shared runcom: 02-env
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
-#:revnumber:    4
-#:revdate:      2019.07.22
-#:revremark:    New revisioning system
+#:revnumber:    6
+#:revdate:      2019.07.29
+#:revremark:    Fix skipped revision number
 #:created_at:   2019.04.09
 
 ## Universal shell environment variables. Must use compatible syntax.
