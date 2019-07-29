@@ -1,0 +1,4 @@
+(prefix:.pbin)
+
+# Any files distributed with this deployment, if any
+(r) *
