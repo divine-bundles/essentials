@@ -1,9 +1,9 @@
 #:title:        Divine deployment: portable-bin
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
-#:revnumber:    1
+#:revnumber:    2
 #:revdate:      2019.07.29
-#:revremark:    Initial revision
+#:revremark:    Fix erroneous var name
 #:created_at:   2019.07.26
 
 D_DPL_NAME='portable-bin'
@@ -19,7 +19,7 @@ d_dpl_remove()   { d__link_queue_remove;  }
 d_assemble_link_queue()
 {
   # Populate essential global variables for helper functions
-  D_DPL_ASSET_PATHS=( "$D_DPL_ASSET_DIR" )
+  D_DPL_ASSET_PATHS=( "$D__DPL_ASSET_DIR" )
   D_DPL_ASSET_RELPATHS=( '.pbin' )
   D_DPL_TARGET_PATHS=( "$HOME/.pbin" )
   D__QUEUE_MAIN=( "${D_DPL_ASSET_RELPATHS[@]}" )
