@@ -1,9 +1,9 @@
 #:title:        Divine deployment: Divinefile
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
-#:revnumber:    2
-#:revdate:      2019.07.22
-#:revremark:    New revisioning system
+#:revnumber:    3
+#:revdate:      2019.08.05
+#:revremark:    Add util-linux-user on dnf
 #:created_at:   2019.06.30
 
 # Bread & butter
@@ -15,3 +15,6 @@
 
 # GNU Pretty Good Privacy (PGP) package
 1000) gnupg
+
+# On Fedora’s dnf, install ‘util-linux-user’ to obtain ‘chsh’
+1000) | dnf: util-linux-user
