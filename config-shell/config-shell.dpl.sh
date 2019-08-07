@@ -1,9 +1,9 @@
 #:title:        Divine deployment: config-shell
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
-#:revnumber:    14
-#:revdate:      2019.07.24
-#:revremark:    Fix erroneous application of sed
+#:revnumber:    15
+#:revdate:      2019.08.07
+#:revremark:    Fix stalling tests on BSD systems
 #:created_at:   2019.06.30
 
 D_DPL_NAME='config-shell'
@@ -281,7 +281,7 @@ d_env_vars_install()
     temp_filepath=$( mktemp )
 
     # Fork depending of version of sed available
-    if sed -r &>/dev/null; then
+    if sed -r <<<'' &>/dev/null; then
       sed -r "${sed_cmds[@]}" $copy_filepath >$temp_filepath
     else
       sed -E "${sed_cmds[@]}" $copy_filepath >$temp_filepath
@@ -411,7 +411,7 @@ d_env_vars_remove()
     temp_filepath=$( mktemp )
 
     # Fork depending of version of sed available
-    if sed -r &>/dev/null; then
+    if sed -r <<<'' &>/dev/null; then
       sed -r "${sed_cmds[@]}" $copy_filepath >$temp_filepath
     else
       sed -E "${sed_cmds[@]}" $copy_filepath >$temp_filepath
