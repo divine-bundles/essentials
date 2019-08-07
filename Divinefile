@@ -1,9 +1,9 @@
 #:title:        Divine deployment: Divinefile
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
-#:revnumber:    4
+#:revnumber:    5
 #:revdate:      2019.08.07
-#:revremark:    Major syntax/parsing rewrite for manifest-like files
+#:revremark:    Add curl and wget
 #:created_at:   2019.06.30
 
 (os:all)
@@ -15,6 +15,9 @@ vim
 
 # zsh as an alternative shell
 zsh
+
+# Network downloading utilities
+wget curl
 
 # GNU Pretty Good Privacy (PGP) package
 gnupg
