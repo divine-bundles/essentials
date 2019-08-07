@@ -1,20 +1,23 @@
 #:title:        Divine deployment: Divinefile
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
-#:revnumber:    3
-#:revdate:      2019.08.05
-#:revremark:    Add util-linux-user on dnf
+#:revnumber:    4
+#:revdate:      2019.08.07
+#:revremark:    Major syntax/parsing rewrite for manifest-like files
 #:created_at:   2019.06.30
 
+(os:all)
+(priority:1000)
+
 # Bread & butter
-1000) git
-1000) vim
+git
+vim
 
 # zsh as an alternative shell
-1000) zsh
+zsh
 
 # GNU Pretty Good Privacy (PGP) package
-1000) gnupg
+gnupg
 
-# On Fedora’s dnf, install ‘util-linux-user’ to obtain ‘chsh’
-1000) | dnf: util-linux-user
+# On Fedora, install ‘util-linux-user’ to obtain ‘chsh’
+(os:fedora) util-linux-user
