@@ -1,14 +1,14 @@
 #:title:        Divine shared runcom: 04-aliases
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
-#:revnumber:    4
-#:revdate:      2019.07.22
-#:revremark:    New revisioning system
+#:revnumber:    5
+#:revdate:      2019.08.07
+#:revremark:    Grand removal of non-ASCII chars
 #:created_at:   2019.04.09
 
 ## Universal shell utility aliases. Must use compatible syntax.
 #
-## Expect $D__SHELL to be set to name of shell being initialized, e.g., ‘bash’.
+## Expect $D__SHELL to be set to name of shell being initialized, e.g., 'bash'.
 
 ##
 ## Specific directory access
@@ -141,7 +141,7 @@ alias libpath='\printf "${LD_LIBRARY_PATH//:/\\n}\n"'
 ##
 ## Colorful tree:
 #.  -C  - Colorize output
-#.  -u  - (files) Include user’s name/id
+#.  -u  - (files) Include user's name/id
 #.  -s  - (files) Include size
 #.  -h  - (files) Human-readable sizes
 #.  -N  - Print non-printables as is

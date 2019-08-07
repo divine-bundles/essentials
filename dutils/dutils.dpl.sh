@@ -1,9 +1,9 @@
 #:title:        Divine deployment: dutils
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
-#:revnumber:    9
-#:revdate:      2019.07.22
-#:revremark:    New revisioning system
+#:revnumber:    10
+#:revdate:      2019.08.07
+#:revremark:    Grand removal of non-ASCII chars
 #:created_at:   2019.06.30
 
 D_DPL_NAME='dutils'
@@ -44,7 +44,7 @@ d_queue_item_pre_check()
 #.  3 - Invalid
 d_queue_item_is_installed()
 {
-  # Construct util’s name and location within framework and as installed
+  # Construct util's name and location within framework and as installed
   local util_name="$D__QUEUE_ITEM_TITLE"
   local util_fmwk_path="${D__DIR_UTILS}/${util_name}${D__SUFFIX_UTIL}"
   local util_install_path="$D__QUEUE_ITEM_STASH_VALUE"
@@ -153,7 +153,7 @@ d_queue_item_is_installed()
 #.  2 - Invalid item
 d_queue_item_install()
 {
-  # Construct util’s name and location within framework
+  # Construct util's name and location within framework
   local util_name="$D__QUEUE_ITEM_TITLE"
   local util_fmwk_path="${D__DIR_UTILS}/${util_name}${D__SUFFIX_UTIL}"
   local util_install_dir util_install_path
@@ -253,7 +253,7 @@ EOF
 #.  2 - Invalid item
 d_queue_item_remove()
 {
-  # Construct util’s name and location within framework and as installed
+  # Construct util's name and location within framework and as installed
   local util_name="$D__QUEUE_ITEM_TITLE"
   local util_install_path="$D__QUEUE_ITEM_STASH_VALUE"
   local util_install_dir="$( dirname -- "$util_install_path" )"

@@ -1,9 +1,9 @@
 #:title:        Divine deployment: fonts
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
-#:revnumber:    8
-#:revdate:      2019.07.22
-#:revremark:    New revisioning system
+#:revnumber:    9
+#:revdate:      2019.08.07
+#:revremark:    Grand removal of non-ASCII chars
 #:created_at:   2019.06.30
 
 D_DPL_NAME='fonts'
@@ -29,7 +29,7 @@ d_dpl_check()
   D_DPL_ASSET_PATHS=()
   D_DPL_ASSET_RELPATHS=()
 
-  # Save current state of ‘dotglob’, ‘nullglob’, ‘nocasematch’ options
+  # Save current state of 'dotglob', 'nullglob', 'nocasematch' options
   local restore_opts cmd
   restore_opts=( \
     "$( shopt -p dotglob )" \
@@ -37,14 +37,14 @@ d_dpl_check()
     "$( shopt -p nocasematch )" \
   )
 
-  # Set ‘dotglob’, ‘nullglob’, ‘nocasematch’ options
+  # Set 'dotglob', 'nullglob', 'nocasematch' options
   shopt -s dotglob nullglob nocasematch
 
   # Scan fonts
   local font_filepath font_relpath
   for font_filepath in "$D__DPL_ASSET_DIR/"*.otf "$D__DPL_ASSET_DIR/"*.ttf; do
 
-    # Skip symlinks (to stay consistent with ‘find’ behavior above)
+    # Skip symlinks (to stay consistent with 'find' behavior above)
     [ -L "$font_filepath" ] && continue
 
     # Skip non-files, e.g., directories (and report, since this is abnormal)
@@ -63,7 +63,7 @@ d_dpl_check()
 
   done
 
-  # Restore state of ‘dotglob’, ‘nullglob’, ‘nocasematch’ options
+  # Restore state of 'dotglob', 'nullglob', 'nocasematch' options
   for cmd in "${restore_opts[@]}"; do $cmd; done
 
   # Check if at least one path is present
@@ -125,7 +125,7 @@ d_copy_queue_pre_process()
         # Extract font filename
         dest_filename="$( basename -- "$dest_filepath" )"
 
-        # On Ubuntu, install *.otf fonts into ‘opentype’ sub-directory
+        # On Ubuntu, install *.otf fonts into 'opentype' sub-directory
         D_DPL_TARGET_PATHS[$i]="$D_DPL_TARGET_DIR/opentype/$dest_filename"
 
       fi

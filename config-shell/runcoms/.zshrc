@@ -1,9 +1,9 @@
 #:title:        Divine runcom: .zshrc
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
-#:revnumber:    3
-#:revdate:      2019.07.22
-#:revremark:    New revisioning system
+#:revnumber:    4
+#:revdate:      2019.08.07
+#:revremark:    Grand removal of non-ASCII chars
 #:created_at:   2019.04.05
 
 ## Startup file for interactive zsh shells
@@ -21,7 +21,7 @@
 ## Fail-safe against non-interactive shells
 ##
 
-# Rely on ‘interactive’ option to be set
+# Rely on 'interactive' option to be set
 [[ -o interactive ]] || return
 
 
@@ -41,7 +41,7 @@ export D__SHELL=zsh
 #. alphanumerically
 ##
 
-# If ‘nullglob’ option is unset, set it and remember to restore it after
+# If 'nullglob' option is unset, set it and remember to restore it after
 [[ -o G ]] || { set -G; restore_nullglob=( set +G ); }
 
 ## Globbing sorts entries alphanumerically. This can be taken advantage of to 
@@ -50,7 +50,7 @@ for script_path in ~/.runcoms/*(D); do
   [[ $script_path = *.zsh || $script_path = *.sh ]] && source "$script_path"
 done; unset script_path
 
-# Restore state of ‘nullglob’ option
+# Restore state of 'nullglob' option
 $restore_nullglob; unset restore_nullglob
 
 

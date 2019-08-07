@@ -1,9 +1,9 @@
 #:title:        Divine deployment: brewfile
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
-#:revnumber:    9
-#:revdate:      2019.07.22
-#:revremark:    New revisioning system
+#:revnumber:    10
+#:revdate:      2019.08.07
+#:revremark:    Grand removal of non-ASCII chars
 #:created_at:   2019.06.30
 
 D_DPL_NAME='brewfile'
@@ -47,8 +47,8 @@ d_dpl_check()
   cd "$D__DPL_ASSET_DIR"
 
   ## Non-zero exit code of brew bundle check does not translate exactly to 
-  #. ‘Not installed.’ It is rather ‘Not fully installed or not up to date, or 
-  #. maybe not installed at all, or maybe I just don’t know.’
+  #. 'Not installed.' It is rather 'Not fully installed or not up to date, or 
+  #. maybe not installed at all, or maybe I just don't know.'
   brew bundle check --verbose && return 1 || return 0
 }
 
@@ -77,7 +77,7 @@ d_dpl_install()
 #.  666 - Critical failure
 d_dpl_remove()
 {
-  ## Homebrew’s bundler does not provide removal mechanism. Below code simply 
+  ## Homebrew's bundler does not provide removal mechanism. Below code simply 
   #. reads Brewfile in reverse order and calls uninstall commands. This really 
   #. is a nuclear option, so additional user prompt is in place.
   #

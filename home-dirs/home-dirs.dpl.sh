@@ -1,9 +1,9 @@
 #:title:        Divine deployment: home-dirs
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
-#:revnumber:    9
-#:revdate:      2019.07.22
-#:revremark:    New revisioning system
+#:revnumber:    10
+#:revdate:      2019.08.07
+#:revremark:    Grand removal of non-ASCII chars
 #:created_at:   2019.06.30
 
 D_DPL_NAME='home-dirs'
@@ -53,7 +53,7 @@ d_queue_item_is_installed()
 
   else
 
-    # Not a directory: report and return mindful of path’s existence
+    # Not a directory: report and return mindful of path's existence
     if [ -e "$dir" ]; then
       dprint_debug "Not a directory: $dir"
       return 3
@@ -123,7 +123,7 @@ d_queue_item_remove()
 
   fi
 
-  # Check user’s answer
+  # Check user's answer
   case $? in
     0)  # Remove directory
         if rm -rf -- "$dir"; then

@@ -7,7 +7,7 @@
 ":created_at:   2019.04.11
 
 " --- vim-plug {{{1
-" Install vim-plug if it isn’t there already
+" Install vim-plug if it isn't there already
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -324,7 +324,7 @@ map <C-o> :NERDTreeToggle<CR>
 
 " --- Before write {{{1
 "
-" Auto-create parent directories on save (if they don’t exist)
+" Auto-create parent directories on save (if they don't exist)
 
 " https://stackoverflow.com/questions/4292733/vim-creating-parent-directories-on-save
 

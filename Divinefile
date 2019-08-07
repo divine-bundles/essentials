@@ -1,9 +1,9 @@
 #:title:        Divine deployment: Divinefile
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
-#:revnumber:    5
+#:revnumber:    6
 #:revdate:      2019.08.07
-#:revremark:    Add curl and wget
+#:revremark:    Grand removal of non-ASCII chars
 #:created_at:   2019.06.30
 
 (os:all)
@@ -22,5 +22,5 @@ wget curl
 # GNU Pretty Good Privacy (PGP) package
 gnupg
 
-# On Fedora, install ‘util-linux-user’ to obtain ‘chsh’
+# On Fedora, install 'util-linux-user' to obtain 'chsh'
 (os:fedora) util-linux-user

@@ -22,10 +22,10 @@ It contains the following deployments:
 `*config-git*`:: Maintains global config for `git`
 `*config-shell*`:: Maintains custom `.bashrc` & `.zshrc`
 `*config-vim*`:: Maintains global config for `vim`
-`*dutils*`:: Exposes a couple of useful utilities from under the framework’s hood, for command line use
+`*dutils*`:: Exposes a couple of useful utilities from under the framework's hood, for command line use
 `*fonts*`:: Maintains personal library of font faces
 `*home-dirs*`:: Maintains stable set of directories under `~`
-`*macos-brewfile*`:: Maintains https://brew.sh[Homebrew]’s https://github.com/Homebrew/homebrew-bundle[Brewfile] across macOS installations
+`*macos-brewfile*`:: Maintains https://brew.sh[Homebrew]'s https://github.com/Homebrew/homebrew-bundle[Brewfile] across macOS installations
 `*shell-bash-it*`:: Maintains https://github.com/Bash-it/bash-it[Bash-it framework] for `bash`
 `*shell-oh-my-zsh*`:: Maintains https://ohmyz.sh/[oh-my-zsh framework] for `zsh`
 `*shell-zsh-default*`:: Maintains `zsh` as default shell
@@ -48,16 +48,16 @@ For example:
 * `*Divinefile*` will ensure `git` is installed. Upon removal, `git` will only be un-installed if it was `*Divinefile*` that installed it in the first place.
 --
 
-### Don’t have Divine.dotfiles installed?
+### Don't have Divine.dotfiles installed?
 
-*Install both framework & this package* in one fell swoop (it’s fully removable):
+*Install both framework & this package* in one fell swoop (it's fully removable):
 
 [source,bash]
 ----
 bash -c "$( URL=https://raw.github.com/no-simpler/divine-dotfiles/master/lib/install/install.sh; if command -v curl >/dev/null 2>&1; then curl -fsSL $URL; elif command -v wget >/dev/null 2>&1; then wget -qO - $URL; else printf >&2 '\n==> Unable to install: failed to detect neither curl nor wget\n'; fi )" bash --yes
 ----
 
-Afterward, if you don’t like it, here’s the ‘**undo**’ command (removes/restores _everything_):
+Afterward, if you don't like it, here is the '**undo**' command (removes/restores _everything_):
 
 [source,bash]
 ----

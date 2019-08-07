@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-## Storing prompt in Bash-it’s preferred $PROMPT variable causes the prompt to 
-#. be surrounded by \[ … \] invisible characters. Although not a problem 
+## Storing prompt in Bash-it's preferred $PROMPT variable causes the prompt to 
+#. be surrounded by \[ ... \] invisible characters. Although not a problem 
 #. generally, this causes line wrapping problems in Hyper.js terminal:
 #. https://github.com/zeit/hyper/issues/283
 #

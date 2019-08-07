@@ -1,20 +1,20 @@
 #:title:        Divine shared runcom: 05-funcs
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
-#:revnumber:    3
-#:revdate:      2019.07.22
-#:revremark:    New revisioning system
+#:revnumber:    4
+#:revdate:      2019.08.07
+#:revremark:    Grand removal of non-ASCII chars
 #:created_at:   2019.04.09
 
 ## Universal shell utility functions. Must use compatible syntax.
 #
-## Expect $D__SHELL to be set to name of shell being initialized, e.g., ‘bash’.
+## Expect $D__SHELL to be set to name of shell being initialized, e.g., 'bash'.
 
 ##
 ## General purpose helper functions
 ##
 
-#> up
+#>  up
 #
 ## Scans for supported package managers/frameworks, and sequentially launches 
 #. update/upgrade routines for those found.
@@ -28,7 +28,7 @@ up()
   # Status flag
   local anything_updated=false
 
-  # macOS’s Homebrew
+  # macOS's Homebrew
   HOMEBREW_NO_AUTO_UPDATE=1 brew --version &>/dev/null && {
     printf '%s\n' \
       "${bold}==>${normal} Updating packages via ${bold}brew${normal}"
@@ -37,7 +37,7 @@ up()
     printf '\n'
   }
 
-  # Ubuntu/Debian’s apt-get
+  # Ubuntu/Debian's apt-get
   apt-get --version &>/dev/null && {
     printf '%s\n' \
       "${bold}==>${normal} Updating packages via ${bold}apt-get${normal}"
@@ -46,7 +46,7 @@ up()
     printf '\n'
   }
 
-  # Fedora’s dnf
+  # Fedora's dnf
   dnf --version &>/dev/null && {
     printf '%s\n' \
       "${bold}==>${normal} Updating packages via ${bold}dnf${normal}"
@@ -55,7 +55,7 @@ up()
     printf '\n'
   }
 
-  # Fedora’s yum
+  # Fedora's yum
   yum --version &>/dev/null && {
     printf '%s\n' \
       "${bold}==>${normal} Updating packages via ${bold}yum${normal}"
@@ -121,8 +121,8 @@ up()
   return 0
 }
 
-#> mcd PATH
+#>  mcd PATH
 #
-## Creates path using mkdir -p, and, upon success, cd’s into it
+## Creates path using mkdir -p, and, upon success, cd's into it
 #
 mcd() { mkdir -p -- "$1" && cd -- "$1"; }

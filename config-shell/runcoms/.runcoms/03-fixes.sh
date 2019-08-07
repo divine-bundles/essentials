@@ -1,21 +1,21 @@
 #:title:        Divine shared runcom: 03-fixes
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
-#:revnumber:    3
-#:revdate:      2019.07.22
-#:revremark:    New revisioning system
+#:revnumber:    4
+#:revdate:      2019.08.07
+#:revremark:    Grand removal of non-ASCII chars
 #:created_at:   2019.04.09
 
 ## Universal shell bug fixes. Must use compatible syntax.
 #
-## Expect $D__SHELL to be set to name of shell being initialized, e.g., ‘bash’.
+## Expect $D__SHELL to be set to name of shell being initialized, e.g., 'bash'.
 
 ##
 ## Locale fix
 ##
 
 ## Known problems cured by this fix include:
-#.  * macOS: pipenv bug ‘unknown locale’
+#.  * macOS: pipenv bug 'unknown locale'
 #.    https://github.com/pypa/pipenv/issues/187
 #
 
