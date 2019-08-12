@@ -1,9 +1,9 @@
 #:title:        Divine deployment: zsh-default
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
-#:revnumber:    16
-#:revdate:      2019.08.07
-#:revremark:    Grand removal of non-ASCII chars
+#:revnumber:    17
+#:revdate:      2019.08.12
+#:revremark:    Return code: 666 -> 102
 #:created_at:   2019.06.30
 
 D_DPL_NAME='zsh-default'
@@ -161,7 +161,7 @@ d_dpl_check()
 #.  2   - Skipped completely
 #.  100 - Reboot needed
 #.  101 - User attention needed
-#.  666 - Critical failure
+#.  102 - Critical failure
 d_dpl_install()
 {
   # Rely on chsh to be available
@@ -284,7 +284,7 @@ d_dpl_install()
 #.  2   - Skipped completely
 #.  100 - Reboot needed
 #.  101 - User attention needed
-#.  666 - Critical failure
+#.  102 - Critical failure
 d_dpl_remove()
 {
   # Check if there is record of previous installation

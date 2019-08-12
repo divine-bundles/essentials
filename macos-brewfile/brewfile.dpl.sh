@@ -1,9 +1,9 @@
 #:title:        Divine deployment: brewfile
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
-#:revnumber:    10
-#:revdate:      2019.08.07
-#:revremark:    Grand removal of non-ASCII chars
+#:revnumber:    11
+#:revdate:      2019.08.12
+#:revremark:    Return code: 666 -> 102
 #:created_at:   2019.06.30
 
 D_DPL_NAME='brewfile'
@@ -58,7 +58,7 @@ d_dpl_check()
 #.  2   - Skipped completely
 #.  100 - Reboot needed
 #.  101 - User attention needed
-#.  666 - Critical failure
+#.  102 - Critical failure
 d_dpl_install()
 {
   # brew bundle requires Brewfile in current directory
@@ -74,7 +74,7 @@ d_dpl_install()
 #.  2   - Skipped completely
 #.  100 - Reboot needed
 #.  101 - User attention needed
-#.  666 - Critical failure
+#.  102 - Critical failure
 d_dpl_remove()
 {
   ## Homebrew's bundler does not provide removal mechanism. Below code simply 
