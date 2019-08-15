@@ -1,9 +1,9 @@
 #:title:        Divine deployment: home-dirs
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
-#:revnumber:    10
-#:revdate:      2019.08.07
-#:revremark:    Grand removal of non-ASCII chars
+#:revnumber:    11
+#:revdate:      2019.08.15
+#:revremark:    Demote  to single underscore
 #:created_at:   2019.06.30
 
 D_DPL_NAME='home-dirs'
@@ -13,7 +13,7 @@ D_DPL_FLAGS=
 D_DPL_WARNING=
 
 # Where to grab main queue file
-D__DPL_QUE_PATH="$D__DPL_ASSET_DIR/home-dirs.cfg"
+D_DPL_QUE_PATH="$D__DPL_ASSET_DIR/home-dirs.cfg"
 
 d_dpl_check()    { d__queue_check;    }
 d_dpl_install()  { d__queue_install;  }
