@@ -1,9 +1,9 @@
 #:title:        Divine deployment: brewfile
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
-#:revnumber:    12
+#:revnumber:    13
 #:revdate:      2019.08.16
-#:revremark:    Streamline simple dprint incarnations
+#:revremark:    dprompt_key -> dprompt
 #:created_at:   2019.06.30
 
 D_DPL_NAME='brewfile'
@@ -34,7 +34,7 @@ d_dpl_check()
 
   # Additional warnings
   case $D__REQ_ROUTINE in
-    check)    dprompt_key -- 'Checking Brewfile is not very reliable'
+    check)    dprompt -- 'Checking Brewfile is not very reliable'
               case $? in 1) return 3;; *) :;; esac
               ;;
     remove)   D_DPL_NEEDS_ANOTHER_PROMPT=true
@@ -85,7 +85,7 @@ d_dpl_remove()
   #. immediately, to give user chance to react.
 
   # Prompt user (yes, again)
-  if dprompt_key -b --color "$RED" --prompt 'Proceed?' -- \
+  if dprompt -b --color "$RED" --prompt 'Proceed?' -- \
     'This will call uninstall/untap command on every valid entry in Brewfile' \
     -n '(File will be read in reverse order)'
   then

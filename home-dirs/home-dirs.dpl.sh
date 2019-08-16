@@ -1,9 +1,9 @@
 #:title:        Divine deployment: home-dirs
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
-#:revnumber:    12
+#:revnumber:    13
 #:revdate:      2019.08.16
-#:revremark:    Streamline simple dprint incarnations
+#:revremark:    dprompt_key -> dprompt
 #:created_at:   2019.06.30
 
 D_DPL_NAME='home-dirs'
@@ -112,7 +112,7 @@ d_queue_item_remove()
   if [ -n "$( ls -A -- "$dir" )" ]; then
 
     # Directory is not empty: prompt for directory removal
-    dprompt_key -b --color "$RED" --prompt 'Erase?' --or-quit -- \
+    dprompt -b --color "$RED" --prompt 'Erase?' --or-quit -- \
       "This will ${BOLD}completely erase${NORMAL} non-empty directory at:" \
       -i "${BOLD}${RED}${REVERSE} ${dir} ${NORMAL}"
 

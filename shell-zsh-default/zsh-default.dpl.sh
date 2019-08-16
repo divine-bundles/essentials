@@ -1,9 +1,9 @@
 #:title:        Divine deployment: zsh-default
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
-#:revnumber:    18
+#:revnumber:    19
 #:revdate:      2019.08.16
-#:revremark:    Streamline simple dprint incarnations
+#:revremark:    dprompt_key -> dprompt
 #:created_at:   2019.06.30
 
 D_DPL_NAME='zsh-default'
@@ -175,7 +175,7 @@ d_dpl_install()
     fi
 
     # If chsh is not available, offer to install it
-    if ! dprompt_key --bare --prompt 'Attempt to install?' \
+    if ! dprompt --bare --prompt 'Attempt to install?' \
       --answer "$D__OPT_ANSWER" -- \
       'Deployment relies on chsh, but it is not found on $PATH' \
       -n "It may be possible to install it using $D__OS_PKGMGR"
