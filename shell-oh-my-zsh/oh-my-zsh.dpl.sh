@@ -1,9 +1,9 @@
 #:title:        Divine deployment: oh-my-zsh
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
-#:revnumber:    13
-#:revdate:      2019.08.07
-#:revremark:    Grand removal of non-ASCII chars
+#:revnumber:    14
+#:revdate:      2019.08.16
+#:revremark:    d__stash -> dstash
 #:created_at:   2019.06.30
 
 D_DPL_NAME='oh-my-zsh'
@@ -33,13 +33,13 @@ d_dpl_remove()   {   d__multitask_remove;   }
 d_omz_fmwk_check()
 {
   # Rely on stashing
-  d__stash ready || return 3
+  dstash ready || return 3
 
   # Check if framework directory is readable
   if [ -r "$D_OH_MY_ZSH_PATH" -a -d "$D_OH_MY_ZSH_PATH" ]; then
   
     # Check if there is record of previous installation
-    if d__stash -s has fmwk_installed; then
+    if dstash -s has fmwk_installed; then
       dprint_debug 'oh-my-zsh framework appears to be installed'
       D_DPL_INSTALLED_BY_USER_OR_OS=false
     else
@@ -118,7 +118,7 @@ d_omz_fmwk_install()
     #
     dprint_debug "Cloned oh-my-zsh from: $D_OH_MY_ZSH_REPO" \
       -n "to: $D_OH_MY_ZSH_PATH"
-    d__stash -s set fmwk_installed
+    dstash -s set fmwk_installed
 
   else
 
@@ -137,7 +137,7 @@ d_omz_fmwk_remove()
 
     # Report
     dprint_debug "Already does not exist: $D_OH_MY_ZSH_PATH"
-    d__stash -s unset fmwk_installed
+    dstash -s unset fmwk_installed
     return 0
 
   fi
@@ -147,7 +147,7 @@ d_omz_fmwk_remove()
     
     # Report, unset stash record, and return
     dprint_debug "Erased oh-my-zsh path at: $D_OH_MY_ZSH_PATH"
-    d__stash -s unset fmwk_installed
+    dstash -s unset fmwk_installed
     return 0
 
   else
