@@ -1,9 +1,9 @@
 #:title:        Divine deployment: zsh-default
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
-#:revnumber:    17
-#:revdate:      2019.08.12
-#:revremark:    Return code: 666 -> 102
+#:revnumber:    18
+#:revdate:      2019.08.16
+#:revremark:    Streamline simple dprint incarnations
 #:created_at:   2019.06.30
 
 D_DPL_NAME='zsh-default'
@@ -119,7 +119,7 @@ d_dpl_check()
     else
 
       # Unreliable stash: announce the fact loudly
-      dprint_start -l 'Stash records are inconsistent with current set-up'
+      dprint_alert 'Stash records are inconsistent with current set-up'
 
       # Check if current default shell is already zsh
       if [ "$( basename -- "$SHELL" )" = zsh ]; then
@@ -229,7 +229,7 @@ d_dpl_install()
       printf '%s\n' "$D_ZSH_PATH" >>/etc/shells
     else
       if ! sudo -n true 2>/dev/null; then
-        dprint_start -l 'Modifying /etc/shells requires sudo password'
+        dprint_alert 'Modifying /etc/shells requires sudo password'
       fi
       sudo tee -a /etc/shells &>/dev/null <<<"$D_ZSH_PATH"
     fi
@@ -249,7 +249,7 @@ d_dpl_install()
   local old_shell="$SHELL"
 
   # Warn about upcoming password prompt
-  dprint_start -l 'Changing default shell requires user password'
+  dprint_alert 'Changing default shell requires user password'
 
   # Now, CHange SHell with chsh
   if chsh -s "$D_ZSH_PATH"; then
@@ -258,7 +258,7 @@ d_dpl_install()
     dprint_debug 'Successfully changed default shell to:' -i "$D_ZSH_PATH"
 
     # Ask user to reload shell
-    dprint_start -l \
+    dprint_alert \
       'Please, reload your shell to finilize current installation'
 
     # Flip stash flags
@@ -320,7 +320,7 @@ d_dpl_remove()
         printf '%s\n' "$old_shell" >>/etc/shells
       else
         if ! sudo -n true 2>/dev/null; then
-          dprint_start -l 'Modifying /etc/shells requires sudo password'
+          dprint_alert 'Modifying /etc/shells requires sudo password'
         fi
         sudo tee -a /etc/shells &>/dev/null <<<"$old_shell"
       fi
@@ -337,7 +337,7 @@ d_dpl_remove()
 
     # Warn about upcoming password prompt
     if $shell_is_ok; then
-      dprint_start -l 'Changing default shell requires user password'
+      dprint_alert 'Changing default shell requires user password'
     fi
 
     # CHange SHell back to old default
@@ -347,7 +347,7 @@ d_dpl_remove()
       dprint_debug 'Successfully restored default shell to:' -i "$old_shell"
 
       # Ask user to reload shell
-      dprint_start -l \
+      dprint_alert \
         'Please, reload your shell to finilize current removal'
 
       # Flip stash flags
@@ -425,7 +425,7 @@ d_dpl_remove()
       mv -f -- "$temp" /etc/shells
     else
       if ! sudo -n true 2>/dev/null; then
-        dprint_start -l 'Modifying /etc/shells requires sudo password'
+        dprint_alert 'Modifying /etc/shells requires sudo password'
       fi
       sudo mv -f -- "$temp" /etc/shells
     fi

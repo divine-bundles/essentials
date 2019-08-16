@@ -1,9 +1,9 @@
 #:title:        Divine deployment: brewfile
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
-#:revnumber:    11
-#:revdate:      2019.08.12
-#:revremark:    Return code: 666 -> 102
+#:revnumber:    12
+#:revdate:      2019.08.16
+#:revremark:    Streamline simple dprint incarnations
 #:created_at:   2019.06.30
 
 D_DPL_NAME='brewfile'
@@ -147,10 +147,10 @@ d_dpl_remove()
     return 0
   else
     if $D__OPT_FORCE; then
-      dprint_failure -l 'At least one uninstallation failed'
+      dprint_failure 'At least one uninstallation failed'
       return 1
     else
-      dprint_failure -l 'Latest uninstallation failed' \
+      dprint_failure 'Latest uninstallation failed' \
         -n 'Divine intervention was halted just in case' \
         -n '(Restart with --force to ignore pathetic failures like that)'
       return 101

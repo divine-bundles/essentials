@@ -1,9 +1,9 @@
 #:title:        Divine deployment: dutils
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
-#:revnumber:    10
-#:revdate:      2019.08.07
-#:revremark:    Grand removal of non-ASCII chars
+#:revnumber:    11
+#:revdate:      2019.08.16
+#:revremark:    Streamline simple dprint incarnations
 #:created_at:   2019.06.30
 
 D_DPL_NAME='dutils'
@@ -214,7 +214,7 @@ EOF
       mv -n -- "$tempfile" "$util_install_path"
     else
       if ! sudo -n true 2>/dev/null; then
-        dprint_start -l \
+        dprint_alert \
           "Installation to $util_install_dir requires sudo password"
       fi
       sudo mv -n -- "$tempfile" "$util_install_path"
@@ -229,7 +229,7 @@ EOF
 
     # Make it executable
     if ! chmod +x "$util_install_path"; then
-      dprint_failure -l 'Failed to make installed script executable at:' \
+      dprint_failure 'Failed to make installed script executable at:' \
         -i "$util_install_path"
       break
     fi
@@ -263,7 +263,7 @@ d_queue_item_remove()
     rm -f -- "$util_install_path"
   else
     if ! sudo -n true 2>/dev/null; then
-      dprint_start -l "Removal inside $util_install_dir requires sudo password"
+      dprint_alert "Removal inside $util_install_dir requires sudo password"
     fi
     sudo rm -f -- "$util_install_path"
   fi

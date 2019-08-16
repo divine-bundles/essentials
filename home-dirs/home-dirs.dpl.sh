@@ -1,9 +1,9 @@
 #:title:        Divine deployment: home-dirs
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
-#:revnumber:    11
-#:revdate:      2019.08.15
-#:revremark:    Demote  to single underscore
+#:revnumber:    12
+#:revdate:      2019.08.16
+#:revremark:    Streamline simple dprint incarnations
 #:created_at:   2019.06.30
 
 D_DPL_NAME='home-dirs'
@@ -104,7 +104,7 @@ d_queue_item_remove()
   # Check if directory is already non-existent
   if ! [ -e "$dir" ]; then
     # Already removed: report success
-    dprint_skip -l 'Already removed      :' "$dir"
+    dprint_skip 'Already removed      :' "$dir"
     return 0
   fi
 
@@ -127,19 +127,19 @@ d_queue_item_remove()
   case $? in
     0)  # Remove directory
         if rm -rf -- "$dir"; then
-          dprint_success -l 'Successfully removed :' "$dir"
+          dprint_success 'Successfully removed :' "$dir"
           return 0
         else
-          dprint_failure -l 'Failed to remove     :' "$dir"
+          dprint_failure 'Failed to remove     :' "$dir"
           return 1
         fi
         ;;
     1)  # Skip removing directory
-        dprint_skip -l 'Skipped removing     :' "$dir"
+        dprint_skip 'Skipped removing     :' "$dir"
         return 1
         ;;
     2)  # Stop entire process
-        dprint_skip -l 'Aborting removal of directories'
+        dprint_skip 'Aborting removal of directories'
         return 4
         ;;
     *)  # Invalid code
