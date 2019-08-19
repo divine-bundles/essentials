@@ -1,9 +1,9 @@
 #:title:        Divine deployment: fonts
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
-#:revnumber:    10
-#:revdate:      2019.08.12
-#:revremark:    Return code: 666 -> 102
+#:revnumber:    11
+#:revdate:      2019.08.19
+#:revremark:    D__QUEUE_MAIN -> D_QUEUE_MAIN
 #:created_at:   2019.06.30
 
 D_DPL_NAME='fonts'
@@ -25,7 +25,7 @@ D_DPL_TARGET_DIR_UBUNTU='/usr/share/fonts'
 d_dpl_check()
 {
   # Populate essential global variables for helper functions
-  D__QUEUE_MAIN=()
+  D_QUEUE_MAIN=()
   D_DPL_ASSET_PATHS=()
   D_DPL_ASSET_RELPATHS=()
 
@@ -57,7 +57,7 @@ d_dpl_check()
     font_relpath="${font_filepath#"$D__DPL_ASSET_DIR/"}"
 
     # Push source path
-    D__QUEUE_MAIN+=( "$font_relpath" )
+    D_QUEUE_MAIN+=( "$font_relpath" )
     D_DPL_ASSET_PATHS+=( "$font_filepath" )
     D_DPL_ASSET_RELPATHS+=( "$font_relpath" )
 

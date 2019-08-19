@@ -1,9 +1,9 @@
 #:title:        Divine deployment: dutils
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
-#:revnumber:    12
+#:revnumber:    13
 #:revdate:      2019.08.19
-#:revremark:    d_queue_item_is_intalled -> d_queue_item_check
+#:revremark:    D__QUEUE_MAIN -> D_QUEUE_MAIN
 #:created_at:   2019.06.30
 
 D_DPL_NAME='dutils'
@@ -13,7 +13,7 @@ D_DPL_FLAGS=
 D_DPL_WARNING=
 
 # Make following Divine.dotfiles utilities available on $PATH
-D__QUEUE_MAIN=( \
+D_QUEUE_MAIN=( \
   'dln' \
   'dmv' \
   'dreadlink' \
