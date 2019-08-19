@@ -1,9 +1,9 @@
 #:title:        Divine deployment: dutils
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
-#:revnumber:    11
-#:revdate:      2019.08.16
-#:revremark:    Streamline simple dprint incarnations
+#:revnumber:    12
+#:revdate:      2019.08.19
+#:revremark:    d_queue_item_is_intalled -> d_queue_item_check
 #:created_at:   2019.06.30
 
 D_DPL_NAME='dutils'
@@ -42,7 +42,7 @@ d_queue_item_pre_check()
 #.  1 - Installed
 #.  2 - Not installed
 #.  3 - Invalid
-d_queue_item_is_installed()
+d_queue_item_check()
 {
   # Construct util's name and location within framework and as installed
   local util_name="$D__QUEUE_ITEM_TITLE"

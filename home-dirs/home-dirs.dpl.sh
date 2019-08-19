@@ -1,9 +1,9 @@
 #:title:        Divine deployment: home-dirs
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
-#:revnumber:    13
-#:revdate:      2019.08.16
-#:revremark:    dprompt_key -> dprompt
+#:revnumber:    14
+#:revdate:      2019.08.19
+#:revremark:    d_queue_item_is_intalled -> d_queue_item_check
 #:created_at:   2019.06.30
 
 D_DPL_NAME='home-dirs'
@@ -24,7 +24,7 @@ d_dpl_remove()   { d__queue_remove;   }
 #.  1 - Installed
 #.  2 - Not installed
 #.  3 - Invalid
-d_queue_item_is_installed()
+d_queue_item_check()
 {
   # Compose directory path
   local dir="$HOME/$D__QUEUE_ITEM_TITLE"
