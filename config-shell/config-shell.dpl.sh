@@ -1,9 +1,9 @@
 #:title:        Divine deployment: config-shell
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
-#:revnumber:    16
-#:revdate:      2019.08.19
-#:revremark:    D__QUEUE_MAIN -> D_QUEUE_MAIN
+#:revnumber:    17
+#:revdate:      2019.08.20
+#:revremark:    Merge D_DPL_ASSET_RELPATHS into D_QUEUE_MAIN
 #:created_at:   2019.06.30
 
 D_DPL_NAME='config-shell'
@@ -65,7 +65,6 @@ d_add_blanks_to_queue()
   # Add files to main queue and other arrays
   for relpath in "${D_BLANK_RELPATHS[@]}"; do
     D_QUEUE_MAIN+=( "$relpath" )
-    D_DPL_ASSET_RELPATHS+=( "$relpath" )
     D_DPL_ASSET_PATHS+=( "$blanks_dir/$relpath" )
     D_DPL_TARGET_PATHS+=( "$D_DPL_TARGET_DIR/$relpath" )
   done

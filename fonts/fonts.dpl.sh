@@ -1,9 +1,9 @@
 #:title:        Divine deployment: fonts
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
-#:revnumber:    11
-#:revdate:      2019.08.19
-#:revremark:    D__QUEUE_MAIN -> D_QUEUE_MAIN
+#:revnumber:    12
+#:revdate:      2019.08.20
+#:revremark:    Merge D_DPL_ASSET_RELPATHS into D_QUEUE_MAIN
 #:created_at:   2019.06.30
 
 D_DPL_NAME='fonts'
@@ -27,7 +27,6 @@ d_dpl_check()
   # Populate essential global variables for helper functions
   D_QUEUE_MAIN=()
   D_DPL_ASSET_PATHS=()
-  D_DPL_ASSET_RELPATHS=()
 
   # Save current state of 'dotglob', 'nullglob', 'nocasematch' options
   local restore_opts cmd
@@ -59,7 +58,6 @@ d_dpl_check()
     # Push source path
     D_QUEUE_MAIN+=( "$font_relpath" )
     D_DPL_ASSET_PATHS+=( "$font_filepath" )
-    D_DPL_ASSET_RELPATHS+=( "$font_relpath" )
 
   done
 
