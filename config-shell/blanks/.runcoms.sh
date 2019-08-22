@@ -1,7 +1,7 @@
 ## Part of Divine.dotfiles <https://github.com/no-simpler/divine-dotfiles>
 #
-## Divine deployments 'core' package
-#. <https://github.com/no-simpler/divine-dpls-core>
+## Divine bundle 'essentials'
+#. <https://github.com/no-simpler/divine-bundle-essentials>
 #
 ## Deployment 'config-shell': maintains configuration files for Bash & zsh
 #
