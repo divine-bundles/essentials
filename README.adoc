@@ -1,9 +1,9 @@
 # Divine bundle '*essentials*'
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revnumber: 4
+:revnumber: 5
 :revdate: 2019.08.22
-:revremark: dpl-repos -> bundles; core -> essentials
+:revremark: Remove unsupported style attrs from html
 :doctype: article
 // Visual
 :toc:
@@ -19,7 +19,7 @@
 <p align="center">
 <em>Deployments for <a href="https://github.com/no-simpler/divine-dotfiles">Divine.dotfiles framework</a></em>
 <br>
-<em style="font-size: small;">(Bash framework for dotfiles and everything Bash)</em>
+<em>(Bash framework for dotfiles and everything Bash)</em>
 </p>
 ++++
 
