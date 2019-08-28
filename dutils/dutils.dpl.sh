@@ -1,9 +1,9 @@
 #:title:        Divine deployment: dutils
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
-#:revnumber:    13
-#:revdate:      2019.08.19
-#:revremark:    D__QUEUE_MAIN -> D_QUEUE_MAIN
+#:revnumber:    14
+#:revdate:      2019.08.28
+#:revremark:    Silence calls to mv -n
 #:created_at:   2019.06.30
 
 D_DPL_NAME='dutils'
@@ -211,13 +211,13 @@ EOF
 
     # Check if sudo is needed for installation directory
     if [ -w "$util_install_dir" ]; then
-      mv -n -- "$tempfile" "$util_install_path"
+      mv -n -- "$tempfile" "$util_install_path" &>/dev/null
     else
       if ! sudo -n true 2>/dev/null; then
         dprint_alert \
           "Installation to $util_install_dir requires sudo password"
       fi
-      sudo mv -n -- "$tempfile" "$util_install_path"
+      sudo mv -n -- "$tempfile" "$util_install_path" &>/dev/null
     fi
 
     # Check if succeeded
