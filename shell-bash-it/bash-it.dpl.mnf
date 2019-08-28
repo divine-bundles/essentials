@@ -1,8 +1,4 @@
 (prefix:bash-it-custom)
 
-aliases
-completion
-lib
-plugins
-themes
-README.md
+# Files and directories put into custom assets directory (not enqueued)
+(rn) [^./][^/]*

@@ -1,9 +1,9 @@
 #:title:        Divine shared runcom: 02-env
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
-#:revnumber:    8
-#:revdate:      2019.08.07
-#:revremark:    Grand removal of non-ASCII chars
+#:revnumber:    9
+#:revdate:      2019.08.28
+#:revremark:    Update to new queue API
 #:created_at:   2019.04.09
 
 ## Universal shell environment variables. Must use compatible syntax.

@@ -1,12 +1,29 @@
-(prefix:runcoms)
+#
+# First task: runcoms
+#
 
-# Runcom files for Bash
+(prefix: configs)
+
+# Core runcom files
 .bash_profile
 .bashrc
-
-# Runcom files for zsh
 .zprofile
 .zshrc
 
-# Directory with additional runcom files
+# Directory for sourced runcoms
 .runcoms
+
+#
+# Second task: blanks
+#
+
+(queue: split)
+(prefix: blanks)
+(flags: d)
+
+# List of template files to be copied into home dir
+.env.sh
+.hushlogin
+.runcoms.bash
+.runcoms.sh
+.runcoms.zsh

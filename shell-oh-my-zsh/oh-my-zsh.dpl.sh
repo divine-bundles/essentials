@@ -1,9 +1,9 @@
 #:title:        Divine deployment: oh-my-zsh
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
-#:revnumber:    16
-#:revdate:      2019.08.20
-#:revremark:    Merge D_DPL_ASSET_RELPATHS into D_QUEUE_MAIN
+#:revnumber:    17
+#:revdate:      2019.08.28
+#:revremark:    Update to new queue API
 #:created_at:   2019.06.30
 
 D_DPL_NAME='oh-my-zsh'
@@ -15,20 +15,17 @@ D_DPL_WARNING=
 D_OH_MY_ZSH_PATH="$HOME/.oh-my-zsh"
 D_OH_MY_ZSH_REPO='https://github.com/robbyrussell/oh-my-zsh.git'
 
-# Delegate to built-in checking routine
-d_dpl_check()
-{
-  # Compile task names; and split queue in two parts
-  D_MULTITASK_NAMES+=( omz_fmwk )
-  D_MULTITASK_NAMES+=( omz_assets )
+# Delegate to built-in helpers
+d_dpl_check()   { assemble_tasks; d__multitask_check;   }
+d_dpl_install() {                 d__multitask_install; }
+d_dpl_remove()  {                 d__multitask_remove;  }
 
-  # Delegate to built-in helper
-  d__multitask_check
-}
+assemble_tasks() { D_MULTITASK_NAMES=( omz_fmwk omz_assets ); }
 
-# d_dpl_install and d_dpl_remove are fully delegated to built-in helpers
-d_dpl_install()  {   d__multitask_install;  }
-d_dpl_remove()   {   d__multitask_remove;   }
+# Delegate to built-in helpers for task 'omz_assets'
+d_omz_assets_check()    { assemble_asset_queue; d__link_queue_check;    }
+d_omz_assets_install()  {                       d__link_queue_install;  }
+d_omz_assets_remove()   {                       d__link_queue_remove;   }
 
 d_omz_fmwk_check()
 {
@@ -159,7 +156,7 @@ d_omz_fmwk_remove()
   fi
 }
 
-d_assemble_asset_queue()
+assemble_asset_queue()
 {
   # Storage variables
   local restore_opts cmd target_path asset_path
@@ -235,8 +232,3 @@ d_assemble_asset_queue()
   # Return success
   return 0
 }
-
-# Implement primaries for assets
-d_omz_assets_check()    { d_assemble_asset_queue; d__link_queue_check; }
-d_omz_assets_install()  { d__link_queue_install;  }
-d_omz_assets_remove()   { d__link_queue_remove;   }

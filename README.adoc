@@ -1,9 +1,9 @@
 # Divine bundle '*essentials*'
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revnumber: 6
-:revdate: 2019.08.22
-:revremark: Tweak introductory plaque
+:revnumber: 7
+:revdate: 2019.08.28
+:revremark: Update to new queue API
 :doctype: article
 // Visual
 :toc:
@@ -26,8 +26,55 @@
 ## Description
 
 [.lead]
-Divine bundle '*essentials*' package is an opinionated set of system set-up scripts.
-It is intended as a useful starting point for new users of https://github.com/no-simpler/divine-dotfiles[Divine.dotfiles framework].
+Divine bundle '*essentials*' is an opinionated set of system set-up scripts.
+It is intended as a useful starting point for any machine that runs Bash.
+
+Once the bundle is fully installed, and the shell/terminal reloaded, the effects are as follows:
+
+* You are greeted by `zsh` as the default shell.
+* Both https://ohmyz.sh[`oh-my-zsh`] and https://github.com/Bash-it/bash-it[`bash-it`] frameworks are now installed and loaded.
+If you had any of those installed already, they are re-used.
+* A minimalistic theme for both frameworks is active.
+* Opinionated default configs are plugged in for `git`, `vim`, `bash`, and `zsh`.
+* Divine utilites `dln`, `dmv`, and `dreadlink` are available on `$PATH`.
+* Your previous files (wherever an override was necessary) are safely kept.
+
+All of the above is controlled from your <<grail-directory,Grail directory>> at `~/.divine/grail/assets/`:
+
+[%header,cols="<.<1,<.<3",stripes=none]
+|===
+
+^.^| Sub-directory
++++<br>+++
+`&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`
+^.^| Content description
+
+| `*config-shell*/`
+| All shell startup scripts (runcoms)
+
+| `*config-{as}*/`
+| Global configs for `git` and `vim`, under respective names
+
+| `*fonts*/` *&dagger;*
+| Your personal font files, installed everywhere you take your Grail.
+
+| `*home-dirs*/` *&dagger;*
+| `*home-dirs.cfg*` — a sub-directory tree, maintained under `$HOME`
+
+| `*brewfile*/` *&dagger;*
+| https://github.com/Homebrew/homebrew-bundle[Brewfile], maintained on macOS
+
+| `*bash-it*/` *&dagger;*
+| Custom assets for https://github.com/Bash-it/bash-it[`bash-it`] shell framework
+
+| `*oh-my-zsh*/` *&dagger;*
+| Custom assets for https://ohmyz.sh[`oh-my-zsh`] shell framework
+
+| `*portable-bin*/`
+| User's personal shell commands, maintained on the `$PATH`
+
+|===
+
 
 It contains the following deployments:
 

@@ -1,5 +1,4 @@
 (prefix:oh-my-zsh-custom)
 
-plugins
-themes
-README.md
+# Files and directories put into custom assets directory (not enqueued)
+(rn) [^./][^/]*

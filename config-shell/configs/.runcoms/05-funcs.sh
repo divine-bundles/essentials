@@ -1,9 +1,9 @@
 #:title:        Divine shared runcom: 05-funcs
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
-#:revnumber:    4
-#:revdate:      2019.08.07
-#:revremark:    Grand removal of non-ASCII chars
+#:revnumber:    5
+#:revdate:      2019.08.28
+#:revremark:    Update to new queue API
 #:created_at:   2019.04.09
 
 ## Universal shell utility functions. Must use compatible syntax.

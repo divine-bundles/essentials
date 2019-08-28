@@ -1,4 +1,7 @@
 (prefix:.pbin)
 
-# Any files distributed with this deployment, if any
-(r) *
+# Readme file (not enqueued)
+(n) README.md
+
+# Any files distributed with this deployment, if any (not enqueued)
+(ron) [^./][^/]*

@@ -1,4 +1,10 @@
 (prefix:configs)
-.ideavimrc
-.vim/keymap/shifted.vim
+
+# Main vim runcom
 .vimrc
+
+# vim runcom specific to IntelliJ IDEs
+.ideavimrc
+
+# Files and directories put into .vim directory
+(r) \.vim/[^./][^/]*

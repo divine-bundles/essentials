@@ -1,9 +1,9 @@
 #:title:        Divine deployment: config-shell
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
-#:revnumber:    17
-#:revdate:      2019.08.20
-#:revremark:    Merge D_DPL_ASSET_RELPATHS into D_QUEUE_MAIN
+#:revnumber:    18
+#:revdate:      2019.08.28
+#:revremark:    Update to new queue API
 #:created_at:   2019.06.30
 
 D_DPL_NAME='config-shell'
@@ -15,60 +15,24 @@ D_DPL_WARNING=
 D_DPL_TARGET_DIR="$HOME"
 
 D_ENV_FILEPATH="$HOME/.env.sh"
-D_BLANKS_DIRNAME='blanks'
-D_BLANK_RELPATHS=( \
-  '.env.sh' \
-  '.runcoms.bash' \
-  '.runcoms.sh' \
-  '.runcoms.zsh' \
-  '.hushlogin' \
-)
 
-# Delegate to built-in checking routine
-d_dpl_check()
-{
-  # Compile task names
-  D_MULTITASK_NAMES+=( runcoms )
-  D_MULTITASK_NAMES+=( blanks )
-  D_MULTITASK_NAMES+=( env_vars )
+# Delegate to built-in helpers
+d_dpl_check()   { assemble_tasks; d__multitask_check;   }
+d_dpl_install() {                 d__multitask_install; }
+d_dpl_remove()  {                 d__multitask_remove;  }
 
-  # Delegate to built-in helper
-  d__multitask_check
-}
-
-# d_dpl_install and d_dpl_remove are fully delegated to built-in helpers
-d_dpl_install()  {   d__multitask_install;  }
-d_dpl_remove()   {   d__multitask_remove;   }
+# Assemble multitask names
+assemble_tasks() { D_MULTITASK_NAMES=( runcoms blanks env_vars ); }
 
 # Implement primaries for runcoms
-d_runcoms_check()    { d__link_queue_check;    }
-d_runcoms_install()  { d__link_queue_install;  }
-d_runcoms_remove()   { d__link_queue_remove;   }
+d_runcoms_check()   { d__link_queue_check;    }
+d_runcoms_install() { d__link_queue_install;  }
+d_runcoms_remove()  { d__link_queue_remove;   }
 
 # Implement primaries for blanks
-d_blanks_check()     { d_add_blanks_to_queue; d__copy_queue_check; }
-d_blanks_install()   { d__copy_queue_install;   }
-d_blanks_remove()    { d__copy_queue_remove;    }
-
-# Implement addition of second chunk of the queue
-d_add_blanks_to_queue()
-{
-  # Split queue at current length (which is number of items in manifest)
-  d__queue_split
-
-  # Compose path to directory containing blank files
-  local blanks_dir="$D__DPL_DIR/$D_BLANKS_DIRNAME"
-
-  # Storage variable
-  local relpath
-
-  # Add files to main queue and other arrays
-  for relpath in "${D_BLANK_RELPATHS[@]}"; do
-    D_QUEUE_MAIN+=( "$relpath" )
-    D_DPL_ASSET_PATHS+=( "$blanks_dir/$relpath" )
-    D_DPL_TARGET_PATHS+=( "$D_DPL_TARGET_DIR/$relpath" )
-  done
-}
+d_blanks_check()    { d__copy_queue_check;    }
+d_blanks_install()  { d__copy_queue_install;  }
+d_blanks_remove()   { d__copy_queue_remove;   }
 
 #
 # Implement primaries for env_vars

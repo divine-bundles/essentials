@@ -1,9 +1,9 @@
 #:title:        Divine deployment: bash-it
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
-#:revnumber:    15
-#:revdate:      2019.08.20
-#:revremark:    Merge D_DPL_ASSET_RELPATHS into D_QUEUE_MAIN
+#:revnumber:    16
+#:revdate:      2019.08.28
+#:revremark:    Update to new queue API
 #:created_at:   2019.06.30
 
 D_DPL_NAME='bash-it'
@@ -15,20 +15,17 @@ D_DPL_WARNING=
 D_BASH_IT_PATH="$HOME/.bash-it"
 D_BASH_IT_REPO='https://github.com/Bash-it/bash-it.git'
 
-# Delegate to built-in checking routine
-d_dpl_check()
-{
-  # Compile task names; and split queue in two parts
-  D_MULTITASK_NAMES+=( bash_it_fmwk )
-  D_MULTITASK_NAMES+=( bash_it_assets )
+# Delegate to built-in helpers
+d_dpl_check()   { assemble_tasks; d__multitask_check;   }
+d_dpl_install() {                 d__multitask_install; }
+d_dpl_remove()  {                 d__multitask_remove;  }
 
-  # Delegate to built-in helper
-  d__multitask_check
-}
+assemble_tasks() { D_MULTITASK_NAMES=( bash_it_fmwk bash_it_assets ); }
 
-# d_dpl_install and d_dpl_remove are fully delegated to built-in helpers
-d_dpl_install()  {   d__multitask_install;  }
-d_dpl_remove()   {   d__multitask_remove;   }
+# Delegate to built-in helpers for task 'bash_it_assets'
+d_bash_it_assets_check()    { assemble_asset_queue; d__link_queue_check;    }
+d_bash_it_assets_install()  {                       d__link_queue_install;  }
+d_bash_it_assets_remove()   {                       d__link_queue_remove;   }
 
 d_bash_it_fmwk_check()
 {
@@ -181,7 +178,7 @@ d_bash_it_fmwk_remove()
   fi
 }
 
-d_assemble_asset_queue()
+assemble_asset_queue()
 {
   # Storage variables
   local restore_opts cmd target_path asset_path
@@ -324,8 +321,3 @@ d_assemble_asset_queue()
   # Return success
   return 0
 }
-
-# Implement primaries for assets
-d_bash_it_assets_check()    { d_assemble_asset_queue; d__link_queue_check; }
-d_bash_it_assets_install()  { d__link_queue_install;  }
-d_bash_it_assets_remove()   { d__link_queue_remove;   }

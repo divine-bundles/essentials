@@ -1,9 +1,9 @@
 #:title:        Divine runcom: .bash_profile
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
-#:revnumber:    3
-#:revdate:      2019.08.07
-#:revremark:    Grand removal of non-ASCII chars
+#:revnumber:    4
+#:revdate:      2019.08.28
+#:revremark:    Update to new queue API
 #:created_at:   2019.04.05
 
 ## Startup file for login Bash shells
