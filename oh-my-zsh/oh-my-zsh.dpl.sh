@@ -1,9 +1,9 @@
 #:title:        Divine deployment: oh-my-zsh
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
-#:revnumber:    17
+#:revnumber:    18
 #:revdate:      2019.08.28
-#:revremark:    Update to new queue API
+#:revremark:    Rename directories to match dpl names
 #:created_at:   2019.06.30
 
 D_DPL_NAME='oh-my-zsh'
