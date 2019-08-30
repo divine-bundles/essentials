@@ -1,9 +1,0 @@
-(prefix:font-files)
-
-# Readme file (not enqueued)
-(n) README.md
-
-# Any .otf or .ttf fonts distributed with this deployment, if any
-(ro) [^./][^/]*.ttf
-(queue:split)
-(ro) [^./][^/]*.otf

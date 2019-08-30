@@ -1,0 +1,1 @@
+# Example of custom plugin for oh-my-zsh installed via Divine.dotfiles

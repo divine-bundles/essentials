@@ -1,3 +1,5 @@
+(n) README.adoc
+
 (prefix:oh-my-zsh-custom)
 
 # Files and directories put into custom assets directory (not enqueued)

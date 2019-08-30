@@ -1,1 +1,0 @@
-Put `.otf` and `.ttf` fonts into this directory, then (re-)install `fonts` deployment.

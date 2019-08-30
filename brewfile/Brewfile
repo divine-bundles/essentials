@@ -1,9 +1,9 @@
 #:title:        Divine asset sample: Brewfile
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
-#:revnumber:    2
-#:revdate:      2019.07.22
-#:revremark:    New revisioning system
+#:revnumber:    3
+#:revdate:      2019.08.30
+#:revremark:    Add READMEs to deployments, and tweak some logic
 #:created_at:   2019.04.11
 
 # Regular Brewfile, as produced by `brew bundle dump`

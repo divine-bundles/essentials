@@ -1,7 +1,6 @@
-(prefix:.pbin)
+(n) README.adoc
 
-# Readme file (not enqueued)
-(n) README.md
+(prefix:.pbin)
 
 # Any files distributed with this deployment, if any (not enqueued)
 (ron) [^./][^/]*

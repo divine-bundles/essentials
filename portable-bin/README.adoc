@@ -1,0 +1,80 @@
+= Deployment `portable-bin`
+:author: Grove Pyree
+:email: grayarea@protonmail.ch
+:revnumber: 1
+:revdate: 2019.08.30
+:revremark: Add READMEs to deployments, and tweak some logic
+:doctype: article
+// Visual
+:toc:
+// Subs:
+:hs: #
+:dhs: ##
+:us: _
+:dus: __
+:as: *
+:das: **
+
+This deployment uses its own asset directory as a portable container for personal executables.
+
+== Deployment installation notes
+
+Basically, everything dropped into this deployment's asset directory immediately becomes available on `$PATH`.
+When the Grail directory is synchronized across machines (as it is encouraged to be — e.g., using Dropbox or Github), the 'personal directory for binaries/executables', or `.pbin/` becomes portable.
+
+.Map of asset installation
+[%header,cols="<.^3a,^.^1,<.^3a,<.^3a",stripes=none]
+|===
+
+^.^| Asset
+^.^| Method
+^.^| Destination
+^.^| Asset description
+
+| _asset directory itself_
+| symlinked
+| `~/*.pbin*/`
+| Personal binaries directory
+
+|===
+
+== Included assets
+
+The deployment's asset directory is located at:
+
+[source]
+--
+grail/assets/portable-bin
+--
+
+The asset directory starts empty.
+
+== Dependencies
+
+*This deployment depends on* `*config-shell*` *deployment* (included in current bundle).
+Shell start-up commands that ensure `~/.pbin/` directory is on `$PATH` are located in and sourced from:
+
+[source]
+--
+grail/assets/config-shell/.runcoms/02-env.sh
+--
+
+== Supported asset modifications
+
+Personal binaries/executables may be freely dropped into the asset directory.
+They will become available from the command line immediately.
+
+== Overwriting policy
+
+During installation of the deployment, anything that pre-exists at the path `~/.pbin` is preserved in the deployment's designated backup directory at:
+
+[source]
+--
+state/backups/portable-bin/
+--
+
+== Deployment removal notes
+
+Upon uninstallation of the deployment, the backup of the possibly overwritten file is automatically restored.
+
+Uninstallation does not remove anything in the asset directory.

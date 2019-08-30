@@ -6,7 +6,16 @@
 ":revremark:    Release version
 ":created_at:   2019.04.11
 
-" Toggle Shifted by pressing Ctrl-^, but only for insert and command mode.
+" Keymap 'Shifted'
+"
+" Introduces a Caps Lock mode for standard English layout: simulates Shift key 
+" being continuously held down.
+"
+" Toggle by quickly tapping `j` twice (or with ctrl-^), but only in insert and 
+" command modes.
+"
+" You can add keys for other languages by following the English example.
+
 let b:keymap_name = "SHIFTED"
 loadkeymap
 a A

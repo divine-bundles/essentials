@@ -1,0 +1,180 @@
+= Deployment `config-shell`
+:author: Grove Pyree
+:email: grayarea@protonmail.ch
+:revnumber: 1
+:revdate: 2019.08.30
+:revremark: Add READMEs to deployments, and tweak some logic
+:doctype: article
+// Visual
+:toc:
+// Subs:
+:hs: #
+:dhs: ##
+:us: _
+:dus: __
+:as: *
+:das: **
+
+This deployment symlinks configuration files for https://www.gnu.org/software/bash/[Bash] and https://sourceforge.net/projects/zsh[Zsh] into the home directory.
+
+== Deployment installation notes
+
+The deployment supplants existing Bash and Zsh configuration, while keeping backups of whatever is replaced.
+
+.Map of asset installation
+[%header,cols="<.^3a,^.^1,<.^3a,<.^3a",stripes=none]
+|===
+
+^.^| Asset
+^.^| Method
+^.^| Destination
+^.^| Asset description
+
+| `*.bashprofile*`
+| symlinked
+| `~/*.bashprofile*`
+.2+| Login shell runcoms <<config-shell-login,^1^>>
+
+| `*.zprofile*`
+| symlinked
+| `~/*.zprofile*`
+
+| `*.bashrc*`
+| symlinked
+| `~/*.bashrc*`
+.2+| Interactive shell runcoms <<config-shell-interactive,^2^>>
+
+| `*.zshrc*`
+| symlinked
+| `~/*.zshrc*`
+
+| `*.runcoms*/`
+| symlinked
+| `~/*.runcoms*/`
+| Custom runcoms <<config-shell-custom,^3^>>
+
+|
+| created
+| `~/*.hushlogin*`
+| MOTD disabler <<config-shell-hushlogin,^4^>>
+
+|
+| created
+| `~/*.env.sh*`
+.4+| Box-specific runcoms <<config-shell-box-specific,^5^>>
+
+|
+| created
+| `~/*.runcoms.bash*`
+
+|
+| created
+| `~/*.runcoms.zsh*`
+
+|
+| created
+| `~/*.runcoms.sh*`
+
+|===
+
+[NOTE]
+--
+The word 'runcom', which is used throughout this readme, is short for https://en.wikipedia.org/wiki/Run_commands['run commands'], which in turn is what 'rc' stands for in filenames like `.bashrc` or `.zshrc`.
+
+In the context of this deployment, a runcom is a file that contains startup information for a shell.
+--
+
+== Included assets
+
+The deployment's asset directory is located at:
+
+[source]
+--
+grail/assets/config-shell
+--
+
+[#config-shell-login]#*Login shell runcoms*# delegate to their counterparts for interactive shells:
+
+* `*.bash_profile*`
+* `*.zprofile*`
+
+[#config-shell-interactive]#*Interactive shell runcoms*# do little on top of delegating to custom runcoms further below:
+
+* `*.bashrc*`
+* `*.zshrc*`
+
+* [#config-shell-runcoms]#Directory `*.runcoms/*`# contains *custom runcoms*.
+During shell startup, both `.bashrc` and `.zshrc` source files from within this directory:
++
+--
+** `.bashrc` sources every `**__<name>__.bash**` and every `**__<name>__.sh**` file, in ascending alphanumerical order.
+** `.zshrc` sources every `**__<name>__.zsh**` and every `**__<name>__.sh**` file, in ascending alphanumerical order.
+--
++
+The following custom runcoms are provided with the deployment and contain an opinionated set of startup commands:
++
+--
+** `*00-bash-it.bash*` — commands that load and configure https://github.com/Bash-it/bash-it[Bash-it framework], if it is installed.
++
+Deployment `bash-it` (included in current bundle) ensures thst Bash-it framework is installed.
+** `*00-oh-my-zsh.zsh*` — commands that load and configure https://ohmyz.sh[oh-my-zsh framework], if it is installed.
++
+Deployment `oh-my-zsh` (included in current bundle) ensures thst oh-my-zsh framework is installed.
+** `*01-config.bash*` — general Bash configuration commands.
+** `*01-config.zsh*` — general Zsh configuration commands.
+** `*02-env.sh*` — environment variables for both shells.
+** `*03-fixes.sh*` — bug fixes for both shells.
+** `*04-aliases.sh*` — aliases for both shells.
+** `*05-funcs.sh*` — utility functions for both shells.
+--
+
+A number of empty files are created in the home directory:
+
+* [#config-shell-hushlogin]#`*.hushlogin*`# — the mere existence of this file in the home directory prevents any sort of textual banner from being printed into your terminal every time you start a shell.
+* The following [#config-shell-box-specific]#empty runcoms# are sourced by both `.bashrc` and `.zshrc` and are containers for *box-specific* configuration (commands that never leave one machine):
+** `*.env.sh*` — environment variables.
+Three are populated by default:
+*** `D__OS_FAMILY` — the broad type of the current OS
+*** `D__OS_DISTRO` — the name of current OS distribution (if it is supported)
+*** `D__OS_PKGMGR` — the name of current system package manager (if it is supported)
+** `*.runcoms.bash*` — (sourced by `.bashrc` only) Bash config.
+** `*.runcoms.zsh*` — (sourced by `.zshrc` only) Zsh config.
+** `*.runcoms.sh*` — universal shell config.
+
+[[config-shell-dependencies]]
+== Dependencies
+
+This deployment is stand-alone, but provides support for other deployments in current bundle:
+
+* Custom runcom `00-bash-it.bash` loads and configures Bash-it framework for `bash-it` deployment.
+* Custom runcom `00-oh-my-zsh.zsh` loads and configures oh-my-zsh framework for `oh-my-zsh` deployment.
+* Custom runcom `02-env.sh` ensures all personal `bin` directories are on `$PATH` for `home-dirs` and `portable-bin` deployments.
+
+== Supported asset modifications
+
+All custom runcoms may be freely modified in place.
+Modifications will take effect after shell reload.
+Keep in mind, that modifications to custom runcoms that other deployments <<config-shell-dependencies,depend on>> may break those deployments.
+Custom runcoms may be renamed as long as they retain a recognized suffix; but they must remain in the root of `.runcoms/` directory.
+
+Any number of custom runcoms may be freely added to the root of the `.runcoms/` directory, adhering to naming rules.
+Additional custom runcoms will take effect after shell reload.
+
+It is normally not needed to modify the runcom files at the root of the asset directory.
+
+== Overwriting policy
+
+During installation of the deployment, whenever a symlink is created at a certain path, anything that pre-exists at that location is preserved in the deployment's designated backup directory at:
+
+[source]
+--
+state/backups/config-vim/
+--
+
+The blank files (`.hushlogin`, `.env.sh`, `.runcoms.__*sh__`), however, do not overwrite pre-existing files.
+
+== Deployment removal notes
+
+Upon uninstallation of the deployment, backups of any overwritten files or directories are automatically restored.
+
+Uninstallation does not remove anything in the asset directory.

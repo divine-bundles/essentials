@@ -1,9 +1,9 @@
 #:title:        Divine shared runcom: 02-env
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
-#:revnumber:    9
-#:revdate:      2019.08.28
-#:revremark:    Update to new queue API
+#:revnumber:    2
+#:revdate:      2019.08.30
+#:revremark:    Add READMEs to deployments, and tweak some logic
 #:created_at:   2019.04.09
 
 ## Universal shell environment variables. Must use compatible syntax.
@@ -14,9 +14,11 @@
 ## Personal binaries directory
 ##
 
-[ -d "$HOME/.bin" ] && export PATH="$PATH:$HOME/.bin"
-[ -d "$HOME/bin" ] && export PATH="$PATH:$HOME/bin"
-[ -d "$HOME/.pbin" ] && export PATH="$PATH:$HOME/.pbin"
+for dir in .bin bin .pbin; do
+  if [ -d "$HOME/$dir" ]; then
+    [[ :$PATH: = *":$HOME/$dir:"* ]] || export PATH="$PATH:$HOME/$dir"
+  fi
+done; unset dir
 
 
 ##
@@ -32,8 +34,9 @@
 
 if gem env gemdir &>/dev/null; then
   GEMS_DIR="$( gem env gemdir )/bin"
-  [ -d "$GEMS_DIR" ] && export PATH="$GEMS_DIR:$PATH"
-  unset GEMS_DIR
+  if [ -d "$GEMS_DIR" ]; then
+    [[ :$PATH: = *":$GEMS_DIR:"* ]] || export PATH="$GEMS_DIR:$PATH"
+  fi; unset GEMS_DIR
 fi
 
 
@@ -41,8 +44,10 @@ fi
 ## Composer globals
 ##
 
-[ -d "$HOME/.composer/vendor/bin" ] \
-  && export PATH="$HOME/.composer/vendor/bin:$PATH"
+if [ -d "$HOME/.composer/vendor/bin" ]; then
+  [[ :$PATH: = *":$HOME/.composer/vendor/bin:"* ]] \
+    || export PATH="$HOME/.composer/vendor/bin:$PATH"
+fi
 
 
 ##
@@ -51,7 +56,10 @@ fi
 
 if command -v pyenv &>/dev/null; then
   export PYENV_ROOT="$HOME/.pyenv"
-  export PATH="$PYENV_ROOT/bin:$PATH"
+  if [ -d "$PYENV_ROOT/bin" ]; then
+    [[ :$PATH: = *":$PYENV_ROOT/bin:"* ]] \
+      || export PATH="$PYENV_ROOT/bin:$PATH"
+  fi
   eval "$( pyenv init - )"
 fi
 

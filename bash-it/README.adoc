@@ -1,0 +1,130 @@
+= Deployment `bash-it`
+:author: Grove Pyree
+:email: grayarea@protonmail.ch
+:revnumber: 1
+:revdate: 2019.08.30
+:revremark: Add READMEs to deployments, and tweak some logic
+:doctype: article
+// Visual
+:toc:
+// Subs:
+:hs: #
+:dhs: ##
+:us: _
+:dus: __
+:as: *
+:das: **
+
+This deployment introduces https://github.com/Bash-it/bash-it[Bash-it framework] and custom assets for it into the home directory.
+
+== Deployment installation notes
+
+This deployment ensures https://github.com/Bash-it/bash-it[Bash-it framework] is installed into `~/.bash-it/`.
+Having succeeded, it symlinks additional assets into Bash-it directory.
+
+.Map of asset installation
+[%header,cols="<.^3a,^.^1,<.^3a,<.^3a",stripes=none]
+|===
+
+^.^| Asset
+^.^| Method
+^.^| Destination
+^.^| Asset description
+
+| https://github.com/Bash-it/bash-it[Bash-it repo]
+| cloned
+| `~/**.bash-it**/`
+| Bash-it framework <<oh-my-zsh-fmwk,^1^>>
+
+| `aliases/**__<name>__.aliases.bash**`
+| symlinked
+| `~/.bash-it/aliases/available/**__<name>__.aliases.bash**`
+| Custom Bash aliases <<oh-my-zsh-blanks,^2^>>
+
+| `completion/**__<name>__.completion.bash**`
+| symlinked
+| `~/.bash-it/completion/available/**__<name>__.completion.bash**`
+| Custom Bash completions <<oh-my-zsh-blanks,^2^>>
+
+| `lib/**__<name>__.bash**`
+| symlinked
+| `~/.bash-it/lib/**__<name>__.bash**`
+| Custom Bash-it lib scripts <<oh-my-zsh-blanks,^2^>>
+
+| `plugins/**__<name>__.plugin.bash**`
+| symlinked
+| `~/.bash-it/plugins/available/**__<name>__.plugin.bash**`
+| Custom Bash-it plugins <<oh-my-zsh-blanks,^2^>>
+
+| `themes/**__<name>__**/__<name>__.theme.bash`
+| symlinked
+| `~/.bash-it/themes/**__<name>__**/`
+| Custom Bash-it themes <<oh-my-zsh-themes,^3^>>
+
+|===
+
+Path components in bold designate the source and target during cloning or symlinking.
+
+Bash-it framework is installed with its included installation script.
+Option `--no-modify-config` is added because current bundle already includes necessary start-up commands.
+
+== Included assets
+
+The deployment's asset directory is located at:
+
+[source]
+--
+grail/assets/bash-it
+--
+
+A [#oh-my-zsh-blanks]#blank example files# are provided for each kind of custom assets:
+
+- `*aliases/divine.aliases.bash*`
+- `*completion/divine.completion.bash*`
+- `*lib/divine.bash*`
+- `*plugins/divine.plugin.bash*`
+
+In case of [#oh-my-zsh-themes]#themes#, a working minimalistic theme is provided (and is defaulted to by the included startup configuration):
+
+- `*themes/laidbare/laidbare.theme.bash*`
+
+== Dependencies
+
+*This deployment depends on* `*config-shell*` *deployment* (included in current bundle).
+Shell start-up commands that load and configure Bash-it framework are located in and sourced from:
+
+[source]
+--
+grail/assets/config-shell/.runcoms/00-bash-it.bash
+--
+
+The same file may and should be used to customize Bash-it framework's loadout.
+
+== Supported asset modifications
+
+All existing assets may be freely modified in place.
+Modifications will take effect after shell reload.
+Renaming or moving any of the asset files will break their respective functions.
+
+Additional asset files may be freely added, as long as they follow the naming patterns above.
+For the additions to be symlinked into Bash-it directory, the deployment must be (re-)installed.
+
+== Overwriting policy
+
+If during installation of the deployment Bash-it framework is already present at `~/.bash-it/`, it is re-used.
+
+During installation of the deployment, whenever a symlink is created at a certain path, anything that pre-exists at that location is preserved in the deployment's designated backup directory at:
+
+[source]
+--
+state/backups/bash-it/
+--
+
+== Deployment removal notes
+
+Bash-it framework is removed by erasing `~/.bash-it/` directory.
+If pre-existing Bash-it installation has been re-used, it is *not removed*.
+
+Upon uninstallation of the deployment, backups of any overwritten files or directories are automatically restored.
+
+Uninstallation does not remove anything in the asset directory.

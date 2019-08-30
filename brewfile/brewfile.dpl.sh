@@ -1,9 +1,9 @@
 #:title:        Divine deployment: brewfile
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
-#:revnumber:    13
-#:revdate:      2019.08.16
-#:revremark:    dprompt_key -> dprompt
+#:revnumber:    14
+#:revdate:      2019.08.30
+#:revremark:    Add READMEs to deployments, and tweak some logic
 #:created_at:   2019.06.30
 
 D_DPL_NAME='brewfile'

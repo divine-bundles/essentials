@@ -1,10 +1,12 @@
+(n) README.adoc
+
 (prefix:configs)
 
 # Main vim runcom
 .vimrc
 
 # vim runcom specific to IntelliJ IDEs
-.ideavimrc
+(o) .ideavimrc
 
 # Files and directories put into .vim directory
 (r) \.vim/[^./][^/]*

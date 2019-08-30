@@ -1,3 +1,5 @@
+(n) README.adoc
+
 (prefix:bash-it-custom)
 
 # Files and directories put into custom assets directory (not enqueued)

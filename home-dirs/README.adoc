@@ -1,0 +1,97 @@
+= Deployment `brewfile`
+:author: Grove Pyree
+:email: grayarea@protonmail.ch
+:revnumber: 1
+:revdate: 2019.08.30
+:revremark: Add READMEs to deployments, and tweak some logic
+:doctype: article
+// Visual
+:toc:
+// Subs:
+:hs: #
+:dhs: ##
+:us: _
+:dus: __
+:as: *
+:das: **
+
+This deployment maintains a stable tree of personal directories under the home directory.
+
+== Deployment installation notes
+
+This deployment:
+
+* parses `*home-dirs.cfg*` file (located in the asset directory);
+* extracts relative paths that are relevant for current OS;
+* ensures that each of those directories exists in the home directory.
+
+.Map of asset installation
+[%header,cols="<.^3a,^.^1,<.^3a,<.^3a",stripes=none]
+|===
+
+^.^| Asset
+^.^| Method
+^.^| Destination
+^.^| Asset description
+
+| `*home-dirs.cfg*`
+| used
+| _N/A_
+| Manifest of home directories
+
+|===
+
+== Included assets
+
+The deployment's asset directory is located at:
+
+[source]
+--
+grail/assets/home-dirs
+--
+
+In the parlance of _Divine.dotfiles_, the home directory manifest `*home-dirs.cfg*` is a generic queue manifest.
+It uses parenthesized key-value pairs to denote sections or entries that are relevant for particular OS's.
+By default, every entry is relevant everywhere.
+
+Entries may be made exclusive to particular OS family or distro.
+List of them may be provided by separating with vartical bars.
+Entire list may be negated by including exclamation mark `!` as the first non-whitespace char of the value.
+A key-value that appears on a line of its own comes into effect for the remainder of the manifest, or until overridden.
+
+[source]
+----
+(os: debian)        relative/path/to/directory1   # Debian only
+(os: macos|bsd)     relative/path/to/directory2   # macOS/BSD only
+(os: !wsl|cygwin)   relative/path/to/directory3   # Everything except WSL or Cygwin
+(os: all)           relative/path/to/directory4   # 'all'/'any' are reserved values that denote any OS
+----
+
+[NOTE]
+--
+OS name is matched against `*$D{dus}OS_FAMILY*` and `*$D{dus}OS_DISTRO*` variables, which are built into _Divine.dotfiles_.
+Single match against any of the two is sufficient.
+For reference and list of supported OS's, see the framework documentation.
+--
+
+== Dependencies
+
+This deployment is stand-alone.
+
+== Supported asset modifications
+
+The directory manifest may be freely modified in place.
+For the changes to take effect, the deployment must be (re-)installed.
+Renaming or moving the manifest will break the deployment.
+
+== Overwriting policy
+
+Pre-existing files/directories at the desired paths are not touched.
+
+== Deployment removal notes
+
+The deployment takes _extra_ care with removing directories.
+The user is prompted before removing any non-empty directory.
+That prompt is not affected by the intervention options and always appears.
+
+Uninstallation does not remove anything in the asset directory.

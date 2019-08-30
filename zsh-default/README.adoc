@@ -1,0 +1,51 @@
+= Deployment `zsh-default`
+:author: Grove Pyree
+:email: grayarea@protonmail.ch
+:revnumber: 1
+:revdate: 2019.08.30
+:revremark: Add READMEs to deployments, and tweak some logic
+:doctype: article
+// Visual
+:toc:
+// Subs:
+:hs: #
+:dhs: ##
+:us: _
+:dus: __
+:as: *
+:das: **
+
+This deployment ensures that https://sourceforge.net/projects/zsh[Zsh] is the default shell for the current OS user.
+
+== Deployment installation notes
+
+After some preparations, this deployment calls `chsh -s _<path to zsh>_` to change default shell.
+Note that *changing the default shell requires user's password*.
+Password prompt will appear during the installation.
+
+== Included assets
+
+The deployment's does not use an asset directory.
+
+== Dependencies
+
+This deployment is stand-alone.
+
+On some systems, Divinefile included with the current bundle ensures that `chsh` is installed.
+
+== Supported asset modifications
+
+This deployment provides no modifiable assets.
+
+== Overwriting policy
+
+The deployment does not overwrite any files.
+
+If the default shell is already Zsh, this deployment does nothing.
+
+== Deployment removal notes
+
+Every step that this deployment takes during installation is documented, such as adding Zsh to `/etc/shells` file.
+Upon uninstallation of the deployment, all performed steps are reversed, from last to first.
+
+If the default shell has not been changed during the installation, it will not be changed during uninstallation as well.

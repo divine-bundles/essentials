@@ -1,0 +1,124 @@
+= Deployment `config-vim`
+:author: Grove Pyree
+:email: grayarea@protonmail.ch
+:revnumber: 1
+:revdate: 2019.08.30
+:revremark: Add READMEs to deployments, and tweak some logic
+:doctype: article
+// Visual
+:toc:
+// Subs:
+:hs: #
+:dhs: ##
+:us: _
+:dus: __
+:as: *
+:das: **
+
+This deployment symlinks configuration and customization files for https://www.vim.org[Vim] into the home directory.
+
+== Deployment installation notes
+
+The deployment supplants existing Vim configuration, while keeping backups of whatever is replaced.
+
+.Map of asset installation
+[%header,cols="<.^3a,^.^1,<.^3a,<.^3a",stripes=none]
+|===
+
+^.^| Asset
+^.^| Method
+^.^| Destination
+^.^| Asset description
+
+| `*.vimrc*`
+| symlinked
+| `~/*.vimrc*`
+| Main Vim config <<config-vim-vimrc,^1^>>
+
+| `*.ideavimrc*`
+| symlinked
+| `~/*.ideavimrc*`
+| Main IdeaVim config <<config-vim-ideavimrc,^2^>>
+
+| `.vim/**__<name>__**`
+| symlinked
+| `~/.vim/**__<name>__**`
+| Vim customization directories <<config-vim-customization-dirs,^3^>>
+
+|===
+
+== Included assets
+
+The deployment's asset directory is located at:
+
+[source]
+--
+grail/assets/config-vim
+--
+
+Native configuration files, containing an opinionated set of Vim startup commands:
+
+* [#config-vim-vimrc]#`*.vimrc*`# — primary Vim configuration file.
++
+This file includes an installation command for https://github.com/junegunn/vim-plug[vim-plug] (_a minimalist Vim plugin manager_) along with a number of plugins and settings.
+* [#config-vim-ideavimrc]#`*.ideavimrc*`# — configuration file for https://github.com/JetBrains/ideavim[IdeaVim] (_a Vim emulation plugin for IDEs based on the IntelliJ Platform_).
++
+If you don't use any IntelliJ products, this file is harmless.
+
+A number of [#config-vim-customization-dirs]#Vim *customization directories*# are included in the root of `.vim/` directory, as (mostly) empty containers for your customizations:
+
+* `*after/*` — files to be loaded after the files in `plugin/`.
+* `*autoload/*` — files to be loaded when they are actually needed.
+* `*colors/*` — color schemes.
+* `*compiler/*` — compiler-related options in the current buffer.
+* `*doc/*` — custom plugin documentation.
+* `*ftdetect/*` — file type detection plugins.
+* `*ftplugin/*` — file type exclusive plugins.
+* `*indent/*` — file type exclusive indentation settings.
+* `*keymap/*` — key mapping files.
+** `*keymap/shifted.vim*` — the single included customization.
+* `*lang/*` — language files.
+* `*macros/*`
+* `*plugin/*` — standard plugins.
+* `*syntax/*` — syntax highlighting plugins.
+* `*tools/*`
+
+Refer to Vim reference materials for more information on the semantics of each directory.
+
+[[config-vim-dependencies]]
+== Dependencies
+
+This deployment is stand-alone.
+
+Divinefile included with the current bundle ensures that Vim is installed.
+
+== Supported asset modifications
+
+The `.vimrc` and `.ideavim` files may be freely modified in place.
+Modifications will take effect on next Vim startup.
+Renaming or moving any of the two will break the deployment.
+
+If you don't need `.ideavim` file, you can remove it from the asset directory before installing the deployment.
+
+Content of Vim customization directories may be freely modified in place.
+Modifications will take effect on next vim load.
+
+Additional customization directories (or files) may be freely added to the root of `.vim/` directory.
+For the additions to be symlinked into `~/.vim/` directory, the deployment must be (re-)installed.
+
+== Overwriting policy
+
+During installation of the deployment, whenever a symlink is created at a certain path, anything that pre-exists at that location is preserved in the deployment's designated backup directory at:
+
+[source]
+--
+state/backups/config-vim/
+--
+
+Pre-existing `~/.vim/` directory is not replaced as a whole, but the files and directories in its root are.
+
+== Deployment removal notes
+
+Upon uninstallation of the deployment, backups of any overwritten files or directories are automatically restored.
+
+Uninstallation does not remove anything in the asset directory.
