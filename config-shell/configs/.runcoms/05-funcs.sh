@@ -1,9 +1,9 @@
 #:title:        Divine shared runcom: 05-funcs
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
-#:revnumber:    5
-#:revdate:      2019.08.28
-#:revremark:    Update to new queue API
+#:revnumber:    2
+#:revdate:      2019.09.01
+#:revremark:    Tie readmes together
 #:created_at:   2019.04.09
 
 ## Universal shell utility functions. Must use compatible syntax.
@@ -23,7 +23,10 @@ up()
 {
   # Add bolding if available
   local bold normal
-  if which tput &>/dev/null; then bold=$(tput bold); normal=$(tput sgr0); fi
+  if type -P tput &>/dev/null && tput sgr0 &>/dev/null \
+    && [ -n "$(tput colors)" ] && [ "$(tput colors)" -ge 8 ]
+  then bold=$(tput bold); normal=$(tput sgr0)
+  else bold="$(printf "\033[1m")"; NORMAL="$(printf "\033[0m")"; fi
 
   # Status flag
   local anything_updated=false

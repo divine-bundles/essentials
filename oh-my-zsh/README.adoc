@@ -1,9 +1,9 @@
-= Deployment `oh-my-zsh`
+= Deployment `oh-my-zsh` (`3333`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revnumber: 1
-:revdate: 2019.08.30
-:revremark: Add READMEs to deployments, and tweak some logic
+:revnumber: 2
+:revdate: 2019.09.01
+:revremark: Tie readmes together
 :doctype: article
 // Visual
 :toc:
@@ -17,12 +17,14 @@
 
 This deployment introduces https://ohmyz.sh[oh-my-zsh framework] and custom assets for it into the home directory.
 
+This deployment has the priority of `*3333*`.
+
 == Deployment installation notes
 
 This deployment ensures https://ohmyz.sh[oh-my-zsh framework] is installed into `~/.oh-my-zsh/`.
 Having succeeded, it symlinks additional assets into oh-my-zsh directory.
 
-.Map of asset installation
+.Map of asset installation for the deployment `oh-my-zsh`
 [%header,cols="<.^3a,^.^1,<.^3a,<.^3a",stripes=none]
 |===
 

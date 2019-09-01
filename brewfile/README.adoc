@@ -1,9 +1,9 @@
-= Deployment `brewfile`
+= Deployment `brewfile` (`3000`, `!`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revnumber: 1
-:revdate: 2019.08.30
-:revremark: Add READMEs to deployments, and tweak some logic
+:revnumber: 2
+:revdate: 2019.09.01
+:revremark: Tie readmes together
 :doctype: article
 // Visual
 :toc:
@@ -17,11 +17,20 @@
 
 This deployment maintains a set of system dependencies on macOS using https://github.com/Homebrew/homebrew-bundle[Brewfile].
 
+This deployment has the priority of `*3000*`.
+
+This deployment is flagged as dangerous for two reasons:
+
+* Checking whether a Brewfile is installed or not is not consistent with _Divine.dotfiles_ return code semantics.
+* Uninstalling a Brewfile is not implemented on Homebrew's side, and this deployment's implementation is not 100% tested.
+
+As a result of the flag, this deployment is not processed by the intervention utility, unless the `--with-!` option is included.
+
 == Deployment installation notes
 
 This deployment delegates to https://brew.sh/[Homebrew] to install whatever items are listed in the provided Brewfile.
 
-.Map of asset installation
+.Map of asset installation for the deployment `brewfile`
 [%header,cols="<.^3a,^.^1,<.^3a,<.^3a",stripes=none]
 |===
 

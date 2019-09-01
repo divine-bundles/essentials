@@ -1,9 +1,9 @@
-# Divine bundle '*essentials*'
+= Deployment bundle `essentials`
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revnumber: 7
-:revdate: 2019.08.28
-:revremark: Update to new queue API
+:revnumber: 8
+:revdate: 2019.09.01
+:revremark: Tie readmes together
 :doctype: article
 // Visual
 :toc:
@@ -23,95 +23,106 @@
 </p>
 ++++
 
-## Description
-
 [.lead]
-Divine bundle '*essentials*' is an opinionated set of system set-up scripts.
-It is intended as a useful starting point for any machine that runs Bash.
+Deployment bundle `*essentials*` for https://github.com/no-simpler/divine-dotfiles[_Divine.dotfiles_] is a collection of opinionated system set-up scripts.
+It is intended as a useful starting point for any machine that runs https://www.gnu.org/software/bash[Bash].
 
-Once the bundle is fully installed, and the shell/terminal reloaded, the effects are as follows:
+== Description
 
-* You are greeted by `zsh` as the default shell.
-* Both https://ohmyz.sh[`oh-my-zsh`] and https://github.com/Bash-it/bash-it[`bash-it`] frameworks are now installed and loaded.
-If you had any of those installed already, they are re-used.
-* A minimalistic theme for both frameworks is active.
-* Opinionated default configs are plugged in for `git`, `vim`, `bash`, and `zsh`.
-* Divine utilites `dln`, `dmv`, and `dreadlink` are available on `$PATH`.
-* Your previous files (wherever an override was necessary) are safely kept.
+Once the bundle is fully installed, and the shell reloaded, the effects are as follows:
 
-All of the above is controlled from your <<grail-directory,Grail directory>> at `~/.divine/grail/assets/`:
+* You are greeted by https://sourceforge.net/projects/zsh[Zsh] as the default shell.
+* Basic necessities, such as https://git-scm.com[Git], https://www.vim.org[Vim], and https://gnupg.org[GnuPG] are available.
+* Both https://ohmyz.sh[oh-my-zsh] and https://github.com/Bash-it/bash-it[Bash-it] frameworks are now installed and loaded.
+* A minimalistic theme for both shell frameworks is active.
+* Opinionated configs are plugged in for Git, Vim, Bash, and Zsh.
+* Overwritten files and installations are safely backed up or re-used.
 
-[%header,cols="<.<1,<.<3",stripes=none]
+All of the above is controlled and customized from your Grail directory:
+
+[source]
+----
+~/.divine/grail/assets/
+----
+
+.Description of asset directories for the bundle `essentials`
+[%header,cols="<.<1,^.<1,<.<3",stripes=none]
 |===
 
-^.^| Sub-directory
+^.^| Asset directory
 +++<br>+++
 `&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`
+^.^| `&nbsp;`
 ^.^| Content description
 
-| `*config-shell*/`
-| All shell startup scripts (runcoms)
+| `*bash-it*/`
+| *&dagger;*
+| Custom assets for https://github.com/Bash-it/bash-it[Bash-it] shell framework
 
-| `*config-{as}*/`
-| Global configs for `git` and `vim`, under respective names
-
-| `*fonts*/` *&dagger;*
-| Your personal font files, installed everywhere you take your Grail.
-
-| `*home-dirs*/` *&dagger;*
-| `*home-dirs.cfg*` — a sub-directory tree, maintained under `$HOME`
-
-| `*brewfile*/` *&dagger;*
+| `*brewfile*/`
+| *&dagger;*
 | https://github.com/Homebrew/homebrew-bundle[Brewfile], maintained on macOS
 
-| `*bash-it*/` *&dagger;*
-| Custom assets for https://github.com/Bash-it/bash-it[`bash-it`] shell framework
+| `*config-git*/`
+|
+| Global configuration for Git
 
-| `*oh-my-zsh*/` *&dagger;*
-| Custom assets for https://ohmyz.sh[`oh-my-zsh`] shell framework
+| `*config-shell*/`
+|
+| Startup scripts (https://en.wikipedia.org/wiki/Run_commands[runcoms]) for Bash and Zsh
+
+| `*config-vim*/`
+|
+| Global configuration for Vim
+
+| `*home-dirs*/`
+| *&dagger;*
+| File `*home-dirs.cfg*` defines a sub-directory tree, to be maintained under the home directory
+
+| `*oh-my-zsh*/`
+| *&dagger;*
+| Custom assets for https://ohmyz.sh[oh-my-zsh] shell framework
 
 | `*portable-bin*/`
-| User's personal shell commands, maintained on the `$PATH`
+|
+| Portable container for personal executables; this directory is maintained on the `$PATH`
 
 |===
 
-
-It contains the following deployments:
-
-[horizontal]
-`*Divinefile*`:: Maintains a stable set of installed system packages across platforms
-`*config-git*`:: Maintains global config for `git`
-`*config-shell*`:: Maintains custom `.bashrc` & `.zshrc`
-`*config-vim*`:: Maintains global config for `vim`
-`*dutils*`:: Exposes a couple of useful utilities from under the framework's hood, for command line use
-`*fonts*`:: Maintains personal library of font faces
-`*home-dirs*`:: Maintains stable set of directories under `~`
-`*macos-brewfile*`:: Maintains https://brew.sh[Homebrew]'s https://github.com/Homebrew/homebrew-bundle[Brewfile] across macOS installations
-`*shell-bash-it*`:: Maintains https://github.com/Bash-it/bash-it[Bash-it framework] for `bash`
-`*shell-oh-my-zsh*`:: Maintains https://ohmyz.sh/[oh-my-zsh framework] for `zsh`
-`*shell-zsh-default*`:: Maintains `zsh` as default shell
-
-[NOTE]
-Where relevant, these deployments provide useful default versions of configuration files.
-Look for them in `~/.divine/grail/assets`.
-
-## Installation/removal
-
-Install via any Terminal.
-
 [NOTE]
 --
-This will *_not_* clobber any of pre-existing files or mess up your system.
-For example:
-
-* If you already have a custom `.bashrc`, it will be moved to backups directory and restored upon removal.
-* If you already have https://ohmyz.sh/[oh-my-zsh] installed, it will just be re-used.
-* `*Divinefile*` will ensure `git` is installed. Upon removal, `git` will only be un-installed if it was `*Divinefile*` that installed it in the first place.
+Dagger *&dagger;* mark meaning: in order for the modifications in the asset directory to take effect, the deployment must be (re-)installed.
 --
 
-### Don't have Divine.dotfiles installed?
+Refer to each deployment's section for more information.
 
-*Install both framework & this package* in one fell swoop (it's fully removable):
+== Installing and uninstalling the bundle
+
+=== System requirements
+
+This deployment bundle is for the https://github.com/no-simpler/divine-dotfiles[_Divine.dotfiles_] Bash framework.
+
+=== Installing the bundle
+
+==== Framework already installed
+
+If you already have _Divine.dotfiles_ installed, *attach this bundle* to your Grail directory:
+
+[source,bash]
+----
+di attach essentials --yes
+----
+
+Then *install the bundled deployments*:
+
+[source,bash]
+----
+di install --bundle essentials --yes
+----
+
+==== Installing framework and bundle
+
+For first-time users of _Divine whatever_: to *install both _Divine.dotfiles_ framework and this bundle* in one go and without prompts, run the following chained command in Terminal:
 
 [source,bash]
 ----
@@ -120,7 +131,32 @@ bash -c 'TMP=$(mktemp); URL=https://raw.github.com/no-simpler/divine-dotfiles/ma
 && ~/.divine/intervene.sh install --yes
 ----
 
-Afterward, if you don't like it, here is the '**undo**' command (removes/restores _everything_):
+[NOTE]
+--
+Pre-existing files on the system are either re-used or backed up to be restored upon uninstallation.
+--
+
+=== Uninstalling the bundle
+
+==== Keeping framework
+
+If you intend to keep _Divine.dotfiles_ installed, *uninstall the bundled deployments*:
+
+[source,bash]
+----
+di remove --bundle essentials --yes
+----
+
+Then *detach this bundle* from your Grail directory:
+
+[source,bash]
+----
+di detach essentials --yes
+----
+
+==== Uninstalling framework and bundle
+
+To *uninstall both _Divine.dotfiles_ framework and this bundle* in one go and without prompts, run the following chained command in Terminal:
 
 [source,bash]
 ----
@@ -129,20 +165,68 @@ Afterward, if you don't like it, here is the '**undo**' command (removes/restore
 && bash -c 'TMP=$(mktemp); URL=https://raw.github.com/no-simpler/divine-dotfiles/master/lib/uninstall/uninstall.sh; if curl --version &>/dev/null; then curl -fsSL $URL >$TMP; elif wget --version &>/dev/null; then wget -qO $TMP $URL; else printf >&2 "\n==> Error: failed to detect neither curl nor wget\n"; rm -f $TMP; exit 1; fi || { printf >&2 "\n==> Error: failed to download uninstallation script\n"; rm -f $TMP; exit 2; }; chmod +x $TMP && $TMP "$@"; RC=$?; rm -f $TMP; ((RC)) && exit 3 || exit 0' bash --yes
 ----
 
-### Already a Divine.dotfiles user?
+== Bundled deployments
 
-Attach these deployments to your copy of Divine.dotfiles as such:
+=== Divinefile
 
-[source,bash]
-----
-di attach essentials --yes
-----
+The bundle includes a Divinefile that maintains the following system packages.
 
-Then install each deployment as usual.
+.List of Divinefile packages for the bundle `essentials`
+[%header,cols="^.^1a,<.^2a,<.<3a",stripes=none]
+|===
 
-If ever removing this package, make sure you uninstall everything first, and then:
+^.^| Priority
+^.^| Package name
+^.^| Package notes
 
-[source,bash]
-----
-di detach essentials --yes
-----
+| `*1000*`
+| `git`
+|
+
+| `*1000*`
+| `vim`
+|
+
+| `*1000*`
+| `zsh`
+|
+
+| `*1000*`
+| `wget`
+| _(except macOS)_
+
+| `*1000*`
+| `curl`
+| _(except macOS)_
+
+| `*1000*`
+| `gnupg`
+|
+
+| `*1000*`
+| `util-linux-user`
+| _(Fedora only)_
+
+This one contains `chsh` which is required for the deployment `zsh-default`.
+
+|===
+
+include::config-git/README.adoc[leveloffset=2]
+
+include::config-shell/README.adoc[leveloffset=2]
+
+include::config-vim/README.adoc[leveloffset=2]
+
+include::portable-bin/README.adoc[leveloffset=2]
+
+include::home-dirs/README.adoc[leveloffset=2]
+
+include::zsh-default/README.adoc[leveloffset=2]
+
+include::brewfile/README.adoc[leveloffset=2]
+
+include::bash-it/README.adoc[leveloffset=2]
+
+include::oh-my-zsh/README.adoc[leveloffset=2]
+
+include::dutils/README.adoc[leveloffset=2]

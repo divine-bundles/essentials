@@ -1,9 +1,9 @@
-= Deployment `config-shell`
+= Deployment `config-shell` (`333`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revnumber: 1
-:revdate: 2019.08.30
-:revremark: Add READMEs to deployments, and tweak some logic
+:revnumber: 2
+:revdate: 2019.09.01
+:revremark: Tie readmes together
 :doctype: article
 // Visual
 :toc:
@@ -17,11 +17,13 @@
 
 This deployment symlinks configuration files for https://www.gnu.org/software/bash/[Bash] and https://sourceforge.net/projects/zsh[Zsh] into the home directory.
 
+This deployment has the priority of `*333*`.
+
 == Deployment installation notes
 
 The deployment supplants existing Bash and Zsh configuration, while keeping backups of whatever is replaced.
 
-.Map of asset installation
+.Map of asset installation for the deployment `config-shell`
 [%header,cols="<.^3a,^.^1,<.^3a,<.^3a",stripes=none]
 |===
 

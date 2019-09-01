@@ -1,9 +1,9 @@
-= Deployment `config-git`
+= Deployment `config-git` (`333`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revnumber: 1
-:revdate: 2019.08.30
-:revremark: Add READMEs to deployments, and tweak some logic
+:revnumber: 2
+:revdate: 2019.09.01
+:revremark: Tie readmes together
 :doctype: article
 // Visual
 :toc:
@@ -17,11 +17,13 @@
 
 This deployment symlinks configuration files for https://git-scm.com[Git] into the home directory.
 
+This deployment has the priority of `*333*`.
+
 == Deployment installation notes
 
 The deployment supplants existing Git configuration, while keeping backups of whatever is replaced.
 
-.Map of asset installation
+.Map of asset installation for the deployment `config-git`
 [%header,cols="<.^3a,^.^1,<.^3a,<.^3a",stripes=none]
 |===
 

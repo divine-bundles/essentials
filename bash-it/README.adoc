@@ -1,9 +1,9 @@
-= Deployment `bash-it`
+= Deployment `bash-it` (`3333`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revnumber: 1
-:revdate: 2019.08.30
-:revremark: Add READMEs to deployments, and tweak some logic
+:revnumber: 2
+:revdate: 2019.09.01
+:revremark: Tie readmes together
 :doctype: article
 // Visual
 :toc:
@@ -17,12 +17,14 @@
 
 This deployment introduces https://github.com/Bash-it/bash-it[Bash-it framework] and custom assets for it into the home directory.
 
+This deployment has the priority of `*3333*`.
+
 == Deployment installation notes
 
 This deployment ensures https://github.com/Bash-it/bash-it[Bash-it framework] is installed into `~/.bash-it/`.
 Having succeeded, it symlinks additional assets into Bash-it directory.
 
-.Map of asset installation
+.Map of asset installation for the deployment `bash-it`
 [%header,cols="<.^3a,^.^1,<.^3a,<.^3a",stripes=none]
 |===
 
@@ -77,7 +79,7 @@ The deployment's asset directory is located at:
 grail/assets/bash-it
 --
 
-A [#oh-my-zsh-blanks]#blank example files# are provided for each kind of custom assets:
+[#oh-my-zsh-blanks]#Blank sample files# are provided for each kind of custom assets:
 
 - `*aliases/divine.aliases.bash*`
 - `*completion/divine.completion.bash*`

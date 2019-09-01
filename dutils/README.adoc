@@ -1,9 +1,9 @@
-= Deployment `dutils`
+= Deployment `dutils` (`3500`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revnumber: 1
-:revdate: 2019.08.30
-:revremark: Add READMEs to deployments, and tweak some logic
+:revnumber: 2
+:revdate: 2019.09.01
+:revremark: Tie readmes together
 :doctype: article
 // Visual
 :toc:
@@ -17,6 +17,8 @@
 
 This deployment exposes a few of the _Divine.dotfiles_ internal utilities into a directory on `$PATH`.
 
+This deployment has the priority of `*3500*`.
+
 == Deployment installation notes
 
 This deployment creates a surrogate executable for each exposed utility.
@@ -24,7 +26,7 @@ The executable, each time that it is called, sources the actual utility script f
 
 The deployment tries to put executables into a bunch of common directories, like `~/bin` or `/usr/local/bin`, and settles for the first candidate that exists and is on `$PATH`.
 
-.Map of asset installation
+.Map of asset installation for the deployment `dutils`
 [%header,cols="<.^3a,^.^1,<.^3a,<.^3a",stripes=none]
 |===
 

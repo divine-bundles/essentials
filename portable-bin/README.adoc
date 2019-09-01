@@ -1,9 +1,9 @@
-= Deployment `portable-bin`
+= Deployment `portable-bin` (`500`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revnumber: 1
-:revdate: 2019.08.30
-:revremark: Add READMEs to deployments, and tweak some logic
+:revnumber: 2
+:revdate: 2019.09.01
+:revremark: Tie readmes together
 :doctype: article
 // Visual
 :toc:
@@ -17,12 +17,14 @@
 
 This deployment uses its own asset directory as a portable container for personal executables.
 
+This deployment has the priority of `*500*`.
+
 == Deployment installation notes
 
 Basically, everything dropped into this deployment's asset directory immediately becomes available on `$PATH`.
 When the Grail directory is synchronized across machines (as it is encouraged to be — e.g., using Dropbox or Github), the 'personal directory for binaries/executables', or `.pbin/` becomes portable.
 
-.Map of asset installation
+.Map of asset installation for the deployment `portable-bin`
 [%header,cols="<.^3a,^.^1,<.^3a,<.^3a",stripes=none]
 |===
 

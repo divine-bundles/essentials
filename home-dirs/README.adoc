@@ -1,9 +1,9 @@
-= Deployment `brewfile`
+= Deployment `home-dirs` (`500`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revnumber: 1
-:revdate: 2019.08.30
-:revremark: Add READMEs to deployments, and tweak some logic
+:revnumber: 2
+:revdate: 2019.09.01
+:revremark: Tie readmes together
 :doctype: article
 // Visual
 :toc:
@@ -17,6 +17,8 @@
 
 This deployment maintains a stable tree of personal directories under the home directory.
 
+This deployment has the priority of `*500*`.
+
 == Deployment installation notes
 
 This deployment:
@@ -25,7 +27,7 @@ This deployment:
 * extracts relative paths that are relevant for current OS;
 * ensures that each of those directories exists in the home directory.
 
-.Map of asset installation
+.Map of asset installation for the deployment `home-dirs`
 [%header,cols="<.^3a,^.^1,<.^3a,<.^3a",stripes=none]
 |===
 

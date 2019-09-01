@@ -1,1 +1,0 @@
-Put personal executable scripts into this directory.

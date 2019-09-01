@@ -1,9 +1,9 @@
-= Deployment `zsh-default`
+= Deployment `zsh-default` (`1333`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revnumber: 1
-:revdate: 2019.08.30
-:revremark: Add READMEs to deployments, and tweak some logic
+:revnumber: 2
+:revdate: 2019.09.01
+:revremark: Tie readmes together
 :doctype: article
 // Visual
 :toc:
@@ -16,6 +16,8 @@
 :das: **
 
 This deployment ensures that https://sourceforge.net/projects/zsh[Zsh] is the default shell for the current OS user.
+
+This deployment has the priority of `*1333*`.
 
 == Deployment installation notes
 
