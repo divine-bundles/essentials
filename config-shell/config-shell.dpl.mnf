@@ -24,8 +24,8 @@
 (flags: d)
 
 # List of template files to be copied into home dir
-    .env.sh
-(o) .hushlogin
-    .runcoms.bash
-    .runcoms.sh
-    .runcoms.zsh
+      .env.sh
+(+o)  .hushlogin
+      .runcoms.bash
+      .runcoms.sh
+      .runcoms.zsh
