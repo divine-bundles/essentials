@@ -1,9 +1,9 @@
 = Deployment `config-shell` (`333`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revnumber: 3
+:revnumber: 4
 :revdate: 2019.09.02
-:revremark: Change adoc NOTEs to one-cell tables for mobile
+:revremark: Improve [.note] rendering
 :doctype: article
 // Visual
 :toc:
@@ -80,6 +80,7 @@ The deployment supplants existing Bash and Zsh configuration, while keeping back
 |===
 
 [.note]
+[%noheader,cols="<.<a"]
 |===
 | The word 'runcom', which is used throughout this readme, is short for https://en.wikipedia.org/wiki/Run_commands['run commands'], which in turn is what 'rc' stands for in filenames like `.bashrc` or `.zshrc`.
 

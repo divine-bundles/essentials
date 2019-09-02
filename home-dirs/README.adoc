@@ -1,9 +1,9 @@
 = Deployment `home-dirs` (`500`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revnumber: 3
+:revnumber: 4
 :revdate: 2019.09.02
-:revremark: Change adoc NOTEs to one-cell tables for mobile
+:revremark: Improve [.note] rendering
 :doctype: article
 // Visual
 :toc:
@@ -70,6 +70,7 @@ A key-value that appears on a line of its own comes into effect for the remainde
 ----
 
 [.note]
+[%noheader,cols="<.<a"]
 |===
 | OS name is matched against `*$D{dus}OS_FAMILY*` and `*$D{dus}OS_DISTRO*` variables, which are built into _Divine.dotfiles_.
 Single match against any of the two is sufficient.
