@@ -1,9 +1,9 @@
 = Deployment bundle `essentials`
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revnumber: 8
-:revdate: 2019.09.01
-:revremark: Tie readmes together
+:revnumber: 9
+:revdate: 2019.09.02
+:revremark: Change adoc NOTEs to one-cell tables for mobile
 :doctype: article
 // Visual
 :toc:
@@ -89,10 +89,10 @@ All of the above is controlled and customized from your Grail directory:
 
 |===
 
-[NOTE]
---
-Dagger *&dagger;* mark meaning: in order for the modifications in the asset directory to take effect, the deployment must be (re-)installed.
---
+[.note]
+|===
+| Dagger *&dagger;* mark meaning: in order for the modifications in the asset directory to take effect, the deployment must be (re-)installed.
+|===
 
 Refer to each deployment's section for more information.
 
@@ -131,10 +131,10 @@ bash -c 'TMP=$(mktemp); URL=https://raw.github.com/no-simpler/divine-dotfiles/ma
 && ~/.divine/intervene.sh install --yes
 ----
 
-[NOTE]
---
-Pre-existing files on the system are either re-used or backed up to be restored upon uninstallation.
---
+[.note]
+|===
+| Pre-existing files on the system are either re-used or backed up to be restored upon uninstallation.
+|===
 
 === Uninstalling the bundle
 
