@@ -1,9 +1,9 @@
 #:title:        Divine deployment: zsh-default
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
-#:revnumber:    3
+#:revnumber:    4
 #:revdate:      2019.09.03
-#:revremark:    If zsh is default, return installed, not irrelevant
+#:revremark:    On macOS ask for re-log instead of shell reload
 #:created_at:   2019.06.30
 
 D_DPL_NAME='zsh-default'
@@ -259,8 +259,14 @@ d_dpl_install()
     dprint_debug 'Successfully changed default shell to:' -i "$D_ZSH_PATH"
 
     # Ask user to reload shell
-    dprint_alert \
-      'Please, reload your shell to finilize current installation'
+    case $D__OS_FAMILY in
+      macos)
+        dprint_alert \
+          'Please, re-log into the system to finilize shell change'
+      *)
+        dprint_alert \
+          'Please, reload your shell to finilize shell change'
+    esac
 
     # Flip stash flags
     dstash -s set old_shell "$old_shell"
@@ -348,8 +354,14 @@ d_dpl_remove()
       dprint_debug 'Successfully restored default shell to:' -i "$old_shell"
 
       # Ask user to reload shell
-      dprint_alert \
-        'Please, reload your shell to finilize current removal'
+      case $D__OS_FAMILY in
+        macos)
+          dprint_alert \
+            'Please, re-log into the system to finilize shell change'
+        *)
+          dprint_alert \
+            'Please, reload your shell to finilize shell change'
+      esac
 
       # Flip stash flags
       dstash -s unset new_shell
