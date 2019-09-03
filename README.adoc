@@ -1,9 +1,9 @@
 = Deployment bundle `essentials`
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revnumber: 10
-:revdate: 2019.09.02
-:revremark: Improve [.note] rendering
+:revnumber: 11
+:revdate: 2019.09.03
+:revremark: Add asciidoctor coalescer to pre-process includes
 :doctype: article
 // Visual
 :toc:
@@ -213,22 +213,1111 @@ This one contains `chsh` which is required for the deployment `zsh-default`.
 
 |===
 
-include::config-git/README.adoc[leveloffset=2]
+:leveloffset: 2
 
-include::config-shell/README.adoc[leveloffset=2]
+= Deployment `config-git` (`333`)
+:author: Grove Pyree
+:email: grayarea@protonmail.ch
+:revnumber: 11
+:revdate: 2019.09.03
+:revremark: Add asciidoctor coalescer to pre-process includes
+:doctype: article
+// Visual
+:toc:
+// Subs:
+:hs: #
+:dhs: ##
+:us: _
+:dus: __
+:as: *
+:das: **
 
-include::config-vim/README.adoc[leveloffset=2]
+This deployment symlinks configuration files for https://git-scm.com[Git] into the home directory.
 
-include::portable-bin/README.adoc[leveloffset=2]
+This deployment has the priority of `*333*`.
 
-include::home-dirs/README.adoc[leveloffset=2]
+== Deployment installation notes
 
-include::zsh-default/README.adoc[leveloffset=2]
+The deployment supplants existing Git configuration, while keeping backups of whatever is replaced.
 
-include::brewfile/README.adoc[leveloffset=2]
+.Map of asset installation for the deployment `config-git`
+[%header,cols="<.^3a,^.^1,<.^3a,<.^3a",stripes=none]
+|===
 
-include::bash-it/README.adoc[leveloffset=2]
+^.^| Asset
+^.^| Method
+^.^| Destination
+^.^| Asset description
 
-include::oh-my-zsh/README.adoc[leveloffset=2]
+| `*.gitconfig*`
+| symlinked
+| `~/*.gitconfig*`
+| Main Git config <<config-git-config,^1^>>
 
-include::dutils/README.adoc[leveloffset=2]
+| `*.gitattributes*`
+| symlinked
+| `~/*.gitattributes*`
+| Main Git attributes file <<config-git-attributes,^2^>>
+
+|===
+
+== Included assets
+
+The deployment's asset directory is located at:
+
+[source]
+--
+grail/assets/config-git
+--
+
+Two global configuration files for https://git-scm.com[Git] are provided:
+
+- [#config-git-config]#`*.gitconfig*`# — this file is interacted with by https://git-scm.com/docs/git-config[`git config --global`].
+- [#config-git-attributes]#`*.gitattributes*`# — globally influences certain Git operations by https://git-scm.com/docs/gitattributes[assigning attributes] to certain file path patterns.
+
+A small amount of opinionated configuration is included in the specified files.
+
+== Dependencies
+
+This deployment is stand-alone.
+
+Divinefile included with the current bundle ensures that Git is installed.
+
+== Supported asset modifications
+
+Both configuration files may be freely modified in place.
+Modifications will take effect immediately.
+Renaming or moving any of the two configuration files will break the deployment.
+
+This deployment does not support any additional assets.
+
+== Overwriting policy
+
+If during installation of the deployment any of the two configuration files exist in the home directory, they are backed up into the deployment's designated backup directory at:
+
+[source]
+----
+state/backups/config-git/
+----
+
+== Deployment removal notes
+
+Upon uninstallation of the deployment, backups of any overwritten Git global configuration files are automatically restored.
+
+Uninstallation does not remove anything in the asset directory.
+
+:leveloffset!:
+
+:leveloffset: 2
+
+= Deployment `config-shell` (`333`)
+:author: Grove Pyree
+:email: grayarea@protonmail.ch
+:revnumber: 11
+:revdate: 2019.09.03
+:revremark: Add asciidoctor coalescer to pre-process includes
+:doctype: article
+// Visual
+:toc:
+// Subs:
+:hs: #
+:dhs: ##
+:us: _
+:dus: __
+:as: *
+:das: **
+
+This deployment symlinks configuration files for https://www.gnu.org/software/bash/[Bash] and https://sourceforge.net/projects/zsh[Zsh] into the home directory.
+
+This deployment has the priority of `*333*`.
+
+== Deployment installation notes
+
+The deployment supplants existing Bash and Zsh configuration, while keeping backups of whatever is replaced.
+
+.Map of asset installation for the deployment `config-shell`
+[%header,cols="<.^3a,^.^1,<.^3a,<.^3a",stripes=none]
+|===
+
+^.^| Asset
+^.^| Method
+^.^| Destination
+^.^| Asset description
+
+| `*.bashprofile*`
+| symlinked
+| `~/*.bashprofile*`
+.2+| Login shell runcoms <<config-shell-login,^1^>>
+
+| `*.zprofile*`
+| symlinked
+| `~/*.zprofile*`
+
+| `*.bashrc*`
+| symlinked
+| `~/*.bashrc*`
+.2+| Interactive shell runcoms <<config-shell-interactive,^2^>>
+
+| `*.zshrc*`
+| symlinked
+| `~/*.zshrc*`
+
+| `*.runcoms*/`
+| symlinked
+| `~/*.runcoms*/`
+| Custom runcoms <<config-shell-custom,^3^>>
+
+|
+| created
+| `~/*.hushlogin*`
+| MOTD disabler <<config-shell-hushlogin,^4^>>
+
+|
+| created
+| `~/*.env.sh*`
+.4+| Box-specific runcoms <<config-shell-box-specific,^5^>>
+
+|
+| created
+| `~/*.runcoms.bash*`
+
+|
+| created
+| `~/*.runcoms.zsh*`
+
+|
+| created
+| `~/*.runcoms.sh*`
+
+|===
+
+[.note]
+[%noheader,cols="<.<a"]
+|===
+| The word 'runcom', which is used throughout this readme, is short for https://en.wikipedia.org/wiki/Run_commands['run commands'], which in turn is what 'rc' stands for in filenames like `.bashrc` or `.zshrc`.
+
+In the context of this deployment, a runcom is a file that contains startup information for a shell.
+|===
+
+== Included assets
+
+The deployment's asset directory is located at:
+
+[source]
+--
+grail/assets/config-shell
+--
+
+[#config-shell-login]#*Login shell runcoms*# delegate to their counterparts for interactive shells:
+
+* `*.bash_profile*`
+* `*.zprofile*`
+
+[#config-shell-interactive]#*Interactive shell runcoms*# do little on top of delegating to custom runcoms further below:
+
+* `*.bashrc*`
+* `*.zshrc*`
+
+* [#config-shell-runcoms]#Directory `*.runcoms/*`# contains *custom runcoms*.
+During shell startup, both `.bashrc` and `.zshrc` source files from within this directory:
++
+--
+** `.bashrc` sources every `**__<name>__.bash**` and every `**__<name>__.sh**` file, in ascending alphanumerical order.
+** `.zshrc` sources every `**__<name>__.zsh**` and every `**__<name>__.sh**` file, in ascending alphanumerical order.
+--
++
+The following custom runcoms are provided with the deployment and contain an opinionated set of startup commands:
++
+--
+** `*00-bash-it.bash*` — commands that load and configure https://github.com/Bash-it/bash-it[Bash-it framework], if it is installed.
++
+Deployment `bash-it` (included in current bundle) ensures thst Bash-it framework is installed.
+** `*00-oh-my-zsh.zsh*` — commands that load and configure https://ohmyz.sh[oh-my-zsh framework], if it is installed.
++
+Deployment `oh-my-zsh` (included in current bundle) ensures thst oh-my-zsh framework is installed.
+** `*01-config.bash*` — general Bash configuration commands.
+** `*01-config.zsh*` — general Zsh configuration commands.
+** `*02-env.sh*` — environment variables for both shells.
+** `*03-fixes.sh*` — bug fixes for both shells.
+** `*04-aliases.sh*` — aliases for both shells.
+** `*05-funcs.sh*` — utility functions for both shells.
+--
+
+A number of empty files are created in the home directory:
+
+* [#config-shell-hushlogin]#`*.hushlogin*`# — the mere existence of this file in the home directory prevents any sort of textual banner from being printed into your terminal every time you start a shell.
+* The following [#config-shell-box-specific]#empty runcoms# are sourced by both `.bashrc` and `.zshrc` and are containers for *box-specific* configuration (commands that never leave one machine):
+** `*.env.sh*` — environment variables.
+Three are populated by default:
+*** `D__OS_FAMILY` — the broad type of the current OS
+*** `D__OS_DISTRO` — the name of current OS distribution (if it is supported)
+*** `D__OS_PKGMGR` — the name of current system package manager (if it is supported)
+** `*.runcoms.bash*` — (sourced by `.bashrc` only) Bash config.
+** `*.runcoms.zsh*` — (sourced by `.zshrc` only) Zsh config.
+** `*.runcoms.sh*` — universal shell config.
+
+[[config-shell-dependencies]]
+== Dependencies
+
+This deployment is stand-alone, but provides support for other deployments in current bundle:
+
+* Custom runcom `00-bash-it.bash` loads and configures Bash-it framework for `bash-it` deployment.
+* Custom runcom `00-oh-my-zsh.zsh` loads and configures oh-my-zsh framework for `oh-my-zsh` deployment.
+* Custom runcom `02-env.sh` ensures all personal `bin` directories are on `$PATH` for `home-dirs` and `portable-bin` deployments.
+
+== Supported asset modifications
+
+All custom runcoms may be freely modified in place.
+Modifications will take effect after shell reload.
+Keep in mind, that modifications to custom runcoms that other deployments <<config-shell-dependencies,depend on>> may break those deployments.
+Custom runcoms may be renamed as long as they retain a recognized suffix; but they must remain in the root of `.runcoms/` directory.
+
+Any number of custom runcoms may be freely added to the root of the `.runcoms/` directory, adhering to naming rules.
+Additional custom runcoms will take effect after shell reload.
+
+It is normally not needed to modify the runcom files at the root of the asset directory.
+
+== Overwriting policy
+
+During installation of the deployment, whenever a symlink is created at a certain path, anything that pre-exists at that location is preserved in the deployment's designated backup directory at:
+
+[source]
+--
+state/backups/config-vim/
+--
+
+The blank files (`.hushlogin`, `.env.sh`, `.runcoms.__*sh__`), however, do not overwrite pre-existing files.
+
+== Deployment removal notes
+
+Upon uninstallation of the deployment, backups of any overwritten files or directories are automatically restored.
+
+Uninstallation does not remove anything in the asset directory.
+
+:leveloffset!:
+
+:leveloffset: 2
+
+= Deployment `config-vim` (`333`)
+:author: Grove Pyree
+:email: grayarea@protonmail.ch
+:revnumber: 11
+:revdate: 2019.09.03
+:revremark: Add asciidoctor coalescer to pre-process includes
+:doctype: article
+// Visual
+:toc:
+// Subs:
+:hs: #
+:dhs: ##
+:us: _
+:dus: __
+:as: *
+:das: **
+
+This deployment symlinks configuration and customization files for https://www.vim.org[Vim] into the home directory.
+
+This deployment has the priority of `*333*`.
+
+== Deployment installation notes
+
+The deployment supplants existing Vim configuration, while keeping backups of whatever is replaced.
+
+.Map of asset installation for the deployment `config-vim`
+[%header,cols="<.^3a,^.^1,<.^3a,<.^3a",stripes=none]
+|===
+
+^.^| Asset
+^.^| Method
+^.^| Destination
+^.^| Asset description
+
+| `*.vimrc*`
+| symlinked
+| `~/*.vimrc*`
+| Main Vim config <<config-vim-vimrc,^1^>>
+
+| `*.ideavimrc*`
+| symlinked
+| `~/*.ideavimrc*`
+| Main IdeaVim config <<config-vim-ideavimrc,^2^>>
+
+| `.vim/**__<name>__**`
+| symlinked
+| `~/.vim/**__<name>__**`
+| Vim customization directories <<config-vim-customization-dirs,^3^>>
+
+|===
+
+== Included assets
+
+The deployment's asset directory is located at:
+
+[source]
+--
+grail/assets/config-vim
+--
+
+Native configuration files, containing an opinionated set of Vim startup commands:
+
+* [#config-vim-vimrc]#`*.vimrc*`# — primary Vim configuration file.
++
+This file includes an installation command for https://github.com/junegunn/vim-plug[vim-plug] (_a minimalist Vim plugin manager_) along with a number of plugins and settings.
+* [#config-vim-ideavimrc]#`*.ideavimrc*`# — configuration file for https://github.com/JetBrains/ideavim[IdeaVim] (_a Vim emulation plugin for IDEs based on the IntelliJ Platform_).
++
+If you don't use any IntelliJ products, this file is harmless.
+
+A number of [#config-vim-customization-dirs]#Vim *customization directories*# can be created in the root of `.vim/` directory, as containers for your customizations.
+Most of these directories are not included with the deployment to prevent clutter.
+One keymap is provided as an example:
+
+* `*keymap/shifted.vim*` — 'Caps Lock' mode toggled by double-tapping `j`.
+
+Overall, the following customization directories are supported by Vim:
+
+* `*after/*` — files to be loaded after the files in `plugin/`.
+* `*autoload/*` — files to be loaded when they are actually needed.
+* `*colors/*` — color schemes.
+* `*compiler/*` — compiler-related options in the current buffer.
+* `*doc/*` — custom plugin documentation.
+* `*ftdetect/*` — file type detection plugins.
+* `*ftplugin/*` — file type exclusive plugins.
+* `*indent/*` — file type exclusive indentation settings.
+* `*keymap/*` — key mapping files.
+* `*lang/*` — language files.
+* `*macros/*`
+* `*plugin/*` — standard plugins.
+* `*syntax/*` — syntax highlighting plugins.
+* `*tools/*`
+
+Refer to Vim reference materials for more information on the semantics of each directory.
+
+[[config-vim-dependencies]]
+== Dependencies
+
+This deployment is stand-alone.
+
+Divinefile included with the current bundle ensures that Vim is installed.
+
+== Supported asset modifications
+
+The `.vimrc` and `.ideavim` files may be freely modified in place.
+Modifications will take effect on next Vim startup.
+Renaming or moving any of the two will break the deployment.
+
+If you don't need `.ideavim` file, you can remove it from the asset directory before installing the deployment.
+
+Content of Vim customization directories may be freely modified in place.
+Modifications will take effect on next vim load.
+
+Additional customization directories (or files) may be freely added to the root of `.vim/` directory.
+For the additions to be symlinked into `~/.vim/` directory, the deployment must be (re-)installed.
+
+== Overwriting policy
+
+During installation of the deployment, whenever a symlink is created at a certain path, anything that pre-exists at that location is preserved in the deployment's designated backup directory at:
+
+[source]
+--
+state/backups/config-vim/
+--
+
+Pre-existing `~/.vim/` directory is not replaced as a whole, but the files and directories in its root are.
+
+== Deployment removal notes
+
+Upon uninstallation of the deployment, backups of any overwritten files or directories are automatically restored.
+
+Uninstallation does not remove anything in the asset directory.
+
+:leveloffset!:
+
+:leveloffset: 2
+
+= Deployment `portable-bin` (`500`)
+:author: Grove Pyree
+:email: grayarea@protonmail.ch
+:revnumber: 11
+:revdate: 2019.09.03
+:revremark: Add asciidoctor coalescer to pre-process includes
+:doctype: article
+// Visual
+:toc:
+// Subs:
+:hs: #
+:dhs: ##
+:us: _
+:dus: __
+:as: *
+:das: **
+
+This deployment uses its own asset directory as a portable container for personal executables.
+
+This deployment has the priority of `*500*`.
+
+== Deployment installation notes
+
+Basically, everything dropped into this deployment's asset directory immediately becomes available on `$PATH`.
+When the Grail directory is synchronized across machines (as it is encouraged to be — e.g., using Dropbox or Github), the 'personal directory for binaries/executables', or `.pbin/` becomes portable.
+
+.Map of asset installation for the deployment `portable-bin`
+[%header,cols="<.^3a,^.^1,<.^3a,<.^3a",stripes=none]
+|===
+
+^.^| Asset
+^.^| Method
+^.^| Destination
+^.^| Asset description
+
+| _asset directory itself_
+| symlinked
+| `~/*.pbin*/`
+| Personal binaries directory
+
+|===
+
+== Included assets
+
+The deployment's asset directory is located at:
+
+[source]
+--
+grail/assets/portable-bin
+--
+
+The asset directory starts empty.
+
+== Dependencies
+
+*This deployment depends on* `*config-shell*` *deployment* (included in current bundle).
+Shell start-up commands that ensure `~/.pbin/` directory is on `$PATH` are located in and sourced from:
+
+[source]
+--
+grail/assets/config-shell/.runcoms/02-env.sh
+--
+
+== Supported asset modifications
+
+Personal binaries/executables may be freely dropped into the asset directory.
+They will become available from the command line immediately.
+
+== Overwriting policy
+
+During installation of the deployment, anything that pre-exists at the path `~/.pbin` is preserved in the deployment's designated backup directory at:
+
+[source]
+--
+state/backups/portable-bin/
+--
+
+== Deployment removal notes
+
+Upon uninstallation of the deployment, the backup of the possibly overwritten file is automatically restored.
+
+Uninstallation does not remove anything in the asset directory.
+
+:leveloffset!:
+
+:leveloffset: 2
+
+= Deployment `home-dirs` (`500`)
+:author: Grove Pyree
+:email: grayarea@protonmail.ch
+:revnumber: 11
+:revdate: 2019.09.03
+:revremark: Add asciidoctor coalescer to pre-process includes
+:doctype: article
+// Visual
+:toc:
+// Subs:
+:hs: #
+:dhs: ##
+:us: _
+:dus: __
+:as: *
+:das: **
+
+This deployment maintains a stable tree of personal directories under the home directory.
+
+This deployment has the priority of `*500*`.
+
+== Deployment installation notes
+
+This deployment:
+
+* parses `*home-dirs.cfg*` file (located in the asset directory);
+* extracts relative paths that are relevant for current OS;
+* ensures that each of those directories exists in the home directory.
+
+.Map of asset installation for the deployment `home-dirs`
+[%header,cols="<.^3a,^.^1,<.^3a,<.^3a",stripes=none]
+|===
+
+^.^| Asset
+^.^| Method
+^.^| Destination
+^.^| Asset description
+
+| `*home-dirs.cfg*`
+| used
+| _N/A_
+| Manifest of home directories
+
+|===
+
+== Included assets
+
+The deployment's asset directory is located at:
+
+[source]
+--
+grail/assets/home-dirs
+--
+
+In the parlance of _Divine.dotfiles_, the home directory manifest `*home-dirs.cfg*` is a generic queue manifest.
+It uses parenthesized key-value pairs to denote sections or entries that are relevant for particular OS's.
+By default, every entry is relevant everywhere.
+
+Entries may be made exclusive to particular OS family or distro.
+List of them may be provided by separating with vartical bars.
+Entire list may be negated by including exclamation mark `!` as the first non-whitespace char of the value.
+A key-value that appears on a line of its own comes into effect for the remainder of the manifest, or until overridden.
+
+[source]
+----
+(os: debian)        relative/path/to/directory1   # Debian only
+(os: macos|bsd)     relative/path/to/directory2   # macOS/BSD only
+(os: !wsl|cygwin)   relative/path/to/directory3   # Everything except WSL or Cygwin
+(os: all)           relative/path/to/directory4   # 'all'/'any' are reserved values that denote any OS
+----
+
+[.note]
+[%noheader,cols="<.<a"]
+|===
+| OS name is matched against `*$D{dus}OS_FAMILY*` and `*$D{dus}OS_DISTRO*` variables, which are built into _Divine.dotfiles_.
+Single match against any of the two is sufficient.
+For reference and list of supported OS's, see the framework documentation.
+|===
+
+== Dependencies
+
+This deployment is stand-alone.
+
+== Supported asset modifications
+
+The directory manifest may be freely modified in place.
+For the changes to take effect, the deployment must be (re-)installed.
+Renaming or moving the manifest will break the deployment.
+
+== Overwriting policy
+
+Pre-existing files/directories at the desired paths are not touched.
+
+== Deployment removal notes
+
+The deployment takes _extra_ care with removing directories.
+The user is prompted before removing any non-empty directory.
+That prompt is not affected by the intervention options and always appears.
+
+Uninstallation does not remove anything in the asset directory.
+
+:leveloffset!:
+
+:leveloffset: 2
+
+= Deployment `zsh-default` (`1333`)
+:author: Grove Pyree
+:email: grayarea@protonmail.ch
+:revnumber: 11
+:revdate: 2019.09.03
+:revremark: Add asciidoctor coalescer to pre-process includes
+:doctype: article
+// Visual
+:toc:
+// Subs:
+:hs: #
+:dhs: ##
+:us: _
+:dus: __
+:as: *
+:das: **
+
+This deployment ensures that https://sourceforge.net/projects/zsh[Zsh] is the default shell for the current OS user.
+
+This deployment has the priority of `*1333*`.
+
+== Deployment installation notes
+
+After some preparations, this deployment calls `chsh -s _<path to zsh>_` to change default shell.
+Note that *changing the default shell requires user's password*.
+Password prompt will appear during the installation.
+
+== Included assets
+
+The deployment's does not use an asset directory.
+
+== Dependencies
+
+This deployment is stand-alone.
+
+On some systems, Divinefile included with the current bundle ensures that `chsh` is installed.
+
+== Supported asset modifications
+
+This deployment provides no modifiable assets.
+
+== Overwriting policy
+
+The deployment does not overwrite any files.
+
+If the default shell is already Zsh, this deployment does nothing.
+
+== Deployment removal notes
+
+Every step that this deployment takes during installation is documented, such as adding Zsh to `/etc/shells` file.
+Upon uninstallation of the deployment, all performed steps are reversed, from last to first.
+
+If the default shell has not been changed during the installation, it will not be changed during uninstallation as well.
+
+:leveloffset!:
+
+:leveloffset: 2
+
+= Deployment `brewfile` (`3000`, `!`)
+:author: Grove Pyree
+:email: grayarea@protonmail.ch
+:revnumber: 11
+:revdate: 2019.09.03
+:revremark: Add asciidoctor coalescer to pre-process includes
+:doctype: article
+// Visual
+:toc:
+// Subs:
+:hs: #
+:dhs: ##
+:us: _
+:dus: __
+:as: *
+:das: **
+
+This deployment maintains a set of system dependencies on macOS using https://github.com/Homebrew/homebrew-bundle[Brewfile].
+
+This deployment has the priority of `*3000*`.
+
+This deployment is flagged as dangerous for two reasons:
+
+* Checking whether a Brewfile is installed or not is not consistent with _Divine.dotfiles_ return code semantics.
+* Uninstalling a Brewfile is not implemented on Homebrew's side, and this deployment's implementation is not 100% tested.
+
+As a result of the flag, this deployment is not processed by the intervention utility, unless the `--with-!` option is included.
+
+== Deployment installation notes
+
+This deployment delegates to https://brew.sh/[Homebrew] to install whatever items are listed in the provided Brewfile.
+
+.Map of asset installation for the deployment `brewfile`
+[%header,cols="<.^3a,^.^1,<.^3a,<.^3a",stripes=none]
+|===
+
+^.^| Asset
+^.^| Method
+^.^| Destination
+^.^| Asset description
+
+| `*Brewfile*`
+| used
+| _N/A_
+| Manifest of system dependencies
+
+|===
+
+== Included assets
+
+The deployment's asset directory is located at:
+
+[source]
+--
+grail/assets/brewfile
+--
+
+The included `*Brewfile*` starts up empty, and as such does nothing.
+This is mostly due to all fundamental dependencies being handled by the included Divinefile.
+So, yeah, Brewfile is kind of scoffed on around here.
+But anyway…
+
+== Dependencies
+
+This deployment is stand-alone.
+
+When launched on macOS, the _Divine.dotfiles_ itself will do its best to ensure https://brew.sh/[Homebrew] is installed.
+
+== Supported asset modifications
+
+The Brewfile may be freely modified in place.
+For the changes to take effect, the deployment must be (re-)installed.
+Renaming or moving the Brewfile will break the deployment.
+
+== Overwriting policy
+
+This is all in Homebrew's hands, and depends on the content of the Brewfile.
+Still, no major clobbering is expected.
+
+== Deployment removal notes
+
+Uninstalling Brewfile is generally not supported by Homebrew.
+
+This deployment provides a workaround.
+Upon uninstallation of the deployment, the Brewfile will be read in reverse order, and for every supported line, an appropriate Homebrew uninstallation command will be called.
+Be advised, that this is not exactly the same as reversing installation due to possibility of transient dependencies, as well as other possible factors.
+
+Currently, uninstallation of the following Brewfile lines is supported:
+
+* `tap _<name>_` — taps will be untapped.
+* `cask _<name>_` — casks will be uninstalled.
+* `brew _<name>_` — bottles will be uninstalled.
+
+Uninstallation does not remove anything in the asset directory.
+
+:leveloffset!:
+
+:leveloffset: 2
+
+= Deployment `bash-it` (`3333`)
+:author: Grove Pyree
+:email: grayarea@protonmail.ch
+:revnumber: 11
+:revdate: 2019.09.03
+:revremark: Add asciidoctor coalescer to pre-process includes
+:doctype: article
+// Visual
+:toc:
+// Subs:
+:hs: #
+:dhs: ##
+:us: _
+:dus: __
+:as: *
+:das: **
+
+This deployment introduces https://github.com/Bash-it/bash-it[Bash-it framework] and custom assets for it into the home directory.
+
+This deployment has the priority of `*3333*`.
+
+== Deployment installation notes
+
+This deployment ensures https://github.com/Bash-it/bash-it[Bash-it framework] is installed into `~/.bash-it/`.
+Having succeeded, it symlinks additional assets into Bash-it directory.
+
+.Map of asset installation for the deployment `bash-it`
+[%header,cols="<.^3a,^.^1,<.^3a,<.^3a",stripes=none]
+|===
+
+^.^| Asset
+^.^| Method
+^.^| Destination
+^.^| Asset description
+
+| https://github.com/Bash-it/bash-it[Bash-it repo]
+| cloned
+| `~/**.bash-it**/`
+| Bash-it framework <<oh-my-zsh-fmwk,^1^>>
+
+| `aliases/**__<name>__.aliases.bash**`
+| symlinked
+| `~/.bash-it/aliases/available/**__<name>__.aliases.bash**`
+| Custom Bash aliases <<oh-my-zsh-blanks,^2^>>
+
+| `completion/**__<name>__.completion.bash**`
+| symlinked
+| `~/.bash-it/completion/available/**__<name>__.completion.bash**`
+| Custom Bash completions <<oh-my-zsh-blanks,^2^>>
+
+| `lib/**__<name>__.bash**`
+| symlinked
+| `~/.bash-it/lib/**__<name>__.bash**`
+| Custom Bash-it lib scripts <<oh-my-zsh-blanks,^2^>>
+
+| `plugins/**__<name>__.plugin.bash**`
+| symlinked
+| `~/.bash-it/plugins/available/**__<name>__.plugin.bash**`
+| Custom Bash-it plugins <<oh-my-zsh-blanks,^2^>>
+
+| `themes/**__<name>__**/__<name>__.theme.bash`
+| symlinked
+| `~/.bash-it/themes/**__<name>__**/`
+| Custom Bash-it themes <<oh-my-zsh-themes,^3^>>
+
+|===
+
+Path components in bold designate the source and target during cloning or symlinking.
+
+Bash-it framework is installed with its included installation script.
+Option `--no-modify-config` is added because current bundle already includes necessary start-up commands.
+
+== Included assets
+
+The deployment's asset directory is located at:
+
+[source]
+--
+grail/assets/bash-it
+--
+
+[#oh-my-zsh-blanks]#Blank sample files# are provided for each kind of custom assets:
+
+- `*aliases/divine.aliases.bash*`
+- `*completion/divine.completion.bash*`
+- `*lib/divine.bash*`
+- `*plugins/divine.plugin.bash*`
+
+In case of [#oh-my-zsh-themes]#themes#, a working minimalistic theme is provided (and is defaulted to by the included startup configuration):
+
+- `*themes/laidbare/laidbare.theme.bash*`
+
+== Dependencies
+
+*This deployment depends on* `*config-shell*` *deployment* (included in current bundle).
+Shell start-up commands that load and configure Bash-it framework are located in and sourced from:
+
+[source]
+--
+grail/assets/config-shell/.runcoms/00-bash-it.bash
+--
+
+The same file may and should be used to customize Bash-it framework's loadout.
+
+== Supported asset modifications
+
+All existing assets may be freely modified in place.
+Modifications will take effect after shell reload.
+Renaming or moving any of the asset files will break their respective functions.
+
+Additional asset files may be freely added, as long as they follow the naming patterns above.
+For the additions to be symlinked into Bash-it directory, the deployment must be (re-)installed.
+
+== Overwriting policy
+
+If during installation of the deployment Bash-it framework is already present at `~/.bash-it/`, it is re-used.
+
+During installation of the deployment, whenever a symlink is created at a certain path, anything that pre-exists at that location is preserved in the deployment's designated backup directory at:
+
+[source]
+--
+state/backups/bash-it/
+--
+
+== Deployment removal notes
+
+Bash-it framework is removed by erasing `~/.bash-it/` directory.
+If pre-existing Bash-it installation has been re-used, it is *not removed*.
+
+Upon uninstallation of the deployment, backups of any overwritten files or directories are automatically restored.
+
+Uninstallation does not remove anything in the asset directory.
+
+:leveloffset!:
+
+:leveloffset: 2
+
+= Deployment `oh-my-zsh` (`3333`)
+:author: Grove Pyree
+:email: grayarea@protonmail.ch
+:revnumber: 11
+:revdate: 2019.09.03
+:revremark: Add asciidoctor coalescer to pre-process includes
+:doctype: article
+// Visual
+:toc:
+// Subs:
+:hs: #
+:dhs: ##
+:us: _
+:dus: __
+:as: *
+:das: **
+
+This deployment introduces https://ohmyz.sh[oh-my-zsh framework] and custom assets for it into the home directory.
+
+This deployment has the priority of `*3333*`.
+
+== Deployment installation notes
+
+This deployment ensures https://ohmyz.sh[oh-my-zsh framework] is installed into `~/.oh-my-zsh/`.
+Having succeeded, it symlinks additional assets into oh-my-zsh directory.
+
+.Map of asset installation for the deployment `oh-my-zsh`
+[%header,cols="<.^3a,^.^1,<.^3a,<.^3a",stripes=none]
+|===
+
+^.^| Asset
+^.^| Method
+^.^| Destination
+^.^| Asset description
+
+| https://github.com/robbyrussell/oh-my-zsh[oh-my-zsh repo]
+| cloned
+| `~/**.oh-my-zsh**/`
+| oh-my-zsh framework <<oh-my-zsh-fmwk,^1^>>
+
+| `plugins/**__<name>__**/__<name>__.plugin.zsh`
+| symlinked
+| `~/.oh-my-zsh/custom/plugins/**__<name>__**/`
+| Custom oh-my-zsh plugins <<oh-my-zsh-plugins,^2^>>
+
+| `themes/**__<name>__.zsh-theme**`
+| symlinked
+| `~/.oh-my-zsh/custom/themes/**__<name>__.zsh-theme**`
+| Custom oh-my-zsh themes <<oh-my-zsh-themes,^3^>>
+
+|===
+
+Path components in bold designate the source and target during cloning or symlinking.
+
+[#oh-my-zsh-fmwk]#oh-my-zsh framework# is installed by cloning its https://github.com/robbyrussell/oh-my-zsh[Github repository].
+Included installation script (which normally adds startup commands to `~/.zshrc`) is not run because current bundle already includes necessary start-up commands.
+
+== Included assets
+
+The deployment's asset directory is located at:
+
+[source]
+--
+grail/assets/oh-my-zsh
+--
+
+A blank example file is provided for [#oh-my-zsh-plugins]#custom plugins#:
+
+- `*plugins/divine/divine.plugin.zsh*`
+
+In case of [#oh-my-zsh-themes]#themes#, a working minimalistic theme is provided (and is defaulted to by the included startup configuration):
+
+- `*themes/laidbare.zsh-theme*`
+
+== Dependencies
+
+*This deployment depends on* `*config-shell*` *deployment* (included in current bundle).
+Shell start-up commands that load and configure oh-my-zsh framework are located in and sourced from:
+
+[source]
+--
+grail/assets/config-shell/.runcoms/00-oh-my-zsh.zsh
+--
+
+The same file may and should be used to customize oh-my-zsh framework's loadout.
+
+== Supported asset modifications
+
+All existing assets may be freely modified in place.
+Modifications will take effect after shell reload.
+Renaming or moving any of the asset files will break their respective functions.
+
+Additional asset files may be freely added, as long as they follow the naming patterns above.
+For the additions to be symlinked into oh-my-zsh directory, the deployment must be (re-)installed.
+
+== Overwriting policy
+
+If during installation of the deployment oh-my-zsh framework is already present at `~/.oh-my-zsh/`, it is re-used.
+
+During installation of the deployment, whenever a symlink is created at a certain path, anything that pre-exists at that location is preserved in the deployment's designated backup directory at:
+
+[source]
+--
+state/backups/oh-my-zsh/
+--
+
+== Deployment removal notes
+
+oh-my-zsh framework is removed by erasing `~/.oh-my-zsh/` directory.
+If pre-existing oh-my-zsh installation has been re-used, it is *not removed*.
+
+Upon uninstallation of the deployment, backups of any overwritten files or directories are automatically restored.
+
+Uninstallation does not remove anything in the asset directory.
+
+:leveloffset!:
+
+:leveloffset: 2
+
+= Deployment `dutils` (`3500`)
+:author: Grove Pyree
+:email: grayarea@protonmail.ch
+:revnumber: 11
+:revdate: 2019.09.03
+:revremark: Add asciidoctor coalescer to pre-process includes
+:doctype: article
+// Visual
+:toc:
+// Subs:
+:hs: #
+:dhs: ##
+:us: _
+:dus: __
+:as: *
+:das: **
+
+This deployment exposes a few of the _Divine.dotfiles_ internal utilities into a directory on `$PATH`.
+
+This deployment has the priority of `*3500*`.
+
+== Deployment installation notes
+
+This deployment creates a surrogate executable for each exposed utility.
+The executable, each time that it is called, sources the actual utility script from the framework's innards.
+
+The deployment tries to put executables into a bunch of common directories, like `~/bin` or `/usr/local/bin`, and settles for the first candidate that exists and is on `$PATH`.
+
+.Map of asset installation for the deployment `dutils`
+[%header,cols="<.^3a,^.^1,<.^3a,<.^3a",stripes=none]
+|===
+
+^.^| Asset
+^.^| Method
+^.^| Destination
+^.^| Asset description
+
+| `~/.divine/lib/utils/*dln.utl.sh*`
+| surrogated
+| `_<$PATH dir>_/*dln*`
+| Symlinking instrument <<dutils-dln,^1^>>
+
+| `~/.divine/lib/utils/*dmv.utl.sh*`
+| surrogated
+| `_<$PATH dir>_/*dmv*`
+| File moving instrument <<dutils-dmv,^2^>>
+
+| `~/.divine/lib/utils/*dreadlink.utl.sh*`
+| surrogated
+| `_<$PATH dir>_/*dreadlink*`
+| Cross-platform implementation of `readlink` <<dutils-dreadlink,^3^>>
+
+|===
+
+== Included assets
+
+The deployment's does not use an asset directory.
+
+The following utilities are exposed, all of which provide info on usage on their help screen (use `--help` option):
+
+- [#dutils-dln]#`*dln*`# — creates a symlink without treating directories specially, while also providing a way to create a backup of whatever might be clobbered by the symlink.
+- [#dutils-dmv]#`*dmv*`# — places a file into a given location without treating directories specially, while also providing a way to create a backup of whatever might be clobbered at destination.
+- [#dutils-dreadlink]#`*dreadlink*`# — a cross-platform implementation of `readlink` that behaves like http://man7.org/linux/man-pages/man1/readlink.1.html[GNU version] on all platforms.
+
+== Dependencies
+
+This deployment is stand-alone.
+
+== Supported asset modifications
+
+This deployment provides no modifiable assets.
+The exposed utilities are updated with the _Divine.dotfiles_ framework itself.
+
+== Overwriting policy
+
+For each utility being exposed, if a command by the same name pre-exists on `$PATH`, that utility is not installed.
+
+== Deployment removal notes
+
+Upon uninstallation of the deployment, the surrogate executables are simply erased.
+
+:leveloffset!:
