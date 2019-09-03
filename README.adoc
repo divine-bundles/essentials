@@ -1,9 +1,9 @@
 = Deployment bundle `essentials`
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revnumber: 12
+:revnumber: 13
 :revdate: 2019.09.03
-:revremark: Match overall description with the fmwk readme
+:revremark: Polish the wording and layout
 :doctype: article
 // Visual
 :toc:
@@ -46,47 +46,39 @@ All of the above is controlled and customized from your <<grail-directory,Grail 
 ----
 
 .Description of asset directories for the bundle `essentials`
-[%noheader,cols="<.<a",stripes=none]
+[%noheader,cols="<.<a,<.<a",stripes=none]
 |===
 
 | `*bash-it*/` *&dagger;*
-
-Custom assets for https://github.com/Bash-it/bash-it[Bash-it] shell framework
+| Custom assets for https://github.com/Bash-it/bash-it[Bash-it] shell framework
 
 | `*brewfile*/` *&dagger;*
-
-https://github.com/Homebrew/homebrew-bundle[Brewfile], maintained on macOS
+| https://github.com/Homebrew/homebrew-bundle[Brewfile], maintained on macOS
 
 | `*config-git*/`
-
-Global configuration for Git
+| Global configuration for Git
 
 | `*config-shell*/`
-
-Startup scripts (https://en.wikipedia.org/wiki/Run_commands[runcoms]) for Bash and Zsh
+| Startup scripts (https://en.wikipedia.org/wiki/Run_commands[runcoms]) for Bash and Zsh
 
 | `*config-vim*/`
-
-Global configuration for Vim
+| Global configuration for Vim
 
 | `*home-dirs*/` *&dagger;*
-
-File `*home-dirs.cfg*` defines a sub-directory tree, to be maintained under the home directory
+| File `*home-dirs.cfg*` defines a sub-directory tree, to be maintained under the home directory
 
 | `*oh-my-zsh*/` *&dagger;*
-
-Custom assets for https://ohmyz.sh[oh-my-zsh] shell framework
+| Custom assets for https://ohmyz.sh[oh-my-zsh] shell framework
 
 | `*portable-bin*/`
-
-Portable container for personal executables; this directory is maintained on the `$PATH`
+| Portable container for personal executables; this directory is maintained on the `$PATH`
 
 |===
 
 [.note]
 [%noheader,cols="<.<a"]
 |===
-| Dagger *&dagger;* mark meaning: in order for the modifications in the asset directory to take effect, the deployment must be (re-)installed.
+| Dagger *&dagger;* mark meaning: in order for the modifications in that asset directory to take effect, the deployment must be (re-)installed.
 |===
 
 Refer to each deployment's section for more information.
@@ -212,9 +204,9 @@ This one contains `chsh` which is required for the deployment `zsh-default`.
 = Deployment `config-git` (`333`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revnumber: 12
+:revnumber: 13
 :revdate: 2019.09.03
-:revremark: Match overall description with the fmwk readme
+:revremark: Polish the wording and layout
 :doctype: article
 // Visual
 :toc:
@@ -307,9 +299,9 @@ Uninstallation does not remove anything in the asset directory.
 = Deployment `config-shell` (`333`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revnumber: 12
+:revnumber: 13
 :revdate: 2019.09.03
-:revremark: Match overall description with the fmwk readme
+:revremark: Polish the wording and layout
 :doctype: article
 // Visual
 :toc:
@@ -495,9 +487,9 @@ Uninstallation does not remove anything in the asset directory.
 = Deployment `config-vim` (`333`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revnumber: 12
+:revnumber: 13
 :revdate: 2019.09.03
-:revremark: Match overall description with the fmwk readme
+:revremark: Polish the wording and layout
 :doctype: article
 // Visual
 :toc:
@@ -631,9 +623,9 @@ Uninstallation does not remove anything in the asset directory.
 = Deployment `portable-bin` (`500`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revnumber: 12
+:revnumber: 13
 :revdate: 2019.09.03
-:revremark: Match overall description with the fmwk readme
+:revremark: Polish the wording and layout
 :doctype: article
 // Visual
 :toc:
@@ -718,9 +710,9 @@ Uninstallation does not remove anything in the asset directory.
 = Deployment `home-dirs` (`500`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revnumber: 12
+:revnumber: 13
 :revdate: 2019.09.03
-:revremark: Match overall description with the fmwk readme
+:revremark: Polish the wording and layout
 :doctype: article
 // Visual
 :toc:
@@ -823,9 +815,9 @@ Uninstallation does not remove anything in the asset directory.
 = Deployment `zsh-default` (`1333`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revnumber: 12
+:revnumber: 13
 :revdate: 2019.09.03
-:revremark: Match overall description with the fmwk readme
+:revremark: Polish the wording and layout
 :doctype: article
 // Visual
 :toc:
@@ -881,9 +873,9 @@ If the default shell has not been changed during the installation, it will not b
 = Deployment `brewfile` (`3000`, `!`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revnumber: 12
+:revnumber: 13
 :revdate: 2019.09.03
-:revremark: Match overall description with the fmwk readme
+:revremark: Polish the wording and layout
 :doctype: article
 // Visual
 :toc:
@@ -980,9 +972,9 @@ Uninstallation does not remove anything in the asset directory.
 = Deployment `bash-it` (`3333`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revnumber: 12
+:revnumber: 13
 :revdate: 2019.09.03
-:revremark: Match overall description with the fmwk readme
+:revremark: Polish the wording and layout
 :doctype: article
 // Visual
 :toc:
@@ -1117,9 +1109,9 @@ Uninstallation does not remove anything in the asset directory.
 = Deployment `oh-my-zsh` (`3333`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revnumber: 12
+:revnumber: 13
 :revdate: 2019.09.03
-:revremark: Match overall description with the fmwk readme
+:revremark: Polish the wording and layout
 :doctype: article
 // Visual
 :toc:
@@ -1236,9 +1228,9 @@ Uninstallation does not remove anything in the asset directory.
 = Deployment `dutils` (`3500`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revnumber: 12
+:revnumber: 13
 :revdate: 2019.09.03
-:revremark: Match overall description with the fmwk readme
+:revremark: Polish the wording and layout
 :doctype: article
 // Visual
 :toc:
