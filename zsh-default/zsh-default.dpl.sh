@@ -1,9 +1,9 @@
 #:title:        Divine deployment: zsh-default
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
-#:revnumber:    21
-#:revdate:      2019.08.30
-#:revremark:    Add READMEs to deployments, and tweak some logic
+#:revnumber:    22
+#:revdate:      2019.09.03
+#:revremark:    Fix inexplicable etc_filled
 #:created_at:   2019.06.30
 
 D_DPL_NAME='zsh-default'
@@ -407,7 +407,7 @@ d_dpl_remove()
   fi
 
   # Attempt to remove $new_shell from /etc/shells
-  if [ "$etc_filled" = yes \
+  if [ "$etc_added" = yes \
     -a -r /etc/shells \
     -a -n "$new_shell" ]
   then
@@ -446,7 +446,7 @@ d_dpl_remove()
   if ! dstash -s has old_shell \
     && ! dstash -s has new_shell \
     && ! dstash -s has chsh_installed \
-    && ! dstash -s has etc_filled
+    && ! dstash -s has etc_added
   then
     dstash -s unset installed
     return 0
