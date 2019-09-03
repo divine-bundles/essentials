@@ -1,9 +1,9 @@
 #:title:        Divine deployment: zsh-default
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
-#:revnumber:    4
+#:revnumber:    5
 #:revdate:      2019.09.03
-#:revremark:    On macOS ask for re-log instead of shell reload
+#:revremark:    Emergency syntax fix
 #:created_at:   2019.06.30
 
 D_DPL_NAME='zsh-default'
@@ -262,10 +262,10 @@ d_dpl_install()
     case $D__OS_FAMILY in
       macos)
         dprint_alert \
-          'Please, re-log into the system to finilize shell change'
+          'Please, re-log into the system to finilize shell change';;
       *)
         dprint_alert \
-          'Please, reload your shell to finilize shell change'
+          'Please, reload your shell to finilize shell change';;
     esac
 
     # Flip stash flags
@@ -357,10 +357,10 @@ d_dpl_remove()
       case $D__OS_FAMILY in
         macos)
           dprint_alert \
-            'Please, re-log into the system to finilize shell change'
+            'Please, re-log into the system to finilize shell change';;
         *)
           dprint_alert \
-            'Please, reload your shell to finilize shell change'
+            'Please, reload your shell to finilize shell change';;
       esac
 
       # Flip stash flags
