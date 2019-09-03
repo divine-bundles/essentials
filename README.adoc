@@ -1,9 +1,9 @@
 = Deployment bundle `essentials`
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revnumber: 11
+:revnumber: 12
 :revdate: 2019.09.03
-:revremark: Add asciidoctor coalescer to pre-process includes
+:revremark: Match overall description with the fmwk readme
 :doctype: article
 // Visual
 :toc:
@@ -29,7 +29,7 @@ It is intended as a useful starting point for any machine that runs https://www.
 
 == Description
 
-Once the bundle is fully installed, and the shell reloaded, the effects are as follows:
+Once the bundle is fully installed, and the shell reloaded, _voilà_:
 
 * You are greeted by https://sourceforge.net/projects/zsh[Zsh] as the default shell.
 * Basic necessities, such as https://git-scm.com[Git], https://www.vim.org[Vim], and https://gnupg.org[GnuPG] are available.
@@ -38,7 +38,7 @@ Once the bundle is fully installed, and the shell reloaded, the effects are as f
 * Opinionated configs are plugged in for Git, Vim, Bash, and Zsh.
 * Overwritten files and installations are safely backed up or re-used.
 
-All of the above is controlled and customized from your Grail directory:
+All of the above is controlled and customized from your <<grail-directory,Grail directory>>:
 
 [source]
 ----
@@ -46,46 +46,40 @@ All of the above is controlled and customized from your Grail directory:
 ----
 
 .Description of asset directories for the bundle `essentials`
-[%header,cols="<.<1,^.<1,<.<3",stripes=none]
+[%noheader,cols="<.<a",stripes=none]
 |===
 
-^.^| Asset directory
-+++<br>+++
-`&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`
-^.^| `&nbsp;`
-^.^| Content description
+| `*bash-it*/` *&dagger;*
 
-| `*bash-it*/`
-| *&dagger;*
-| Custom assets for https://github.com/Bash-it/bash-it[Bash-it] shell framework
+Custom assets for https://github.com/Bash-it/bash-it[Bash-it] shell framework
 
-| `*brewfile*/`
-| *&dagger;*
-| https://github.com/Homebrew/homebrew-bundle[Brewfile], maintained on macOS
+| `*brewfile*/` *&dagger;*
+
+https://github.com/Homebrew/homebrew-bundle[Brewfile], maintained on macOS
 
 | `*config-git*/`
-|
-| Global configuration for Git
+
+Global configuration for Git
 
 | `*config-shell*/`
-|
-| Startup scripts (https://en.wikipedia.org/wiki/Run_commands[runcoms]) for Bash and Zsh
+
+Startup scripts (https://en.wikipedia.org/wiki/Run_commands[runcoms]) for Bash and Zsh
 
 | `*config-vim*/`
-|
-| Global configuration for Vim
 
-| `*home-dirs*/`
-| *&dagger;*
-| File `*home-dirs.cfg*` defines a sub-directory tree, to be maintained under the home directory
+Global configuration for Vim
 
-| `*oh-my-zsh*/`
-| *&dagger;*
-| Custom assets for https://ohmyz.sh[oh-my-zsh] shell framework
+| `*home-dirs*/` *&dagger;*
+
+File `*home-dirs.cfg*` defines a sub-directory tree, to be maintained under the home directory
+
+| `*oh-my-zsh*/` *&dagger;*
+
+Custom assets for https://ohmyz.sh[oh-my-zsh] shell framework
 
 | `*portable-bin*/`
-|
-| Portable container for personal executables; this directory is maintained on the `$PATH`
+
+Portable container for personal executables; this directory is maintained on the `$PATH`
 
 |===
 
@@ -218,9 +212,9 @@ This one contains `chsh` which is required for the deployment `zsh-default`.
 = Deployment `config-git` (`333`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revnumber: 11
+:revnumber: 12
 :revdate: 2019.09.03
-:revremark: Add asciidoctor coalescer to pre-process includes
+:revremark: Match overall description with the fmwk readme
 :doctype: article
 // Visual
 :toc:
@@ -313,9 +307,9 @@ Uninstallation does not remove anything in the asset directory.
 = Deployment `config-shell` (`333`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revnumber: 11
+:revnumber: 12
 :revdate: 2019.09.03
-:revremark: Add asciidoctor coalescer to pre-process includes
+:revremark: Match overall description with the fmwk readme
 :doctype: article
 // Visual
 :toc:
@@ -501,9 +495,9 @@ Uninstallation does not remove anything in the asset directory.
 = Deployment `config-vim` (`333`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revnumber: 11
+:revnumber: 12
 :revdate: 2019.09.03
-:revremark: Add asciidoctor coalescer to pre-process includes
+:revremark: Match overall description with the fmwk readme
 :doctype: article
 // Visual
 :toc:
@@ -637,9 +631,9 @@ Uninstallation does not remove anything in the asset directory.
 = Deployment `portable-bin` (`500`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revnumber: 11
+:revnumber: 12
 :revdate: 2019.09.03
-:revremark: Add asciidoctor coalescer to pre-process includes
+:revremark: Match overall description with the fmwk readme
 :doctype: article
 // Visual
 :toc:
@@ -724,9 +718,9 @@ Uninstallation does not remove anything in the asset directory.
 = Deployment `home-dirs` (`500`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revnumber: 11
+:revnumber: 12
 :revdate: 2019.09.03
-:revremark: Add asciidoctor coalescer to pre-process includes
+:revremark: Match overall description with the fmwk readme
 :doctype: article
 // Visual
 :toc:
@@ -829,9 +823,9 @@ Uninstallation does not remove anything in the asset directory.
 = Deployment `zsh-default` (`1333`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revnumber: 11
+:revnumber: 12
 :revdate: 2019.09.03
-:revremark: Add asciidoctor coalescer to pre-process includes
+:revremark: Match overall description with the fmwk readme
 :doctype: article
 // Visual
 :toc:
@@ -887,9 +881,9 @@ If the default shell has not been changed during the installation, it will not b
 = Deployment `brewfile` (`3000`, `!`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revnumber: 11
+:revnumber: 12
 :revdate: 2019.09.03
-:revremark: Add asciidoctor coalescer to pre-process includes
+:revremark: Match overall description with the fmwk readme
 :doctype: article
 // Visual
 :toc:
@@ -986,9 +980,9 @@ Uninstallation does not remove anything in the asset directory.
 = Deployment `bash-it` (`3333`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revnumber: 11
+:revnumber: 12
 :revdate: 2019.09.03
-:revremark: Add asciidoctor coalescer to pre-process includes
+:revremark: Match overall description with the fmwk readme
 :doctype: article
 // Visual
 :toc:
@@ -1123,9 +1117,9 @@ Uninstallation does not remove anything in the asset directory.
 = Deployment `oh-my-zsh` (`3333`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revnumber: 11
+:revnumber: 12
 :revdate: 2019.09.03
-:revremark: Add asciidoctor coalescer to pre-process includes
+:revremark: Match overall description with the fmwk readme
 :doctype: article
 // Visual
 :toc:
@@ -1242,9 +1236,9 @@ Uninstallation does not remove anything in the asset directory.
 = Deployment `dutils` (`3500`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revnumber: 11
+:revnumber: 12
 :revdate: 2019.09.03
-:revremark: Add asciidoctor coalescer to pre-process includes
+:revremark: Match overall description with the fmwk readme
 :doctype: article
 // Visual
 :toc:
