@@ -1,9 +1,9 @@
 #:title:        Divine deployment: zsh-default
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
-#:revnumber:    22
+#:revnumber:    3
 #:revdate:      2019.09.03
-#:revremark:    Fix inexplicable etc_filled
+#:revremark:    If zsh is default, return installed, not irrelevant
 #:created_at:   2019.06.30
 
 D_DPL_NAME='zsh-default'
@@ -146,7 +146,8 @@ d_dpl_check()
     # Check if current default shell is nevertheless zsh
     [ "$( basename -- "$SHELL" )" = zsh ] && {
       dprint_debug 'Current default shell is already zsh'
-      return 3
+      D_DPL_INSTALLED_BY_USER_OR_OS=true
+      return 1
     }
 
     # Otherwise, return not installed
