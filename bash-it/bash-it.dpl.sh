@@ -1,9 +1,9 @@
 #:title:        Divine deployment: bash-it
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
-#:revnumber:    17
-#:revdate:      2019.08.28
-#:revremark:    Rename directories to match dpl names
+#:revnumber:    2
+#:revdate:      2019.09.23
+#:revremark:    Restore double underscore to stash function
 #:created_at:   2019.06.30
 
 D_DPL_NAME='bash-it'
@@ -30,13 +30,13 @@ d_bash_it_assets_remove()   {                       d__link_queue_remove;   }
 d_bash_it_fmwk_check()
 {
   # Rely on stashing
-  dstash ready || return 3
+  d__stash ready || return 3
 
   # Check if framework directory is readable
   if [ -r "$D_BASH_IT_PATH" -a -d "$D_BASH_IT_PATH" ]; then
   
     # Check if there is record of previous installation
-    if dstash -s has fmwk_installed; then
+    if d__stash -s has fmwk_installed; then
       dprint_debug 'Bash-it framework appears to be installed'
       D_DPL_INSTALLED_BY_USER_OR_OS=false
     else
@@ -127,7 +127,7 @@ d_bash_it_fmwk_install()
       # Successfully installed: report and set stash record
       dprint_debug "Cloned and installed Bash-it from: $D_BASH_IT_REPO" \
         -n "to: $D_BASH_IT_PATH"
-      dstash -s set fmwk_installed
+      d__stash -s set fmwk_installed
       return 0
 
     else
@@ -156,7 +156,7 @@ d_bash_it_fmwk_remove()
 
     # Report
     dprint_debug "Already does not exist: $D_BASH_IT_PATH"
-    dstash -s unset fmwk_installed
+    d__stash -s unset fmwk_installed
     return 0
 
   fi
@@ -166,7 +166,7 @@ d_bash_it_fmwk_remove()
     
     # Report, unset stash record, and return
     dprint_debug "Erased Bash-it path at: $D_BASH_IT_PATH"
-    dstash -s unset fmwk_installed
+    d__stash -s unset fmwk_installed
     return 0
 
   else

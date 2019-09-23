@@ -1,9 +1,9 @@
 #:title:        Divine deployment: zsh-default
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
-#:revnumber:    5
-#:revdate:      2019.09.03
-#:revremark:    Emergency syntax fix
+#:revnumber:    6
+#:revdate:      2019.09.23
+#:revremark:    Restore double underscore to stash function
 #:created_at:   2019.06.30
 
 D_DPL_NAME='zsh-default'
@@ -36,7 +36,7 @@ d_dpl_check()
   }
 
   # Rely on stashing
-  dstash ready || return 3
+  d__stash ready || return 3
 
   # Assume that first zsh on the PATH is the one desired
   D_ZSH_PATH="$( type -P zsh 2>/dev/null )"
@@ -54,14 +54,14 @@ d_dpl_check()
   D_GOOD_STASH=true
 
   # Check if there is a stash record of this deployment being installed
-  if dstash -s has installed; then
+  if d__stash -s has installed; then
 
     # Stash record exists: extract parts of it
-    local old_shell="$( dstash -s get old_shell )"
-    local new_shell="$( dstash -s get new_shell )"
-    local chsh_installed="$( dstash -s has chsh_installed \
+    local old_shell="$( d__stash -s get old_shell )"
+    local new_shell="$( d__stash -s get new_shell )"
+    local chsh_installed="$( d__stash -s has chsh_installed \
       && printf yes || printf no )"
-    local etc_added="$( dstash -s has etc_added \
+    local etc_added="$( d__stash -s has etc_added \
       && printf yes || printf no )"
 
     # Print debug summary
@@ -209,7 +209,7 @@ d_dpl_install()
     if [ "${PIPESTATUS[0]}" -eq 0 ]; then
       # Successfully installed: record this to stash
       dprint_debug 'Auto-installed chsh'
-      dstash -s set chsh_installed
+      d__stash -s set chsh_installed
     else
       # Failed to install
       dprint_debug 'chsh is required but not found' \
@@ -242,7 +242,7 @@ d_dpl_install()
 
     # Successfully added: record this to stash
     dprint_debug "Added '$D_ZSH_PATH' to '/etc/shells'"
-    dstash -s set etc_added
+    d__stash -s set etc_added
 
   fi
 
@@ -269,9 +269,9 @@ d_dpl_install()
     esac
 
     # Flip stash flags
-    dstash -s set old_shell "$old_shell"
-    dstash -s set new_shell "$D_ZSH_PATH"
-    dstash -s set installed
+    d__stash -s set old_shell "$old_shell"
+    d__stash -s set new_shell "$D_ZSH_PATH"
+    d__stash -s set installed
 
     # Return success
     return 0
@@ -295,17 +295,17 @@ d_dpl_install()
 d_dpl_remove()
 {
   # Check if there is record of previous installation
-  dstash -s has installed || {
+  d__stash -s has installed || {
     dprint_debug 'No record of previous installation'
     return 2
   }
 
   # Otherwise, undo what can be undone
-  local old_shell="$( dstash -s get old_shell )"
-  local new_shell="$( dstash -s get new_shell )"
-  local chsh_installed="$( dstash -s has chsh_installed \
+  local old_shell="$( d__stash -s get old_shell )"
+  local new_shell="$( d__stash -s get new_shell )"
+  local chsh_installed="$( d__stash -s has chsh_installed \
     && printf yes || printf no )"
-  local etc_added="$( dstash -s has etc_added \
+  local etc_added="$( d__stash -s has etc_added \
     && printf yes || printf no )"
 
   # Attempt to change shell back
@@ -364,9 +364,9 @@ d_dpl_remove()
       esac
 
       # Flip stash flags
-      dstash -s unset new_shell
-      dstash -s unset old_shell
-      # dstash -s unset installed
+      d__stash -s unset new_shell
+      d__stash -s unset old_shell
+      # d__stash -s unset installed
 
     else
 
@@ -407,7 +407,7 @@ d_dpl_remove()
     if [ "${PIPESTATUS[0]}" -eq 0 ]; then
       # Successfully removed
       dprint_debug 'Auto-removed chsh'
-      dstash -s unset chsh_installed
+      d__stash -s unset chsh_installed
     else
       # Failed to remove
       dprint_debug 'Failed to auto-remove chsh'
@@ -456,12 +456,12 @@ d_dpl_remove()
   fi
 
   # Clean up stash and return
-  if ! dstash -s has old_shell \
-    && ! dstash -s has new_shell \
-    && ! dstash -s has chsh_installed \
-    && ! dstash -s has etc_added
+  if ! d__stash -s has old_shell \
+    && ! d__stash -s has new_shell \
+    && ! d__stash -s has chsh_installed \
+    && ! d__stash -s has etc_added
   then
-    dstash -s unset installed
+    d__stash -s unset installed
     return 0
   else
     return 1
