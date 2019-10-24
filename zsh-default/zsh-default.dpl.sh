@@ -2,7 +2,7 @@
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
 #:revdate:      2019.10.24
-#:revremark:    Rewrite for D.d v2
+#:revremark:    Fix syntax error in zsh-default
 #:created_at:   2019.06.30
 
 D_DPL_NAME='zsh-default'
@@ -125,7 +125,7 @@ d_chsh_check()
     && ( $D_ALREADY_ZSH || $D_SHELL_MANUALLY_CHANGED ); then return 3; fi
   if type -P -- chsh &>/dev/null
   then d__stash -s -- has chsh_installed && return 1 || return 7
-  elif d__stash -s -- has chsh_installed && return 6 || return 2; fi
+  else d__stash -s -- has chsh_installed && return 6 || return 2; fi
 }
 
 d_chsh_install()
