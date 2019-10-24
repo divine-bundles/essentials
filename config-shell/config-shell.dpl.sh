@@ -2,7 +2,7 @@
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
 #:revdate:      2019.10.24
-#:revremark:    Rewrite for D.d v2
+#:revremark:    Print into env file instead of stdout
 #:created_at:   2019.06.30
 
 D_DPL_NAME='config-shell'
@@ -72,7 +72,7 @@ d_env_vars_install()
 
   # Now, append the assignments at the bottom
   for ((ii=0;ii<${#D_ENV_VNM[@]};++ii))
-  do printf '%s\n' "export ${D_ENV_VNM[$ii]}='${D_ENV_VVL[$ii]}'"; done
+  do printf '%s\n' "export ${D_ENV_VNM[$ii]}='${D_ENV_VVL[$ii]}'" >>$etm; done
 
   # Move temp file into place
   if mv -f -- $etm "$D_ENV_FLP" &>/dev/null; then return 0
