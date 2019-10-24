@@ -2,7 +2,7 @@
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
 #:revdate:      2019.10.24
-#:revremark:    Fix syntax error in zsh-default
+#:revremark:    Fix syntax error in zsh-default, pt. 2
 #:created_at:   2019.06.30
 
 D_DPL_NAME='zsh-default'
@@ -187,8 +187,8 @@ d_zsh_default_install()
   d__cmd chsh -s "$D_ZSH_PATH" \
     --else-- 'Unable to change default shell' || return 1
   local asr='to finilize default shell change'; case $D__OS_FAMILY in
-    macos)  asr="Please, re-log into the system $asr"
-    *)      asr="Please, reload your shell $asr"
+    macos)  asr="Please, re-log into the system $asr";;
+    *)      asr="Please, reload your shell $asr";;
   esac; D_ADDST_REBOOT+=("$asr")
   local els=( --else-- 'Records will be inconsistent' )
   if [ -n "$D_OLD_SHELL" ]; then
@@ -210,8 +210,8 @@ d_zsh_default_remove()
   d__cmd chsh -s "$D_OLD_SHELL" \
     --else-- 'Unable to revert default shell' || return 1
   local asr='to finilize default shell reversal'; case $D__OS_FAMILY in
-    macos)  asr="Please, re-log into the system $asr"
-    *)      asr="Please, reload your shell $asr"
+    macos)  asr="Please, re-log into the system $asr";;
+    *)      asr="Please, reload your shell $asr";;
   esac; D_ADDST_REBOOT+=("$asr")
   local els=( --else-- 'Records will be inconsistent' ) algd=true
   d__cmd d__stash -s -- unset old_shell "${els[@]}" || algd=false
