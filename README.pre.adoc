@@ -1,9 +1,8 @@
 = Deployment bundle `essentials`
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revnumber: 3
-:revdate: 2019.09.03
-:revremark: Polish the wording and layout
+:revdate: 2019.10.24
+:revremark: Rewrite for D.d v2
 :doctype: article
 // Visual
 :toc:

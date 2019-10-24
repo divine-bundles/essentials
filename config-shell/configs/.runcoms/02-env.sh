@@ -1,9 +1,8 @@
 #:title:        Divine shared runcom: 02-env
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
-#:revnumber:    2
-#:revdate:      2019.08.30
-#:revremark:    Add READMEs to deployments, and tweak some logic
+#:revdate:      2019.10.24
+#:revremark:    Rewrite for D.d v2
 #:created_at:   2019.04.09
 
 ## Universal shell environment variables. Must use compatible syntax.

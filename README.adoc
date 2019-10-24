@@ -1,9 +1,8 @@
 = Deployment bundle `essentials`
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revnumber: 13
-:revdate: 2019.09.03
-:revremark: Polish the wording and layout
+:revdate: 2019.10.24
+:revremark: Rewrite for D.d v2
 :doctype: article
 // Visual
 :toc:
@@ -204,9 +203,8 @@ This one contains `chsh` which is required for the deployment `zsh-default`.
 = Deployment `config-git` (`333`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revnumber: 13
-:revdate: 2019.09.03
-:revremark: Polish the wording and layout
+:revdate: 2019.10.24
+:revremark: Rewrite for D.d v2
 :doctype: article
 // Visual
 :toc:
@@ -299,9 +297,8 @@ Uninstallation does not remove anything in the asset directory.
 = Deployment `config-shell` (`333`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revnumber: 13
-:revdate: 2019.09.03
-:revremark: Polish the wording and layout
+:revdate: 2019.10.24
+:revremark: Rewrite for D.d v2
 :doctype: article
 // Visual
 :toc:
@@ -487,9 +484,8 @@ Uninstallation does not remove anything in the asset directory.
 = Deployment `config-vim` (`333`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revnumber: 13
-:revdate: 2019.09.03
-:revremark: Polish the wording and layout
+:revdate: 2019.10.24
+:revremark: Rewrite for D.d v2
 :doctype: article
 // Visual
 :toc:
@@ -623,9 +619,8 @@ Uninstallation does not remove anything in the asset directory.
 = Deployment `portable-bin` (`500`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revnumber: 13
-:revdate: 2019.09.03
-:revremark: Polish the wording and layout
+:revdate: 2019.10.24
+:revremark: Rewrite for D.d v2
 :doctype: article
 // Visual
 :toc:
@@ -710,9 +705,8 @@ Uninstallation does not remove anything in the asset directory.
 = Deployment `home-dirs` (`500`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revnumber: 13
-:revdate: 2019.09.03
-:revremark: Polish the wording and layout
+:revdate: 2019.10.24
+:revremark: Rewrite for D.d v2
 :doctype: article
 // Visual
 :toc:
@@ -815,9 +809,8 @@ Uninstallation does not remove anything in the asset directory.
 = Deployment `zsh-default` (`1333`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revnumber: 13
-:revdate: 2019.09.03
-:revremark: Polish the wording and layout
+:revdate: 2019.10.24
+:revremark: Rewrite for D.d v2
 :doctype: article
 // Visual
 :toc:
@@ -873,9 +866,8 @@ If the default shell has not been changed during the installation, it will not b
 = Deployment `brewfile` (`3000`, `!`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revnumber: 13
-:revdate: 2019.09.03
-:revremark: Polish the wording and layout
+:revdate: 2019.10.24
+:revremark: Rewrite for D.d v2
 :doctype: article
 // Visual
 :toc:
@@ -972,9 +964,8 @@ Uninstallation does not remove anything in the asset directory.
 = Deployment `bash-it` (`3333`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revnumber: 13
-:revdate: 2019.09.03
-:revremark: Polish the wording and layout
+:revdate: 2019.10.24
+:revremark: Rewrite for D.d v2
 :doctype: article
 // Visual
 :toc:
@@ -1109,9 +1100,8 @@ Uninstallation does not remove anything in the asset directory.
 = Deployment `oh-my-zsh` (`3333`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revnumber: 13
-:revdate: 2019.09.03
-:revremark: Polish the wording and layout
+:revdate: 2019.10.24
+:revremark: Rewrite for D.d v2
 :doctype: article
 // Visual
 :toc:
@@ -1228,9 +1218,8 @@ Uninstallation does not remove anything in the asset directory.
 = Deployment `dutils` (`3500`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revnumber: 13
-:revdate: 2019.09.03
-:revremark: Polish the wording and layout
+:revdate: 2019.10.24
+:revremark: Rewrite for D.d v2
 :doctype: article
 // Visual
 :toc:

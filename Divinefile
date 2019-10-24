@@ -1,9 +1,8 @@
 #:title:        Divine deployment: Divinefile
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
-#:revnumber:    7
-#:revdate:      2019.08.22
-#:revremark:    Don't install downloaders on macOS
+#:revdate:      2019.10.24
+#:revremark:    Rewrite for D.d v2
 #:created_at:   2019.06.30
 
 (os: all)

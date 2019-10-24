@@ -1,9 +1,8 @@
 #:title:        Divine deployment: home-dirs
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
-#:revnumber:    14
-#:revdate:      2019.08.19
-#:revremark:    d_queue_item_is_intalled -> d_queue_item_check
+#:revdate:      2019.10.24
+#:revremark:    Rewrite for D.d v2
 #:created_at:   2019.06.30
 
 D_DPL_NAME='home-dirs'
@@ -12,138 +11,51 @@ D_DPL_PRIORITY=500
 D_DPL_FLAGS=
 D_DPL_WARNING=
 
-# Where to grab main queue file
 D_DPL_QUE_PATH="$D__DPL_ASSET_DIR/home-dirs.cfg"
 
 d_dpl_check()    { d__queue_check;    }
 d_dpl_install()  { d__queue_install;  }
 d_dpl_remove()   { d__queue_remove;   }
 
-## Exit codes and their meaning:
-#.  0 - Unknown
-#.  1 - Installed
-#.  2 - Not installed
-#.  3 - Invalid
 d_queue_item_check()
 {
-  # Compose directory path
-  local dir="$HOME/$D__QUEUE_ITEM_TITLE"
-
-  # Check if directory exists
-  if [ -d "$dir" ]; then
-
-    # Directory exists
-
-    # Check if in removal routine
-    if [ "$D__REQ_ROUTINE" = remove ]; then
-
-      # Check if directory contains anything
-      if [ -n "$( ls -A -- "$dir" )" ]; then
-
-        # Set up another user prompt
-        D_DPL_NEEDS_ANOTHER_PROMPT=true
-        D_DPL_NEEDS_ANOTHER_WARNING='At least one of the dirs is not empty'
-
-      fi
-
+  # Compose directory path; perform check
+  local hdr="$HOME/$D__ITEM_NAME"
+  if [ -d "$hdr" ]; then
+    if [ "$D__REQ_ROUTINE" = remove -a -n "$( ls -Aq -- "$hdr" 2>/dev/null )" ]
+    then
+      D_ADDST_PROMPT=true
+      D_ADDST_WARNING+=("Directory not empty: $D__ITEM_NAME")
     fi
-
-    # Return appropriate status
     return 1
-
-  else
-
-    # Not a directory: report and return mindful of path's existence
-    if [ -e "$dir" ]; then
-      dprint_debug "Not a directory: $dir"
-      return 3
-    else
-      return 2
-    fi
-
-  fi
+  elif [ -e "$hdr" ]; then
+    if [ "$D__REQ_ROUTINE" = remove ]; then D_ADDST_PROMPT=true; fi
+    D_ADDST_ATTENTION+=("Existing non-directory: $hdr")
+    return 3
+  else return 2; fi
 }
 
-## Exit codes and their meaning:
-#.  0 - Successfully installed
-#.  1 - Failed to install
-#.  2 - Invalid item
-#.  3 - Success: stop any further installations
-#.  4 - Failure: stop any further installations
 d_queue_item_install()
 {
-  # Compose directory path
-  local dir="$HOME/$D__QUEUE_ITEM_TITLE"
-
-  # Make directory and check result
-  if mkdir -p -m 0700 -- "$dir" &>/dev/null; then
-
-    # Return success
-    return 0
-
-  else
-
-    # Report and return failure
-    dprint_debug "Failed to create directory at: $dir"
-    return 1
-
-  fi
+  # Compose directory path; make directory
+  local hdr="$HOME/$D__QUEUE_ITEM_TITLE"
+  if mkdir -p -m 0700 -- "$hdr" &>/dev/null; then return 0
+  else d__notify -lx -- "Failed to create directory: $hdr"; return 1; fi
 }
 
-## Exit codes and their meaning:
-#.  0 - Successfully removed
-#.  1 - Failed to remove
-#.  2 - Invalid item
-#.  3 - Success: stop any further removals
-#.  4 - Failure: stop any further removals
 d_queue_item_remove()
 {
-  # Compose directory path
-  local dir="$HOME/$D__QUEUE_ITEM_TITLE"
-
-  # Check if directory is already non-existent
-  if ! [ -e "$dir" ]; then
-    # Already removed: report success
-    dprint_skip 'Already removed      :' "$dir"
-    return 0
-  fi
-
-  # Check if directory is empty
-  if [ -n "$( ls -A -- "$dir" )" ]; then
-
-    # Directory is not empty: prompt for directory removal
-    dprompt -b --color "$RED" --prompt 'Erase?' --or-quit -- \
-      "This will ${BOLD}completely erase${NORMAL} non-empty directory at:" \
-      -i "${BOLD}${RED}${REVERSE} ${dir} ${NORMAL}"
-
-  else
-
-    # Directory is empty: remove without asking
-    :
-
-  fi
-
-  # Check user's answer
+  # Compose directory path; check if already non-existent
+  local hdr="$HOME/$D__QUEUE_ITEM_TITLE"; [ -e "$hdr" ] || return 0
+  # If not empty, prompt, otherwise remove silently
+  if [ -n "$( ls -Aq -- "$hdr" 2>/dev/null )" ]
+  then d__prompt -xqp 'Erase?' -- \
+    "This will ${BOLD}completely erase$NORMAL non-empty directory at:" \
+    -i- "$BOLD$RED$REVERSE $hdr $NORMAL"
+  else true; fi
   case $? in
-    0)  # Remove directory
-        if rm -rf -- "$dir"; then
-          dprint_success 'Successfully removed :' "$dir"
-          return 0
-        else
-          dprint_failure 'Failed to remove     :' "$dir"
-          return 1
-        fi
-        ;;
-    1)  # Skip removing directory
-        dprint_skip 'Skipped removing     :' "$dir"
-        return 1
-        ;;
-    2)  # Stop entire process
-        dprint_skip 'Aborting removal of directories'
-        return 4
-        ;;
-    *)  # Invalid code
-        return 2
-        ;;
+    0)  if rm -rf -- "$hdr" &>/dev/null; then return 0; else return 1; fi;;
+    1)  return 2;;
+    2)  D_ADDST_QUEUE_HALT=true; return 2;;
   esac
 }

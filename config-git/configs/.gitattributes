@@ -1,9 +1,8 @@
 #:title:        Divine asset sample: .gitattributes
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
-#:revnumber:    2
-#:revdate:      2019.07.22
-#:revremark:    New revisioning system
+#:revdate:      2019.10.24
+#:revremark:    Rewrite for D.d v2
 #:created_at:   2019.04.11
 
 * text=auto

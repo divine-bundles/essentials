@@ -1,9 +1,8 @@
 #:title:        Divine shared runcom: 04-aliases
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
-#:revnumber:    6
-#:revdate:      2019.08.28
-#:revremark:    Update to new queue API
+#:revdate:      2019.10.24
+#:revremark:    Rewrite for D.d v2
 #:created_at:   2019.04.09
 
 ## Universal shell utility aliases. Must use compatible syntax.

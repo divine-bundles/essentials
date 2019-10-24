@@ -1,7 +1,6 @@
 ":title:        Divine asset sample: .vim/keymap/shifted.vim
 ":author:       Grove Pyree
 ":email:        grayarea@protonmail.ch
-":revnumber:    1.0.0-RELEASE
 ":revdate:      2019.06.30
 ":revremark:    Release version
 ":created_at:   2019.04.11

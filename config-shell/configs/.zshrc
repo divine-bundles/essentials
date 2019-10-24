@@ -1,9 +1,8 @@
 #:title:        Divine runcom: .zshrc
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
-#:revnumber:    5
-#:revdate:      2019.08.28
-#:revremark:    Update to new queue API
+#:revdate:      2019.10.24
+#:revremark:    Rewrite for D.d v2
 #:created_at:   2019.04.05
 
 ## Startup file for interactive zsh shells

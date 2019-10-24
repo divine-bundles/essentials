@@ -1,9 +1,8 @@
 #:title:        Divine deployment: config-shell
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
-#:revnumber:    18
-#:revdate:      2019.08.28
-#:revremark:    Update to new queue API
+#:revdate:      2019.10.24
+#:revremark:    Rewrite for D.d v2
 #:created_at:   2019.06.30
 
 D_DPL_NAME='config-shell'
@@ -13,420 +12,97 @@ D_DPL_FLAGS=
 D_DPL_WARNING=
 
 D_DPL_TARGET_DIR="$HOME"
+D_ENV_FLP="$HOME/.env.sh"
+D_ENV_VNM=( 'D__OS_FAMILY' 'D__OS_DISTRO' 'D__OS_PKGMGR' )
+D_ENV_VVL=( "$D__OS_FAMILY" "$D__OS_DISTRO" "$D__OS_PKGMGR" )
 
-D_ENV_FILEPATH="$HOME/.env.sh"
+d_dpl_check()   { assemble_tasks; d__mltsk_check;   }
+d_dpl_install() {                 d__mltsk_install; }
+d_dpl_remove()  {                 d__mltsk_remove;  }
 
-# Delegate to built-in helpers
-d_dpl_check()   { assemble_tasks; d__multitask_check;   }
-d_dpl_install() {                 d__multitask_install; }
-d_dpl_remove()  {                 d__multitask_remove;  }
+assemble_tasks() { D_MLTSK_MAIN=( 'runcoms' 'blanks' 'env_vars' ); }
 
-# Assemble multitask names
-assemble_tasks() { D_MULTITASK_NAMES=( runcoms blanks env_vars ); }
-
-# Implement primaries for runcoms
 d_runcoms_check()   { d__link_queue_check;    }
 d_runcoms_install() { d__link_queue_install;  }
 d_runcoms_remove()  { d__link_queue_remove;   }
 
-# Implement primaries for blanks
 d_blanks_check()    { d__copy_queue_check;    }
 d_blanks_install()  { d__copy_queue_install;  }
 d_blanks_remove()   { d__copy_queue_remove;   }
 
-#
-# Implement primaries for env_vars
-#
-
-# Implement checking of whether env file is properly populated
 d_env_vars_check()
 {
-  # Check if env file exists
-  if [ -f "$D_ENV_FILEPATH" ]; then
+  # Check if env file exists; init storate variables
+  if [ -f "$D_ENV_FLP" ]
+  then d__notify -nq -- "Reading env file: $D_ENV_FLP"
+  else d__notify -nq -- "Missing env file: $D_ENV_FLP"; return 2; fi
+  local cnm=0 vnm vvl ii
 
-    # Announce
-    dprint_debug -n 'Checking content of ~/.env.sh'
-
-  else
-
-    # No env file: announce and return not installed
-    dprint_debug -n 'Not an existing file: ~/.env.sh'
-    return 2
-
-  fi
-
-  # Status variable (a total of 3 chunks must be installed)
-  local num_of_chunks_installed=0
-
-  # Check if OS_FAMILY line is present in temp file
-  if grep -q "^[[:space:]]*export D__OS_FAMILY='$D__OS_FAMILY'" \
-    "$D_ENV_FILEPATH" 2>/dev/null
-  then
-
-    # Chunk 1: OS_FAMILY line
-
-    # Announce status and increment counter
-    dprint_debug 'Installed        : D__OS_FAMILY variable definition'
-    (( ++num_of_chunks_installed ))
-
-  else
-
-    # Announce status
-    dprint_debug 'Not installed    : D__OS_FAMILY variable definition'
-
-  fi
-
-  # Check if OS_DISTRO line is present in temp file
-  if grep -q "^[[:space:]]*export D__OS_DISTRO='$D__OS_DISTRO'" \
-    "$D_ENV_FILEPATH" 2>/dev/null
-  then
-
-    # Chunk 2: OS_DISTRO line
-
-    # Announce status and increment counter
-    dprint_debug 'Installed        : D__OS_DISTRO variable definition'
-    (( ++num_of_chunks_installed ))
-
-  else
-
-    # Announce status
-    dprint_debug 'Not installed    : D__OS_DISTRO variable definition'
-
-  fi
-
-  # Check if OS_PKGMGR line is present in temp file
-  if grep -q "^[[:space:]]*export D__OS_PKGMGR='$D__OS_PKGMGR'" \
-    "$D_ENV_FILEPATH" 2>/dev/null
-  then
-
-    # Chunk 3: OS_PKGMGR line
-
-    # Announce status and increment counter
-    dprint_debug 'Installed        : D__OS_PKGMGR variable definition'
-    (( ++num_of_chunks_installed ))
-
-  else
-
-    # Announce status
-    dprint_debug 'Not installed    : D__OS_PKGMGR variable definition'
-
-  fi
+  # Check each variable presence in env file
+  for ((ii=0;ii<${#D_ENV_VNM[@]};++ii)); do
+    vnm="${D_ENV_VNM[$ii]}" vvl="${D_ENV_VVL[$ii]}"
+    if grep -q "^[[:space:]]*export $vnm='$vvl'" "$D_ENV_FLP" 2>/dev/null
+    then ((++cnm))
+      d__notify -q -- "Installed        : $vnm variable definition"
+    else
+      d__notify -q -- "Not installed    : $vnm variable definition"
+    fi
+  done
 
   # Report based on number of chunks installed
-  if [ $num_of_chunks_installed -eq 0 ]; then
-    
-    # Return not installed
-    return 2
-
-  elif [ $num_of_chunks_installed -ge 3 ]; then
-
-    # Return fully installed
-    return 1
-  
-  else
-
-    # Return partly installed
-    return 4
-
-  fi
+  if (($cnm)); then [ $cnm -eq 3 ] && return 1 || return 4; else return 2; fi
 }
 
-# Implement populating env file
 d_env_vars_install()
 {
-  # Announce start
-  dprint_debug -n 'Installing ~/.env.sh file'
+  # Announce start; init storage variables
+  d__notify -nq -- "Installing env file: $D_ENV_FLP"
+  local ii etm="$(mktemp)" lbf
 
-  # Storage variables
-  local copy_filepath=$( mktemp ) sed_cmd sed_cmds=() all_good=true
-  local temp_filepath
-  
-  # Dump current env file content into a temp file
-  cat "$D_ENV_FILEPATH" >$copy_filepath 2>/dev/null
+  # Copy env file, but without possibly previously installed lines
+  while read -r lbf; do
+    if [[ $lbf = 'export D__OS_'* ]]; then
+      for ((ii=0;ii<${#D_ENV_VNM[@]};++ii)); do
+        [ "$lbf" = "export ${D_ENV_VNM[$ii]}='${D_ENV_VVL[$ii]}'" ] \
+          && continue 2
+      done
+    fi
+    printf '%s\n' "$lbf"
+  done <"$D_ENV_FLP" >$etm
 
-  # Check if OS_FAMILY line is present in temp file
-  if grep -q '^[[:space:]]*export D__OS_FAMILY=' $copy_filepath 2>/dev/null
-  then
+  # Now, append the assignments at the bottom
+  for ((ii=0;ii<${#D_ENV_VNM[@]};++ii))
+  do printf '%s\n' "export ${D_ENV_VNM[$ii]}='${D_ENV_VVL[$ii]}'"; done
 
-    # At least one line is present: save sed command for future correction
-    sed_cmd='s/^([[:space:]]*)export D__OS_FAMILY=.*$/'
-    sed_cmd+="\\1export D__OS_FAMILY='$D__OS_FAMILY'/"
-    sed_cmds+=( -e "$sed_cmd" )
-
-    # Announce status
-    dprint_debug 'Will modify      : D__OS_FAMILY variable definition'
-
+  # Move temp file into place
+  if mv -f -- $etm "$D_ENV_FLP" &>/dev/null; then return 0
   else
-
-    # Line not present: append it to the bottom of temp file
-    if printf "export D__OS_FAMILY='%s'\n" "$D__OS_FAMILY" >>"$copy_filepath"
-    then
-
-      # Announce status
-      dprint_debug 'Appended         : D__OS_FAMILY variable definition'
-
-    else
-
-      # Announce and mark failure
-      dprint_debug 'Failed to append : D__OS_FAMILY variable definition'
-      all_good=false
-
-    fi
-
-  fi
-
-  # Check if OS_DISTRO line is present in temp file
-  if grep -q '^[[:space:]]*export D__OS_DISTRO=' $copy_filepath 2>/dev/null
-  then
-
-    # At least one line is present: save sed command for future correction
-    sed_cmd='s/^([[:space:]]*)export D__OS_DISTRO=.*$/'
-    sed_cmd+="\\1export D__OS_DISTRO='$D__OS_DISTRO'/"
-    sed_cmds+=( -e "$sed_cmd" )
-
-    # Announce status
-    dprint_debug 'Will modify      : D__OS_DISTRO variable definition'
-
-  else
-
-    # Line not present: append it to the bottom of temp file
-    if printf "export D__OS_DISTRO='%s'\n" "$D__OS_DISTRO" >>"$copy_filepath"
-    then
-
-      # Announce status
-      dprint_debug 'Appended         : D__OS_DISTRO variable definition'
-
-    else
-
-      # Announce and mark failure
-      dprint_debug 'Failed to append : D__OS_DISTRO variable definition'
-      all_good=false
-
-    fi
-
-  fi
-
-  # Check if OS_PKGMGR line is present in temp file
-  if grep -q '^[[:space:]]*export D__OS_PKGMGR=' $copy_filepath 2>/dev/null
-  then
-
-    # At least one line is present: save sed command for future correction
-    sed_cmd='s/^([[:space:]]*)export D__OS_PKGMGR=.*$/'
-    sed_cmd+="\\1export D__OS_PKGMGR='$D__OS_PKGMGR'/"
-    sed_cmds+=( -e "$sed_cmd" )
-
-    # Announce status
-    dprint_debug 'Will modify      : D__OS_PKGMGR variable definition'
-
-  else
-
-    # Line not present: append it to the bottom of temp file
-    if printf "export D__OS_PKGMGR='%s'\n" "$D__OS_PKGMGR" >>"$copy_filepath"
-    then
-
-      # Announce status
-      dprint_debug 'Appended         : D__OS_PKGMGR variable definition'
-
-    else
-
-      # Announce and mark failure
-      dprint_debug 'Failed to append : D__OS_PKGMGR variable definition'
-      all_good=false
-
-    fi
-
-  fi
-
-  # If any sed commands must be carried out, do so
-  if [ ${#sed_cmds[@]} -gt 0 ]; then
-
-    # Make temporary file
-    temp_filepath=$( mktemp )
-
-    # Fork depending of version of sed available
-    if sed -r <<<'' &>/dev/null; then
-      sed -r "${sed_cmds[@]}" $copy_filepath >$temp_filepath
-    else
-      sed -E "${sed_cmds[@]}" $copy_filepath >$temp_filepath
-    fi
-
-    # Check status
-    if [ $? -eq 0 ] && mv -f -- $temp_filepath $copy_filepath; then
-
-      # Announce status
-      dprint_debug 'Modified         : Pre-existing variable definitions'
-
-    else
-
-      # Expunge temp file
-      rm -f -- $temp_filepath
-    
-      # Announce and mark failure
-      dprint_debug 'Failed to modify : Pre-existing variable definitions'
-      all_good=false
-    
-    fi
-
-  fi
-
-  # Check if there were errors
-  if ! $all_good; then
-
-    # Failed to properly modify temp file
-
-    # Expunge temp file
-    rm -f -- $copy_filepath
-
-    # Report and return error
-    dprint_debug "Failed to modify temporary copy of ~/.env.sh file"
-    return 1
-
-  fi
-
-  # Move modified temporary file into place
-  if mv -f -- $copy_filepath "$D_ENV_FILEPATH"; then
-
-    # All good: return success
-    return 0
-
-  else
-
-    # Expunge temp file
-    rm -f -- $copy_filepath
-
-    # Failed to move: report and return error
-    dprint_debug "Failed to move ~/.env.sh file into place"
-    return 1
-  
+    d__notify -lx -- "Failed to move temp file into place: $D_ENV_FLP"
+    rm -f -- $etm; return 1
   fi
 }
 
-# Implement removing env file
 d_env_vars_remove()
 {
-  # Check if env file exists
-  if [ -f "$D_ENV_FILEPATH" ]; then
+  # Announce start; init storage variables
+  d__notify -nq -- "Cleaning env file: $D_ENV_FLP"
+  local ii etm="$(mktemp)" lbf
 
-    # Announce
-    dprint_debug -n 'Cleaning content of ~/.env.sh'
-
-  else
-
-    # No env file: announce and return success
-    dprint_debug -n 'Nothing to remove: ~/.env.sh is not an existing file'
-    return 0
-
-  fi
-
-  # Storage variables
-  local copy_filepath=$( mktemp ) sed_cmd sed_cmds=() all_good=true
-  local temp_filepath
-  
-  # Dump current env file content into a temp file
-  cat "$D_ENV_FILEPATH" >$copy_filepath 2>/dev/null
-
-  # Check if OS_FAMILY line is present in temp file
-  if grep -q '^[[:space:]]*export D__OS_FAMILY=' $copy_filepath 2>/dev/null
-  then
-
-    # At least one line is present: save sed command for future correction
-    sed_cmd='s/^([[:space:]]*)export D__OS_FAMILY=.*$/'
-    sed_cmd+="\\1export D__OS_FAMILY=/"
-    sed_cmds+=( -e "$sed_cmd" )
-
-    # Announce status
-    dprint_debug 'Will modify      : D__OS_FAMILY variable definition'
-
-  fi
-
-  # Check if OS_DISTRO line is present in temp file
-  if grep -q '^[[:space:]]*export D__OS_DISTRO=' $copy_filepath 2>/dev/null
-  then
-
-    # At least one line is present: save sed command for future correction
-    sed_cmd='s/^([[:space:]]*)export D__OS_DISTRO=.*$/'
-    sed_cmd+="\\1export D__OS_DISTRO=/"
-    sed_cmds+=( -e "$sed_cmd" )
-
-    # Announce status
-    dprint_debug 'Will modify      : D__OS_DISTRO variable definition'
-
-  fi
-
-  # Check if OS_PKGMGR line is present in temp file
-  if grep -q '^[[:space:]]*export D__OS_PKGMGR=' $copy_filepath 2>/dev/null
-  then
-
-    # At least one line is present: save sed command for future correction
-    sed_cmd='s/^([[:space:]]*)export D__OS_PKGMGR=.*$/'
-    sed_cmd+="\\1export D__OS_PKGMGR=/"
-    sed_cmds+=( -e "$sed_cmd" )
-
-    # Announce status
-    dprint_debug 'Will modify      : D__OS_PKGMGR variable definition'
-
-  fi
-
-  # If any sed commands must be carried out, do so
-  if [ ${#sed_cmds[@]} -gt 0 ]; then
-
-    # Make temporary file
-    temp_filepath=$( mktemp )
-
-    # Fork depending of version of sed available
-    if sed -r <<<'' &>/dev/null; then
-      sed -r "${sed_cmds[@]}" $copy_filepath >$temp_filepath
-    else
-      sed -E "${sed_cmds[@]}" $copy_filepath >$temp_filepath
+  # Copy env file, but without possibly previously installed lines
+  while read -r lbf; do
+    if [[ $lbf = 'export D__OS_'* ]]; then
+      for ((ii=0;ii<${#D_ENV_VNM[@]};++ii)); do
+        [ "$lbf" = "export ${D_ENV_VNM[$ii]}='${D_ENV_VVL[$ii]}'" ] \
+          && continue 2
+      done
     fi
+    printf '%s\n' "$lbf"
+  done <"$D_ENV_FLP" >$etm
 
-    # Check status
-    if [ $? -eq 0 ] && mv -f -- $temp_filepath $copy_filepath; then
-
-      # Announce status
-      dprint_debug 'Cleared          : Pre-existing variable definitions'
-
-    else
-
-      # Expunge temp file
-      rm -f -- $temp_filepath
-    
-      # Announce and mark failure
-      dprint_debug 'Failed to clear  : Pre-existing variable definitions'
-      all_good=false
-    
-    fi
-
-  fi
-
-  # Check if there were errors
-  if ! $all_good; then
-
-    # Failed to properly modify temp file
-
-    # Expunge temp file
-    rm -f -- $copy_filepath
-
-    # Report and return error
-    dprint_debug "Failed to modify temporary copy of ~/.env.sh file"
-    return 1
-
-  fi
-
-  # Move modified temporary file into place
-  if mv -f -- $copy_filepath "$D_ENV_FILEPATH"; then
-
-    # All good: return success
-    return 0
-
+  # Move temp file into place
+  if mv -f -- $etm "$D_ENV_FLP" &>/dev/null; then return 0
   else
-
-    # Expunge temp file
-    rm -f -- $copy_filepath
-
-    # Failed to move: report and return error
-    dprint_debug "Failed to move ~/.env.sh file into place"
-    return 1
-  
+    d__notify -lx -- "Failed to move temp file into place: $D_ENV_FLP"
+    rm -f -- $etm; return 1
   fi
 }

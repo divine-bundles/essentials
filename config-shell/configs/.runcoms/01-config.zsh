@@ -1,9 +1,8 @@
 #:title:        Divine zsh runcom: 01-config
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
-#:revnumber:    4
-#:revdate:      2019.08.28
-#:revremark:    Update to new queue API
+#:revdate:      2019.10.24
+#:revremark:    Rewrite for D.d v2
 #:created_at:   2019.04.09
 
 ## zsh shell configuration
@@ -14,13 +13,6 @@
 
 # Enable extended glob
 setopt extended_glob
-
-# Auto-cd with directories of interest
-setopt auto_cd
-
-# These places will always be searched for folders to cd into
-# Separate with space, e.g.: cdpath=($HOME/dir $HOME/src)
-cdpath=($HOME/Developer)
 
 
 ##

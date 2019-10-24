@@ -1,9 +1,8 @@
 #:title:        Divine shared runcom: 05-funcs
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
-#:revnumber:    2
-#:revdate:      2019.09.01
-#:revremark:    Tie readmes together
+#:revdate:      2019.10.24
+#:revremark:    Rewrite for D.d v2
 #:created_at:   2019.04.09
 
 ## Universal shell utility functions. Must use compatible syntax.

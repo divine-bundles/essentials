@@ -1,9 +1,8 @@
 = Deployment `home-dirs` (`500`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revnumber: 4
-:revdate: 2019.09.02
-:revremark: Improve [.note] rendering
+:revdate: 2019.10.24
+:revremark: Rewrite for D.d v2
 :doctype: article
 // Visual
 :toc:

@@ -1,9 +1,8 @@
-#:title:        Divine zsh runcom: 00-frameworks
+#:title:        Divine zsh runcom: 00-oh-my-zsh
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
-#:revnumber:    3
-#:revdate:      2019.08.28
-#:revremark:    Update to new queue API
+#:revdate:      2019.10.24
+#:revremark:    Rewrite for D.d v2
 #:created_at:   2019.04.09
 
 # zsh shell framework initialization
@@ -12,47 +11,39 @@
 ## oh-my-zsh <https://ohmyz.sh>
 ##
 
-## Assumes it is cloned to ~/.oh-my-zsh, and that entry script in its root is 
-#. called oh-my-zsh.sh, which is unlikely to change.
+## Assumes oh-my-zsh is cloned to ~/.oh-my-zsh, and that entry script in its 
+#. root is called oh-my-zsh.sh, which is unlikely to change.
 #
-## Deployment oh-my-zsh.dpl.sh clones oh-my-zsh in that exact fashion.
+## Deployment oh-my-zsh.dpl.sh clones oh-my-zsh in that same fashion.
 #
 
-# Require that entry script is present for the entire configuration
-if [ -f "$HOME/.oh-my-zsh/oh-my-zsh.sh" \
-  -a -r "$HOME/.oh-my-zsh/oh-my-zsh.sh" ]; then
+# Check if oh-my-zsh main script is a readable file
+if [ -f "$HOME/.oh-my-zsh/oh-my-zsh.sh" -a -r "$HOME/.oh-my-zsh/oh-my-zsh.sh" ]
+then
 
-  # Path to oh-my-zsh installation
+  ## oh-my-zsh startup configuration follows within the if-statement. Latest 
+  #. template from the developers of oh-my-zsh can be found at:
+  #.  https://github.com/robbyrussell/oh-my-zsh/blob/master/templates/zshrc.zsh-template
+
+  # Only the (*)-marked commands are required to run oh-my-zsh
+
+  # (*) Path to oh-my-zsh installation
   export ZSH="$HOME/.oh-my-zsh"
 
-  # Display red dots whilst waiting for completion.
-  COMPLETION_WAITING_DOTS=true
+  # Load theme
+  ZSH_THEME=laidbare
 
-  # Disable marking untracked files under VCS as dirty.
-  # This makes repository status check for large repositories much, much faster.
+  # Load plugins
+  plugins=()
+
+  # Disable marking untracked files under VCS as dirty (faster repo checks)
   DISABLE_UNTRACKED_FILES_DIRTY=false
 
-  # Prevent oh-my-zsh from bugging for updates
+  # Prevent oh-my-zsh update prompts
   DISABLE_UPDATE_PROMPT=true
   DISABLE_AUTO_UPDATE=true
 
-  # Clear tab title
-  # DISABLE_AUTO_TITLE="true"
-
-  # List of oh-my-zsh plugins from ~/.oh-my-zsh/plugins/*
-  # Custom plugins added to ~/.oh-my-zsh/custom/plugins/
-  # Format: plugins=(rails git textmate ruby lighthouse)
-  plugins=( \
-    # vi-mode-custom \
-  )
-
-  # oh-my-zsh theme
-  ZSH_THEME=laidbare
-
-  # User name
-  DEFAULT_USER="$( whoami )"
-
-  # Source config
+  # (*) Load oh-my-zsh
   source "$ZSH/oh-my-zsh.sh"
 
 fi

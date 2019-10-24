@@ -1,9 +1,8 @@
 #:title:        Divine deployment: zsh-default
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
-#:revnumber:    6
-#:revdate:      2019.09.23
-#:revremark:    Restore double underscore to stash function
+#:revdate:      2019.10.24
+#:revremark:    Rewrite for D.d v2
 #:created_at:   2019.06.30
 
 D_DPL_NAME='zsh-default'
@@ -12,458 +11,243 @@ D_DPL_PRIORITY=1333
 D_DPL_FLAGS=
 D_DPL_WARNING=
 
-## Ensures zsh is default shell
-#
-## Assumes that first zsh that comes up with command -v is the one desired
-#
-## Stores path to previous default shell in a file in this directory, and uses 
-#. it to restore default shell upon removal of this deployment. If no backup is 
-#. stored, removal does nothing.
+d_dpl_check()   { assemble_tasks; d__mltsk_check;   }
+d_dpl_install() {                 d__mltsk_install; }
+d_dpl_remove()  {                 d__mltsk_remove;  }
 
-## Exit codes and their meaning:
-#.  0 - Unknown
-#.  1 - Installed
-#.  2 - Not installed
-#.  3 - Irrelevant
-#.  4 - Partly installed
-d_dpl_check()
+assemble_tasks() { D_MLTSK_MAIN=( 'etc_new' 'chsh' 'zsh_default' 'etc_old' ); }
+
+d_mltsk_pre_check()
 {
-  # Rely on $SHELL to be populated
-  [ -n "$SHELL" ] || {
-    dprint_debug '$SHELL variable is not populated' \
+  # Cut-off check; status variable
+  d__stash -- ready || return 3; local algd=true
+
+  # Extract and validate $SHELL system variable
+  if ! [ -n "$SHELL" ]; then algd=false
+    d__notify -l! -- '$SHELL variable is not populated' \
       '(it normally holds current default shell)'
-    return 3
-  }
+  fi
+  if [ -x "$SHELL" ]; then
+    d__notify -qq -- "Current default shell detected: $SHELL"
+  else algd=false
+    d__notify -l! -- "Current default shell is not executable: $SHELL"
+  fi
 
-  # Rely on stashing
-  d__stash ready || return 3
-
-  # Assume that first zsh on the PATH is the one desired
+  # Extract and validate path to installed zsh
   D_ZSH_PATH="$( type -P zsh 2>/dev/null )"
-
-  # Rely on zsh to be installed
   if [ -x "$D_ZSH_PATH" ]; then
-    dprint_debug 'Using zsh detected at:' -i "$D_ZSH_PATH"
-  else
-    dprint_debug 'zsh is required but not found' \
-      '(it has to be pre-installed)'
-    return 3
+    d__notify -qq -- "Using zsh at: $D_ZSH_PATH"
+  else algd=false
+    d__notify -l! -- 'Failed to detect zsh (must be pre-installed)'
   fi
 
-  # Global marker about stash status
-  D_GOOD_STASH=true
+  # Extract stash records of possible previous installation
+  if d__stash -s -- has old_shell
+  then D_OLD_SHELL="$( d__stash -s -- get old_shell )"; else D_OLD_SHELL=; fi
+  if d__stash -s -- has new_shell
+  then D_NEW_SHELL="$( d__stash -s -- get new_shell )"; else D_NEW_SHELL=; fi
 
-  # Check if there is a stash record of this deployment being installed
-  if d__stash -s has installed; then
-
-    # Stash record exists: extract parts of it
-    local old_shell="$( d__stash -s get old_shell )"
-    local new_shell="$( d__stash -s get new_shell )"
-    local chsh_installed="$( d__stash -s has chsh_installed \
-      && printf yes || printf no )"
-    local etc_added="$( d__stash -s has etc_added \
-      && printf yes || printf no )"
-
-    # Print debug summary
-    dprint_debug 'Detected record of previous installation:' \
-      -i 'Old shell:' "$old_shell" \
-      -i 'New shell:' "$new_shell" \
-      -i 'chsh installed:' "$chsh_installed" \
-      -i '/etc/shells record added:' "$etc_added"
-
-    # Check if old shell still exists
-    if ! [ -x "$old_shell" ]; then
-      dprint_debug "Previous shell '$old_shell' is currently not installed"
-      D_GOOD_STASH=false
-    fi
-
-    # Check if old shell is still in /etc/shells
-    if ! grep -Fxq "$old_shell" /etc/shells &>/dev/null; then
-      dprint_debug \
-        "Previous shell '$old_shell' is currently not listed in '/etc/shells'"
-      D_GOOD_STASH=false
-    fi
-
-    # Check if detected zsh is the one installed
-    if ! [ "$SHELL" = "$new_shell" ]; then
-      dprint_debug \
-        'Despite record of previously changing default shell' \
-        "to '$new_shell'," \
-        -n "current default shell is '$SHELL'"
-      D_GOOD_STASH=false
-    fi
-
-    # Check if previously installed chsh is still installed
-    if [ "$chsh_installed" = yes ] && ! type -P chsh &>/dev/null; then
-      dprint_debug \
-        "Previously installed 'chsh' is currently not found on \$PATH"
-      D_GOOD_STASH=false
-    fi
-
-    # Check if previously added /etc/shells record is still in place
-    if [ "$etc_added" = yes ] \
-      && ! grep -Fxq "$new_shell" /etc/shells &>/dev/null
-    then
-      dprint_debug \
-        "Line '$new_shell', previously added to '/etc/shells'," \
-        'is currently not found'
-      D_GOOD_STASH=false
-    fi
-
-    # Check if stash is reliable
-    if $D_GOOD_STASH; then
-
-      # Reliable stash, dpl is installed
-      return 1
-
-    else
-
-      # Unreliable stash: announce the fact loudly
-      dprint_alert 'Stash records are inconsistent with current set-up'
-
-      # Check if current default shell is already zsh
-      if [ "$( basename -- "$SHELL" )" = zsh ]; then
-
-        # Current default is still zsh: report and return installed
-        dprint_debug "Current default shell is still zsh ('$SHELL')"
-        return 1
-      
+  # Check consistency of records, set statuses
+  D_ALREADY_ZSH=false D_SHELL_MANUALLY_CHANGED=false
+  if [ -n "$D_OLD_SHELL" ]; then
+    if [ -n "$D_NEW_SHELL" ]; then
+      if [ "$D_OLD_SHELL" = "$D_NEW_SHELL" ]; then algd=false
+        d__notify -lx -- 'Inconsistent records: old and new shells' \
+          "are the same, '$D_OLD_SHELL'"
       else
-
-        # Current default is not zsh: report and return not installed
-        dprint_debug "Current default shell is not zsh ('$SHELL')"
-        return 2
-
+        d__notify -qq -- 'Previously changed default shell:' \
+          "'$D_OLD_SHELL' -> '$D_NEW_SHELL'"
+        $algd && [ "$D_NEW_SHELL" != "$SHELL" ] \
+          && D_SHELL_MANUALLY_CHANGED=true
       fi
-
+    else algd=false
+      d__notify -lx -- 'Inconsistent records:' \
+        "old shell is recorded as '$D_OLD_SHELL', but no record of new shell"
     fi
-
   else
-
-    # No stash record
-    dprint_debug 'No record of previous installation'
-
-    # Check if current default shell is nevertheless zsh
-    [ "$( basename -- "$SHELL" )" = zsh ] && {
-      dprint_debug 'Current default shell is already zsh'
-      D_DPL_INSTALLED_BY_USER_OR_OS=true
-      return 1
-    }
-
-    # Otherwise, return not installed
-    return 2
-
+    if [ -n "$D_NEW_SHELL" ]; then algd=false
+      d__notify -lx -- 'Inconsistent records:' \
+        "no record of old shell, but new shell is recorded as '$D_NEW_SHELL'"
+    else
+      d__notify -qq -- 'No record of previous installation'
+      $algd && [ "$( basename -- "$SHELL" )" = zsh ] && D_ALREADY_ZSH=true
+    fi
   fi
+
+  # Return appropriately
+  $algd && return 0 || return 3
 }
 
-## Exit codes and their meaning:
-#.  0   - Successfully installed
-#.  1   - Failed to install
-#.  2   - Skipped completely
-#.  100 - Reboot needed
-#.  101 - User attention needed
-#.  102 - Critical failure
-d_dpl_install()
+d_etc_new_check()
 {
-  # Rely on chsh to be available
-  if ! type -P chsh &>/dev/null; then
-
-    # If package manager is not detected, there are no options
-    if [ -z ${D__OS_PKGMGR+isset} ]; then
-      dprint_debug 'chsh is required but not found' \
-        '(no way to auto-install)'
-      return 1
-    fi
-
-    # If chsh is not available, offer to install it
-    if ! dprompt --bare --prompt 'Attempt to install?' \
-      --answer "$D__OPT_ANSWER" -- \
-      'Deployment relies on chsh, but it is not found on $PATH' \
-      -n "It may be possible to install it using $D__OS_PKGMGR"
-    then
-      # User declined
-      dprint_debug 'chsh is required but not found' \
-        '(declined to auto-install)'
-      return 1
-    fi
-
-    # Auto-install chsh with verbosity in mind
-    if $D__OPT_QUIET; then
-
-      # Launch quietly
-      d__os_pkgmgr install chsh &>/dev/null
-
-    else
-
-      # Launch normally, but re-paint output
-      local stdout_line
-      d__os_pkgmgr install chsh 2>&1 \
-        | while IFS= read -r stdout_line || [ -n "$stdout_line" ]
-        do
-          printf "${CYAN}==> %s${NORMAL}\n" "$stdout_line"
-        done
-      
-    fi
-
-    # Check return status
-    if [ "${PIPESTATUS[0]}" -eq 0 ]; then
-      # Successfully installed: record this to stash
-      dprint_debug 'Auto-installed chsh'
-      d__stash -s set chsh_installed
-    else
-      # Failed to install
-      dprint_debug 'chsh is required but not found' \
-        '(failed to auto-install)'
-      return 1
-    fi
-
-  fi
-
-  # Check if /etc/shells contains desired zsh
-  if ! grep ^"$D_ZSH_PATH"$ /etc/shells &>/dev/null; then
-
-    # Announce addition
-    dprint_debug "Adding desired shell '$D_ZSH_PATH' to '/etc/shells'"
-
-    # If not, add it (sudo may be required)
-    if [ -w /etc/shells ]; then
-      printf '%s\n' "$D_ZSH_PATH" >>/etc/shells
-    else
-      if ! sudo -n true 2>/dev/null; then
-        dprint_alert 'Modifying /etc/shells requires sudo password'
-      fi
-      sudo tee -a /etc/shells &>/dev/null <<<"$D_ZSH_PATH"
-    fi
-      
-    [ $? -eq 0 ] || {
-      dprint_debug "Failed to add '$D_ZSH_PATH' to '/etc/shells'"
-      return 1
-    }
-
-    # Successfully added: record this to stash
-    dprint_debug "Added '$D_ZSH_PATH' to '/etc/shells'"
-    d__stash -s set etc_added
-
-  fi
-
-  # Record current (old) shell
-  local old_shell="$SHELL"
-
-  # Warn about upcoming password prompt
-  dprint_alert 'Changing default shell requires user password'
-
-  # Now, CHange SHell with chsh
-  if chsh -s "$D_ZSH_PATH"; then
-
-    # Announce success
-    dprint_debug 'Successfully changed default shell to:' -i "$D_ZSH_PATH"
-
-    # Ask user to reload shell
-    case $D__OS_FAMILY in
-      macos)
-        dprint_alert \
-          'Please, re-log into the system to finilize shell change';;
-      *)
-        dprint_alert \
-          'Please, reload your shell to finilize shell change';;
-    esac
-
-    # Flip stash flags
-    d__stash -s set old_shell "$old_shell"
-    d__stash -s set new_shell "$D_ZSH_PATH"
-    d__stash -s set installed
-
-    # Return success
-    return 0
-
-  else
-
-    # Announce and return failure
-    dprint_debug 'Failed to change default shell to:' -i "$D_ZSH_PATH"
-    return 1
-
-  fi
+  # This step makes sense only when (un)installing
+  case $D__REQ_ROUTINE in
+    check)    return 3;;
+    install)  local shp="$D_ZSH_PATH";;
+    remove)   local shp="$D_NEW_SHELL";;
+  esac
+  if grep -Fxq "$shp" /etc/shells &>/dev/null
+  then d__stash -s -- has etc_added "$shp" && return 1 || return 7
+  else d__stash -s -- has etc_added "$shp" && return 6 || return 2; fi
 }
 
-## Exit codes and their meaning:
-#.  0   - Successfully removed
-#.  1   - Failed to remove
-#.  2   - Skipped completely
-#.  100 - Reboot needed
-#.  101 - User attention needed
-#.  102 - Critical failure
-d_dpl_remove()
+d_etc_new_install()
 {
-  # Check if there is record of previous installation
-  d__stash -s has installed || {
-    dprint_debug 'No record of previous installation'
-    return 2
-  }
+  d__context -- notch
+  d__context -- push "Adding shell '$D_ZSH_PATH' to /etc/shells"
+  local cmd=tee; d__require_wfile /etc/shells || cmd='sudo tee'
+  if ! d__cmd --sb-- $cmd -a /etc/shells <<<"$D_ZSH_PATH" \
+    --else-- 'Unable to change default shell'
+  then D_ADDST_MLTSK_HALT=true; return 1; fi
+  d__cmd d__stash -s -- add etc_added "$D_ZSH_PATH" \
+    --else-- 'Records will be inconsistent' && d__context -- lop
+  return 0
+}
 
-  # Otherwise, undo what can be undone
-  local old_shell="$( d__stash -s get old_shell )"
-  local new_shell="$( d__stash -s get new_shell )"
-  local chsh_installed="$( d__stash -s has chsh_installed \
-    && printf yes || printf no )"
-  local etc_added="$( d__stash -s has etc_added \
-    && printf yes || printf no )"
+d_etc_new_remove()
+{
+  d__context -- notch
+  d__context -- push "Removing shell '$D_NEW_SHELL' from /etc/shells"
+  local tmp="$(mktemp)" lbf; while read -r lbf; do
+    [ "$lbf" = "$D_NEW_SHELL" ] || printf '%s\n' "$lbf"
+  done </etc/shells >$tmp
+  local cmd=mv; d__require_wfile /etc/shells || cmd='sudo mv'
+  d__cmd --sb-- $cmd -f $tmp /etc/shells \
+    --else-- 'zsh will remain in /etc/shells' || return 1
+  d__cmd d__stash -s -- unset etc_added "$D_NEW_SHELL" \
+    --else-- 'Records will be inconsistent' && d__context -- lop
+  return 0
+}
 
-  # Attempt to change shell back
-  if [ "$SHELL" != "$old_shell" ] \
-    && type -P chsh &>/dev/null \
-    && [ -x "$old_shell" ]
-  then
+d_chsh_check()
+{
+  if [ "$D__REQ_ROUTINE" = check ] \
+    && ( $D_ALREADY_ZSH || $D_SHELL_MANUALLY_CHANGED ); then return 3; fi
+  if type -P -- chsh &>/dev/null
+  then d__stash -s -- has chsh_installed && return 1 || return 7
+  elif d__stash -s -- has chsh_installed && return 6 || return 2; fi
+}
 
-    local shell_is_ok=true
+d_chsh_install()
+{
+  d__context -- notch; d__context -- push "Auto-installing 'chsh' utility"
+  d__require [ -z "$D__OS_PKGMGR" ] \
+    --else-- 'Unable to auto-install without a supported package manager' \
+    || return 1
+  d__context -- push "Using '$D__OS_PKGMGR'"
+  if ! d__cmd d__os_pkgmgr install chsh \
+    --else-- 'Refusing to proceed with current deployment'
+  then D_ADDST_MLTSK_HALT=true; return 1; fi
+  d__cmd d__stash -s -- set chsh_installed \
+    --else-- 'Deployment will not uninstall properly' && d__context -- lop
+  return 0
+}
 
-    # Check if /etc/shells still contains original shell
-    if ! grep ^"$old_shell"$ /etc/shells &>/dev/null; then
+d_chsh_remove()
+{
+  d__context -- notch; d__context -- push "Auto-removing 'chsh' utility"
+  d__require [ -z "$D__OS_PKGMGR" ] \
+    --else-- 'Unable to auto-remove without a supported package manager' \
+    || return 1
+  d__context -- push "Using '$D__OS_PKGMGR'"
+  d__cmd d__os_pkgmgr remove chsh \
+    --else-- "'chsh' may need to be removed manually" || return 1
+  d__cmd d__stash -s -- set chsh_installed \
+    --else-- 'Deployment will appear partly installed' && d__context -- lop
+  return 0
+}
 
-      # Announce addition
-      dprint_debug "Adding original shell '$old_shell' to '/etc/shells'"
+d_zsh_default_check()
+{
+  # Ensure default shell has not been changed manually
+  if $D_SHELL_MANUALLY_CHANGED; then
+    d__notify -lx -- 'Default shell has been manually changed' \
+      "from '$D_NEW_SHELL' to '$SHELL'"
+    return 6
+  fi
 
-      # If not, add it (sudo may be required)
-      if [ -w /etc/shells ]; then
-        printf '%s\n' "$old_shell" >>/etc/shells
-      else
-        if ! sudo -n true 2>/dev/null; then
-          dprint_alert 'Modifying /etc/shells requires sudo password'
-        fi
-        sudo tee -a /etc/shells &>/dev/null <<<"$old_shell"
+  # Ensure default shell is not already zsh
+  if $D_ALREADY_ZSH; then
+    if [ "$D_ZSH_PATH" = "$SHELL"]; then
+      d__notify -ls -- "Default shell is already zsh: $SHELL"; return 3
+    else
+      d__notify -lv -- "Default shell is already zsh: $SHELL"; return 7
+    fi
+  fi
+
+  # Final verdict
+  if [ -n "$D_NEW_SHELL" ]; then return 1; else return 2; fi
+}
+
+d_zsh_default_install()
+{
+  d__context -- notch; local ols="$SHELL"
+  d__context -- push "Changing default shell from '$SHELL' to '$D_ZSH_PATH'"
+  d__notify -l!h -- 'User password might be required'
+  d__cmd chsh -s "$D_ZSH_PATH" \
+    --else-- 'Unable to change default shell' || return 1
+  local asr='to finilize default shell change'; case $D__OS_FAMILY in
+    macos)  asr="Please, re-log into the system $asr"
+    *)      asr="Please, reload your shell $asr"
+  esac; D_ADDST_REBOOT+=("$asr")
+  local els=( --else-- 'Records will be inconsistent' )
+  if [ -n "$D_OLD_SHELL" ]; then
+    d__cmd d__stash -s -- set new_shell "$D_ZSH_PATH" "${els[@]}" \
+      && d__context -- lop
+  else local algd=true
+    d__cmd d__stash -s -- set old_shell "$ols" "${els[@]}" || algd=false
+    d__cmd d__stash -s -- set new_shell "$D_ZSH_PATH" "${els[@]}" || algd=false
+    $algd && d__context -- lop
+  fi
+  return 0
+}
+
+d_zsh_default_remove()
+{
+  d__context -- notch; d__context -- push 'Reverting default shell from' \
+    "'$D_NEW_SHELL' to '$D_OLD_SHELL'"
+  d__notify -l!h -- 'User password might be required'
+  d__cmd chsh -s "$D_OLD_SHELL" \
+    --else-- 'Unable to revert default shell' || return 1
+  local asr='to finilize default shell reversal'; case $D__OS_FAMILY in
+    macos)  asr="Please, re-log into the system $asr"
+    *)      asr="Please, reload your shell $asr"
+  esac; D_ADDST_REBOOT+=("$asr")
+  local els=( --else-- 'Records will be inconsistent' ) algd=true
+  d__cmd d__stash -s -- unset old_shell "${els[@]}" || algd=false
+  d__cmd d__stash -s -- unset new_shell "${els[@]}" || algd=false
+  $algd && d__context -- lop
+  return 0
+}
+
+d_etc_old_check()
+{
+  # This step makes sense only when reverting to previous default shell
+  case $D__REQ_ROUTINE in
+    check)    return 3;;
+    install)  return 3;;
+    remove)
+      # Ensure old shell is still in existence
+      if ! [ -x "$D_OLD_SHELL" ]; then algd=false
+        d__notify -lx -- "Previous default shell '$D_OLD_SHELL'" \
+          'is currently not an executable'
+        D_ADDST_MLTSK_HALT=true; return 3
       fi
-        
-      if [ $? -eq 0 ]; then
-        dprint_debug "Added original shell '$old_shell' to '/etc/shells'"
-      else
-        dprint_debug \
-          "Failed to add original shell '$old_shell' to '/etc/shells'"
-        shell_is_ok=false
-      fi
+      # Perform actual check
+      if grep -Fxq "$D_OLD_SHELL" /etc/shells &>/dev/null
+      then return 2; else return 1; fi;;
+  esac
+}
 
-    fi
+d_etc_old_install() { :; }
 
-    # Warn about upcoming password prompt
-    if $shell_is_ok; then
-      dprint_alert 'Changing default shell requires user password'
-    fi
-
-    # CHange SHell back to old default
-    if $shell_is_ok && chsh -s "$old_shell"; then
-
-      # Announce success
-      dprint_debug 'Successfully restored default shell to:' -i "$old_shell"
-
-      # Ask user to reload shell
-      case $D__OS_FAMILY in
-        macos)
-          dprint_alert \
-            'Please, re-log into the system to finilize shell change';;
-        *)
-          dprint_alert \
-            'Please, reload your shell to finilize shell change';;
-      esac
-
-      # Flip stash flags
-      d__stash -s unset new_shell
-      d__stash -s unset old_shell
-      # d__stash -s unset installed
-
-    else
-
-      # Announce failure
-      dprint_debug 'Failed to restore default shell to:' -i "$old_shell"
-
-    fi
-  
-  else
-
-    # Reasoning should be apparent from d_dpl_check output
-    dprint_debug 'Skipped restoring original shell'
-
-  fi
-
-  # Attempt to uninstall chsh
-  if [ "$chsh_installed" = yes -a -n "${D__OS_PKGMGR+isset}" ]; then
-
-    # Auto-uninstall chsh with verbosity in mind
-    if $D__OPT_QUIET; then
-
-      # Launch quietly
-      d__os_pkgmgr remove chsh &>/dev/null
-
-    else
-
-      # Launch normally, but re-paint output
-      local stdout_line
-      d__os_pkgmgr remove chsh 2>&1 \
-        | while IFS= read -r stdout_line || [ -n "$stdout_line" ]
-        do
-          printf "${CYAN}==> %s${NORMAL}\n" "$stdout_line"
-        done
-      
-    fi
-
-    # Check return status
-    if [ "${PIPESTATUS[0]}" -eq 0 ]; then
-      # Successfully removed
-      dprint_debug 'Auto-removed chsh'
-      d__stash -s unset chsh_installed
-    else
-      # Failed to remove
-      dprint_debug 'Failed to auto-remove chsh'
-    fi
-
-  else
-
-    dprint_debug 'Skipped restoring original status of chsh'
-
-  fi
-
-  # Attempt to remove $new_shell from /etc/shells
-  if [ "$etc_added" = yes \
-    -a -r /etc/shells \
-    -a -n "$new_shell" ]
-  then
-
-    # Make temporary file
-    local temp="$( mktemp )" line
-
-    # Copy install file to temp, except the line being deleted
-    while read -r line; do
-      [ "$line" = "$new_shell" ] || printf '%s\n' "$line"
-    done </etc/shells >"$temp"
-
-    # Move temp to location of install file (sudo may be required)
-    if [ -w /etc/shells ]; then
-      mv -f -- "$temp" /etc/shells
-    else
-      if ! sudo -n true 2>/dev/null; then
-        dprint_alert 'Modifying /etc/shells requires sudo password'
-      fi
-      sudo mv -f -- "$temp" /etc/shells
-    fi
-
-    if [ $? -eq 0 ]; then
-      dprint_debug "Restored original state of '/etc/shells'"
-    else
-      dprint_debug "Failed to restore original state of '/etc/shells'"
-    fi
-
-  else
-
-    dprint_debug "Skipped restoring original state of '/etc/shells'"
-
-  fi
-
-  # Clean up stash and return
-  if ! d__stash -s has old_shell \
-    && ! d__stash -s has new_shell \
-    && ! d__stash -s has chsh_installed \
-    && ! d__stash -s has etc_added
-  then
-    d__stash -s unset installed
-    return 0
-  else
-    return 1
-  fi
+d_etc_old_remove()
+{
+  d__context -- notch
+  d__context -- push "Restoring old shell '$D_OLD_SHELL' to /etc/shells"
+  local cmd=tee; d__require_wfile /etc/shells || cmd='sudo tee'
+  if ! d__cmd --sb-- $cmd -a /etc/shells <<<"$D_OLD_SHELL" \
+    --else-- 'Unable to change to previous default shell'
+  then D_ADDST_MLTSK_HALT=true; return 1; fi
+  d__context -- lop; return 0
 }

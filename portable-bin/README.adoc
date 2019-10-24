@@ -1,9 +1,8 @@
 = Deployment `portable-bin` (`500`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revnumber: 2
-:revdate: 2019.09.01
-:revremark: Tie readmes together
+:revdate: 2019.10.24
+:revremark: Rewrite for D.d v2
 :doctype: article
 // Visual
 :toc:

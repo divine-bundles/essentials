@@ -1,9 +1,8 @@
 = Deployment `config-vim` (`333`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revnumber: 3
-:revdate: 2019.09.01
-:revremark: Make it clear that empty customization dirs are not included
+:revdate: 2019.10.24
+:revremark: Rewrite for D.d v2
 :doctype: article
 // Visual
 :toc:
