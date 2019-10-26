@@ -1,8 +1,8 @@
 #:title:        Divine deployment: zsh-default
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
-#:revdate:      2019.10.24
-#:revremark:    Fix syntax error in zsh-default, pt. 2
+#:revdate:      2019.10.26
+#:revremark:    Set leader task in zsh-default
 #:created_at:   2019.06.30
 
 D_DPL_NAME='zsh-default'
@@ -15,7 +15,8 @@ d_dpl_check()   { assemble_tasks; d__mltsk_check;   }
 d_dpl_install() {                 d__mltsk_install; }
 d_dpl_remove()  {                 d__mltsk_remove;  }
 
-assemble_tasks() { D_MLTSK_MAIN=( 'etc_new' 'chsh' 'zsh_default' 'etc_old' ); }
+assemble_tasks()
+{ D_MLTSK_MAIN=( 'etc_new' 'chsh' 'zsh_default' 'etc_old' ) D_MLTSK_LEADER=2; }
 
 d_mltsk_pre_check()
 {
