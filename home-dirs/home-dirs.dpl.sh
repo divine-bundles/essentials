@@ -2,7 +2,7 @@
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
 #:revdate:      2019.10.26
-#:revremark:    Fix queue primary names
+#:revremark:    Fix item name vars
 #:created_at:   2019.06.30
 
 D_DPL_NAME='home-dirs'
@@ -38,7 +38,7 @@ d_item_check()
 d_item_install()
 {
   # Compose directory path; make directory
-  local hdr="$HOME/$D__QUEUE_ITEM_TITLE"
+  local hdr="$HOME/$D__ITEM_NAME"
   if mkdir -p -m 0700 -- "$hdr" &>/dev/null; then return 0
   else d__notify -lx -- "Failed to create directory: $hdr"; return 1; fi
 }
@@ -46,7 +46,7 @@ d_item_install()
 d_item_remove()
 {
   # Compose directory path; check if already non-existent
-  local hdr="$HOME/$D__QUEUE_ITEM_TITLE"; [ -e "$hdr" ] || return 0
+  local hdr="$HOME/$D__ITEM_NAME"; [ -e "$hdr" ] || return 0
   # If not empty, prompt, otherwise remove silently
   if [ -n "$( ls -Aq -- "$hdr" 2>/dev/null )" ]
   then d__prompt -xqp 'Erase?' -- \
