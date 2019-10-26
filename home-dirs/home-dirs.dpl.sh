@@ -1,8 +1,8 @@
 #:title:        Divine deployment: home-dirs
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
-#:revdate:      2019.10.24
-#:revremark:    Rewrite for D.d v2
+#:revdate:      2019.10.26
+#:revremark:    Fix queue primary names
 #:created_at:   2019.06.30
 
 D_DPL_NAME='home-dirs'
@@ -17,7 +17,7 @@ d_dpl_check()    { d__queue_check;    }
 d_dpl_install()  { d__queue_install;  }
 d_dpl_remove()   { d__queue_remove;   }
 
-d_queue_item_check()
+d_item_check()
 {
   # Compose directory path; perform check
   local hdr="$HOME/$D__ITEM_NAME"
@@ -35,7 +35,7 @@ d_queue_item_check()
   else return 2; fi
 }
 
-d_queue_item_install()
+d_item_install()
 {
   # Compose directory path; make directory
   local hdr="$HOME/$D__QUEUE_ITEM_TITLE"
@@ -43,7 +43,7 @@ d_queue_item_install()
   else d__notify -lx -- "Failed to create directory: $hdr"; return 1; fi
 }
 
-d_queue_item_remove()
+d_item_remove()
 {
   # Compose directory path; check if already non-existent
   local hdr="$HOME/$D__QUEUE_ITEM_TITLE"; [ -e "$hdr" ] || return 0
