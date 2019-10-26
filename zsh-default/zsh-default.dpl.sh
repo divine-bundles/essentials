@@ -2,7 +2,7 @@
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
 #:revdate:      2019.10.26
-#:revremark:    Set leader task in zsh-default
+#:revremark:    Fix pkgmgr check in chsh installation
 #:created_at:   2019.06.30
 
 D_DPL_NAME='zsh-default'
@@ -132,7 +132,7 @@ d_chsh_check()
 d_chsh_install()
 {
   d__context -- notch; d__context -- push "Auto-installing 'chsh' utility"
-  d__require [ -z "$D__OS_PKGMGR" ] \
+  d__require [ -n "$D__OS_PKGMGR" ] \
     --else-- 'Unable to auto-install without a supported package manager' \
     || return 1
   d__context -- push "Using '$D__OS_PKGMGR'"
