@@ -2,7 +2,7 @@
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
 #:revdate:      2019.10.26
-#:revremark:    Fix post-install logic in OMZ & Bash-it
+#:revremark:    Always return zero from hooks
 #:created_at:   2019.06.30
 
 D_DPL_NAME='bash-it'
@@ -27,7 +27,7 @@ d_bash_it_assets_install()  { d__link_queue_install;  }
 d_bash_it_assets_remove()   { d__link_queue_remove;   }
 
 d_bash_it_fmwk_post_install()
-{ (($D__TASK_INSTALL_CODE)) && D_ADDST_MLTSK_HALT=true; }
+{ (($D__TASK_INSTALL_CODE)) && D_ADDST_MLTSK_HALT=true; return 0; }
 
 assemble_tasks()
 {
