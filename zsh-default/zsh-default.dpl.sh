@@ -1,8 +1,8 @@
 #:title:        Divine deployment: zsh-default
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
-#:revdate:      2019.10.26
-#:revremark:    Fix pkgmgr check in chsh installation
+#:revdate:      2019.10.29
+#:revremark:    Subdue output of zsh-default if no zsh
 #:created_at:   2019.06.30
 
 D_DPL_NAME='zsh-default'
@@ -39,7 +39,7 @@ d_mltsk_pre_check()
   if [ -x "$D_ZSH_PATH" ]; then
     d__notify -qq -- "Using zsh at: $D_ZSH_PATH"
   else algd=false
-    d__notify -l! -- 'Failed to detect zsh (must be pre-installed)'
+    d__notify -ls -- 'zsh not detected (must be pre-installed)'
   fi
 
   # Extract stash records of possible previous installation
