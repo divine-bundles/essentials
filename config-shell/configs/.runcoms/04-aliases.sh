@@ -1,8 +1,8 @@
 #:title:        Divine shared runcom: 04-aliases
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
-#:revdate:      2019.10.24
-#:revremark:    Rewrite for D.d v2
+#:revdate:      2019.10.29
+#:revremark:    Update for D.d v2
 #:created_at:   2019.04.09
 
 ## Universal shell utility aliases. Must use compatible syntax.
@@ -10,74 +10,35 @@
 ## Expect $D__SHELL to be set to name of shell being initialized, e.g., 'bash'.
 
 ##
-## Specific directory access
-##
-
-# Developer directory
-if [ -d "$HOME/Developer" ]; then
-  alias dev="\cd $HOME/Developer"
-  alias   D="\cd $HOME/Developer"
-fi
-
-# Sites directory
-if [ -d "$HOME/Sites" ]; then
-  alias si="\cd $HOME/Sites"
-  alias  S="\cd $HOME/Sites"
-fi
-
-
-##
-## Specific executable access
-##
-
-# Veracrypt executable
-if [ -x /Applications/VeraCrypt.app/Contents/MacOS/VeraCrypt ]; then
-  alias veracrypt='/Applications/VeraCrypt.app/Contents/MacOS/VeraCrypt -t'
-fi
-
-
-##
 ## Shorthand for listing directory contents
 ##
 
-if [ "$D__OS_FAMILY" = macos -o "$D__OS_FAMILY" = bsd ]; then
+case $D__OS_FAMILY in
+  macos|bsd)
+      ## BSD ls:
+      #.  -F  - Add symbolic indication of file types
+      #.  -G  - Colorize output
+      alias ls='ls -FG';;
+  linux|wsl)
+      ## GNU ls:
+      #.  -F              - Add symbolic indication of file types
+      #.  --color=always  - Colorize output
+      alias ls='ls -F --color=always';;
+  *)  ## Other OS:
+      #.  -F  - Add symbolic indication of file types
+      alias ls='ls -F';;
+esac
 
-  # BSD ls
-
-  ## Basic ls:
-  #.  -F  - Add symbolic indication of file types
-  #.  -G  - Colorize output
-  alias ls='ls -FG'
-
-elif [ "$D__OS_FAMILY" = linux ]; then
-
-  # GNU ls
-
-  ## Basic ls:
-  #.  -F              - Add symbolic indication of file types
-  #.  --color=always  - Colorize output
-  alias ls='ls -F --color=always'
-
-else
-
-  # Other OS
-
-  ## Basic ls:
-  #.  -F  - Add symbolic indication of file types
-  alias ls='ls -F'
-
-fi
-
-## Basic ls with dotfiles
+## lsa:
 #.  -a  - Include names starting with dots
 alias lsa='ls -a'
 
-## Long format:
+## ll (long-ish format):
 #.  -h  - Base-2 sizes with unit suffixes
 #.  -l  - Long format, one line per file
 alias ll='ls -hl'
 
-## Long format with dotfiles
+## la (ll + lsa):
 #.  -a  - Include names starting with dots
 alias la='ll -a'
 
@@ -105,13 +66,8 @@ alias .....='\cd ../../../..'
 ## Shell switching aliases
 ##
 
-if [ "$D__SHELL" = bash ]; then
-  # Switch to zsh
-  alias zsh='/usr/bin/env zsh'
-elif [ "$D__SHELL" = zsh ]; then
-  # Switch to bash
-  alias bash='/usr/bin/env bash'
-fi
+if [ "$D__SHELL" = bash ]; then alias zsh='/usr/bin/env zsh'
+elif [ "$D__SHELL" = zsh ]; then alias bash='/usr/bin/env bash'; fi
 
 
 ##

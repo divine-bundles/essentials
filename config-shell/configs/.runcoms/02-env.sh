@@ -1,8 +1,8 @@
 #:title:        Divine shared runcom: 02-env
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
-#:revdate:      2019.10.24
-#:revremark:    Rewrite for D.d v2
+#:revdate:      2019.10.29
+#:revremark:    Update for D.d v2
 #:created_at:   2019.04.09
 
 ## Universal shell environment variables. Must use compatible syntax.
@@ -13,11 +13,9 @@
 ## Personal binaries directory
 ##
 
-for dir in .bin bin .pbin; do
-  if [ -d "$HOME/$dir" ]; then
-    [[ :$PATH: = *":$HOME/$dir:"* ]] || export PATH="$PATH:$HOME/$dir"
-  fi
-done; unset dir
+for DIR in .bin bin .pbin; do if [ -d "$HOME/$DIR" ]; then
+  [[ :$PATH: = *":$HOME/$DIR:"* ]] || export PATH="$PATH:$HOME/$DIR"
+fi; done; unset DIR
 
 
 ##
@@ -59,7 +57,7 @@ if command -v pyenv &>/dev/null; then
     [[ :$PATH: = *":$PYENV_ROOT/bin:"* ]] \
       || export PATH="$PYENV_ROOT/bin:$PATH"
   fi
-  eval "$( pyenv init - )"
+  [ -z ${PYENV_SHELL+isset} ] && eval "$( pyenv init - )"
 fi
 
 
