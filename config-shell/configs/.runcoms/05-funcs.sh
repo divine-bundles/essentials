@@ -2,7 +2,7 @@
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
 #:revdate:      2019.10.29
-#:revremark:    Update for D.d v2
+#:revremark:    Fix up func
 #:created_at:   2019.04.09
 
 ## Universal shell utility functions. Must use compatible syntax.
@@ -43,7 +43,7 @@ up()
   if apt-get --version &>/dev/null; then
     printf >&2 '%s\n' \
       "${bold}==>${normal} Updating packages via ${bold}apt-get${normal}"
-    sudo dnf upgrade -yq
+    sudo apt-get update -yq; sudo apt-get upgrade -yq
     anything_updated=true
     printf >&2 '\n'
   fi
@@ -52,7 +52,7 @@ up()
   if dnf --version &>/dev/null; then
     printf >&2 '%s\n' \
       "${bold}==>${normal} Updating packages via ${bold}dnf${normal}"
-    sudo apt-get update -yq; sudo apt-get upgrade -yq
+    sudo dnf upgrade -yq
     anything_updated=true
     printf >&2 '\n'
   fi
