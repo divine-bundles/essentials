@@ -2,7 +2,7 @@
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
 #:revdate:      2019.10.31
-#:revremark:    Move 'chsh' installation from zsh-default to Divinefile
+#:revremark:    Improve Divinefile (vim, chsh)
 #:created_at:   2019.06.30
 
 (os: all)
@@ -10,7 +10,7 @@
 
 # Bread & butter
 git
-vim
+vim | dnf: vim-enhanced
 
 # zsh as an alternative shell
 zsh
@@ -25,5 +25,4 @@ gnupg
 bash-completion tree
 
 # Various ways to obtain 'chsh' utility
-(os: ! fedora macos) chsh
-(os: fedora) util-linux-user
+chsh | dnf: util-linux-user | macos:
