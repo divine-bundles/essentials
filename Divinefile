@@ -1,8 +1,8 @@
 #:title:        Divine deployment: Divinefile
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
-#:revdate:      2019.10.29
-#:revremark:    Start shell helper streak in Divinefile
+#:revdate:      2019.10.31
+#:revremark:    Move 'chsh' installation from zsh-default to Divinefile
 #:created_at:   2019.06.30
 
 (os: all)
@@ -24,5 +24,6 @@ gnupg
 # Shell addons and helpers
 bash-completion tree
 
-# On Fedora, install 'util-linux-user' to obtain 'chsh'
+# Various ways to obtain 'chsh' utility
+(os: ! fedora macos) chsh
 (os: fedora) util-linux-user

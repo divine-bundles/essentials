@@ -1,8 +1,8 @@
 #:title:        Divine deployment: zsh-default
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
-#:revdate:      2019.10.29
-#:revremark:    Subdue output of zsh-default if no zsh
+#:revdate:      2019.10.31
+#:revremark:    Move 'chsh' installation from zsh-default to Divinefile
 #:created_at:   2019.06.30
 
 D_DPL_NAME='zsh-default'
@@ -16,7 +16,7 @@ d_dpl_install() {                 d__mltsk_install; }
 d_dpl_remove()  {                 d__mltsk_remove;  }
 
 assemble_tasks()
-{ D_MLTSK_MAIN=( 'etc_new' 'chsh' 'zsh_default' 'etc_old' ) D_MLTSK_LEADER=2; }
+{ D_MLTSK_MAIN=( 'etc_new' 'zsh_default' 'etc_old' ) D_MLTSK_LEADER=1; }
 
 d_mltsk_pre_check()
 {
@@ -75,6 +75,12 @@ d_mltsk_pre_check()
     fi
   fi
 
+  # Check for 'chsh' utility
+  if ! type -P -- chsh &>/dev/null; then
+    local opt='-l!'; if $algd; then algd=false; opt='-lx'; fi
+    d__notify $opt "Unable to change default shell: 'chsh' utility not found"
+  fi
+
   # Return appropriately
   $algd && return 0 || return 3
 }
@@ -117,44 +123,6 @@ d_etc_new_remove()
     --else-- 'zsh will remain in /etc/shells' || return 1
   d__cmd d__stash -s -- unset etc_added "$D_NEW_SHELL" \
     --else-- 'Records will be inconsistent' && d__context -- lop
-  return 0
-}
-
-d_chsh_check()
-{
-  if [ "$D__REQ_ROUTINE" = check ] \
-    && ( $D_ALREADY_ZSH || $D_SHELL_MANUALLY_CHANGED ); then return 3; fi
-  if type -P -- chsh &>/dev/null
-  then d__stash -s -- has chsh_installed && return 1 || return 7
-  else d__stash -s -- has chsh_installed && return 6 || return 2; fi
-}
-
-d_chsh_install()
-{
-  d__context -- notch; d__context -- push "Auto-installing 'chsh' utility"
-  d__require [ -n "$D__OS_PKGMGR" ] \
-    --else-- 'Unable to auto-install without a supported package manager' \
-    || return 1
-  d__context -- push "Using '$D__OS_PKGMGR'"
-  if ! d__cmd d__os_pkgmgr install chsh \
-    --else-- 'Refusing to proceed with current deployment'
-  then D_ADDST_MLTSK_HALT=true; return 1; fi
-  d__cmd d__stash -s -- set chsh_installed \
-    --else-- 'Deployment will not uninstall properly' && d__context -- lop
-  return 0
-}
-
-d_chsh_remove()
-{
-  d__context -- notch; d__context -- push "Auto-removing 'chsh' utility"
-  d__require [ -z "$D__OS_PKGMGR" ] \
-    --else-- 'Unable to auto-remove without a supported package manager' \
-    || return 1
-  d__context -- push "Using '$D__OS_PKGMGR'"
-  d__cmd d__os_pkgmgr remove chsh \
-    --else-- "'chsh' may need to be removed manually" || return 1
-  d__cmd d__stash -s -- set chsh_installed \
-    --else-- 'Deployment will appear partly installed' && d__context -- lop
   return 0
 }
 
