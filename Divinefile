@@ -2,7 +2,7 @@
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
 #:revdate:      2019.10.31
-#:revremark:    Improve Divinefile (vim, chsh)
+#:revremark:    Improve Divinefile (wget, curl)
 #:created_at:   2019.06.30
 
 (os: all)
@@ -16,7 +16,7 @@ vim | dnf: vim-enhanced
 zsh
 
 # Network downloading utilities (normally installed on macOS)
-(os: ! macos) wget curl
+(os: ! macos fedora) wget curl
 
 # GNU Pretty Good Privacy (PGP) package
 gnupg
