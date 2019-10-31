@@ -1,8 +1,8 @@
 = Deployment `home-dirs` (`500`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revdate: 2019.10.24
-:revremark: Rewrite for D.d v2
+:revdate: 2019.10.31
+:revremark: Separate OS names with whitespace in manifests, instead of vbar
 :doctype: article
 // Visual
 :toc:
@@ -63,8 +63,8 @@ A key-value that appears on a line of its own comes into effect for the remainde
 [source]
 ----
 (os: debian)        relative/path/to/directory1   # Debian only
-(os: macos|bsd)     relative/path/to/directory2   # macOS/BSD only
-(os: !wsl|cygwin)   relative/path/to/directory3   # Everything except WSL or Cygwin
+(os: macos bsd)     relative/path/to/directory2   # macOS/BSD only
+(os: ! wsl cygwin)  relative/path/to/directory3   # Everything except WSL or Cygwin
 (os: all)           relative/path/to/directory4   # 'all'/'any' are reserved values that denote any OS
 ----
 

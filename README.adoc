@@ -1,8 +1,8 @@
 = Deployment bundle `essentials`
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revdate: 2019.10.24
-:revremark: Rewrite for D.d v2
+:revdate: 2019.10.31
+:revremark: Separate OS names with whitespace in manifests, instead of vbar
 :doctype: article
 // Visual
 :toc:
@@ -203,8 +203,8 @@ This one contains `chsh` which is required for the deployment `zsh-default`.
 = Deployment `config-git` (`333`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revdate: 2019.10.24
-:revremark: Rewrite for D.d v2
+:revdate: 2019.10.31
+:revremark: Separate OS names with whitespace in manifests, instead of vbar
 :doctype: article
 // Visual
 :toc:
@@ -297,8 +297,8 @@ Uninstallation does not remove anything in the asset directory.
 = Deployment `config-shell` (`333`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revdate: 2019.10.24
-:revremark: Rewrite for D.d v2
+:revdate: 2019.10.31
+:revremark: Separate OS names with whitespace in manifests, instead of vbar
 :doctype: article
 // Visual
 :toc:
@@ -484,8 +484,8 @@ Uninstallation does not remove anything in the asset directory.
 = Deployment `config-vim` (`333`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revdate: 2019.10.24
-:revremark: Rewrite for D.d v2
+:revdate: 2019.10.31
+:revremark: Separate OS names with whitespace in manifests, instead of vbar
 :doctype: article
 // Visual
 :toc:
@@ -619,8 +619,8 @@ Uninstallation does not remove anything in the asset directory.
 = Deployment `portable-bin` (`500`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revdate: 2019.10.24
-:revremark: Rewrite for D.d v2
+:revdate: 2019.10.31
+:revremark: Separate OS names with whitespace in manifests, instead of vbar
 :doctype: article
 // Visual
 :toc:
@@ -705,8 +705,8 @@ Uninstallation does not remove anything in the asset directory.
 = Deployment `home-dirs` (`500`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revdate: 2019.10.24
-:revremark: Rewrite for D.d v2
+:revdate: 2019.10.31
+:revremark: Separate OS names with whitespace in manifests, instead of vbar
 :doctype: article
 // Visual
 :toc:
@@ -767,8 +767,8 @@ A key-value that appears on a line of its own comes into effect for the remainde
 [source]
 ----
 (os: debian)        relative/path/to/directory1   # Debian only
-(os: macos|bsd)     relative/path/to/directory2   # macOS/BSD only
-(os: !wsl|cygwin)   relative/path/to/directory3   # Everything except WSL or Cygwin
+(os: macos bsd)     relative/path/to/directory2   # macOS/BSD only
+(os: ! wsl cygwin)  relative/path/to/directory3   # Everything except WSL or Cygwin
 (os: all)           relative/path/to/directory4   # 'all'/'any' are reserved values that denote any OS
 ----
 
@@ -809,8 +809,8 @@ Uninstallation does not remove anything in the asset directory.
 = Deployment `zsh-default` (`1333`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revdate: 2019.10.24
-:revremark: Rewrite for D.d v2
+:revdate: 2019.10.31
+:revremark: Separate OS names with whitespace in manifests, instead of vbar
 :doctype: article
 // Visual
 :toc:
@@ -866,8 +866,8 @@ If the default shell has not been changed during the installation, it will not b
 = Deployment `brewfile` (`3000`, `!`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revdate: 2019.10.24
-:revremark: Rewrite for D.d v2
+:revdate: 2019.10.31
+:revremark: Separate OS names with whitespace in manifests, instead of vbar
 :doctype: article
 // Visual
 :toc:
@@ -964,8 +964,8 @@ Uninstallation does not remove anything in the asset directory.
 = Deployment `bash-it` (`3333`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revdate: 2019.10.24
-:revremark: Rewrite for D.d v2
+:revdate: 2019.10.31
+:revremark: Separate OS names with whitespace in manifests, instead of vbar
 :doctype: article
 // Visual
 :toc:
@@ -1100,8 +1100,8 @@ Uninstallation does not remove anything in the asset directory.
 = Deployment `oh-my-zsh` (`3333`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revdate: 2019.10.24
-:revremark: Rewrite for D.d v2
+:revdate: 2019.10.31
+:revremark: Separate OS names with whitespace in manifests, instead of vbar
 :doctype: article
 // Visual
 :toc:
@@ -1218,8 +1218,8 @@ Uninstallation does not remove anything in the asset directory.
 = Deployment `dutils` (`3500`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revdate: 2019.10.24
-:revremark: Rewrite for D.d v2
+:revdate: 2019.10.31
+:revremark: Separate OS names with whitespace in manifests, instead of vbar
 :doctype: article
 // Visual
 :toc:
