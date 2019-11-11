@@ -1,8 +1,8 @@
 #:title:        Divine deployment: portable-bin
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
-#:revdate:      2019.10.24
-#:revremark:    Rewrite for D.d v2
+#:revdate:      2019.11.11
+#:revremark:    Rename queue arrays
 #:created_at:   2019.07.26
 
 D_DPL_NAME='portable-bin'
@@ -18,6 +18,6 @@ d_dpl_remove()  {                 d__link_queue_remove;   }
 assemble_queue()
 {
   D_QUEUE_MAIN=('.pbin')
-  D_DPL_ASSET_PATHS=("$D__DPL_ASSET_DIR")
-  D_DPL_TARGET_PATHS=("$HOME/.pbin")
+  D_QUEUE_ASSETS=("$D__DPL_ASSET_DIR")
+  D_QUEUE_TARGETS=("$HOME/.pbin")
 }

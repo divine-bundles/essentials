@@ -1,8 +1,8 @@
 #:title:        Divine deployment: oh-my-zsh
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
-#:revdate:      2019.10.26
-#:revremark:    Always return zero from hooks
+#:revdate:      2019.11.11
+#:revremark:    Rename queue arrays
 #:created_at:   2019.06.30
 
 D_DPL_NAME='oh-my-zsh'
@@ -36,8 +36,8 @@ assemble_tasks()
 
   # Assemble Github queue for retrieving Bash-it repo
   D_QUEUE_MAIN=("$D_OMZ_REPO")
-  D_DPL_ASSET_PATHS=('')
-  D_DPL_TARGET_PATHS=("$D_OMZ_PATH")
+  D_QUEUE_ASSETS=('')
+  D_QUEUE_TARGETS=("$D_OMZ_PATH")
 
   # Split queue; assemble link queue for implanting custom assets
   d__queue_split; assemble_asset_queue
@@ -67,6 +67,6 @@ assemble_asset_queue()
 
   $D__RESTORE_DOTGLOB; $D__RESTORE_NULLGLOB
   D_QUEUE_MAIN+=("${astarp[@]}")
-  D_DPL_ASSET_PATHS+=("${astap[@]}")
-  D_DPL_TARGET_PATHS+=("${tgtap[@]}")
+  D_QUEUE_ASSETS+=("${astap[@]}")
+  D_QUEUE_TARGETS+=("${tgtap[@]}")
 }

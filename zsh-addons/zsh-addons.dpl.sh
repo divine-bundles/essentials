@@ -1,8 +1,8 @@
 #:title:        Divine deployment: zsh-addons
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
-#:revdate:      2019.10.29
-#:revremark:    Update for D.d v2
+#:revdate:      2019.11.11
+#:revremark:    Rename queue arrays
 #:created_at:   2019.10.28
 
 D_DPL_NAME='zsh-addons'
@@ -16,7 +16,7 @@ D_QUEUE_MAIN=( \
   'zsh-users/zsh-syntax-highlighting' \
   'zsh-users/zsh-autosuggestions' \
 )
-D_DPL_TARGET_DIR="$HOME/.zsh"
+D_QUEUE_TARGET_DIR="$HOME/.zsh"
 D_RC_FP="$HOME/.runcoms.zsh"
 
 d_dpl_check()   { assemble_tasks; d__mltsk_check;   }
