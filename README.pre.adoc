@@ -2,7 +2,7 @@
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
 :revdate: 2019.11.12
-:revremark: Rewrite for D.d v2, pt. 2
+:revremark: Fix description table in readme
 :doctype: article
 // Visual
 :toc: macro
@@ -42,7 +42,7 @@ Once the bundle is fully installed, and the shell reloaded, _voilà_:
 All of the above is controlled and customized through key configuration files located under the Grail directory at `~/.divine/grail/assets/`.
 
 .Overview of asset directories for the bundle `essentials`
-[%noheader,cols="<.<a,<.<a",stripes=none]
+[%noheader,cols="<.<a",stripes=none]
 |===
 
 | +++<p align="center">+++
