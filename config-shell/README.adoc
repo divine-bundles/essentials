@@ -2,7 +2,7 @@
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
 :revdate: 2019.11.12
-:revremark: Rewrite for D.d v2, pt. 2
+:revremark: Refine readmes, pt. 4
 :doctype: article
 // Visual
 :toc:
@@ -15,6 +15,9 @@
 :das: **
 
 The `config-shell` deployment symlinks the configuration files for https://www.gnu.org/software/bash/[Bash] and https://sourceforge.net/projects/zsh[Zsh] into the home directory.
+
+
+Deployment name:: `config-shell`
 
 The `config-shell` deployment has the priority of `*333*`.
 

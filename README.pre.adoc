@@ -2,7 +2,7 @@
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
 :revdate: 2019.11.12
-:revremark: Refine readmes, pt. 3
+:revremark: Refine readmes, pt. 4
 :doctype: article
 // Visual
 :toc: macro
@@ -53,49 +53,49 @@ All of the above is controlled and customized through the key configuration file
 |===
 
 | +++<p align="center">+++
-`*bash-it*/` *&dagger;*
+`https://github.com/no-simpler/divine-dotfiles#fmwk-grail[grail]/assets/*bash-it*/` *&dagger;*
 +++</p>+++
 
 Custom assets for the https://github.com/Bash-it/bash-it[Bash-it] shell framework.
 
 | +++<p align="center">+++
-`*brewfile*/` *&dagger;*
+`https://github.com/no-simpler/divine-dotfiles#fmwk-grail[grail]/assets/*brewfile*/` *&dagger;*
 +++</p>+++
 
 The https://github.com/Homebrew/homebrew-bundle[Brewfile], maintained on macOS.
 
 | +++<p align="center">+++
-`*config-git*/`
+`https://github.com/no-simpler/divine-dotfiles#fmwk-grail[grail]/assets/*config-git*/`
 +++</p>+++
 
 The global configuration for Git.
 
 | +++<p align="center">+++
-`*config-shell*/`
+`https://github.com/no-simpler/divine-dotfiles#fmwk-grail[grail]/assets/*config-shell*/`
 +++</p>+++
 
 The startup scripts (https://en.wikipedia.org/wiki/Run_commands[runcoms]) for Bash and Zsh.
 
 | +++<p align="center">+++
-`*config-vim*/`
+`https://github.com/no-simpler/divine-dotfiles#fmwk-grail[grail]/assets/*config-vim*/`
 +++</p>+++
 
 The global configuration for Vim.
 
 | +++<p align="center">+++
-`*home-dirs*/` *&dagger;*
+`https://github.com/no-simpler/divine-dotfiles#fmwk-grail[grail]/assets/*home-dirs*/` *&dagger;*
 +++</p>+++
 
 The file `*home-dirs.cfg*` defines a sub-directory tree to be maintained under the home directory.
 
 | +++<p align="center">+++
-`*oh-my-zsh*/` *&dagger;*
+`https://github.com/no-simpler/divine-dotfiles#fmwk-grail[grail]/assets/*oh-my-zsh*/` *&dagger;*
 +++</p>+++
 
 Custom assets for the https://ohmyz.sh[oh-my-zsh] shell framework.
 
 | +++<p align="center">+++
-`*portable-bin*/`
+`https://github.com/no-simpler/divine-dotfiles#fmwk-grail[grail]/assets/*portable-bin*/`
 +++</p>+++
 
 The container for the personal executables (this directory is maintained on the `$PATH`).
