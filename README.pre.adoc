@@ -2,7 +2,7 @@
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
 :revdate: 2019.11.12
-:revremark: Refine readmes, pt. 1
+:revremark: Refine readmes, pt. 2
 :doctype: article
 // Visual
 :toc: macro
@@ -27,14 +27,16 @@ It is intended as a useful starting point for any https://en.wikipedia.org/wiki/
 
 toc::[]
 
+[[bundle-main]]
 == Description
 
+[horizontal]
 Bundle name:: `essentials`
-Deployments:: 10
-Divinefile entries:: 9
-Attached bundle location:: `https://github.com/no-simpler/divine-dotfiles#fmwk-state[state]/bundles/no-simpler/divine-bundle-essentials`.
+<<dpls-main,Deployments>>:: 10
+<<dpls-dfls,Divinefile>> entries:: 9
+<<inun-inst-bundle,Attached>> bundle location:: `https://github.com/no-simpler/divine-dotfiles#fmwk-state[state]/bundles/no-simpler/divine-bundle-essentials`
 
-Once the bundle is fully installed, and the shell reloaded, _voilà_:
+Once the bundle is fully <<inun-inst,installed>>, and the shell reloaded, _voilà_:
 
 * https://sourceforge.net/projects/zsh[Zsh] is the default shell.
 * Zsh is augmented with https://github.com/zsh-users/zsh-completions[completions], https://github.com/zsh-users/zsh-syntax-highlighting[syntax highlighting], and https://github.com/zsh-users/zsh-autosuggestions[auto-suggestions].
@@ -106,14 +108,18 @@ The container for the personal executables (this directory is maintained on the 
 | The dagger mark (*&dagger;*) meaning: in order for the modifications in that asset directory to take effect, the deployment must be (re-)installed.
 |===
 
+[[inun-main]]
 == Installing and uninstalling the bundle
 
+[[inun-sysreq]]
 === System requirements
 
 The bundle `essentials` requires the https://github.com/no-simpler/divine-dotfiles[_Divine.dotfiles_] framework.
 
+[[inun-inst]]
 === Installing the bundle
 
+[[inun-inst-bundle]]
 ==== Framework already installed
 
 If _Divine.dotfiles_ is already installed, the following Terminal command *attaches* this bundle to the Grail directory:
@@ -130,6 +136,7 @@ And this Terminal command *installs* the attached bundle:
 di install --bundle essentials
 ----
 
+[[inun-inst-both]]
 ==== Installing framework and bundle
 
 The following Terminal command *installs the _Divine.dotfiles_ framework and this bundle* in one go and without prompts:
@@ -155,8 +162,10 @@ exit 3 || exit 0" bash --yes \
 Upon the uninstallation, such files are restored into their original places.
 |===
 
+[[inun-uninst]]
 === Uninstalling the bundle
 
+[[inun-uninst-bundle]]
 ==== Keeping framework
 
 The following Terminal command *uninstalls* the bundle:
@@ -173,6 +182,7 @@ And this Terminal command *detaches the bundle* from the Grail directory:
 di detach essentials
 ----
 
+[[inun-uninst-both]]
 ==== Uninstalling framework and bundle
 
 The following command completely *uninstalls this bundle and erases the _Divine.dotfiles_ framework without a trace* in one go and without prompts:
@@ -191,8 +201,10 @@ f \$TMP; exit 2; }; chmod +x \$TMP && \$TMP \"\$@\"; RC=\$?; rm -f \$TMP; ((RC\
 )) && exit 3 || exit 0" bash --yes --obliterate
 ----
 
+[[dpls-main]]
 == Bundled deployments
 
+[[dpls-dfls]]
 === Divinefile
 
 The bundle `essentials` includes a https://github.com/no-simpler/divine-dotfiles#dfls-main[Divinefile] that maintains the following system packages.
