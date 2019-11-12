@@ -2,7 +2,7 @@
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
 :revdate: 2019.11.12
-:revremark: Actually fix description table in readme
+:revremark: Refine readmes, pt. 1
 :doctype: article
 // Visual
 :toc: macro
@@ -18,28 +18,33 @@
 
 ++++
 <p align="center">
-<em>The deployment bundle for <a href="https://github\.com/no-simpler/divine-dotfiles">Divine.dotfiles</a></em>
+<em>A deployment bundle for <a href="https://github\.com/no-simpler/divine-dotfiles">Divine.dotfiles</a></em>
 </p>
 ++++
 
 The deployment bundle `*essentials*` for https://github.com/no-simpler/divine-dotfiles[_Divine.dotfiles_] is a collection of opinionated system set-up scripts.
-It is intended as a useful starting point for any machine that runs https://www.gnu.org/software/bash[Bash].
+It is intended as a useful starting point for any https://en.wikipedia.org/wiki/Unix-like[Unix-like] box.
 
 toc::[]
 
 == Description
 
+Bundle name:: `essentials`
+Deployments:: 10
+Divinefile entries:: 9
+Attached bundle location:: `https://github.com/no-simpler/divine-dotfiles#fmwk-state[state]/bundles/no-simpler/divine-bundle-essentials`.
+
 Once the bundle is fully installed, and the shell reloaded, _voilà_:
 
 * https://sourceforge.net/projects/zsh[Zsh] is the default shell.
-* Zsh is supercharged with https://github.com/zsh-users/zsh-completions[completions], https://github.com/zsh-users/zsh-syntax-highlighting[syntax highlighting], and https://github.com/zsh-users/zsh-autosuggestions[auto-suggestions].
+* Zsh is augmented with https://github.com/zsh-users/zsh-completions[completions], https://github.com/zsh-users/zsh-syntax-highlighting[syntax highlighting], and https://github.com/zsh-users/zsh-autosuggestions[auto-suggestions].
 * Basic necessities, such as https://git-scm.com[Git], https://www.vim.org[Vim], and https://gnupg.org[GnuPG] are available.
 * Both https://ohmyz.sh[oh-my-zsh] and https://github.com/Bash-it/bash-it[Bash-it] frameworks are installed and loaded.
 * A minimalistic theme for both shell frameworks is active.
 * Opinionated configs are plugged in for Git, Vim, Bash, and Zsh.
-* Pre-existing files and installations are safely backed up or re-used.
+* Where necessary, the pre-existing files and installations are safely backed up or re-used.
 
-All of the above is controlled and customized through key configuration files located under the Grail directory at `~/.divine/grail/assets/`.
+All of the above is controlled and customized through the key configuration files, which are located under the https://github.com/no-simpler/divine-dotfiles#fmwk-grail[Grail directory] at `~/.divine/grail/assets/`.
 
 .Overview of asset directories for the bundle `essentials`
 [%noheader,cols="<.<a",stripes=none]
@@ -61,19 +66,19 @@ The https://github.com/Homebrew/homebrew-bundle[Brewfile], maintained on macOS.
 `*config-git*/`
 +++</p>+++
 
-Global configuration for Git.
+The global configuration for Git.
 
 | +++<p align="center">+++
 `*config-shell*/`
 +++</p>+++
 
-Startup scripts (https://en.wikipedia.org/wiki/Run_commands[runcoms]) for Bash and Zsh.
+The startup scripts (https://en.wikipedia.org/wiki/Run_commands[runcoms]) for Bash and Zsh.
 
 | +++<p align="center">+++
 `*config-vim*/`
 +++</p>+++
 
-Global configuration for Vim.
+The global configuration for Vim.
 
 | +++<p align="center">+++
 `*home-dirs*/` *&dagger;*
@@ -91,7 +96,7 @@ Custom assets for the https://ohmyz.sh[oh-my-zsh] shell framework.
 `*portable-bin*/`
 +++</p>+++
 
-Container for the personal executables (this directory is maintained on the `$PATH`)
+The container for the personal executables (this directory is maintained on the `$PATH`).
 
 |===
 
@@ -101,13 +106,11 @@ Container for the personal executables (this directory is maintained on the `$PA
 | The dagger mark (*&dagger;*) meaning: in order for the modifications in that asset directory to take effect, the deployment must be (re-)installed.
 |===
 
-Refer to each deployment's section for more information.
-
 == Installing and uninstalling the bundle
 
 === System requirements
 
-This deployment bundle is for the https://github.com/no-simpler/divine-dotfiles[_Divine.dotfiles_] framework.
+The bundle `essentials` requires the https://github.com/no-simpler/divine-dotfiles[_Divine.dotfiles_] framework.
 
 === Installing the bundle
 
@@ -117,19 +120,19 @@ If _Divine.dotfiles_ is already installed, the following Terminal command *attac
 
 [source,bash]
 ----
-di attach essentials --yes
+di attach essentials
 ----
 
 And this Terminal command *installs* the attached bundle:
 
 [source,bash]
 ----
-di install --bundle essentials --yes
+di install --bundle essentials
 ----
 
 ==== Installing framework and bundle
 
-The following Terminal command *installs _Divine.dotfiles_ framework and this bundle* in one go and without prompts:
+The following Terminal command *installs the _Divine.dotfiles_ framework and this bundle* in one go and without prompts:
 
 [source,bash]
 ----
@@ -160,19 +163,19 @@ The following Terminal command *uninstalls* the bundle:
 
 [source,bash]
 ----
-di remove --bundle essentials --yes
+di remove --bundle essentials
 ----
 
 And this Terminal command *detaches the bundle* from the Grail directory:
 
 [source,bash]
 ----
-di detach essentials --yes
+di detach essentials
 ----
 
 ==== Uninstalling framework and bundle
 
-The following command completely *uninstalls this bundle and erases _Divine.dotfiles_ framework without a trace* in one go and without prompts:
+The following command completely *uninstalls this bundle and erases the _Divine.dotfiles_ framework without a trace* in one go and without prompts:
 
 [source,bash]
 ----
@@ -192,9 +195,14 @@ f \$TMP; exit 2; }; chmod +x \$TMP && \$TMP \"\$@\"; RC=\$?; rm -f \$TMP; ((RC\
 
 === Divinefile
 
-The bundle includes a Divinefile that maintains the following system packages.
+The bundle `essentials` includes a https://github.com/no-simpler/divine-dotfiles#dfls-main[Divinefile] that maintains the following system packages.
 Below is the list of the more prominent packages in the Divinefile.
-For the full list, refer to the `Divinefile` itself, located in the root of the bundle directory at `state/bundles/no-simpler/divine-bundle-essentials/`.
+For the full list, refer to the `Divinefile` itself, located in the root of the attached bundle's directory at:
+
+[source]
+----
+state/bundles/no-simpler/divine-bundle-essentials/Divinefile
+----
 
 .Highlights of Divinefile packages for the bundle `essentials`
 [%header,cols="^.^1a,<.^2a,<.<3a",stripes=none]
@@ -240,7 +248,7 @@ For the full list, refer to the `Divinefile` itself, located in the root of the 
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
 :revdate: 2019.11.12
-:revremark: Actually fix description table in readme
+:revremark: Refine readmes, pt. 1
 :doctype: article
 // Visual
 :toc:
@@ -438,7 +446,7 @@ The removal does not touch anything in the asset directory.
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
 :revdate: 2019.11.12
-:revremark: Actually fix description table in readme
+:revremark: Refine readmes, pt. 1
 :doctype: article
 // Visual
 :toc:
@@ -522,7 +530,7 @@ The removal does not touch anything in the asset directory.
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
 :revdate: 2019.11.12
-:revremark: Actually fix description table in readme
+:revremark: Refine readmes, pt. 1
 :doctype: article
 // Visual
 :toc:
@@ -646,7 +654,7 @@ The removal does not touch anything in the asset directory.
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
 :revdate: 2019.11.12
-:revremark: Actually fix description table in readme
+:revremark: Refine readmes, pt. 1
 :doctype: article
 // Visual
 :toc:
@@ -717,7 +725,7 @@ The removal does not touch anything in the asset directory.
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
 :revdate: 2019.11.12
-:revremark: Actually fix description table in readme
+:revremark: Refine readmes, pt. 1
 :doctype: article
 // Visual
 :toc:
@@ -815,7 +823,7 @@ The removal does not touch anything in the asset directory.
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
 :revdate: 2019.11.12
-:revremark: Actually fix description table in readme
+:revremark: Refine readmes, pt. 1
 :doctype: article
 // Visual
 :toc:
@@ -892,7 +900,7 @@ Any files that have been re-used remain in place.
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
 :revdate: 2019.11.12
-:revremark: Actually fix description table in readme
+:revremark: Refine readmes, pt. 1
 :doctype: article
 // Visual
 :toc:
@@ -947,7 +955,7 @@ If the default shell is not changed during the installation, it is not changed d
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
 :revdate: 2019.11.12
-:revremark: Actually fix description table in readme
+:revremark: Refine readmes, pt. 1
 :doctype: article
 // Visual
 :toc:
@@ -1039,7 +1047,7 @@ The removal does not touch anything in the asset directory.
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
 :revdate: 2019.11.12
-:revremark: Actually fix description table in readme
+:revremark: Refine readmes, pt. 1
 :doctype: article
 // Visual
 :toc:
@@ -1164,7 +1172,7 @@ The removal does not touch anything in the asset directory.
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
 :revdate: 2019.11.12
-:revremark: Actually fix description table in readme
+:revremark: Refine readmes, pt. 1
 :doctype: article
 // Visual
 :toc:
