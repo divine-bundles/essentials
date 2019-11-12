@@ -1,13 +1,14 @@
 #:title:        Divine shared runcom: 05-funcs
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
-#:revdate:      2019.10.29
-#:revremark:    Fix up func
+#:revdate:      2019.11.12
+#:revremark:    Rewrite for D.d v2, pt. 2
 #:created_at:   2019.04.09
 
 ## Universal shell utility functions. Must use compatible syntax.
 #
 ## Expect $D__SHELL to be set to name of shell being initialized, e.g., 'bash'.
+#
 
 ##
 ## General purpose helper functions

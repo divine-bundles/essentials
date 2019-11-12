@@ -1,31 +1,28 @@
 (nf) README.adoc
 
 #
-# First task: runcoms
+# Copy runcoms without queueing
 #
+(prefix: runcoms)
+(rno) [^/]+.(ba|z)?sh
 
-(prefix: configs)
+#
+# First task: blanks
+#
+(prefix: blanks) (flags: d)
+(+o)  .hushlogin
+      .pre.bash
+      .pre.zsh
+      .pre.sh
+      .post.bash
+      .post.zsh
+      .post.sh
 
-# Core runcom files
+#
+# Second task: base runcoms
+#
+(queue: split) (prefix: configs) (flags: d)
 .bash_profile
 .bashrc
 .zprofile
 .zshrc
-
-# Directory for sourced runcoms
-.runcoms
-
-#
-# Second task: blanks
-#
-
-(queue: split)
-(prefix: blanks)
-(flags: d)
-
-# List of template files to be copied into home dir
-      .env.sh
-(+o)  .hushlogin
-      .runcoms.bash
-      .runcoms.sh
-      .runcoms.zsh

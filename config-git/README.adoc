@@ -1,8 +1,8 @@
 = Deployment `config-git` (`333`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revdate: 2019.10.24
-:revremark: Rewrite for D.d v2
+:revdate: 2019.11.12
+:revremark: Rewrite for D.d v2, pt. 2
 :doctype: article
 // Visual
 :toc:
@@ -14,76 +14,66 @@
 :as: *
 :das: **
 
-This deployment symlinks configuration files for https://git-scm.com[Git] into the home directory.
+The `config-git` deployment symlinks the configuration files for https://git-scm.com[Git] into the home directory.
 
-This deployment has the priority of `*333*`.
+The `config-git` deployment has the priority of `*333*`.
 
 == Deployment installation notes
 
-The deployment supplants existing Git configuration, while keeping backups of whatever is replaced.
+The `config-git` deployment supplants any pre-existing Git configuration, while keeping backups of whatever is replaced.
 
-.Map of asset installation for the deployment `config-git`
+.Map of asset installation for the `config-git` deployment
 [%header,cols="<.^3a,^.^1,<.^3a,<.^3a",stripes=none]
 |===
 
 ^.^| Asset
 ^.^| Method
 ^.^| Destination
-^.^| Asset description
+^.^| Description
 
 | `*.gitconfig*`
 | symlinked
 | `~/*.gitconfig*`
-| Main Git config <<config-git-config,^1^>>
+| The global Git config <<config-git-config,^1^>>
 
 | `*.gitattributes*`
 | symlinked
 | `~/*.gitattributes*`
-| Main Git attributes file <<config-git-attributes,^2^>>
+| The global Git attributes file <<config-git-attributes,^2^>>
 
 |===
 
 == Included assets
 
-The deployment's asset directory is located at:
+The `config-git` deployment's *asset directory* is located at `grail/assets/config-git`.
 
-[source]
---
-grail/assets/config-git
---
+The two global configuration files for https://git-scm.com[Git] are provided:
 
-Two global configuration files for https://git-scm.com[Git] are provided:
-
-- [#config-git-config]#`*.gitconfig*`# — this file is interacted with by https://git-scm.com/docs/git-config[`git config --global`].
-- [#config-git-attributes]#`*.gitattributes*`# — globally influences certain Git operations by https://git-scm.com/docs/gitattributes[assigning attributes] to certain file path patterns.
+- [[config-git-config]]`*.gitconfig*` — this file is interacted with by the https://git-scm.com/docs/git-config[`git config --global`] command.
+- [[config-git-attributes]]`*.gitattributes*` — this file globally influences certain Git operations by https://git-scm.com/docs/gitattributes[assigning attributes] to the certain file path patterns.
 
 A small amount of opinionated configuration is included in the specified files.
 
 == Dependencies
 
-This deployment is stand-alone.
+The `config-git` deployment is stand-alone.
 
-Divinefile included with the current bundle ensures that Git is installed.
+The Divinefile included with the current bundle ensures that Git is installed.
 
 == Supported asset modifications
 
-Both configuration files may be freely modified in place.
-Modifications will take effect immediately.
-Renaming or moving any of the two configuration files will break the deployment.
+The included configuration files may be freely modified in the asset directory; the modifications will take effect immediately.
+Renaming or moving any of the configuration files will break them.
 
-This deployment does not support any additional assets.
+The `config-git` deployment does not support any additional assets.
 
 == Overwriting policy
 
-If during installation of the deployment any of the two configuration files exist in the home directory, they are backed up into the deployment's designated backup directory at:
-
-[source]
-----
-state/backups/config-git/
-----
+The `config-git` deployment backs up any clashing pre-existing files in the home directory.
+The backup directory is at `state/backups/config-git/`.
 
 == Deployment removal notes
 
-Upon uninstallation of the deployment, backups of any overwritten Git global configuration files are automatically restored.
+The `config-git` deployment is fully reversible: the displaced pre-existing files are restored.
 
-Uninstallation does not remove anything in the asset directory.
+The removal does not touch anything in the asset directory.

@@ -1,8 +1,8 @@
 = Deployment `config-vim` (`333`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revdate: 2019.10.24
-:revremark: Rewrite for D.d v2
+:revdate: 2019.11.12
+:revremark: Rewrite for D.d v2, pt. 2
 :doctype: article
 // Visual
 :toc:
@@ -14,117 +14,106 @@
 :as: *
 :das: **
 
-This deployment symlinks configuration and customization files for https://www.vim.org[Vim] into the home directory.
+The `config-vim` deployment symlinks the configuration and customization files for https://www.vim.org[Vim] into the home directory.
 
-This deployment has the priority of `*333*`.
+The `config-vim` deployment has the priority of `*333*`.
 
 == Deployment installation notes
 
-The deployment supplants existing Vim configuration, while keeping backups of whatever is replaced.
+The `config-vim` deployment supplants any pre-existing Vim configuration, while keeping backups of whatever is replaced.
 
-.Map of asset installation for the deployment `config-vim`
+.Map of asset installation for the `config-vim` deployment
 [%header,cols="<.^3a,^.^1,<.^3a,<.^3a",stripes=none]
 |===
 
 ^.^| Asset
 ^.^| Method
 ^.^| Destination
-^.^| Asset description
+^.^| Description
 
 | `*.vimrc*`
 | symlinked
 | `~/*.vimrc*`
-| Main Vim config <<config-vim-vimrc,^1^>>
+| The main Vim config <<config-vim-vimrc,^1^>>
 
 | `*.ideavimrc*`
 | symlinked
 | `~/*.ideavimrc*`
-| Main IdeaVim config <<config-vim-ideavimrc,^2^>>
+| The optional IdeaVim config <<config-vim-ideavimrc,^2^>>
 
-| `.vim/**__<name>__**`
+| `.vim/**__<name>__**/`
 | symlinked
-| `~/.vim/**__<name>__**`
-| Vim customization directories <<config-vim-customization-dirs,^3^>>
+| `~/.vim/**__<name>__**/`
+| The Vim customization directories <<config-vim-customization-dirs,^3^>>
 
 |===
 
 == Included assets
 
-The deployment's asset directory is located at:
+The `config-vim` deployment's *asset directory* is located at `grail/assets/config-vim`.
 
-[source]
---
-grail/assets/config-vim
---
+The native configuration files, containing an opinionated set of Vim startup commands:
 
-Native configuration files, containing an opinionated set of Vim startup commands:
-
-* [#config-vim-vimrc]#`*.vimrc*`# — primary Vim configuration file.
+* [[config-vim-vimrc]]`*.vimrc*` — the primary Vim configuration file.
 +
-This file includes an installation command for https://github.com/junegunn/vim-plug[vim-plug] (_a minimalist Vim plugin manager_) along with a number of plugins and settings.
-* [#config-vim-ideavimrc]#`*.ideavimrc*`# — configuration file for https://github.com/JetBrains/ideavim[IdeaVim] (_a Vim emulation plugin for IDEs based on the IntelliJ Platform_).
+This file includes an installation command for the https://github.com/junegunn/vim-plug[vim-plug] (_a minimalist Vim plugin manager_) along with a number of plugins and settings.
+* [[config-vim-ideavimrc]]`*.ideavimrc*` — the configuration file for the https://github.com/JetBrains/ideavim[IdeaVim] (_a Vim emulation plugin for IDEs based on the IntelliJ Platform_).
 +
-If you don't use any IntelliJ products, this file is harmless.
+If you don't use any of the IntelliJ products, this file is harmless.
 
-A number of [#config-vim-customization-dirs]#Vim *customization directories*# can be created in the root of `.vim/` directory, as containers for your customizations.
+[[config-vim-customization-dirs]]
+A number of Vim *customization directories* can be created in the root of the `.vim/` directory, as containers for your customizations.
 Most of these directories are not included with the deployment to prevent clutter.
 One keymap is provided as an example:
 
-* `*keymap/shifted.vim*` — 'Caps Lock' mode toggled by double-tapping `j`.
+* `*keymap/shifted.vim*` — the 'Caps Lock' mode toggled by double-tapping `j`.
 
 Overall, the following customization directories are supported by Vim:
 
-* `*after/*` — files to be loaded after the files in `plugin/`.
-* `*autoload/*` — files to be loaded when they are actually needed.
-* `*colors/*` — color schemes.
-* `*compiler/*` — compiler-related options in the current buffer.
-* `*doc/*` — custom plugin documentation.
-* `*ftdetect/*` — file type detection plugins.
-* `*ftplugin/*` — file type exclusive plugins.
-* `*indent/*` — file type exclusive indentation settings.
-* `*keymap/*` — key mapping files.
-* `*lang/*` — language files.
+* `*after/*` — the files to be loaded after the files in `plugin/`.
+* `*autoload/*` — the files to be loaded when they are actually needed.
+* `*colors/*` — the color schemes.
+* `*compiler/*` — the compiler-related options in the current buffer.
+* `*doc/*` — the custom plugin documentation.
+* `*ftdetect/*` — the file type detection plugins.
+* `*ftplugin/*` — the file type exclusive plugins.
+* `*indent/*` — the file type exclusive indentation settings.
+* `*keymap/*` — the key mapping files.
+* `*lang/*` — the language files.
 * `*macros/*`
-* `*plugin/*` — standard plugins.
-* `*syntax/*` — syntax highlighting plugins.
+* `*plugin/*` — the standard plugins.
+* `*syntax/*` — the syntax highlighting plugins.
 * `*tools/*`
 
-Refer to Vim reference materials for more information on the semantics of each directory.
+Refer to the Vim https://vimhelp.org[help] for more information on the semantics of each directory.
 
-[[config-vim-dependencies]]
 == Dependencies
 
-This deployment is stand-alone.
+The `config-vim` deployment is stand-alone.
 
-Divinefile included with the current bundle ensures that Vim is installed.
+The Divinefile included with the current bundle ensures that Vim is installed.
 
 == Supported asset modifications
 
-The `.vimrc` and `.ideavim` files may be freely modified in place.
-Modifications will take effect on next Vim startup.
-Renaming or moving any of the two will break the deployment.
+The `.vimrc` and `.ideavim` files may be freely modified in the asset directory; the modifications will take effect on the next Vim startup.
+Renaming or moving any of the configuration files will break them.
 
-If you don't need `.ideavim` file, you can remove it from the asset directory before installing the deployment.
+The `.ideavim` file can be safely removed from the asset directory before installing the deployment.
 
-Content of Vim customization directories may be freely modified in place.
-Modifications will take effect on next vim load.
+The symlinked content of the Vim customization directories may be freely modified in the asset directory; the modifications will take effect on the next Vim startup.
 
-Additional customization directories (or files) may be freely added to the root of `.vim/` directory.
+The additional customization directories or files may be freely added to the root of the `.vim/` directory.
 For the additions to be symlinked into `~/.vim/` directory, the deployment must be (re-)installed.
 
 == Overwriting policy
 
-During installation of the deployment, whenever a symlink is created at a certain path, anything that pre-exists at that location is preserved in the deployment's designated backup directory at:
+The `config-vim` deployment backs up any clashing pre-existing files in the home directory.
+The backup directory is at `state/backups/config-vim/`.
 
-[source]
---
-state/backups/config-vim/
---
-
-Pre-existing `~/.vim/` directory is not replaced as a whole, but the files and directories in its root are.
+A pre-existing `~/.vim/` directory is not replaced as a whole, but the files and directories in its root are.
 
 == Deployment removal notes
 
-Upon uninstallation of the deployment, backups of any overwritten files or directories are automatically restored.
+The `config-git` deployment is fully reversible: the displaced pre-existing files are restored.
 
-Uninstallation does not remove anything in the asset directory.
+The removal does not touch anything in the asset directory.

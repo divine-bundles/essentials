@@ -1,18 +1,18 @@
 #:title:        Divine Bash runcom: 00-bash-it
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
-#:revdate:      2019.10.29
-#:revremark:    Update for D.d v2
+#:revdate:      2019.11.12
+#:revremark:    Rewrite for D.d v2, pt. 2
 #:created_at:   2019.04.09
 
-## Bash shell framework initialization
+# Bash shell framework initialization
 
 ##
 ## Bash-it <https://github.com/Bash-it/bash-it>
 ##
 
-## Assumes Bash-it is cloned to ~/.bash-it (with dash), and that entry script 
-#. in its root is called bash_it.sh (with underscore), which is unlikely to 
+## Assumes Bash-it is cloned to ~/.bash-it (with a dash), and that entry script 
+#. in its root is called bash_it.sh (with an underscore), which is unlikely to 
 #. change.
 #
 ## Deployment bash-it.dpl.sh clones Bash-it in that same fashion.

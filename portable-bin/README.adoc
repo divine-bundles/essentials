@@ -1,8 +1,8 @@
 = Deployment `portable-bin` (`500`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revdate: 2019.10.24
-:revremark: Rewrite for D.d v2
+:revdate: 2019.11.12
+:revremark: Rewrite for D.d v2, pt. 2
 :doctype: article
 // Visual
 :toc:
@@ -14,68 +14,53 @@
 :as: *
 :das: **
 
-This deployment uses its own asset directory as a portable container for personal executables.
+The `portable-bin` deployment uses its own asset directory as a portable container for the personal executables.
 
-This deployment has the priority of `*500*`.
+The `portable-bin` deployment has the priority of `*500*`.
 
 == Deployment installation notes
 
-Basically, everything dropped into this deployment's asset directory immediately becomes available on `$PATH`.
-When the Grail directory is synchronized across machines (as it is encouraged to be — e.g., using Dropbox or Github), the 'personal directory for binaries/executables', or `.pbin/` becomes portable.
+Basically, everything dropped into the `portable-bin` deployment's *asset directory* immediately becomes available on `$PATH`.
+The portability is achieved when the Grail directory is synchronized across machines (as it is encouraged to be — e.g., using Dropbox or Github).
 
-.Map of asset installation for the deployment `portable-bin`
+.Map of asset installation for the `portable-bin` deployment
 [%header,cols="<.^3a,^.^1,<.^3a,<.^3a",stripes=none]
 |===
 
 ^.^| Asset
 ^.^| Method
 ^.^| Destination
-^.^| Asset description
+^.^| Description
 
-| _asset directory itself_
+| `_<asset dir itself>_`
 | symlinked
 | `~/*.pbin*/`
-| Personal binaries directory
+| The portable directory for the personal executables
 
 |===
 
 == Included assets
 
-The deployment's asset directory is located at:
-
-[source]
---
-grail/assets/portable-bin
---
-
-The asset directory starts empty.
+The `portable-bin` deployment's *asset directory* is located at `grail/assets/portable-bin`.
+This drop-box type directory starts empty.
 
 == Dependencies
 
-*This deployment depends on* `*config-shell*` *deployment* (included in current bundle).
-Shell start-up commands that ensure `~/.pbin/` directory is on `$PATH` are located in and sourced from:
-
-[source]
---
-grail/assets/config-shell/.runcoms/02-env.sh
---
+The `portable-bin` deployment depends on the `*config-shell*` deployment (included in the current bundle).
+The `~/.pbin/` directory is put on the `$PATH` variable from the runcom script at `grail/assets/config-shell/02-env.sh`.
 
 == Supported asset modifications
 
-Personal binaries/executables may be freely dropped into the asset directory.
-They will become available from the command line immediately.
+The binaries/executables may be freely dropped into the asset directory.
+They will become available on the command line immediately.
 
 == Overwriting policy
 
-During installation of the deployment, anything that pre-exists at the path `~/.pbin` is preserved in the deployment's designated backup directory at:
-
-[source]
---
-state/backups/portable-bin/
---
+The `portable-bin` deployment backs up any clashing pre-existing file at the `~/.pbin` path.
+The backup directory is at `state/backups/portable-bin/`.
 
 == Deployment removal notes
 
-Upon uninstallation of the deployment, the backup of the possibly overwritten file is automatically restored.
+The `portable-bin` deployment is fully reversible: the displaced pre-existing files are restored.
 
-Uninstallation does not remove anything in the asset directory.
+The removal does not touch anything in the asset directory.

@@ -1,8 +1,8 @@
 = Deployment `home-dirs` (`500`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revdate: 2019.10.31
-:revremark: Separate OS names with whitespace in manifests, instead of vbar
+:revdate: 2019.11.12
+:revremark: Rewrite for D.d v2, pt. 2
 :doctype: article
 // Visual
 :toc:
@@ -14,51 +14,47 @@
 :as: *
 :das: **
 
-This deployment maintains a stable tree of personal directories under the home directory.
+The `home-dirs` deployment maintains a stable tree of personal directories under the home directory.
 
-This deployment has the priority of `*500*`.
+The `home-dirs` deployment has the priority of `*500*`.
 
 == Deployment installation notes
 
-This deployment:
+The `home-dirs` deployment:
 
-* parses `*home-dirs.cfg*` file (located in the asset directory);
-* extracts relative paths that are relevant for current OS;
-* ensures that each of those directories exists in the home directory.
+* parses the `*home-dirs.cfg*` file (located in the asset directory);
+* extracts the relative paths for the current OS;
+* ensures that each of those relative paths corresponds to a sub-directory in the home directory.
 
-.Map of asset installation for the deployment `home-dirs`
+.Map of asset installation for the `home-dirs` deployment
 [%header,cols="<.^3a,^.^1,<.^3a,<.^3a",stripes=none]
 |===
 
 ^.^| Asset
 ^.^| Method
 ^.^| Destination
-^.^| Asset description
+^.^| Description
 
 | `*home-dirs.cfg*`
 | used
 | _N/A_
-| Manifest of home directories
+| The manifest of home directories
 
 |===
 
 == Included assets
 
-The deployment's asset directory is located at:
+The `home-dirs` deployment's *asset directory* is located at `grail/assets/home-dirs`.
 
-[source]
---
-grail/assets/home-dirs
---
-
-In the parlance of _Divine.dotfiles_, the home directory manifest `*home-dirs.cfg*` is a generic queue manifest.
-It uses parenthesized key-value pairs to denote sections or entries that are relevant for particular OS's.
+The `home-dirs.cfg` is a https://github.com/no-simpler/divine-dotfiles#queue-mnf[queue manifest].
+It uses the key-value pairs to denote sections or entries that are only relevant for particular OS's.
 By default, every entry is relevant everywhere.
 
-Entries may be made exclusive to particular OS family or distro.
-List of them may be provided by separating with vartical bars.
-Entire list may be negated by including exclamation mark `!` as the first non-whitespace char of the value.
+A whitespace-separated list of OS's may be provided.
+The entire list may be negated by prepenting it with an exclamation mark (`!`).
+
 A key-value that appears on a line of its own comes into effect for the remainder of the manifest, or until overridden.
+A key-value on the same line with an entry affects only that entry.
 
 [source]
 ----
@@ -71,29 +67,27 @@ A key-value that appears on a line of its own comes into effect for the remainde
 [.note]
 [%noheader,cols="<.<a"]
 |===
-| OS name is matched against `*$D{dus}OS_FAMILY*` and `*$D{dus}OS_DISTRO*` variables, which are built into _Divine.dotfiles_.
-Single match against any of the two is sufficient.
-For reference and list of supported OS's, see the framework documentation.
+| Refer to the framework https://github.com/no-simpler/divine-dotfiles[documentation] for more information on the queue manifest syntax.
 |===
 
 == Dependencies
 
-This deployment is stand-alone.
+The `home-dirs` deployment is stand-alone.
 
 == Supported asset modifications
 
-The directory manifest may be freely modified in place.
+The directory manifest may be freely modified in the asset directory.
 For the changes to take effect, the deployment must be (re-)installed.
-Renaming or moving the manifest will break the deployment.
+Renaming or moving the manifest will break it.
 
 == Overwriting policy
 
-Pre-existing files/directories at the desired paths are not touched.
+The `home-dirs` deployment does not touch any pre-existing files/directories at the desired paths.
 
 == Deployment removal notes
 
-The deployment takes _extra_ care with removing directories.
+The `home-dirs` deployment takes _extra_ care with removing directories.
 The user is prompted before removing any non-empty directory.
-That prompt is not affected by the intervention options and always appears.
+The prompt is not affected by the intervention options and always appears.
 
-Uninstallation does not remove anything in the asset directory.
+The removal does not touch anything in the asset directory.

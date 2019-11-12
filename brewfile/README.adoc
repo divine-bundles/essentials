@@ -1,8 +1,8 @@
-= Deployment `brewfile` (`3000`, `!`)
+= Deployment `brewfile` (`3000!`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revdate: 2019.10.24
-:revremark: Rewrite for D.d v2
+:revdate: 2019.11.12
+:revremark: Rewrite for D.d v2, pt. 2
 :doctype: article
 // Visual
 :toc:
@@ -14,80 +14,74 @@
 :as: *
 :das: **
 
-This deployment maintains a set of system dependencies on macOS using https://github.com/Homebrew/homebrew-bundle[Brewfile].
+The `brewfile` deployment maintains a set of system dependencies on macOS using the https://github.com/Homebrew/homebrew-bundle[Brewfile].
 
-This deployment has the priority of `*3000*`.
+The `brewfile` deployment is flagged as dangerous for two reasons:
 
-This deployment is flagged as dangerous for two reasons:
+* Checking whether a Brewfile is installed or not is not reliable.
+* Uninstalling a Brewfile is not implemented on Homebrew's side, and this deployment's implementation is an approximation.
 
-* Checking whether a Brewfile is installed or not is not consistent with _Divine.dotfiles_ return code semantics.
-* Uninstalling a Brewfile is not implemented on Homebrew's side, and this deployment's implementation is not 100% tested.
+As a result of the flag, the `brewfile` deployment is not processed by the intervention utility, unless the `--with-!` option is given.
 
-As a result of the flag, this deployment is not processed by the intervention utility, unless the `--with-!` option is included.
+The `brewfile` deployment has the priority of `*3000*`.
 
 == Deployment installation notes
 
-This deployment delegates to https://brew.sh/[Homebrew] to install whatever items are listed in the provided Brewfile.
+The `brewfile` deployment delegates to the https://brew.sh/[`brew` utility] to install whatever items are listed in the provided Brewfile.
 
-.Map of asset installation for the deployment `brewfile`
+.Map of asset installation for the `brewfile` deployment
 [%header,cols="<.^3a,^.^1,<.^3a,<.^3a",stripes=none]
 |===
 
 ^.^| Asset
 ^.^| Method
 ^.^| Destination
-^.^| Asset description
+^.^| Description
 
 | `*Brewfile*`
 | used
-| _N/A_
-| Manifest of system dependencies
+| https://brew.sh/[`brew` utility]
+| The manifest of system dependencies
 
 |===
 
 == Included assets
 
-The deployment's asset directory is located at:
-
-[source]
---
-grail/assets/brewfile
---
+The `brewfile` deployment's *asset directory* is located at `grail/assets/brewfile`.
 
 The included `*Brewfile*` starts up empty, and as such does nothing.
-This is mostly due to all fundamental dependencies being handled by the included Divinefile.
-So, yeah, Brewfile is kind of scoffed on around here.
-But anyway…
+The fundamental dependencies of the current bundle are handled by the included Divinefile.
+In other words, the Brewfile is kind of scoffed on around here.
 
 == Dependencies
 
-This deployment is stand-alone.
+The `brewfile` deployment is stand-alone.
 
-When launched on macOS, the _Divine.dotfiles_ itself will do its best to ensure https://brew.sh/[Homebrew] is installed.
+On macOS, the _Divine.dotfiles_ framework itself ensures that https://brew.sh/[Homebrew] is installed.
 
 == Supported asset modifications
 
-The Brewfile may be freely modified in place.
+The Brewfile may be freely modified in the asset directory.
 For the changes to take effect, the deployment must be (re-)installed.
 Renaming or moving the Brewfile will break the deployment.
 
 == Overwriting policy
 
-This is all in Homebrew's hands, and depends on the content of the Brewfile.
+The handling of Brewfiles is intirely in Homebrew's hands.
 Still, no major clobbering is expected.
 
 == Deployment removal notes
 
-Uninstalling Brewfile is generally not supported by Homebrew.
+Uninstalling a Brewfile is currently not supported by Homebrew.
 
-This deployment provides a workaround.
-Upon uninstallation of the deployment, the Brewfile will be read in reverse order, and for every supported line, an appropriate Homebrew uninstallation command will be called.
-Be advised, that this is not exactly the same as reversing installation due to possibility of transient dependencies, as well as other possible factors.
+The `brewfile` deployment provides a workaround.
+Upon removal of this deployment, the Brewfile is read in reverse order: for every supported line, the appropriate Homebrew uninstallation command is called.
+This procedure is _not_ an exact reverse of the installation due to the possible transient dependencies, as well as other factors.
 
-Currently, uninstallation of the following Brewfile lines is supported:
+Currently, the removal of the following Brewfile lines is supported:
 
 * `tap _<name>_` — taps will be untapped.
 * `cask _<name>_` — casks will be uninstalled.
 * `brew _<name>_` — bottles will be uninstalled.
 
-Uninstallation does not remove anything in the asset directory.
+The removal does not touch anything in the asset directory.

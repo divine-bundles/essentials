@@ -1,11 +1,11 @@
 #:title:        Divine zsh runcom: 00-oh-my-zsh
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
-#:revdate:      2019.10.29
-#:revremark:    Update for D.d v2
+#:revdate:      2019.11.12
+#:revremark:    Rewrite for D.d v2, pt. 2
 #:created_at:   2019.04.09
 
-# zsh shell framework initialization
+# Zsh shell framework initialization
 
 ##
 ## oh-my-zsh <https://ohmyz.sh>

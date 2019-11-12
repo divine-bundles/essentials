@@ -1,11 +1,11 @@
 #:title:        Divine Bash runcom: 01-config
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
-#:revdate:      2019.10.29
-#:revremark:    Update for D.d v2
+#:revdate:      2019.11.12
+#:revremark:    Rewrite for D.d v2, pt. 2
 #:created_at:   2019.04.09
 
-## Bash shell configuration
+# Bash shell configuration
 
 ##
 ## General configuration
@@ -34,8 +34,8 @@ if ! shopt -oq posix; then case $D__OS_FAMILY in
       if [[ -r "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh" ]]; then
         source "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh"
       else
-        for II in "${HOMEBREW_PREFIX}/etc/bash_completion.d/"*
-        do [[ -r "$II" ]] && source "$II"; done; unset II
+        for ii in "${HOMEBREW_PREFIX}/etc/bash_completion.d/"*
+        do [[ -r "$ii" ]] && source "$ii"; done; unset ii
       fi
     fi;;
   *)

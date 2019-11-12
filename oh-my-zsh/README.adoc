@@ -1,8 +1,8 @@
 = Deployment `oh-my-zsh` (`3333`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revdate: 2019.10.24
-:revremark: Rewrite for D.d v2
+:revdate: 2019.11.12
+:revremark: Rewrite for D.d v2, pt. 2
 :doctype: article
 // Visual
 :toc:
@@ -14,23 +14,23 @@
 :as: *
 :das: **
 
-This deployment introduces https://ohmyz.sh[oh-my-zsh framework] and custom assets for it into the home directory.
+The `oh-my-zsh` deployment introduces the https://ohmyz.sh[oh-my-zsh framework] and custom assets for it into the home directory.
 
-This deployment has the priority of `*3333*`.
+The `oh-my-zsh` deployment has the priority of `*3333*`.
 
 == Deployment installation notes
 
-This deployment ensures https://ohmyz.sh[oh-my-zsh framework] is installed into `~/.oh-my-zsh/`.
-Having succeeded, it symlinks additional assets into oh-my-zsh directory.
+The `oh-my-zsh` deployment clones or downloads the https://github.com/robbyrussell/oh-my-zsh[`robbyrussell/oh-my-zsh`] repository into the `~/.oh-my-zsh/` directory.
+Having succeeded, it symlinks additional assets into the framework.
 
-.Map of asset installation for the deployment `oh-my-zsh`
+.Map of asset installation for the `oh-my-zsh` deployment
 [%header,cols="<.^3a,^.^1,<.^3a,<.^3a",stripes=none]
 |===
 
 ^.^| Asset
 ^.^| Method
 ^.^| Destination
-^.^| Asset description
+^.^| Description
 
 | https://github.com/robbyrussell/oh-my-zsh[oh-my-zsh repo]
 | cloned
@@ -49,65 +49,54 @@ Having succeeded, it symlinks additional assets into oh-my-zsh directory.
 
 |===
 
-Path components in bold designate the source and target during cloning or symlinking.
+The path components in bold designate the source and the target of cloning/symlinking.
 
-[#oh-my-zsh-fmwk]#oh-my-zsh framework# is installed by cloning its https://github.com/robbyrussell/oh-my-zsh[Github repository].
-Included installation script (which normally adds startup commands to `~/.zshrc`) is not run because current bundle already includes necessary start-up commands.
+[[oh-my-zsh-fmwk]]
+The oh-my-zsh framework is installed by cloning its https://github.com/robbyrussell/oh-my-zsh[Github repository].
+The included installation script (which normally adds initialization commands to the `~/.zshrc` runcom) is not executed, because the current bundle already includes necessary initialization commands.
 
 == Included assets
 
-The deployment's asset directory is located at:
+The `oh-my-zsh` deployment's *asset directory* is located at `grail/assets/oh-my-zsh`.
 
-[source]
---
-grail/assets/oh-my-zsh
---
-
-A blank example file is provided for [#oh-my-zsh-plugins]#custom plugins#:
+[[oh-my-zsh-plugins]]
+A blank example file is provided for the custom plugins:
 
 - `*plugins/divine/divine.plugin.zsh*`
 
-In case of [#oh-my-zsh-themes]#themes#, a working minimalistic theme is provided (and is defaulted to by the included startup configuration):
+[[oh-my-zsh-themes]]
+A working minimalistic theme is provided for the custom themes:
 
 - `*themes/laidbare.zsh-theme*`
++
+This theme is also defaulted to in the provided initialization commands.
 
 == Dependencies
 
-*This deployment depends on* `*config-shell*` *deployment* (included in current bundle).
-Shell start-up commands that load and configure oh-my-zsh framework are located in and sourced from:
-
-[source]
---
-grail/assets/config-shell/.runcoms/00-oh-my-zsh.zsh
---
-
-The same file may and should be used to customize oh-my-zsh framework's loadout.
+The `oh-my-zsh` deployment depends on the `*config-shell*` deployment (included in the current bundle).
+The retrieved oh-my-zsh framework is initialized from the runcom script at `grail/assets/config-shell/01-oh-my-zsh.zsh`.
+The same file may and should be used to customize the oh-my-zsh framework's loadout.
 
 == Supported asset modifications
 
-All existing assets may be freely modified in place.
-Modifications will take effect after shell reload.
-Renaming or moving any of the asset files will break their respective functions.
+All symlinked assets may be freely modified in the asset directory; the modifications will take effect after the shell reload.
+
+However, moving any of the assets will break them.
+The deployment should be uninstalled before moving, and re-installed afterward. 
 
 Additional asset files may be freely added, as long as they follow the naming patterns above.
-For the additions to be symlinked into oh-my-zsh directory, the deployment must be (re-)installed.
+For the additions to be symlinked into the oh-my-zsh directory, the deployment must be (re-)installed.
 
 == Overwriting policy
 
-If during installation of the deployment oh-my-zsh framework is already present at `~/.oh-my-zsh/`, it is re-used.
+If the oh-my-zsh framework is already present at `~/.oh-my-zsh/`, it is re-used.
 
-During installation of the deployment, whenever a symlink is created at a certain path, anything that pre-exists at that location is preserved in the deployment's designated backup directory at:
-
-[source]
---
-state/backups/oh-my-zsh/
---
+The `oh-my-zsh` deployment backs up any clashing pre-existing files in the `~/.oh-my-zsh` directory.
+The backup directory is at `state/backups/oh-my-zsh/`.
 
 == Deployment removal notes
 
-oh-my-zsh framework is removed by erasing `~/.oh-my-zsh/` directory.
-If pre-existing oh-my-zsh installation has been re-used, it is *not removed*.
+The `oh-my-zsh` deployment is fully reversible: the retrieved repositories are removed, and the displaced pre-existing files are restored.
+Any files that have been re-used remain in place.
 
-Upon uninstallation of the deployment, backups of any overwritten files or directories are automatically restored.
-
-Uninstallation does not remove anything in the asset directory.
+The removal does not touch anything in the asset directory.

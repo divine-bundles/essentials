@@ -1,8 +1,8 @@
 = Deployment `bash-it` (`3333`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revdate: 2019.10.24
-:revremark: Rewrite for D.d v2
+:revdate: 2019.11.12
+:revremark: Rewrite for D.d v2, pt. 2
 :doctype: article
 // Visual
 :toc:
@@ -14,118 +14,107 @@
 :as: *
 :das: **
 
-This deployment introduces https://github.com/Bash-it/bash-it[Bash-it framework] and custom assets for it into the home directory.
+The `bash-it` deployment introduces the https://github.com/Bash-it/bash-it[Bash-it framework] and custom assets for it into the home directory.
 
-This deployment has the priority of `*3333*`.
+The `bash-it` deployment has the priority of `*3333*`.
 
 == Deployment installation notes
 
-This deployment ensures https://github.com/Bash-it/bash-it[Bash-it framework] is installed into `~/.bash-it/`.
-Having succeeded, it symlinks additional assets into Bash-it directory.
+The `bash-it` deployment clones or downloads the https://github.com/Bash-it/bash-it[`Bash-it/bash-it`] repository into the `~/.bash-it/` directory.
+Having succeeded, it symlinks additional assets into the framework.
 
-.Map of asset installation for the deployment `bash-it`
+.Map of asset installation for the `bash-it` deployment
 [%header,cols="<.^3a,^.^1,<.^3a,<.^3a",stripes=none]
 |===
 
 ^.^| Asset
 ^.^| Method
 ^.^| Destination
-^.^| Asset description
+^.^| Description
 
 | https://github.com/Bash-it/bash-it[Bash-it repo]
 | cloned
 | `~/**.bash-it**/`
-| Bash-it framework <<oh-my-zsh-fmwk,^1^>>
+| Bash-it framework <<bash-it-fmwk,^1^>>
 
 | `aliases/**__<name>__.aliases.bash**`
 | symlinked
 | `~/.bash-it/aliases/available/**__<name>__.aliases.bash**`
-| Custom Bash aliases <<oh-my-zsh-blanks,^2^>>
+| Custom Bash aliases <<bash-it-blanks,^2^>>
 
 | `completion/**__<name>__.completion.bash**`
 | symlinked
 | `~/.bash-it/completion/available/**__<name>__.completion.bash**`
-| Custom Bash completions <<oh-my-zsh-blanks,^2^>>
+| Custom Bash completions <<bash-it-blanks,^2^>>
 
 | `lib/**__<name>__.bash**`
 | symlinked
 | `~/.bash-it/lib/**__<name>__.bash**`
-| Custom Bash-it lib scripts <<oh-my-zsh-blanks,^2^>>
+| Custom Bash-it lib scripts <<bash-it-blanks,^2^>>
 
 | `plugins/**__<name>__.plugin.bash**`
 | symlinked
 | `~/.bash-it/plugins/available/**__<name>__.plugin.bash**`
-| Custom Bash-it plugins <<oh-my-zsh-blanks,^2^>>
+| Custom Bash-it plugins <<bash-it-blanks,^2^>>
 
 | `themes/**__<name>__**/__<name>__.theme.bash`
 | symlinked
 | `~/.bash-it/themes/**__<name>__**/`
-| Custom Bash-it themes <<oh-my-zsh-themes,^3^>>
+| Custom Bash-it themes <<bash-it-themes,^3^>>
 
 |===
 
-Path components in bold designate the source and target during cloning or symlinking.
+The path components in bold designate the source and the target of cloning/symlinking.
 
-Bash-it framework is installed with its included installation script.
-Option `--no-modify-config` is added because current bundle already includes necessary start-up commands.
+[[bash-it-fmwk]]
+The Bash-it framework is installed with its included installation script.
+The `--no-modify-config` option is added because the current bundle already includes the necessary initialization commands.
 
 == Included assets
 
-The deployment's asset directory is located at:
+The `bash-it` deployment's *asset directory* is located at `grail/assets/bash-it`.
 
-[source]
---
-grail/assets/bash-it
---
-
-[#oh-my-zsh-blanks]#Blank sample files# are provided for each kind of custom assets:
+[[bash-it-blanks]]
+Blank sample files are provided for each kind of custom assets:
 
 - `*aliases/divine.aliases.bash*`
 - `*completion/divine.completion.bash*`
 - `*lib/divine.bash*`
 - `*plugins/divine.plugin.bash*`
 
-In case of [#oh-my-zsh-themes]#themes#, a working minimalistic theme is provided (and is defaulted to by the included startup configuration):
+[[bash-it-themes]]
+A working minimalistic theme is provided for the custom themes:
 
 - `*themes/laidbare/laidbare.theme.bash*`
++
+This theme is also defaulted to in the provided initialization commands.
 
 == Dependencies
 
-*This deployment depends on* `*config-shell*` *deployment* (included in current bundle).
-Shell start-up commands that load and configure Bash-it framework are located in and sourced from:
-
-[source]
---
-grail/assets/config-shell/.runcoms/00-bash-it.bash
---
-
-The same file may and should be used to customize Bash-it framework's loadout.
+The `bash-it` deployment depends on the `*config-shell*` deployment (included in the current bundle).
+The retrieved Bash-it framework is initialized from the runcom script at `grail/assets/config-shell/01-bash-it.bash`.
+The same file may and should be used to customize the Bash-it framework's loadout.
 
 == Supported asset modifications
 
-All existing assets may be freely modified in place.
-Modifications will take effect after shell reload.
-Renaming or moving any of the asset files will break their respective functions.
+All symlinked assets may be freely modified in the asset directory; the modifications will take effect after the shell reload.
+
+However, moving any of the assets will break them.
+The deployment should be uninstalled before moving, and re-installed afterward. 
 
 Additional asset files may be freely added, as long as they follow the naming patterns above.
-For the additions to be symlinked into Bash-it directory, the deployment must be (re-)installed.
+For the additions to be symlinked into the Bash-it directory, the deployment must be (re-)installed.
 
 == Overwriting policy
 
-If during installation of the deployment Bash-it framework is already present at `~/.bash-it/`, it is re-used.
+If the Bash-it framework is already present at `~/.bash-it/`, it is re-used.
 
-During installation of the deployment, whenever a symlink is created at a certain path, anything that pre-exists at that location is preserved in the deployment's designated backup directory at:
-
-[source]
---
-state/backups/bash-it/
---
+The `bash-it` deployment backs up any clashing pre-existing files in the `~/.bash-it` directory.
+The backup directory is at `state/backups/bash-it/`.
 
 == Deployment removal notes
 
-Bash-it framework is removed by erasing `~/.bash-it/` directory.
-If pre-existing Bash-it installation has been re-used, it is *not removed*.
+The `bash-it` deployment is fully reversible: the retrieved repositories are removed, and the displaced pre-existing files are restored.
+Any files that have been re-used remain in place.
 
-Upon uninstallation of the deployment, backups of any overwritten files or directories are automatically restored.
-
-Uninstallation does not remove anything in the asset directory.
+The removal does not touch anything in the asset directory.

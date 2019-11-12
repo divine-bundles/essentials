@@ -2,5 +2,5 @@
 
 (prefix:bash-it-custom)
 
-# Files and directories put into custom assets directory (not enqueued)
+# Files and directories put into custom asset directory (not enqueued)
 (rn) [^./][^/]*

@@ -3,7 +3,6 @@
 ## Divine bundle 'essentials'
 #. <https://github.com/no-simpler/divine-bundle-essentials>
 #
-## Deployment 'config-shell': maintains configuration files for Bash & zsh
-#
-## .runcoms.zsh: container for box-specific zsh startup commands
+## .post.bash: This file is sourced during the Bash startup, AFTER all the 
+#. other runcom files.
 #

@@ -1,0 +1,72 @@
+= Deployment `zsh-addons` (`1000`)
+:author: Grove Pyree
+:email: grayarea@protonmail.ch
+:revdate: 2019.11.12
+:revremark: Rewrite for D.d v2, pt. 2
+:doctype: article
+// Visual
+:toc:
+// Subs:
+:hs: #
+:dhs: ##
+:us: _
+:dus: __
+:as: *
+:das: **
+
+The `zsh-addons` deployment retrieves a number of community addons for Zsh: https://github.com/zsh-users/zsh-completions[completions], https://github.com/zsh-users/zsh-syntax-highlighting[syntax highlighting], and https://github.com/zsh-users/zsh-autosuggestions[auto-suggestions].
+
+The `zsh-addons` deployment has the priority of `*1000*`.
+
+== Deployment installation notes
+
+The `zsh-addons` deployment clones or downloads the https://github.com/zsh-users[`zsh-users`] Github repositories into the `~/.zsh/` directory:
+
+.Map of asset installation for the `bash-it` deployment
+[%header,cols="<.^3a,^.^1,<.^3a,<.^3a",stripes=none]
+|===
+
+^.^| Asset
+^.^| Method
+^.^| Destination
+^.^| Description
+
+| https://github.com/zsh-users/zsh-completions[`zsh-users/zsh-completions`]
+| cloned
+| `~/.zsh/zsh-users/**zsh-completions**/`
+| 
+
+| https://github.com/zsh-users/zsh-syntax-highlighting[`zsh-users/zsh-syntax-highlighting`]
+| cloned
+| `~/.zsh/zsh-users/**zsh-syntax-highlighting**/`
+| 
+
+| https://github.com/zsh-users/zsh-autosuggestions[`zsh-users/zsh-autosuggestions`]
+| cloned
+| `~/.zsh/zsh-users/**zsh-autosuggestions**/`
+| 
+
+|===
+
+== Included assets
+
+The `zsh-addons` deployment does not use the asset directory.
+
+== Dependencies
+
+The `zsh-addons` deployment depends on the `*config-shell*` deployment (included in the current bundle).
+The retrieved addons are initialized from the runcom script at `grail/assets/config-shell/06-addons.zsh`.
+
+== Supported asset modifications
+
+The `zsh-addons` deployment provides no modifiable assets.
+
+== Overwriting policy
+
+The `zsh-addons` deployment backs up any clashing pre-existing files in the `~/.zsh` directory.
+The backup directory is at `state/backups/zsh-addons/`.
+
+== Deployment removal notes
+
+The `zsh-addons` deployment is fully reversible: the retrieved repositories are removed, and the displaced pre-existing files are restored.
+Any files that have been re-used remain in place.
