@@ -1,8 +1,9 @@
+[[brewfile-main]]
 = Deployment `brewfile` (`3000!`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revdate: 2019.11.12
-:revremark: Rewrite for D.d v2, pt. 2
+:revdate: 2019.11.14
+:revremark: Systematize the rest of the readmes
 :doctype: article
 // Visual
 :toc:
@@ -16,6 +17,19 @@
 
 The `brewfile` deployment maintains a set of system dependencies on macOS using the https://github.com/Homebrew/homebrew-bundle[Brewfile].
 
+[[brewfile-mtdt]]
+[none]
+* *Deployment* https://github.com/no-simpler/divine-dotfiles#mtdt-name-and-desc[*name*]: `brewfile`
+* https://github.com/no-simpler/divine-dotfiles#mtdt-priority[*Priority*]: `3000`
+* https://github.com/no-simpler/divine-dotfiles#mtdt-flags[*Flags*]: `!`
+* https://github.com/no-simpler/divine-dotfiles#indct-dpl-dir[*Deployment directory*] (`_<dpl-dir>_`): `https://github.com/no-simpler/divine-dotfiles#fmwk-state[state]/bundles/no-simpler/divine-bundle-essentials/brewfile/`
+* https://github.com/no-simpler/divine-dotfiles#indct-dpl-asset-dir[*Asset directory*] (`_<asset-dir>_`): `https://github.com/no-simpler/divine-dotfiles#fmwk-grail[grail]/assets/brewfile/`
++
+Assets are never removed from the Grail, even when uninstalling the deployment.
+* https://github.com/no-simpler/divine-dotfiles#indct-dpl-backup-dir[*Backup directory*] (`_<backup-dir>_`): `https://github.com/no-simpler/divine-dotfiles#fmwk-state[state]/backups/brewfile/`
+* https://github.com/no-simpler/divine-dotfiles#fmwk-zero-data-loss[*Zero data loss*]: any displaced files are backed up.
+* https://github.com/no-simpler/divine-dotfiles#fmwk-reversibility[*Reversibility*]: backed up files are restored, re-used ones untouched.
+
 The `brewfile` deployment is flagged as dangerous for two reasons:
 
 * Checking whether a Brewfile is installed or not is not reliable.
@@ -23,57 +37,34 @@ The `brewfile` deployment is flagged as dangerous for two reasons:
 
 As a result of the flag, the `brewfile` deployment is not processed by the intervention utility, unless the `--with-!` option is given.
 
-The `brewfile` deployment has the priority of `*3000*`.
+== Installation map
 
-== Deployment installation notes
+.Installation map for the `brewfile` deployment
+[%noheader,cols="<.<a",stripes=none]
+|===
+
+| +++<p align="center">+++
+*Installing*
++++</p>+++
+
+[%noheader,cols="4*<.^",stripes=none]
+!===
+
+! `<<brewfile-mtdt,_<asset-dir>_>>/*Brewfile*`
+! =>
+! `$ brew bundle install`
+! 
+
+!===
+
+Installation:: Installed using `brew bundle`.
+Removal:: Removed by calling `$ brew [cask] uninstall` and `$ brew untap`.
+
+|===
 
 The `brewfile` deployment delegates to the https://brew.sh/[`brew` utility] to install whatever items are listed in the provided Brewfile.
 
-.Map of asset installation for the `brewfile` deployment
-[%header,cols="<.^3a,^.^1,<.^3a,<.^3a",stripes=none]
-|===
-
-^.^| Asset
-^.^| Method
-^.^| Destination
-^.^| Description
-
-| `*Brewfile*`
-| used
-| https://brew.sh/[`brew` utility]
-| The manifest of system dependencies
-
-|===
-
-== Included assets
-
-The `brewfile` deployment's *asset directory* is located at `grail/assets/brewfile`.
-
-The included `*Brewfile*` starts up empty, and as such does nothing.
-The fundamental dependencies of the current bundle are handled by the included Divinefile.
-In other words, the Brewfile is kind of scoffed on around here.
-
-== Dependencies
-
-The `brewfile` deployment is stand-alone.
-
-On macOS, the _Divine.dotfiles_ framework itself ensures that https://brew.sh/[Homebrew] is installed.
-
-== Supported asset modifications
-
-The Brewfile may be freely modified in the asset directory.
-For the changes to take effect, the deployment must be (re-)installed.
-Renaming or moving the Brewfile will break the deployment.
-
-== Overwriting policy
-
-The handling of Brewfiles is intirely in Homebrew's hands.
-Still, no major clobbering is expected.
-
-== Deployment removal notes
-
-Uninstalling a Brewfile is currently not supported by Homebrew.
-
+Uninstalling a Brewfile, however, is currently not supported by Homebrew.
 The `brewfile` deployment provides a workaround.
 Upon removal of this deployment, the Brewfile is read in reverse order: for every supported line, the appropriate Homebrew uninstallation command is called.
 This procedure is _not_ an exact reverse of the installation due to the possible transient dependencies, as well as other factors.
@@ -84,4 +75,14 @@ Currently, the removal of the following Brewfile lines is supported:
 * `cask _<name>_` — casks will be uninstalled.
 * `brew _<name>_` — bottles will be uninstalled.
 
-The removal does not touch anything in the asset directory.
+== Included assets
+
+The included `*Brewfile*` starts up empty, and as such does nothing.
+The fundamental dependencies of the current bundle are handled by the included Divinefile.
+In other words, the Brewfile is kind of scoffed on around here.
+
+== Dependencies
+
+The `brewfile` deployment is stand-alone.
+
+On macOS, the _Divine.dotfiles_ framework itself ensures that https://brew.sh/[Homebrew] is installed.

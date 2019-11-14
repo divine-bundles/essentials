@@ -3,7 +3,7 @@
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
 :revdate: 2019.11.14
-:revremark: Systematize readmes for git & vim
+:revremark: Systematize the rest of the readmes
 :doctype: article
 // Visual
 :toc:
@@ -19,11 +19,13 @@ The `config-git` deployment symlinks the configuration files for https://git-scm
 
 [[config-git-mtdt]]
 [none]
-* https://github.com/no-simpler/divine-dotfiles#mtdt-name-and-desc[*Deployment name*]: `config-git`
+* *Deployment* https://github.com/no-simpler/divine-dotfiles#mtdt-name-and-desc[*name*]: `config-git`
 * https://github.com/no-simpler/divine-dotfiles#mtdt-priority[*Priority*]: `333`
 * https://github.com/no-simpler/divine-dotfiles#mtdt-flags[*Flags*]: _none_
 * https://github.com/no-simpler/divine-dotfiles#indct-dpl-dir[*Deployment directory*] (`_<dpl-dir>_`): `https://github.com/no-simpler/divine-dotfiles#fmwk-state[state]/bundles/no-simpler/divine-bundle-essentials/config-git/`
 * https://github.com/no-simpler/divine-dotfiles#indct-dpl-asset-dir[*Asset directory*] (`_<asset-dir>_`): `https://github.com/no-simpler/divine-dotfiles#fmwk-grail[grail]/assets/config-git/`
++
+Assets are never removed from the Grail, even when uninstalling the deployment.
 * https://github.com/no-simpler/divine-dotfiles#indct-dpl-backup-dir[*Backup directory*] (`_<backup-dir>_`): `https://github.com/no-simpler/divine-dotfiles#fmwk-state[state]/backups/config-git/`
 * https://github.com/no-simpler/divine-dotfiles#fmwk-zero-data-loss[*Zero data loss*]: any displaced files are backed up.
 * https://github.com/no-simpler/divine-dotfiles#fmwk-reversibility[*Reversibility*]: backed up files are restored, re-used ones untouched.
@@ -54,7 +56,7 @@ The `config-git` deployment symlinks the configuration files for https://git-scm
 !===
 
 Installation:: Symlinked, displacing any original.
-Removal:: Unlinked; original restored.
+Removal:: Unlinked; backed up original restored, if any.
 
 |===
 

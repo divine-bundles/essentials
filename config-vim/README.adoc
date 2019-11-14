@@ -1,8 +1,9 @@
+[[config-vim-main]]
 = Deployment `config-vim` (`333`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
 :revdate: 2019.11.14
-:revremark: Systematize readmes for git & vim
+:revremark: Systematize the rest of the readmes
 :doctype: article
 // Visual
 :toc:
@@ -18,11 +19,13 @@ The `config-vim` deployment symlinks the configuration and customization files f
 
 [[config-vim-mtdt]]
 [none]
-* https://github.com/no-simpler/divine-dotfiles#mtdt-name-and-desc[*Deployment name*]: `config-vim`
+* *Deployment* https://github.com/no-simpler/divine-dotfiles#mtdt-name-and-desc[*name*]: `config-vim`
 * https://github.com/no-simpler/divine-dotfiles#mtdt-priority[*Priority*]: `333`
 * https://github.com/no-simpler/divine-dotfiles#mtdt-flags[*Flags*]: _none_
 * https://github.com/no-simpler/divine-dotfiles#indct-dpl-dir[*Deployment directory*] (`_<dpl-dir>_`): `https://github.com/no-simpler/divine-dotfiles#fmwk-state[state]/bundles/no-simpler/divine-bundle-essentials/config-vim/`
 * https://github.com/no-simpler/divine-dotfiles#indct-dpl-asset-dir[*Asset directory*] (`_<asset-dir>_`): `https://github.com/no-simpler/divine-dotfiles#fmwk-grail[grail]/assets/config-vim/`
++
+Assets are never removed from the Grail, even when uninstalling the deployment.
 * https://github.com/no-simpler/divine-dotfiles#indct-dpl-backup-dir[*Backup directory*] (`_<backup-dir>_`): `https://github.com/no-simpler/divine-dotfiles#fmwk-state[state]/backups/config-vim/`
 * https://github.com/no-simpler/divine-dotfiles#fmwk-zero-data-loss[*Zero data loss*]: any displaced files are backed up.
 * https://github.com/no-simpler/divine-dotfiles#fmwk-reversibility[*Reversibility*]: backed up files are restored, re-used ones untouched.
@@ -58,26 +61,23 @@ The `config-vim` deployment symlinks the configuration and customization files f
 !===
 
 Installation:: Symlinked, displacing any original.
-Removal:: Unlinked; original restored.
+Removal:: Unlinked; backed up original restored, if any.
 
 |===
 
 == Included assets
 
-The `config-vim` deployment's *asset directory* is located at `grail/assets/config-vim`.
-
 The native configuration files, containing an opinionated set of Vim startup commands:
 
 * [[config-vim-rc]]`*.vimrc*` — the primary Vim configuration file.
 +
-This file includes an installation command for the https://github.com/junegunn/vim-plug[vim-plug] (_a minimalist Vim plugin manager_) along with a number of plugins and settings.
+This file includes an installation command for the https://github.com/junegunn/vim-plug[vim-plug] (_a minimalist Vim plugin manager_) along with some plugins and settings.
 * [[config-vim-idearc]]`*.ideavimrc*` — the configuration file for the https://github.com/JetBrains/ideavim[IdeaVim] (_a Vim emulation plugin for IDEs based on the IntelliJ Platform_).
 +
 If you don't use any of the IntelliJ products, this file is harmless.
 
 [[config-vim-dirs]]
 A number of Vim *customization directories* can be created in the root of the `.vim/` directory, as containers for your customizations.
-Most of these directories are not included with the deployment to prevent clutter.
 One keymap is provided as an example:
 
 * `*keymap/shifted.vim*` — the 'Caps Lock' mode toggled by double-tapping `j`.

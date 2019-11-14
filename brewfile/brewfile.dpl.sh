@@ -1,8 +1,8 @@
 #:title:        Divine deployment: brewfile
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
-#:revdate:      2019.10.24
-#:revremark:    Rewrite for D.d v2
+#:revdate:      2019.11.14
+#:revremark:    Systematize the rest of the readmes
 #:created_at:   2019.06.30
 
 D_DPL_NAME='brewfile'
@@ -84,9 +84,9 @@ d_dpl_remove()
     [[ $enm = \'*\' || $enm = \"*\" ]] && read -r enm <<<"${enm:1:${#enm}-2}"
     # Perform action based on line type
     [ -n "$enm" ] || continue; case $etp in
-      tap)  echo brew untap "$enm";;
-      cask) echo brew cask uninstall "$enm";;
-      brew) echo brew uninstall "$enm";;
+      tap)  brew untap "$enm";;
+      cask) brew cask uninstall "$enm";;
+      brew) brew uninstall "$enm";;
       *)    continue;;
     esac; if (($?)); then algd=false; $D__OPT_FORCE || break; fi
   # Done iterating over Brewfile lines in reverse order, skipping comments

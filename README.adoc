@@ -2,7 +2,7 @@
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
 :revdate: 2019.11.14
-:revremark: Systematize readmes for git & vim
+:revremark: Systematize the rest of the readmes
 :doctype: article
 // Visual
 :toc: macro
@@ -259,7 +259,7 @@ https://github.com/no-simpler/divine-dotfiles#fmwk-state[state]/bundles/no-simpl
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
 :revdate: 2019.11.14
-:revremark: Systematize readmes for git & vim
+:revremark: Systematize the rest of the readmes
 :doctype: article
 // Visual
 :toc:
@@ -275,11 +275,13 @@ The `config-shell` deployment symlinks the configuration files (https://en.wikip
 
 [[config-shell-mtdt]]
 [none]
-* https://github.com/no-simpler/divine-dotfiles#mtdt-name-and-desc[*Deployment name*]: `config-shell`
+* *Deployment* https://github.com/no-simpler/divine-dotfiles#mtdt-name-and-desc[*name*]: `config-shell`
 * https://github.com/no-simpler/divine-dotfiles#mtdt-priority[*Priority*]: `333`
 * https://github.com/no-simpler/divine-dotfiles#mtdt-flags[*Flags*]: _none_
 * https://github.com/no-simpler/divine-dotfiles#indct-dpl-dir[*Deployment directory*] (`_<dpl-dir>_`): `https://github.com/no-simpler/divine-dotfiles#fmwk-state[state]/bundles/no-simpler/divine-bundle-essentials/config-shell/`
 * https://github.com/no-simpler/divine-dotfiles#indct-dpl-asset-dir[*Asset directory*] (`_<asset-dir>_`): `https://github.com/no-simpler/divine-dotfiles#fmwk-grail[grail]/assets/config-shell/`
++
+Assets are never removed from the Grail, even when uninstalling the deployment.
 * https://github.com/no-simpler/divine-dotfiles#indct-dpl-backup-dir[*Backup directory*] (`_<backup-dir>_`): `https://github.com/no-simpler/divine-dotfiles#fmwk-state[state]/backups/config-shell/`
 * https://github.com/no-simpler/divine-dotfiles#fmwk-zero-data-loss[*Zero data loss*]: any displaced files are backed up.
 * https://github.com/no-simpler/divine-dotfiles#fmwk-reversibility[*Reversibility*]: backed up files are restored, re-used ones untouched.
@@ -322,7 +324,7 @@ The `config-shell` deployment symlinks the configuration files (https://en.wikip
 !===
 
 Installation:: Symlinked, displacing any original.
-Removal:: Unlinked; original restored.
+Removal:: Unlinked; backed up original restored, if any.
 
 | +++<p align="center">+++
 *Creating*
@@ -433,7 +435,7 @@ However, it provides the support for other deployments in the current bundle (vi
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
 :revdate: 2019.11.14
-:revremark: Systematize readmes for git & vim
+:revremark: Systematize the rest of the readmes
 :doctype: article
 // Visual
 :toc:
@@ -449,11 +451,13 @@ The `config-git` deployment symlinks the configuration files for https://git-scm
 
 [[config-git-mtdt]]
 [none]
-* https://github.com/no-simpler/divine-dotfiles#mtdt-name-and-desc[*Deployment name*]: `config-git`
+* *Deployment* https://github.com/no-simpler/divine-dotfiles#mtdt-name-and-desc[*name*]: `config-git`
 * https://github.com/no-simpler/divine-dotfiles#mtdt-priority[*Priority*]: `333`
 * https://github.com/no-simpler/divine-dotfiles#mtdt-flags[*Flags*]: _none_
 * https://github.com/no-simpler/divine-dotfiles#indct-dpl-dir[*Deployment directory*] (`_<dpl-dir>_`): `https://github.com/no-simpler/divine-dotfiles#fmwk-state[state]/bundles/no-simpler/divine-bundle-essentials/config-git/`
 * https://github.com/no-simpler/divine-dotfiles#indct-dpl-asset-dir[*Asset directory*] (`_<asset-dir>_`): `https://github.com/no-simpler/divine-dotfiles#fmwk-grail[grail]/assets/config-git/`
++
+Assets are never removed from the Grail, even when uninstalling the deployment.
 * https://github.com/no-simpler/divine-dotfiles#indct-dpl-backup-dir[*Backup directory*] (`_<backup-dir>_`): `https://github.com/no-simpler/divine-dotfiles#fmwk-state[state]/backups/config-git/`
 * https://github.com/no-simpler/divine-dotfiles#fmwk-zero-data-loss[*Zero data loss*]: any displaced files are backed up.
 * https://github.com/no-simpler/divine-dotfiles#fmwk-reversibility[*Reversibility*]: backed up files are restored, re-used ones untouched.
@@ -484,7 +488,7 @@ The `config-git` deployment symlinks the configuration files for https://git-scm
 !===
 
 Installation:: Symlinked, displacing any original.
-Removal:: Unlinked; original restored.
+Removal:: Unlinked; backed up original restored, if any.
 
 |===
 
@@ -507,11 +511,12 @@ The <<dpls-dfls,Divinefile>> included with the current bundle ensures that Git i
 
 :leveloffset: 2
 
+[[config-vim-main]]
 = Deployment `config-vim` (`333`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
 :revdate: 2019.11.14
-:revremark: Systematize readmes for git & vim
+:revremark: Systematize the rest of the readmes
 :doctype: article
 // Visual
 :toc:
@@ -527,11 +532,13 @@ The `config-vim` deployment symlinks the configuration and customization files f
 
 [[config-vim-mtdt]]
 [none]
-* https://github.com/no-simpler/divine-dotfiles#mtdt-name-and-desc[*Deployment name*]: `config-vim`
+* *Deployment* https://github.com/no-simpler/divine-dotfiles#mtdt-name-and-desc[*name*]: `config-vim`
 * https://github.com/no-simpler/divine-dotfiles#mtdt-priority[*Priority*]: `333`
 * https://github.com/no-simpler/divine-dotfiles#mtdt-flags[*Flags*]: _none_
 * https://github.com/no-simpler/divine-dotfiles#indct-dpl-dir[*Deployment directory*] (`_<dpl-dir>_`): `https://github.com/no-simpler/divine-dotfiles#fmwk-state[state]/bundles/no-simpler/divine-bundle-essentials/config-vim/`
 * https://github.com/no-simpler/divine-dotfiles#indct-dpl-asset-dir[*Asset directory*] (`_<asset-dir>_`): `https://github.com/no-simpler/divine-dotfiles#fmwk-grail[grail]/assets/config-vim/`
++
+Assets are never removed from the Grail, even when uninstalling the deployment.
 * https://github.com/no-simpler/divine-dotfiles#indct-dpl-backup-dir[*Backup directory*] (`_<backup-dir>_`): `https://github.com/no-simpler/divine-dotfiles#fmwk-state[state]/backups/config-vim/`
 * https://github.com/no-simpler/divine-dotfiles#fmwk-zero-data-loss[*Zero data loss*]: any displaced files are backed up.
 * https://github.com/no-simpler/divine-dotfiles#fmwk-reversibility[*Reversibility*]: backed up files are restored, re-used ones untouched.
@@ -567,26 +574,23 @@ The `config-vim` deployment symlinks the configuration and customization files f
 !===
 
 Installation:: Symlinked, displacing any original.
-Removal:: Unlinked; original restored.
+Removal:: Unlinked; backed up original restored, if any.
 
 |===
 
 == Included assets
 
-The `config-vim` deployment's *asset directory* is located at `grail/assets/config-vim`.
-
 The native configuration files, containing an opinionated set of Vim startup commands:
 
 * [[config-vim-rc]]`*.vimrc*` — the primary Vim configuration file.
 +
-This file includes an installation command for the https://github.com/junegunn/vim-plug[vim-plug] (_a minimalist Vim plugin manager_) along with a number of plugins and settings.
+This file includes an installation command for the https://github.com/junegunn/vim-plug[vim-plug] (_a minimalist Vim plugin manager_) along with some plugins and settings.
 * [[config-vim-idearc]]`*.ideavimrc*` — the configuration file for the https://github.com/JetBrains/ideavim[IdeaVim] (_a Vim emulation plugin for IDEs based on the IntelliJ Platform_).
 +
 If you don't use any of the IntelliJ products, this file is harmless.
 
 [[config-vim-dirs]]
 A number of Vim *customization directories* can be created in the root of the `.vim/` directory, as containers for your customizations.
-Most of these directories are not included with the deployment to prevent clutter.
 One keymap is provided as an example:
 
 * `*keymap/shifted.vim*` — the 'Caps Lock' mode toggled by double-tapping `j`.
@@ -620,11 +624,12 @@ The <<dpls-dfls,Divinefile>> included with the current bundle ensures that Vim i
 
 :leveloffset: 2
 
+[[portable-bin-main]]
 = Deployment `portable-bin` (`500`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
 :revdate: 2019.11.14
-:revremark: Systematize readmes for git & vim
+:revremark: Systematize the rest of the readmes
 :doctype: article
 // Visual
 :toc:
@@ -638,64 +643,65 @@ The <<dpls-dfls,Divinefile>> included with the current bundle ensures that Vim i
 
 The `portable-bin` deployment uses its own asset directory as a portable container for the personal executables.
 
-The `portable-bin` deployment has the priority of `*500*`.
+[[portable-bin-mtdt]]
+[none]
+* *Deployment* https://github.com/no-simpler/divine-dotfiles#mtdt-name-and-desc[*name*]: `portable-bin`
+* https://github.com/no-simpler/divine-dotfiles#mtdt-priority[*Priority*]: `500`
+* https://github.com/no-simpler/divine-dotfiles#mtdt-flags[*Flags*]: _none_
+* https://github.com/no-simpler/divine-dotfiles#indct-dpl-dir[*Deployment directory*] (`_<dpl-dir>_`): `https://github.com/no-simpler/divine-dotfiles#fmwk-state[state]/bundles/no-simpler/divine-bundle-essentials/portable-bin/`
+* https://github.com/no-simpler/divine-dotfiles#indct-dpl-asset-dir[*Asset directory*] (`_<asset-dir>_`): `https://github.com/no-simpler/divine-dotfiles#fmwk-grail[grail]/assets/portable-bin/`
++
+Assets are never removed from the Grail, even when uninstalling the deployment.
+* https://github.com/no-simpler/divine-dotfiles#indct-dpl-backup-dir[*Backup directory*] (`_<backup-dir>_`): `https://github.com/no-simpler/divine-dotfiles#fmwk-state[state]/backups/portable-bin/`
+* https://github.com/no-simpler/divine-dotfiles#fmwk-zero-data-loss[*Zero data loss*]: any displaced files are backed up.
+* https://github.com/no-simpler/divine-dotfiles#fmwk-reversibility[*Reversibility*]: backed up files are restored, re-used ones untouched.
 
-== Deployment installation notes
+== Installation map
 
-Basically, everything dropped into the `portable-bin` deployment's *asset directory* immediately becomes available on `$PATH`.
-The portability is achieved when the Grail directory is synchronized across machines (as it is encouraged to be — e.g., using Dropbox or Github).
-
-.Map of asset installation for the `portable-bin` deployment
-[%header,cols="<.^3a,^.^1,<.^3a,<.^3a",stripes=none]
+.Installation map for the `portable-bin` deployment
+[%noheader,cols="<.<a",stripes=none]
 |===
 
-^.^| Asset
-^.^| Method
-^.^| Destination
-^.^| Description
+| +++<p align="center">+++
+*Symlinking*
++++</p>+++
 
-| `_<asset dir itself>_`
-| symlinked
-| `~/*.pbin*/`
-| The portable directory for the personal executables
+[%noheader,cols="4*<.^",stripes=none]
+!===
+
+! `<<portable-bin-mtdt,_<asset-dir>_>>/`
+! =>
+! `~/*.pbin*/`
+!
+
+!===
+
+Installation:: Symlinked, displacing any original.
+Removal:: Unlinked; backed up original restored, if any.
 
 |===
 
 == Included assets
 
-The `portable-bin` deployment's *asset directory* is located at `grail/assets/portable-bin`.
-This drop-box type directory starts empty.
+Everything dropped into the `portable-bin` deployment's *asset directory* immediately becomes available on `$PATH`.
+The portability is achieved when the Grail directory is synchronized across machines (as it is encouraged to be — e.g., using Dropbox or Github).
+The included asset directory starts out empty.
 
 == Dependencies
 
-The `portable-bin` deployment depends on the `*config-shell*` deployment (included in the current bundle).
-The `~/.pbin/` directory is put on the `$PATH` variable from the runcom script at `grail/assets/config-shell/02-env.sh`.
-
-== Supported asset modifications
-
-The binaries/executables may be freely dropped into the asset directory.
-They will become available on the command line immediately.
-
-== Overwriting policy
-
-The `portable-bin` deployment backs up any clashing pre-existing file at the `~/.pbin` path.
-The backup directory is at `state/backups/portable-bin/`.
-
-== Deployment removal notes
-
-The `portable-bin` deployment is fully reversible: the displaced pre-existing files are restored.
-
-The removal does not touch anything in the asset directory.
+The `portable-bin` deployment depends on the <<config-shell-main,`*config-shell*`>> deployment (included in the current bundle).
+The `~/.pbin/` directory is put on the `$PATH` variable from the runcom script at `https://github.com/no-simpler/divine-dotfiles#fmwk-grail[grail]/assets/config-shell/02-env.sh`.
 
 :leveloffset!:
 
 :leveloffset: 2
 
+[[home-dirs-main]]
 = Deployment `home-dirs` (`500`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
 :revdate: 2019.11.14
-:revremark: Systematize readmes for git & vim
+:revremark: Systematize the rest of the readmes
 :doctype: article
 // Visual
 :toc:
@@ -709,35 +715,51 @@ The removal does not touch anything in the asset directory.
 
 The `home-dirs` deployment maintains a stable tree of personal directories under the home directory.
 
-The `home-dirs` deployment has the priority of `*500*`.
+[[home-dirs-mtdt]]
+[none]
+* *Deployment* https://github.com/no-simpler/divine-dotfiles#mtdt-name-and-desc[*name*]: `home-dirs`
+* https://github.com/no-simpler/divine-dotfiles#mtdt-priority[*Priority*]: `500`
+* https://github.com/no-simpler/divine-dotfiles#mtdt-flags[*Flags*]: _none_
+* https://github.com/no-simpler/divine-dotfiles#indct-dpl-dir[*Deployment directory*] (`_<dpl-dir>_`): `https://github.com/no-simpler/divine-dotfiles#fmwk-state[state]/bundles/no-simpler/divine-bundle-essentials/home-dirs/`
+* https://github.com/no-simpler/divine-dotfiles#indct-dpl-asset-dir[*Asset directory*] (`_<asset-dir>_`): `https://github.com/no-simpler/divine-dotfiles#fmwk-grail[grail]/assets/home-dirs/`
++
+Assets are never removed from the Grail, even when uninstalling the deployment.
+* https://github.com/no-simpler/divine-dotfiles#indct-dpl-backup-dir[*Backup directory*] (`_<backup-dir>_`): `https://github.com/no-simpler/divine-dotfiles#fmwk-state[state]/backups/home-dirs/`
+* https://github.com/no-simpler/divine-dotfiles#fmwk-zero-data-loss[*Zero data loss*]: any displaced files are backed up.
+* https://github.com/no-simpler/divine-dotfiles#fmwk-reversibility[*Reversibility*]: backed up files are restored, re-used ones untouched.
 
-== Deployment installation notes
+== Installation map
+
+.Installation map for the `home-dirs` deployment
+[%noheader,cols="<.<a",stripes=none]
+|===
+
+| +++<p align="center">+++
+*Creating*
++++</p>+++
+
+[%noheader,cols="4*<.^",stripes=none]
+!===
+
+! `*_<dir-path>_*` entries from `<<home-dirs-mtdt,_<asset-dir>_>>/*home-dirs.cfg*
+! =>
+! `~/*_<dir-path>_*/`
+!
+
+!===
+
+Installation:: Created, or re-used if pre-existing.
+Removal:: Removed, or untouched if re-used.
+
+|===
 
 The `home-dirs` deployment:
 
-* parses the `*home-dirs.cfg*` file (located in the asset directory);
-* extracts the relative paths for the current OS;
-* ensures that each of those relative paths corresponds to a sub-directory in the home directory.
-
-.Map of asset installation for the `home-dirs` deployment
-[%header,cols="<.^3a,^.^1,<.^3a,<.^3a",stripes=none]
-|===
-
-^.^| Asset
-^.^| Method
-^.^| Destination
-^.^| Description
-
-| `*home-dirs.cfg*`
-| used
-| _N/A_
-| The manifest of home directories
-
-|===
+* parses the `*home-dirs.cfg*` file as a https://github.com/no-simpler/divine-dotfiles#queue-mnf[queue manifest];
+* treats entries as relative paths;
+* ensures that the paths correspond to sub-directories under the home directory.
 
 == Included assets
-
-The `home-dirs` deployment's *asset directory* is located at `grail/assets/home-dirs`.
 
 The `home-dirs.cfg` is a https://github.com/no-simpler/divine-dotfiles#queue-mnf[queue manifest].
 It uses the key-value pairs to denote sections or entries that are only relevant for particular OS's.
@@ -760,40 +782,23 @@ A key-value on the same line with an entry affects only that entry.
 [.note]
 [%noheader,cols="<.<a"]
 |===
-| Refer to the framework https://github.com/no-simpler/divine-dotfiles[documentation] for more information on the queue manifest syntax.
+| The queue manifest syntax is documented in the framework's https://github.com/no-simpler/divine-dotfiles#queue-mnf[documentation].
 |===
 
 == Dependencies
 
 The `home-dirs` deployment is stand-alone.
 
-== Supported asset modifications
-
-The directory manifest may be freely modified in the asset directory.
-For the changes to take effect, the deployment must be (re-)installed.
-Renaming or moving the manifest will break it.
-
-== Overwriting policy
-
-The `home-dirs` deployment does not touch any pre-existing files/directories at the desired paths.
-
-== Deployment removal notes
-
-The `home-dirs` deployment takes _extra_ care with removing directories.
-The user is prompted before removing any non-empty directory.
-The prompt is not affected by the intervention options and always appears.
-
-The removal does not touch anything in the asset directory.
-
 :leveloffset!:
 
 :leveloffset: 2
 
+[[zsh-addons-main]]
 = Deployment `zsh-addons` (`1000`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
 :revdate: 2019.11.14
-:revremark: Systematize readmes for git & vim
+:revremark: Systematize the rest of the readmes
 :doctype: article
 // Visual
 :toc:
@@ -807,70 +812,73 @@ The removal does not touch anything in the asset directory.
 
 The `zsh-addons` deployment retrieves a number of community addons for Zsh: https://github.com/zsh-users/zsh-completions[completions], https://github.com/zsh-users/zsh-syntax-highlighting[syntax highlighting], and https://github.com/zsh-users/zsh-autosuggestions[auto-suggestions].
 
-The `zsh-addons` deployment has the priority of `*1000*`.
+[[zsh-addons-mtdt]]
+[none]
+* *Deployment* https://github.com/no-simpler/divine-dotfiles#mtdt-name-and-desc[*name*]: `zsh-addons`
+* https://github.com/no-simpler/divine-dotfiles#mtdt-priority[*Priority*]: `1000`
+* https://github.com/no-simpler/divine-dotfiles#mtdt-flags[*Flags*]: _none_
+* https://github.com/no-simpler/divine-dotfiles#indct-dpl-dir[*Deployment directory*] (`_<dpl-dir>_`): `https://github.com/no-simpler/divine-dotfiles#fmwk-state[state]/bundles/no-simpler/divine-bundle-essentials/zsh-addons/`
+* https://github.com/no-simpler/divine-dotfiles#indct-dpl-asset-dir[*Asset directory*] (`_<asset-dir>_`): `https://github.com/no-simpler/divine-dotfiles#fmwk-grail[grail]/assets/zsh-addons/`
++
+Assets are never removed from the Grail, even when uninstalling the deployment.
+* https://github.com/no-simpler/divine-dotfiles#indct-dpl-backup-dir[*Backup directory*] (`_<backup-dir>_`): `https://github.com/no-simpler/divine-dotfiles#fmwk-state[state]/backups/zsh-addons/`
+* https://github.com/no-simpler/divine-dotfiles#fmwk-zero-data-loss[*Zero data loss*]: any displaced files are backed up.
+* https://github.com/no-simpler/divine-dotfiles#fmwk-reversibility[*Reversibility*]: backed up files are restored, re-used ones untouched.
 
-== Deployment installation notes
+== Installation map
 
-The `zsh-addons` deployment clones or downloads the https://github.com/zsh-users[`zsh-users`] Github repositories into the `~/.zsh/` directory:
-
-.Map of asset installation for the `bash-it` deployment
-[%header,cols="<.^3a,^.^1,<.^3a,<.^3a",stripes=none]
+.Installation map for the `zsh-addons` deployment
+[%noheader,cols="<.<a",stripes=none]
 |===
 
-^.^| Asset
-^.^| Method
-^.^| Destination
-^.^| Description
+| +++<p align="center">+++
+*Retrieving Github repositories*
++++</p>+++
 
-| https://github.com/zsh-users/zsh-completions[`zsh-users/zsh-completions`]
-| cloned
-| `~/.zsh/zsh-users/**zsh-completions**/`
-|
+[%noheader,cols="4*<.^",stripes=none]
+!===
 
-| https://github.com/zsh-users/zsh-syntax-highlighting[`zsh-users/zsh-syntax-highlighting`]
-| cloned
-| `~/.zsh/zsh-users/**zsh-syntax-highlighting**/`
-|
+! Repository 'https://github.com/zsh-users/zsh-completions[`zsh-users/zsh-completions`]'
+! =>
+! `~/.zsh/zsh-users/**zsh-completions**/`
+!
 
-| https://github.com/zsh-users/zsh-autosuggestions[`zsh-users/zsh-autosuggestions`]
-| cloned
-| `~/.zsh/zsh-users/**zsh-autosuggestions**/`
-|
+! Repository 'https://github.com/zsh-users/zsh-syntax-highlighting[`zsh-users/zsh-syntax-highlighting`]'
+! =>
+! `~/.zsh/zsh-users/**zsh-syntax-highlighting**/`
+!
+
+! Repository 'https://github.com/zsh-users/zsh-autosuggestions[`zsh-users/zsh-autosuggestions`]'
+! =>
+! `~/.zsh/zsh-users/**zsh-autosuggestions**/`
+!
+
+!===
+
+Installation:: Cloned/downloaded, displacing any original.
+Removal:: Displaced; backed up original restored, if any.
 
 |===
 
 == Included assets
 
-The `zsh-addons` deployment does not use the asset directory.
+The `zsh-addons` deployment does not include any assets.
 
 == Dependencies
 
-The `zsh-addons` deployment depends on the `*config-shell*` deployment (included in the current bundle).
+The `zsh-addons` deployment depends on the <<config-shell-main,`*config-shell*`>> deployment (included in the current bundle).
 The retrieved addons are initialized from the runcom script at `grail/assets/config-shell/06-addons.zsh`.
-
-== Supported asset modifications
-
-The `zsh-addons` deployment provides no modifiable assets.
-
-== Overwriting policy
-
-The `zsh-addons` deployment backs up any clashing pre-existing files in the `~/.zsh` directory.
-The backup directory is at `state/backups/zsh-addons/`.
-
-== Deployment removal notes
-
-The `zsh-addons` deployment is fully reversible: the retrieved repositories are removed, and the displaced pre-existing files are restored.
-Any files that have been re-used remain in place.
 
 :leveloffset!:
 
 :leveloffset: 2
 
+[[zsh-default-main]]
 = Deployment `zsh-default` (`1333`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
 :revdate: 2019.11.14
-:revremark: Systematize readmes for git & vim
+:revremark: Systematize the rest of the readmes
 :doctype: article
 // Visual
 :toc:
@@ -884,9 +892,20 @@ Any files that have been re-used remain in place.
 
 The `zsh-default` deployment ensures that https://sourceforge.net/projects/zsh[Zsh] is the default shell for the current OS user.
 
-The `zsh-default` deployment has the priority of `*1333*`.
+[[zsh-default-mtdt]]
+[none]
+* *Deployment* https://github.com/no-simpler/divine-dotfiles#mtdt-name-and-desc[*name*]: `zsh-default`
+* https://github.com/no-simpler/divine-dotfiles#mtdt-priority[*Priority*]: `1333`
+* https://github.com/no-simpler/divine-dotfiles#mtdt-flags[*Flags*]: _none_
+* https://github.com/no-simpler/divine-dotfiles#indct-dpl-dir[*Deployment directory*] (`_<dpl-dir>_`): `https://github.com/no-simpler/divine-dotfiles#fmwk-state[state]/bundles/no-simpler/divine-bundle-essentials/zsh-default/`
+* https://github.com/no-simpler/divine-dotfiles#indct-dpl-asset-dir[*Asset directory*] (`_<asset-dir>_`): `https://github.com/no-simpler/divine-dotfiles#fmwk-grail[grail]/assets/zsh-default/`
++
+Assets are never removed from the Grail, even when uninstalling the deployment.
+* https://github.com/no-simpler/divine-dotfiles#indct-dpl-backup-dir[*Backup directory*] (`_<backup-dir>_`): `https://github.com/no-simpler/divine-dotfiles#fmwk-state[state]/backups/zsh-default/`
+* https://github.com/no-simpler/divine-dotfiles#fmwk-zero-data-loss[*Zero data loss*]: any displaced files are backed up.
+* https://github.com/no-simpler/divine-dotfiles#fmwk-reversibility[*Reversibility*]: backed up files are restored, re-used ones untouched.
 
-== Deployment installation notes
+== Installation map
 
 After some preparations (involving the `/etc/shells` file), the `zsh-default` deployment calls the `chsh -s _<path to zsh>_` command to change the default shell.
 Note that *changing the default shell requires the user's password*.
@@ -894,38 +913,24 @@ The password prompt will appear during the installation/removal.
 
 == Included assets
 
-The `zsh-default` deployment does not use the asset directory.
+The `zsh-default` deployment does not include any assets.
 
 == Dependencies
 
 The `zsh-default` deployment is stand-alone.
 
-On some systems, the Divinefile included with the current bundle ensures that the `chsh` utility is installed.
-
-== Supported asset modifications
-
-The `zsh-default` deployment provides no modifiable assets.
-
-== Overwriting policy
-
-The `zsh-default` deployment does not overwrite any files.
-
-If the default shell is already Zsh, this deployment does nothing.
-
-== Deployment removal notes
-
-The `config-git` deployment is fully reversible: the original default shell is restored.
-If the default shell is not changed during the installation, it is not changed during the removal as well.
+On some systems, the <<dpls-dfls,Divinefile>> included with the current bundle ensures that the `chsh` utility is installed.
 
 :leveloffset!:
 
 :leveloffset: 2
 
+[[brewfile-main]]
 = Deployment `brewfile` (`3000!`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
 :revdate: 2019.11.14
-:revremark: Systematize readmes for git & vim
+:revremark: Systematize the rest of the readmes
 :doctype: article
 // Visual
 :toc:
@@ -939,6 +944,19 @@ If the default shell is not changed during the installation, it is not changed d
 
 The `brewfile` deployment maintains a set of system dependencies on macOS using the https://github.com/Homebrew/homebrew-bundle[Brewfile].
 
+[[brewfile-mtdt]]
+[none]
+* *Deployment* https://github.com/no-simpler/divine-dotfiles#mtdt-name-and-desc[*name*]: `brewfile`
+* https://github.com/no-simpler/divine-dotfiles#mtdt-priority[*Priority*]: `3000`
+* https://github.com/no-simpler/divine-dotfiles#mtdt-flags[*Flags*]: `!`
+* https://github.com/no-simpler/divine-dotfiles#indct-dpl-dir[*Deployment directory*] (`_<dpl-dir>_`): `https://github.com/no-simpler/divine-dotfiles#fmwk-state[state]/bundles/no-simpler/divine-bundle-essentials/brewfile/`
+* https://github.com/no-simpler/divine-dotfiles#indct-dpl-asset-dir[*Asset directory*] (`_<asset-dir>_`): `https://github.com/no-simpler/divine-dotfiles#fmwk-grail[grail]/assets/brewfile/`
++
+Assets are never removed from the Grail, even when uninstalling the deployment.
+* https://github.com/no-simpler/divine-dotfiles#indct-dpl-backup-dir[*Backup directory*] (`_<backup-dir>_`): `https://github.com/no-simpler/divine-dotfiles#fmwk-state[state]/backups/brewfile/`
+* https://github.com/no-simpler/divine-dotfiles#fmwk-zero-data-loss[*Zero data loss*]: any displaced files are backed up.
+* https://github.com/no-simpler/divine-dotfiles#fmwk-reversibility[*Reversibility*]: backed up files are restored, re-used ones untouched.
+
 The `brewfile` deployment is flagged as dangerous for two reasons:
 
 * Checking whether a Brewfile is installed or not is not reliable.
@@ -946,31 +964,45 @@ The `brewfile` deployment is flagged as dangerous for two reasons:
 
 As a result of the flag, the `brewfile` deployment is not processed by the intervention utility, unless the `--with-!` option is given.
 
-The `brewfile` deployment has the priority of `*3000*`.
+== Installation map
 
-== Deployment installation notes
+.Installation map for the `brewfile` deployment
+[%noheader,cols="<.<a",stripes=none]
+|===
+
+| +++<p align="center">+++
+*Installing*
++++</p>+++
+
+[%noheader,cols="4*<.^",stripes=none]
+!===
+
+! `<<brewfile-mtdt,_<asset-dir>_>>/*Brewfile*`
+! =>
+! `$ brew bundle install`
+!
+
+!===
+
+Installation:: Installed using `brew bundle`.
+Removal:: Removed by calling `$ brew [cask] uninstall` and `$ brew untap`.
+
+|===
 
 The `brewfile` deployment delegates to the https://brew.sh/[`brew` utility] to install whatever items are listed in the provided Brewfile.
 
-.Map of asset installation for the `brewfile` deployment
-[%header,cols="<.^3a,^.^1,<.^3a,<.^3a",stripes=none]
-|===
+Uninstalling a Brewfile, however, is currently not supported by Homebrew.
+The `brewfile` deployment provides a workaround.
+Upon removal of this deployment, the Brewfile is read in reverse order: for every supported line, the appropriate Homebrew uninstallation command is called.
+This procedure is _not_ an exact reverse of the installation due to the possible transient dependencies, as well as other factors.
 
-^.^| Asset
-^.^| Method
-^.^| Destination
-^.^| Description
+Currently, the removal of the following Brewfile lines is supported:
 
-| `*Brewfile*`
-| used
-| https://brew.sh/[`brew` utility]
-| The manifest of system dependencies
-
-|===
+* `tap _<name>_` — taps will be untapped.
+* `cask _<name>_` — casks will be uninstalled.
+* `brew _<name>_` — bottles will be uninstalled.
 
 == Included assets
-
-The `brewfile` deployment's *asset directory* is located at `grail/assets/brewfile`.
 
 The included `*Brewfile*` starts up empty, and as such does nothing.
 The fundamental dependencies of the current bundle are handled by the included Divinefile.
@@ -982,42 +1014,16 @@ The `brewfile` deployment is stand-alone.
 
 On macOS, the _Divine.dotfiles_ framework itself ensures that https://brew.sh/[Homebrew] is installed.
 
-== Supported asset modifications
-
-The Brewfile may be freely modified in the asset directory.
-For the changes to take effect, the deployment must be (re-)installed.
-Renaming or moving the Brewfile will break the deployment.
-
-== Overwriting policy
-
-The handling of Brewfiles is intirely in Homebrew's hands.
-Still, no major clobbering is expected.
-
-== Deployment removal notes
-
-Uninstalling a Brewfile is currently not supported by Homebrew.
-
-The `brewfile` deployment provides a workaround.
-Upon removal of this deployment, the Brewfile is read in reverse order: for every supported line, the appropriate Homebrew uninstallation command is called.
-This procedure is _not_ an exact reverse of the installation due to the possible transient dependencies, as well as other factors.
-
-Currently, the removal of the following Brewfile lines is supported:
-
-* `tap _<name>_` — taps will be untapped.
-* `cask _<name>_` — casks will be uninstalled.
-* `brew _<name>_` — bottles will be uninstalled.
-
-The removal does not touch anything in the asset directory.
-
 :leveloffset!:
 
 :leveloffset: 2
 
+[[bash-it-main]]
 = Deployment `bash-it` (`3333`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
 :revdate: 2019.11.14
-:revremark: Systematize readmes for git & vim
+:revremark: Systematize the rest of the readmes
 :doctype: article
 // Visual
 :toc:
@@ -1031,63 +1037,86 @@ The removal does not touch anything in the asset directory.
 
 The `bash-it` deployment introduces the https://github.com/Bash-it/bash-it[Bash-it framework] and custom assets for it into the home directory.
 
-The `bash-it` deployment has the priority of `*3333*`.
+[[bash-it-mtdt]]
+[none]
+* *Deployment* https://github.com/no-simpler/divine-dotfiles#mtdt-name-and-desc[*name*]: `bash-it`
+* https://github.com/no-simpler/divine-dotfiles#mtdt-priority[*Priority*]: `3333`
+* https://github.com/no-simpler/divine-dotfiles#mtdt-flags[*Flags*]: _none_
+* https://github.com/no-simpler/divine-dotfiles#indct-dpl-dir[*Deployment directory*] (`_<dpl-dir>_`): `https://github.com/no-simpler/divine-dotfiles#fmwk-state[state]/bundles/no-simpler/divine-bundle-essentials/bash-it/`
+* https://github.com/no-simpler/divine-dotfiles#indct-dpl-asset-dir[*Asset directory*] (`_<asset-dir>_`): `https://github.com/no-simpler/divine-dotfiles#fmwk-grail[grail]/assets/bash-it/`
++
+Assets are never removed from the Grail, even when uninstalling the deployment.
+* https://github.com/no-simpler/divine-dotfiles#indct-dpl-backup-dir[*Backup directory*] (`_<backup-dir>_`): `https://github.com/no-simpler/divine-dotfiles#fmwk-state[state]/backups/bash-it/`
+* https://github.com/no-simpler/divine-dotfiles#fmwk-zero-data-loss[*Zero data loss*]: any displaced files are backed up.
+* https://github.com/no-simpler/divine-dotfiles#fmwk-reversibility[*Reversibility*]: backed up files are restored, re-used ones untouched.
 
-== Deployment installation notes
+== Installation map
+
+.Installation map for the `bash-it` deployment
+[%noheader,cols="<.<a",stripes=none]
+|===
+
+| +++<p align="center">+++
+*Retrieving Github repositories*
++++</p>+++
+
+[%noheader,cols="4*<.^",stripes=none]
+!===
+
+! Repository 'https://github.com/Bash-it/bash-it[`Bash-it/bash-it`]'
+! =>
+! `~/**.bash-it**/`
+! <<bash-it-fmwk,^1^>>
+
+!===
+
+Installation:: Cloned/downloaded, displacing any original.
+Removal:: Displaced; backed up original restored, if any.
+
+| +++<p align="center">+++
+*Symlinking*
++++</p>+++
+
+[%noheader,cols="4*<.^",stripes=none]
+!===
+
+! `<<bash-it-mtdt,_<asset-dir>_>>/aliases/**__<name>__.aliases.bash**`
+! =>
+! `~/.bash-it/aliases/available/**__<name>__.aliases.bash**`
+.4+! <<bash-it-blanks,^2^>>
+
+! `<<bash-it-mtdt,_<asset-dir>_>>/completion/**__<name>__.completion.bash**`
+! =>
+! `~/.bash-it/completion/available/**__<name>__.completion.bash**`
+
+! `<<bash-it-mtdt,_<asset-dir>_>>/lib/**__<name>__.bash**`
+! =>
+! `~/.bash-it/lib/**__<name>__.bash**`
+
+! `<<bash-it-mtdt,_<asset-dir>_>>/plugins/**__<name>__.plugin.bash**`
+! =>
+! `~/.bash-it/plugins/available/**__<name>__.plugin.bash**`
+
+! `<<bash-it-mtdt,_<asset-dir>_>>/themes/**__<name>__**/__<name>__.theme.bash`
+! =>
+! `~/.bash-it/themes/**__<name>__**/`
+! <<bash-it-themes,^3^>>
+
+!===
+
+Installation:: Symlinked, displacing any original.
+Removal:: Unlinked; backed up original restored, if any.
+
+|===
 
 The `bash-it` deployment clones or downloads the https://github.com/Bash-it/bash-it[`Bash-it/bash-it`] repository into the `~/.bash-it/` directory.
 Having succeeded, it symlinks additional assets into the framework.
-
-.Map of asset installation for the `bash-it` deployment
-[%header,cols="<.^3a,^.^1,<.^3a,<.^3a",stripes=none]
-|===
-
-^.^| Asset
-^.^| Method
-^.^| Destination
-^.^| Description
-
-| https://github.com/Bash-it/bash-it[Bash-it repo]
-| cloned
-| `~/**.bash-it**/`
-| Bash-it framework <<bash-it-fmwk,^1^>>
-
-| `aliases/**__<name>__.aliases.bash**`
-| symlinked
-| `~/.bash-it/aliases/available/**__<name>__.aliases.bash**`
-| Custom Bash aliases <<bash-it-blanks,^2^>>
-
-| `completion/**__<name>__.completion.bash**`
-| symlinked
-| `~/.bash-it/completion/available/**__<name>__.completion.bash**`
-| Custom Bash completions <<bash-it-blanks,^2^>>
-
-| `lib/**__<name>__.bash**`
-| symlinked
-| `~/.bash-it/lib/**__<name>__.bash**`
-| Custom Bash-it lib scripts <<bash-it-blanks,^2^>>
-
-| `plugins/**__<name>__.plugin.bash**`
-| symlinked
-| `~/.bash-it/plugins/available/**__<name>__.plugin.bash**`
-| Custom Bash-it plugins <<bash-it-blanks,^2^>>
-
-| `themes/**__<name>__**/__<name>__.theme.bash`
-| symlinked
-| `~/.bash-it/themes/**__<name>__**/`
-| Custom Bash-it themes <<bash-it-themes,^3^>>
-
-|===
-
-The path components in bold designate the source and the target of cloning/symlinking.
 
 [[bash-it-fmwk]]
 The Bash-it framework is installed with its included installation script.
 The `--no-modify-config` option is added because the current bundle already includes the necessary initialization commands.
 
 == Included assets
-
-The `bash-it` deployment's *asset directory* is located at `grail/assets/bash-it`.
 
 [[bash-it-blanks]]
 Blank sample files are provided for each kind of custom assets:
@@ -1106,43 +1135,20 @@ This theme is also defaulted to in the provided initialization commands.
 
 == Dependencies
 
-The `bash-it` deployment depends on the `*config-shell*` deployment (included in the current bundle).
-The retrieved Bash-it framework is initialized from the runcom script at `grail/assets/config-shell/01-bash-it.bash`.
+The `bash-it` deployment depends on the <<config-shell-main,`*config-shell*`>> deployment (included in the current bundle).
+The retrieved Bash-it framework is initialized from the runcom script at `https://github.com/no-simpler/divine-dotfiles#fmwk-grail[grail]/assets/config-shell/01-bash-it.bash`.
 The same file may and should be used to customize the Bash-it framework's loadout.
-
-== Supported asset modifications
-
-All symlinked assets may be freely modified in the asset directory; the modifications will take effect after the shell reload.
-
-However, moving any of the assets will break them.
-The deployment should be uninstalled before moving, and re-installed afterward.
-
-Additional asset files may be freely added, as long as they follow the naming patterns above.
-For the additions to be symlinked into the Bash-it directory, the deployment must be (re-)installed.
-
-== Overwriting policy
-
-If the Bash-it framework is already present at `~/.bash-it/`, it is re-used.
-
-The `bash-it` deployment backs up any clashing pre-existing files in the `~/.bash-it` directory.
-The backup directory is at `state/backups/bash-it/`.
-
-== Deployment removal notes
-
-The `bash-it` deployment is fully reversible: the retrieved repositories are removed, and the displaced pre-existing files are restored.
-Any files that have been re-used remain in place.
-
-The removal does not touch anything in the asset directory.
 
 :leveloffset!:
 
 :leveloffset: 2
 
+[[oh-my-zsh-main]]
 = Deployment `oh-my-zsh` (`3333`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
 :revdate: 2019.11.14
-:revremark: Systematize readmes for git & vim
+:revremark: Systematize the rest of the readmes
 :doctype: article
 // Visual
 :toc:
@@ -1156,48 +1162,74 @@ The removal does not touch anything in the asset directory.
 
 The `oh-my-zsh` deployment introduces the https://ohmyz.sh[oh-my-zsh framework] and custom assets for it into the home directory.
 
-The `oh-my-zsh` deployment has the priority of `*3333*`.
+[[oh-my-zsh-mtdt]]
+[none]
+* *Deployment* https://github.com/no-simpler/divine-dotfiles#mtdt-name-and-desc[*name*]: `oh-my-zsh`
+* https://github.com/no-simpler/divine-dotfiles#mtdt-priority[*Priority*]: `3333`
+* https://github.com/no-simpler/divine-dotfiles#mtdt-flags[*Flags*]: _none_
+* https://github.com/no-simpler/divine-dotfiles#indct-dpl-dir[*Deployment directory*] (`_<dpl-dir>_`): `https://github.com/no-simpler/divine-dotfiles#fmwk-state[state]/bundles/no-simpler/divine-bundle-essentials/oh-my-zsh/`
+* https://github.com/no-simpler/divine-dotfiles#indct-dpl-asset-dir[*Asset directory*] (`_<asset-dir>_`): `https://github.com/no-simpler/divine-dotfiles#fmwk-grail[grail]/assets/oh-my-zsh/`
++
+Assets are never removed from the Grail, even when uninstalling the deployment.
+* https://github.com/no-simpler/divine-dotfiles#indct-dpl-backup-dir[*Backup directory*] (`_<backup-dir>_`): `https://github.com/no-simpler/divine-dotfiles#fmwk-state[state]/backups/oh-my-zsh/`
+* https://github.com/no-simpler/divine-dotfiles#fmwk-zero-data-loss[*Zero data loss*]: any displaced files are backed up.
+* https://github.com/no-simpler/divine-dotfiles#fmwk-reversibility[*Reversibility*]: backed up files are restored, re-used ones untouched.
 
-== Deployment installation notes
+== Installation map
+
+.Installation map for the `oh-my-zsh` deployment
+[%noheader,cols="<.<a",stripes=none]
+|===
+
+| +++<p align="center">+++
+*Retrieving Github repositories*
++++</p>+++
+
+[%noheader,cols="4*<.^",stripes=none]
+!===
+
+! Repository 'https://github.com/robbyrussell/oh-my-zsh[`Bash-it/oh-my-zsh`]'
+! =>
+! `~/**.oh-my-zsh**/`
+! <<oh-my-zsh-fmwk,^1^>>
+
+!===
+
+Installation:: Cloned/downloaded, displacing any original.
+Removal:: Displaced; backed up original restored, if any.
+
+| +++<p align="center">+++
+*Symlinking*
++++</p>+++
+
+[%noheader,cols="4*<.^",stripes=none]
+!===
+
+! `<<oh-my-zsh-mtdt,_<asset-dir>_>>/plugins/**__<name>__**/__<name>__.plugin.zsh`
+! =>
+! `~/.oh-my-zsh/custom/plugins/**__<name>__**/`
+! <<oh-my-zsh-plugins,^2^>>
+
+! `<<oh-my-zsh-mtdt,_<asset-dir>_>>/themes/**__<name>__.zsh-theme**`
+! =>
+! `~/.oh-my-zsh/custom/themes/**__<name>__.zsh-theme**`
+! <<oh-my-zsh-themes,^3^>>
+
+!===
+
+Installation:: Symlinked, displacing any original.
+Removal:: Unlinked; backed up original restored, if any.
+
+|===
 
 The `oh-my-zsh` deployment clones or downloads the https://github.com/robbyrussell/oh-my-zsh[`robbyrussell/oh-my-zsh`] repository into the `~/.oh-my-zsh/` directory.
 Having succeeded, it symlinks additional assets into the framework.
 
-.Map of asset installation for the `oh-my-zsh` deployment
-[%header,cols="<.^3a,^.^1,<.^3a,<.^3a",stripes=none]
-|===
-
-^.^| Asset
-^.^| Method
-^.^| Destination
-^.^| Description
-
-| https://github.com/robbyrussell/oh-my-zsh[oh-my-zsh repo]
-| cloned
-| `~/**.oh-my-zsh**/`
-| oh-my-zsh framework <<oh-my-zsh-fmwk,^1^>>
-
-| `plugins/**__<name>__**/__<name>__.plugin.zsh`
-| symlinked
-| `~/.oh-my-zsh/custom/plugins/**__<name>__**/`
-| Custom oh-my-zsh plugins <<oh-my-zsh-plugins,^2^>>
-
-| `themes/**__<name>__.zsh-theme**`
-| symlinked
-| `~/.oh-my-zsh/custom/themes/**__<name>__.zsh-theme**`
-| Custom oh-my-zsh themes <<oh-my-zsh-themes,^3^>>
-
-|===
-
-The path components in bold designate the source and the target of cloning/symlinking.
-
 [[oh-my-zsh-fmwk]]
-The oh-my-zsh framework is installed by cloning its https://github.com/robbyrussell/oh-my-zsh[Github repository].
+The oh-my-zsh framework is installed only by cloning its https://github.com/robbyrussell/oh-my-zsh[Github repository].
 The included installation script (which normally adds initialization commands to the `~/.zshrc` runcom) is not executed, because the current bundle already includes necessary initialization commands.
 
 == Included assets
-
-The `oh-my-zsh` deployment's *asset directory* is located at `grail/assets/oh-my-zsh`.
 
 [[oh-my-zsh-plugins]]
 A blank example file is provided for the custom plugins:
@@ -1213,32 +1245,8 @@ This theme is also defaulted to in the provided initialization commands.
 
 == Dependencies
 
-The `oh-my-zsh` deployment depends on the `*config-shell*` deployment (included in the current bundle).
-The retrieved oh-my-zsh framework is initialized from the runcom script at `grail/assets/config-shell/01-oh-my-zsh.zsh`.
+The `oh-my-zsh` deployment depends on the <<config-shell-main,`*config-shell*`>> deployment (included in the current bundle).
+The retrieved oh-my-zsh framework is initialized from the runcom script at `https://github.com/no-simpler/divine-dotfiles#fmwk-grail[grail]/assets/config-shell/01-oh-my-zsh.zsh`.
 The same file may and should be used to customize the oh-my-zsh framework's loadout.
-
-== Supported asset modifications
-
-All symlinked assets may be freely modified in the asset directory; the modifications will take effect after the shell reload.
-
-However, moving any of the assets will break them.
-The deployment should be uninstalled before moving, and re-installed afterward.
-
-Additional asset files may be freely added, as long as they follow the naming patterns above.
-For the additions to be symlinked into the oh-my-zsh directory, the deployment must be (re-)installed.
-
-== Overwriting policy
-
-If the oh-my-zsh framework is already present at `~/.oh-my-zsh/`, it is re-used.
-
-The `oh-my-zsh` deployment backs up any clashing pre-existing files in the `~/.oh-my-zsh` directory.
-The backup directory is at `state/backups/oh-my-zsh/`.
-
-== Deployment removal notes
-
-The `oh-my-zsh` deployment is fully reversible: the retrieved repositories are removed, and the displaced pre-existing files are restored.
-Any files that have been re-used remain in place.
-
-The removal does not touch anything in the asset directory.
 
 :leveloffset!:

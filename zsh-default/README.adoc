@@ -1,8 +1,9 @@
+[[zsh-default-main]]
 = Deployment `zsh-default` (`1333`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revdate: 2019.11.12
-:revremark: Rewrite for D.d v2, pt. 2
+:revdate: 2019.11.14
+:revremark: Systematize the rest of the readmes
 :doctype: article
 // Visual
 :toc:
@@ -16,9 +17,20 @@
 
 The `zsh-default` deployment ensures that https://sourceforge.net/projects/zsh[Zsh] is the default shell for the current OS user.
 
-The `zsh-default` deployment has the priority of `*1333*`.
+[[zsh-default-mtdt]]
+[none]
+* *Deployment* https://github.com/no-simpler/divine-dotfiles#mtdt-name-and-desc[*name*]: `zsh-default`
+* https://github.com/no-simpler/divine-dotfiles#mtdt-priority[*Priority*]: `1333`
+* https://github.com/no-simpler/divine-dotfiles#mtdt-flags[*Flags*]: _none_
+* https://github.com/no-simpler/divine-dotfiles#indct-dpl-dir[*Deployment directory*] (`_<dpl-dir>_`): `https://github.com/no-simpler/divine-dotfiles#fmwk-state[state]/bundles/no-simpler/divine-bundle-essentials/zsh-default/`
+* https://github.com/no-simpler/divine-dotfiles#indct-dpl-asset-dir[*Asset directory*] (`_<asset-dir>_`): `https://github.com/no-simpler/divine-dotfiles#fmwk-grail[grail]/assets/zsh-default/`
++
+Assets are never removed from the Grail, even when uninstalling the deployment.
+* https://github.com/no-simpler/divine-dotfiles#indct-dpl-backup-dir[*Backup directory*] (`_<backup-dir>_`): `https://github.com/no-simpler/divine-dotfiles#fmwk-state[state]/backups/zsh-default/`
+* https://github.com/no-simpler/divine-dotfiles#fmwk-zero-data-loss[*Zero data loss*]: any displaced files are backed up.
+* https://github.com/no-simpler/divine-dotfiles#fmwk-reversibility[*Reversibility*]: backed up files are restored, re-used ones untouched.
 
-== Deployment installation notes
+== Installation map
 
 After some preparations (involving the `/etc/shells` file), the `zsh-default` deployment calls the `chsh -s _<path to zsh>_` command to change the default shell.
 Note that *changing the default shell requires the user's password*.
@@ -26,25 +38,10 @@ The password prompt will appear during the installation/removal.
 
 == Included assets
 
-The `zsh-default` deployment does not use the asset directory.
+The `zsh-default` deployment does not include any assets.
 
 == Dependencies
 
 The `zsh-default` deployment is stand-alone.
 
-On some systems, the Divinefile included with the current bundle ensures that the `chsh` utility is installed.
-
-== Supported asset modifications
-
-The `zsh-default` deployment provides no modifiable assets.
-
-== Overwriting policy
-
-The `zsh-default` deployment does not overwrite any files.
-
-If the default shell is already Zsh, this deployment does nothing.
-
-== Deployment removal notes
-
-The `config-git` deployment is fully reversible: the original default shell is restored.
-If the default shell is not changed during the installation, it is not changed during the removal as well.
+On some systems, the <<dpls-dfls,Divinefile>> included with the current bundle ensures that the `chsh` utility is installed.

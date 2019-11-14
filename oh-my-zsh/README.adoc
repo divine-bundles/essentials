@@ -1,8 +1,9 @@
+[[oh-my-zsh-main]]
 = Deployment `oh-my-zsh` (`3333`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revdate: 2019.11.12
-:revremark: Rewrite for D.d v2, pt. 2
+:revdate: 2019.11.14
+:revremark: Systematize the rest of the readmes
 :doctype: article
 // Visual
 :toc:
@@ -16,48 +17,74 @@
 
 The `oh-my-zsh` deployment introduces the https://ohmyz.sh[oh-my-zsh framework] and custom assets for it into the home directory.
 
-The `oh-my-zsh` deployment has the priority of `*3333*`.
+[[oh-my-zsh-mtdt]]
+[none]
+* *Deployment* https://github.com/no-simpler/divine-dotfiles#mtdt-name-and-desc[*name*]: `oh-my-zsh`
+* https://github.com/no-simpler/divine-dotfiles#mtdt-priority[*Priority*]: `3333`
+* https://github.com/no-simpler/divine-dotfiles#mtdt-flags[*Flags*]: _none_
+* https://github.com/no-simpler/divine-dotfiles#indct-dpl-dir[*Deployment directory*] (`_<dpl-dir>_`): `https://github.com/no-simpler/divine-dotfiles#fmwk-state[state]/bundles/no-simpler/divine-bundle-essentials/oh-my-zsh/`
+* https://github.com/no-simpler/divine-dotfiles#indct-dpl-asset-dir[*Asset directory*] (`_<asset-dir>_`): `https://github.com/no-simpler/divine-dotfiles#fmwk-grail[grail]/assets/oh-my-zsh/`
++
+Assets are never removed from the Grail, even when uninstalling the deployment.
+* https://github.com/no-simpler/divine-dotfiles#indct-dpl-backup-dir[*Backup directory*] (`_<backup-dir>_`): `https://github.com/no-simpler/divine-dotfiles#fmwk-state[state]/backups/oh-my-zsh/`
+* https://github.com/no-simpler/divine-dotfiles#fmwk-zero-data-loss[*Zero data loss*]: any displaced files are backed up.
+* https://github.com/no-simpler/divine-dotfiles#fmwk-reversibility[*Reversibility*]: backed up files are restored, re-used ones untouched.
 
-== Deployment installation notes
+== Installation map
+
+.Installation map for the `oh-my-zsh` deployment
+[%noheader,cols="<.<a",stripes=none]
+|===
+
+| +++<p align="center">+++
+*Retrieving Github repositories*
++++</p>+++
+
+[%noheader,cols="4*<.^",stripes=none]
+!===
+
+! Repository 'https://github.com/robbyrussell/oh-my-zsh[`Bash-it/oh-my-zsh`]'
+! =>
+! `~/**.oh-my-zsh**/`
+! <<oh-my-zsh-fmwk,^1^>>
+
+!===
+
+Installation:: Cloned/downloaded, displacing any original.
+Removal:: Displaced; backed up original restored, if any.
+
+| +++<p align="center">+++
+*Symlinking*
++++</p>+++
+
+[%noheader,cols="4*<.^",stripes=none]
+!===
+
+! `<<oh-my-zsh-mtdt,_<asset-dir>_>>/plugins/**__<name>__**/__<name>__.plugin.zsh`
+! =>
+! `~/.oh-my-zsh/custom/plugins/**__<name>__**/`
+! <<oh-my-zsh-plugins,^2^>>
+
+! `<<oh-my-zsh-mtdt,_<asset-dir>_>>/themes/**__<name>__.zsh-theme**`
+! =>
+! `~/.oh-my-zsh/custom/themes/**__<name>__.zsh-theme**`
+! <<oh-my-zsh-themes,^3^>>
+
+!===
+
+Installation:: Symlinked, displacing any original.
+Removal:: Unlinked; backed up original restored, if any.
+
+|===
 
 The `oh-my-zsh` deployment clones or downloads the https://github.com/robbyrussell/oh-my-zsh[`robbyrussell/oh-my-zsh`] repository into the `~/.oh-my-zsh/` directory.
 Having succeeded, it symlinks additional assets into the framework.
 
-.Map of asset installation for the `oh-my-zsh` deployment
-[%header,cols="<.^3a,^.^1,<.^3a,<.^3a",stripes=none]
-|===
-
-^.^| Asset
-^.^| Method
-^.^| Destination
-^.^| Description
-
-| https://github.com/robbyrussell/oh-my-zsh[oh-my-zsh repo]
-| cloned
-| `~/**.oh-my-zsh**/`
-| oh-my-zsh framework <<oh-my-zsh-fmwk,^1^>>
-
-| `plugins/**__<name>__**/__<name>__.plugin.zsh`
-| symlinked
-| `~/.oh-my-zsh/custom/plugins/**__<name>__**/`
-| Custom oh-my-zsh plugins <<oh-my-zsh-plugins,^2^>>
-
-| `themes/**__<name>__.zsh-theme**`
-| symlinked
-| `~/.oh-my-zsh/custom/themes/**__<name>__.zsh-theme**`
-| Custom oh-my-zsh themes <<oh-my-zsh-themes,^3^>>
-
-|===
-
-The path components in bold designate the source and the target of cloning/symlinking.
-
 [[oh-my-zsh-fmwk]]
-The oh-my-zsh framework is installed by cloning its https://github.com/robbyrussell/oh-my-zsh[Github repository].
+The oh-my-zsh framework is installed only by cloning its https://github.com/robbyrussell/oh-my-zsh[Github repository].
 The included installation script (which normally adds initialization commands to the `~/.zshrc` runcom) is not executed, because the current bundle already includes necessary initialization commands.
 
 == Included assets
-
-The `oh-my-zsh` deployment's *asset directory* is located at `grail/assets/oh-my-zsh`.
 
 [[oh-my-zsh-plugins]]
 A blank example file is provided for the custom plugins:
@@ -73,30 +100,6 @@ This theme is also defaulted to in the provided initialization commands.
 
 == Dependencies
 
-The `oh-my-zsh` deployment depends on the `*config-shell*` deployment (included in the current bundle).
-The retrieved oh-my-zsh framework is initialized from the runcom script at `grail/assets/config-shell/01-oh-my-zsh.zsh`.
+The `oh-my-zsh` deployment depends on the <<config-shell-main,`*config-shell*`>> deployment (included in the current bundle).
+The retrieved oh-my-zsh framework is initialized from the runcom script at `https://github.com/no-simpler/divine-dotfiles#fmwk-grail[grail]/assets/config-shell/01-oh-my-zsh.zsh`.
 The same file may and should be used to customize the oh-my-zsh framework's loadout.
-
-== Supported asset modifications
-
-All symlinked assets may be freely modified in the asset directory; the modifications will take effect after the shell reload.
-
-However, moving any of the assets will break them.
-The deployment should be uninstalled before moving, and re-installed afterward. 
-
-Additional asset files may be freely added, as long as they follow the naming patterns above.
-For the additions to be symlinked into the oh-my-zsh directory, the deployment must be (re-)installed.
-
-== Overwriting policy
-
-If the oh-my-zsh framework is already present at `~/.oh-my-zsh/`, it is re-used.
-
-The `oh-my-zsh` deployment backs up any clashing pre-existing files in the `~/.oh-my-zsh` directory.
-The backup directory is at `state/backups/oh-my-zsh/`.
-
-== Deployment removal notes
-
-The `oh-my-zsh` deployment is fully reversible: the retrieved repositories are removed, and the displaced pre-existing files are restored.
-Any files that have been re-used remain in place.
-
-The removal does not touch anything in the asset directory.

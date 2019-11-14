@@ -1,8 +1,9 @@
+[[home-dirs-main]]
 = Deployment `home-dirs` (`500`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revdate: 2019.11.12
-:revremark: Rewrite for D.d v2, pt. 2
+:revdate: 2019.11.14
+:revremark: Systematize the rest of the readmes
 :doctype: article
 // Visual
 :toc:
@@ -16,35 +17,51 @@
 
 The `home-dirs` deployment maintains a stable tree of personal directories under the home directory.
 
-The `home-dirs` deployment has the priority of `*500*`.
+[[home-dirs-mtdt]]
+[none]
+* *Deployment* https://github.com/no-simpler/divine-dotfiles#mtdt-name-and-desc[*name*]: `home-dirs`
+* https://github.com/no-simpler/divine-dotfiles#mtdt-priority[*Priority*]: `500`
+* https://github.com/no-simpler/divine-dotfiles#mtdt-flags[*Flags*]: _none_
+* https://github.com/no-simpler/divine-dotfiles#indct-dpl-dir[*Deployment directory*] (`_<dpl-dir>_`): `https://github.com/no-simpler/divine-dotfiles#fmwk-state[state]/bundles/no-simpler/divine-bundle-essentials/home-dirs/`
+* https://github.com/no-simpler/divine-dotfiles#indct-dpl-asset-dir[*Asset directory*] (`_<asset-dir>_`): `https://github.com/no-simpler/divine-dotfiles#fmwk-grail[grail]/assets/home-dirs/`
++
+Assets are never removed from the Grail, even when uninstalling the deployment.
+* https://github.com/no-simpler/divine-dotfiles#indct-dpl-backup-dir[*Backup directory*] (`_<backup-dir>_`): `https://github.com/no-simpler/divine-dotfiles#fmwk-state[state]/backups/home-dirs/`
+* https://github.com/no-simpler/divine-dotfiles#fmwk-zero-data-loss[*Zero data loss*]: any displaced files are backed up.
+* https://github.com/no-simpler/divine-dotfiles#fmwk-reversibility[*Reversibility*]: backed up files are restored, re-used ones untouched.
 
-== Deployment installation notes
+== Installation map
+
+.Installation map for the `home-dirs` deployment
+[%noheader,cols="<.<a",stripes=none]
+|===
+
+| +++<p align="center">+++
+*Creating*
++++</p>+++
+
+[%noheader,cols="4*<.^",stripes=none]
+!===
+
+! `*_<dir-path>_*` entries from `<<home-dirs-mtdt,_<asset-dir>_>>/*home-dirs.cfg*
+! =>
+! `~/*_<dir-path>_*/`
+! 
+
+!===
+
+Installation:: Created, or re-used if pre-existing.
+Removal:: Removed, or untouched if re-used.
+
+|===
 
 The `home-dirs` deployment:
 
-* parses the `*home-dirs.cfg*` file (located in the asset directory);
-* extracts the relative paths for the current OS;
-* ensures that each of those relative paths corresponds to a sub-directory in the home directory.
-
-.Map of asset installation for the `home-dirs` deployment
-[%header,cols="<.^3a,^.^1,<.^3a,<.^3a",stripes=none]
-|===
-
-^.^| Asset
-^.^| Method
-^.^| Destination
-^.^| Description
-
-| `*home-dirs.cfg*`
-| used
-| _N/A_
-| The manifest of home directories
-
-|===
+* parses the `*home-dirs.cfg*` file as a https://github.com/no-simpler/divine-dotfiles#queue-mnf[queue manifest];
+* treats entries as relative paths;
+* ensures that the paths correspond to sub-directories under the home directory.
 
 == Included assets
-
-The `home-dirs` deployment's *asset directory* is located at `grail/assets/home-dirs`.
 
 The `home-dirs.cfg` is a https://github.com/no-simpler/divine-dotfiles#queue-mnf[queue manifest].
 It uses the key-value pairs to denote sections or entries that are only relevant for particular OS's.
@@ -67,27 +84,9 @@ A key-value on the same line with an entry affects only that entry.
 [.note]
 [%noheader,cols="<.<a"]
 |===
-| Refer to the framework https://github.com/no-simpler/divine-dotfiles[documentation] for more information on the queue manifest syntax.
+| The queue manifest syntax is documented in the framework's https://github.com/no-simpler/divine-dotfiles#queue-mnf[documentation].
 |===
 
 == Dependencies
 
 The `home-dirs` deployment is stand-alone.
-
-== Supported asset modifications
-
-The directory manifest may be freely modified in the asset directory.
-For the changes to take effect, the deployment must be (re-)installed.
-Renaming or moving the manifest will break it.
-
-== Overwriting policy
-
-The `home-dirs` deployment does not touch any pre-existing files/directories at the desired paths.
-
-== Deployment removal notes
-
-The `home-dirs` deployment takes _extra_ care with removing directories.
-The user is prompted before removing any non-empty directory.
-The prompt is not affected by the intervention options and always appears.
-
-The removal does not touch anything in the asset directory.

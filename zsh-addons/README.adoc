@@ -1,8 +1,9 @@
+[[zsh-addons-main]]
 = Deployment `zsh-addons` (`1000`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revdate: 2019.11.12
-:revremark: Rewrite for D.d v2, pt. 2
+:revdate: 2019.11.14
+:revremark: Systematize the rest of the readmes
 :doctype: article
 // Visual
 :toc:
@@ -16,57 +17,59 @@
 
 The `zsh-addons` deployment retrieves a number of community addons for Zsh: https://github.com/zsh-users/zsh-completions[completions], https://github.com/zsh-users/zsh-syntax-highlighting[syntax highlighting], and https://github.com/zsh-users/zsh-autosuggestions[auto-suggestions].
 
-The `zsh-addons` deployment has the priority of `*1000*`.
+[[zsh-addons-mtdt]]
+[none]
+* *Deployment* https://github.com/no-simpler/divine-dotfiles#mtdt-name-and-desc[*name*]: `zsh-addons`
+* https://github.com/no-simpler/divine-dotfiles#mtdt-priority[*Priority*]: `1000`
+* https://github.com/no-simpler/divine-dotfiles#mtdt-flags[*Flags*]: _none_
+* https://github.com/no-simpler/divine-dotfiles#indct-dpl-dir[*Deployment directory*] (`_<dpl-dir>_`): `https://github.com/no-simpler/divine-dotfiles#fmwk-state[state]/bundles/no-simpler/divine-bundle-essentials/zsh-addons/`
+* https://github.com/no-simpler/divine-dotfiles#indct-dpl-asset-dir[*Asset directory*] (`_<asset-dir>_`): `https://github.com/no-simpler/divine-dotfiles#fmwk-grail[grail]/assets/zsh-addons/`
++
+Assets are never removed from the Grail, even when uninstalling the deployment.
+* https://github.com/no-simpler/divine-dotfiles#indct-dpl-backup-dir[*Backup directory*] (`_<backup-dir>_`): `https://github.com/no-simpler/divine-dotfiles#fmwk-state[state]/backups/zsh-addons/`
+* https://github.com/no-simpler/divine-dotfiles#fmwk-zero-data-loss[*Zero data loss*]: any displaced files are backed up.
+* https://github.com/no-simpler/divine-dotfiles#fmwk-reversibility[*Reversibility*]: backed up files are restored, re-used ones untouched.
 
-== Deployment installation notes
+== Installation map
 
-The `zsh-addons` deployment clones or downloads the https://github.com/zsh-users[`zsh-users`] Github repositories into the `~/.zsh/` directory:
-
-.Map of asset installation for the `bash-it` deployment
-[%header,cols="<.^3a,^.^1,<.^3a,<.^3a",stripes=none]
+.Installation map for the `zsh-addons` deployment
+[%noheader,cols="<.<a",stripes=none]
 |===
 
-^.^| Asset
-^.^| Method
-^.^| Destination
-^.^| Description
+| +++<p align="center">+++
+*Retrieving Github repositories*
++++</p>+++
 
-| https://github.com/zsh-users/zsh-completions[`zsh-users/zsh-completions`]
-| cloned
-| `~/.zsh/zsh-users/**zsh-completions**/`
-| 
+[%noheader,cols="4*<.^",stripes=none]
+!===
 
-| https://github.com/zsh-users/zsh-syntax-highlighting[`zsh-users/zsh-syntax-highlighting`]
-| cloned
-| `~/.zsh/zsh-users/**zsh-syntax-highlighting**/`
-| 
+! Repository 'https://github.com/zsh-users/zsh-completions[`zsh-users/zsh-completions`]'
+! =>
+! `~/.zsh/zsh-users/**zsh-completions**/`
+! 
 
-| https://github.com/zsh-users/zsh-autosuggestions[`zsh-users/zsh-autosuggestions`]
-| cloned
-| `~/.zsh/zsh-users/**zsh-autosuggestions**/`
-| 
+! Repository 'https://github.com/zsh-users/zsh-syntax-highlighting[`zsh-users/zsh-syntax-highlighting`]'
+! =>
+! `~/.zsh/zsh-users/**zsh-syntax-highlighting**/`
+! 
+
+! Repository 'https://github.com/zsh-users/zsh-autosuggestions[`zsh-users/zsh-autosuggestions`]'
+! =>
+! `~/.zsh/zsh-users/**zsh-autosuggestions**/`
+! 
+
+!===
+
+Installation:: Cloned/downloaded, displacing any original.
+Removal:: Displaced; backed up original restored, if any.
 
 |===
 
 == Included assets
 
-The `zsh-addons` deployment does not use the asset directory.
+The `zsh-addons` deployment does not include any assets.
 
 == Dependencies
 
-The `zsh-addons` deployment depends on the `*config-shell*` deployment (included in the current bundle).
+The `zsh-addons` deployment depends on the <<config-shell-main,`*config-shell*`>> deployment (included in the current bundle).
 The retrieved addons are initialized from the runcom script at `grail/assets/config-shell/06-addons.zsh`.
-
-== Supported asset modifications
-
-The `zsh-addons` deployment provides no modifiable assets.
-
-== Overwriting policy
-
-The `zsh-addons` deployment backs up any clashing pre-existing files in the `~/.zsh` directory.
-The backup directory is at `state/backups/zsh-addons/`.
-
-== Deployment removal notes
-
-The `zsh-addons` deployment is fully reversible: the retrieved repositories are removed, and the displaced pre-existing files are restored.
-Any files that have been re-used remain in place.
