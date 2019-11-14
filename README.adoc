@@ -2,7 +2,7 @@
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
 :revdate: 2019.11.14
-:revremark: Systematize readme for config-shell
+:revremark: Remove horizontal attribute from config-shell readme intro
 :doctype: article
 // Visual
 :toc: macro
@@ -259,7 +259,7 @@ https://github.com/no-simpler/divine-dotfiles#fmwk-state[state]/bundles/no-simpl
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
 :revdate: 2019.11.14
-:revremark: Systematize readme for config-shell
+:revremark: Remove horizontal attribute from config-shell readme intro
 :doctype: article
 // Visual
 :toc:
@@ -274,7 +274,6 @@ https://github.com/no-simpler/divine-dotfiles#fmwk-state[state]/bundles/no-simpl
 The `config-shell` deployment symlinks the configuration files (https://en.wikipedia.org/wiki/Run_commands['runcoms']) for https://www.gnu.org/software/bash/[Bash] and https://sourceforge.net/projects/zsh[Zsh] into the home directory.
 
 [[config-shell-mtdt]]
-[horizontal]
 Deployment name:: `config-shell`
 Priority:: `333`
 Flags:: _none_
@@ -432,7 +431,7 @@ However, it provides the support for other deployments in the current bundle (vi
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
 :revdate: 2019.11.14
-:revremark: Systematize readme for config-shell
+:revremark: Remove horizontal attribute from config-shell readme intro
 :doctype: article
 // Visual
 :toc:
@@ -516,7 +515,7 @@ The removal does not touch anything in the asset directory.
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
 :revdate: 2019.11.14
-:revremark: Systematize readme for config-shell
+:revremark: Remove horizontal attribute from config-shell readme intro
 :doctype: article
 // Visual
 :toc:
@@ -640,7 +639,7 @@ The removal does not touch anything in the asset directory.
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
 :revdate: 2019.11.14
-:revremark: Systematize readme for config-shell
+:revremark: Remove horizontal attribute from config-shell readme intro
 :doctype: article
 // Visual
 :toc:
@@ -711,7 +710,7 @@ The removal does not touch anything in the asset directory.
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
 :revdate: 2019.11.14
-:revremark: Systematize readme for config-shell
+:revremark: Remove horizontal attribute from config-shell readme intro
 :doctype: article
 // Visual
 :toc:
@@ -809,7 +808,7 @@ The removal does not touch anything in the asset directory.
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
 :revdate: 2019.11.14
-:revremark: Systematize readme for config-shell
+:revremark: Remove horizontal attribute from config-shell readme intro
 :doctype: article
 // Visual
 :toc:
@@ -886,7 +885,7 @@ Any files that have been re-used remain in place.
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
 :revdate: 2019.11.14
-:revremark: Systematize readme for config-shell
+:revremark: Remove horizontal attribute from config-shell readme intro
 :doctype: article
 // Visual
 :toc:
@@ -941,7 +940,7 @@ If the default shell is not changed during the installation, it is not changed d
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
 :revdate: 2019.11.14
-:revremark: Systematize readme for config-shell
+:revremark: Remove horizontal attribute from config-shell readme intro
 :doctype: article
 // Visual
 :toc:
@@ -1033,7 +1032,7 @@ The removal does not touch anything in the asset directory.
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
 :revdate: 2019.11.14
-:revremark: Systematize readme for config-shell
+:revremark: Remove horizontal attribute from config-shell readme intro
 :doctype: article
 // Visual
 :toc:
@@ -1158,7 +1157,7 @@ The removal does not touch anything in the asset directory.
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
 :revdate: 2019.11.14
-:revremark: Systematize readme for config-shell
+:revremark: Remove horizontal attribute from config-shell readme intro
 :doctype: article
 // Visual
 :toc:
