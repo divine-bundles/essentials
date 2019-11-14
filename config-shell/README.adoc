@@ -3,7 +3,7 @@
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
 :revdate: 2019.11.14
-:revremark: Systematize readme for config-shell
+:revremark: Remove horizontal attribute from config-shell readme intro
 :doctype: article
 // Visual
 :toc:
@@ -18,7 +18,6 @@
 The `config-shell` deployment symlinks the configuration files (https://en.wikipedia.org/wiki/Run_commands['runcoms']) for https://www.gnu.org/software/bash/[Bash] and https://sourceforge.net/projects/zsh[Zsh] into the home directory.
 
 [[config-shell-mtdt]]
-[horizontal]
 Deployment name:: `config-shell`
 Priority:: `333`
 Flags:: _none_
