@@ -1,8 +1,8 @@
 = Deployment bundle `essentials`
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revdate: 2019.11.12
-:revremark: Refine readmes, pt. 4
+:revdate: 2019.11.14
+:revremark: Systematize readme for config-shell
 :doctype: article
 // Visual
 :toc: macro
@@ -25,16 +25,16 @@
 The deployment bundle `*essentials*` for https://github.com/no-simpler/divine-dotfiles[_Divine.dotfiles_] is a collection of opinionated system set-up scripts.
 It is intended as a useful starting point for any https://en.wikipedia.org/wiki/Unix-like[Unix-like] box.
 
-toc::[]
-
-[[bundle-main]]
-== Description
-
 [horizontal]
 Bundle name:: `essentials`
 <<dpls-main,Deployments>>:: 10
 <<dpls-dfls,Divinefile>> entries:: 9
 <<inun-inst-bundle,Attached>> bundle location:: `https://github.com/no-simpler/divine-dotfiles#fmwk-state[state]/bundles/no-simpler/divine-bundle-essentials`
+
+toc::[]
+
+[[bundle-main]]
+== Description
 
 Once the bundle is fully <<inun-inst,installed>>, and the shell reloaded, _voilà_:
 

@@ -1,8 +1,9 @@
+[[config-shell-main]]
 = Deployment `config-shell` (`333`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revdate: 2019.11.12
-:revremark: Refine readmes, pt. 4
+:revdate: 2019.11.14
+:revremark: Systematize readme for config-shell
 :doctype: article
 // Visual
 :toc:
@@ -14,117 +15,109 @@
 :as: *
 :das: **
 
-The `config-shell` deployment symlinks the configuration files for https://www.gnu.org/software/bash/[Bash] and https://sourceforge.net/projects/zsh[Zsh] into the home directory.
+The `config-shell` deployment symlinks the configuration files (https://en.wikipedia.org/wiki/Run_commands['runcoms']) for https://www.gnu.org/software/bash/[Bash] and https://sourceforge.net/projects/zsh[Zsh] into the home directory.
 
-
+[[config-shell-mtdt]]
+[horizontal]
 Deployment name:: `config-shell`
+Priority:: `333`
+Flags:: _none_
+Deployment directory +++<br>+++ (`_<dpl-dir>_`):: `https://github.com/no-simpler/divine-dotfiles#fmwk-state[state]/bundles/no-simpler/divine-bundle-essentials/config-shell/`
+Asset directory +++<br>+++ (`_<asset-dir>_`):: `https://github.com/no-simpler/divine-dotfiles#fmwk-grail[grail]/assets/config-shell/`
+Backup directory +++<br>+++ (`_<backup-dir>_`):: `https://github.com/no-simpler/divine-dotfiles#fmwk-state[state]/backups/config-shell/`
+https://github.com/no-simpler/divine-dotfiles#fmwk-zero-data-loss[Zero data loss]:: Displaced originals backed up.
+https://github.com/no-simpler/divine-dotfiles#fmwk-reversibility[Reversibility]:: Upon removal: backed up originals restored, re-used originals untouched.
 
-The `config-shell` deployment has the priority of `*333*`.
+== Deployment installation map
 
-== Deployment installation notes
-
-The deployment supplants any pre-existing Bash and Zsh configuration, while keeping backups of whatever is replaced.
-
-.Map of asset installation for the `config-shell` deployment
-[%header,cols="<.^3a,^.^1,<.^3a,<.^3a",stripes=none]
+.Installation map for the `config-shell` deployment
+[%noheader,cols="<.<a",stripes=none]
 |===
 
-^.^| Asset
-^.^| Method
-^.^| Destination
-^.^| Description
+| +++<p align="center">+++
+*Symlinking*
++++</p>+++
 
-| `_<deployment dir>_/*.bashprofile*`
-| symlinked
-| `~/*.bashprofile*`
-.2+| The base runcoms for login shells <<config-shell-login,^1^>>
+[%noheader,cols="4*<.^",stripes=none]
+!===
 
-| `_<deployment dir>_/*.zprofile*`
-| symlinked
-| `~/*.zprofile*`
+! `<<config-shell-mtdt,_<dpl-dir>_>>/*.bashprofile*`
+! =>
+! `~/*.bashprofile*`
+.4+! <<config-shell-base,^1^>>
 
-| `_<deployment dir>_/*.bashrc*`
-| symlinked
-| `~/*.bashrc*`
-.2+| The base runcoms for interactive shells <<config-shell-interactive,^2^>>
+! `<<config-shell-mtdt,_<dpl-dir>_>>/*.zprofile*`
+! =>
+! `~/*.zprofile*`
 
-| `_<deployment dir>_/*.zshrc*`
-| symlinked
-| `~/*.zshrc*`
+! `<<config-shell-mtdt,_<dpl-dir>_>>/*.bashrc*`
+! =>
+! `~/*.bashrc*`
 
-| `_<asset dir itself>_`
-| symlinked
-| `~/*.runcoms*/`
-| The directory for the user's runcoms <<config-shell-custom,^3^>>
+! `<<config-shell-mtdt,_<dpl-dir>_>>/*.zshrc*`
+! =>
+! `~/*.zshrc*`
 
-|
-| created
-| `~/*.hushlogin*`
-| The MOTD disabler <<config-shell-hushlogin,^4^>>
+! `<<config-shell-mtdt,*_<asset-dir>_*>>/`
+! =>
+! `~/*.runcoms*/` 
+! <<config-shell-runcoms,^2^>> <<config-shell-included,^5^>>
 
-|
-| created
-| `~/*.pre.sh*`
-| The box-specific universal runcoms that are sourced _before_ the ones in the `~/.runcoms/` directory <<config-shell-box-specific,^5^>>
+!===
 
-|
-| may be created manually by the user
-| `~/*.pre.bash*`
-| The box-specific Bash runcoms that are sourced _before_ the ones in the `~/.runcoms/` directory <<config-shell-box-specific,^5^>>
+Installation:: Symlinked, displacing any original.
+Removal:: Unlinked; original restored.
 
-|
-| may be created manually by the user
-| `~/*.pre.zsh*`
-| The box-specific Zsh runcoms that are sourced _before_ the ones in the `~/.runcoms/` directory <<config-shell-box-specific,^5^>>
+| +++<p align="center">+++
+*Creating*
++++</p>+++
 
-|
-| created
-| `~/*.post.sh*`
-| The box-specific universal runcoms that are sourced _after_ the ones in the `~/.runcoms/` directory <<config-shell-box-specific,^5^>>
+[%noheader,cols="4*<.^",stripes=none]
+!===
 
-|
-| may be created manually by the user
-| `~/*.post.bash*`
-| The box-specific Bash runcoms that are sourced _after_ the ones in the `~/.runcoms/` directory <<config-shell-box-specific,^5^>>
+! 
+! =>
+! `~/*.pre.bash*`
+.6+! <<config-shell-box-specific,^3^>>
 
-|
-| may be created manually by the user
-| `~/*.post.zsh*`
-| The box-specific Zsh runcoms that are sourced _after_ the ones in the `~/.runcoms/` directory <<config-shell-box-specific,^5^>>
+! 
+! =>
+! `~/*.pre.zsh*`
 
-|===
+! 
+! =>
+! `~/*.pre.sh*`
 
-[.note]
-[%noheader,cols="<.<a"]
-|===
-| The word 'runcom', which is used throughout this readme, is short for the https://en.wikipedia.org/wiki/Run_commands['run commands'].
-The runcom is is what the 'rc' stands for in the file names like `.bashrc` or `.zshrc`.
+! 
+! =>
+! `~/*.post.bash*`
 
-In the context of the `config-shell` deployment, a runcom is a file that contains the shell initialization commands.
+! 
+! =>
+! `~/*.post.zsh*`
+
+! 
+! =>
+! `~/*.post.sh*`
+
+! 
+! =>
+! `~/*.hushlogin*`
+! <<config-shell-hushlogin,^4^>>
+
+!===
+
+Installation:: Created, or re-used if pre-existing.
+Removal:: Removed, or untouched if re-used.
+
 |===
 
 == Included assets
 
-The `config-shell` deployment's *asset directory* is located at `grail/assets/config-shell`.
-
-* The base runcoms are kept in the deployment directory because they are not intended for manual modification.
-** [[config-shell-login]]The *login shell runcoms* are:
+* [[config-shell-base]]The *base runcoms* (the `.*profile` and `.*rc` files recognized by Bash and Zsh) are kept in the deployment directory because they are not intended for manual modification.
 +
---
-*** `_<deployment dir>_/*.bash_profile*`
-*** `_<deployment dir>_/*.zprofile*`
---
-+
-These effectively delegate to their <<config-shell-interactive,counterparts>> for interactive shells.
-** [[config-shell-interactive]]The *interactive shell runcoms* are:
-+
---
-*** `_<deployment dir>_/*.bashrc*`
-*** `_<deployment dir>_/*.zshrc*`
---
-+
-These do little on top of sequentially sourcing the <<config-shell-runcoms,custom>> runcoms.
-* [[config-shell-runcoms]]The asset directory houses the *custom runcoms*.
+These do little on top of sequentially sourcing the <<config-shell-runcoms,custom>> and <<config-shell-box-specific,box-specific>> runcoms.
+* [[config-shell-runcoms]]The <<config-shell-mtdt,asset directory>> is home for the *custom runcoms*.
 +
 During the shell startup, both `.bashrc` and `.zshrc` source files from this directory, in the ascending alphanumerical order:
 +
@@ -132,31 +125,31 @@ During the shell startup, both `.bashrc` and `.zshrc` source files from this dir
 ** The `.bashrc` script sources every `__<name>__**.bash**` and every `__<name>__**.sh**` file.
 ** The `.zshrc` script sources every `__<name>__**.zsh**` and every `__<name>__**.sh**` file.
 --
-* [[config-shell-blanks]]A number of empty-ish files are created in the home directory:
-** [[config-shell-hushlogin]]`~/*.hushlogin*` — the mere existence of this file in the home directory prevents any sort of textual banner from being printed durint the shell startup.
-** [[config-shell-box-specific]]The following runcoms are *box-specific*, meaning they are not intended to leave the current system:
++
+A sample set of opinionated runcoms is <<config-shell-included,included>>.
+* [[config-shell-box-specific]]The empty-ish *box-specific runcoms* are created in the home directory, and are not intended to leave the current machine:
 +
 --
-*** Sourced _before_ the <<config-shell-runcoms,custom>> runcoms:
-**** `~/*.pre.bash*` — exclusive to Bash.
-**** `~/*.pre.zsh*` — exclusive to Zsh.
-**** `~/*.pre.sh*` — universal.
+** Sourced _before_ the <<config-shell-runcoms,custom>> runcoms:
+*** `~/*.pre.bash*` — exclusive to Bash.
+*** `~/*.pre.zsh*` — exclusive to Zsh.
+*** `~/*.pre.sh*` — universal.
 +
-This particular runcom is loaded with the definitions of the `D{dus}OS_FAMILY`, `D{dus}OS_DISTRO`, and `D{dus}OS_PKGMGR` variables, which describe the current OS.
-*** Sourced _after_ the <<config-shell-runcoms,custom>> runcoms:
-**** `~/*.post.bash*` — exclusive to Bash.
-**** `~/*.post.zsh*` — exclusive to Zsh.
-**** `~/*.post.sh*` — universal.
+This particular runcom is pre-loaded with the definitions of the https://github.com/no-simpler/divine-dotfiles#indct-os-family[`D{dus}OS_FAMILY`], https://github.com/no-simpler/divine-dotfiles#indct-os-distro[`D{dus}OS_DISTRO`], and https://github.com/no-simpler/divine-dotfiles#indct-os-pkgmgr[`D{dus}OS_PKGMGR`] variables, which describe the current OS.
+** Sourced _after_ the <<config-shell-runcoms,custom>> runcoms:
+*** `~/*.post.bash*` — exclusive to Bash.
+*** `~/*.post.zsh*` — exclusive to Zsh.
+*** `~/*.post.sh*` — universal.
 --
-+
-The `__<name>__**.bash**` and `__<name>__**.zsh**` runcoms are not created by default, but can be created manually should the need arise.
+* [[config-shell-hushlogin]]`~/*.hushlogin*` — the presence of this file in the home directory prevents any sort of textual banner from being printed durint the shell startup.
 
+[[config-shell-included]]
 The following <<config-shell-runcoms,custom>> runcoms are provided with the deployment and contain an opinionated set of startup commands:
 
 * `*00-config.bash*` — the general Bash configuration commands.
 * `*00-config.zsh*` — the general Zsh configuration commands.
-* `*01-bash-it.bash*` — the commands that initialize the https://github.com/Bash-it/bash-it[Bash-it framework], if it is installed.
-* `*01-oh-my-zsh.zsh*` — the commands that initialize the https://ohmyz.sh[oh-my-zsh framework], if it is installed.
+* `*01-bash-it.bash*` — the commands that initialize the https://github.com/Bash-it/bash-it[Bash-it framework], if it is <<bash-it-main,installed>>.
+* `*01-oh-my-zsh.zsh*` — the commands that initialize the https://ohmyz.sh[oh-my-zsh framework], if it is <<oh-my-zsh-main,installed>>.
 * `*02-env.sh*` — the environment variables for both shells, including the modifications of the `$PATH` variable.
 * `*03-fixes.sh*` — the bug fixes for both shells.
 * `*04-aliases.sh*` — the aliases for both shells.
@@ -166,31 +159,11 @@ The following <<config-shell-runcoms,custom>> runcoms are provided with the depl
 [[config-shell-dependencies]]
 == Dependencies
 
-The `config-shell` deployment is stand-alone, but provides the support for other deployments in the current bundle via the included <<config-shell-runcoms,custom>> runcoms:
+The `config-shell` deployment is stand-alone.
 
-* `01-bash-it.bash` — initializes the Bash-it framework for the `bash-it` deployment.
-* `01-oh-my-zsh.zsh` — initializes the oh-my-zsh framework for the `oh-my-zsh` deployment.
-* `02-env.sh` — ensures that all flavors of `bin` directory are on the `$PATH` variable for the `home-dirs` and `portable-bin` deployments.
-* `06-addons.zsh` — initializes the Zsh addons for the `zsh-addons` deployment.
+However, it provides the support for other deployments in the current bundle (via the <<config-shell-included,included>> custom runcoms):
 
-== Supported asset modifications
-
-All <<config-shell-runcoms,custom>> runcoms may be freely modified in the asset directory; the modifications will take effect after the shell reload.
-Keep in mind, that the modifications to the runcoms that <<config-shell-dependencies,support>> other deployments may break those deployments.
-
-The custom runcoms may be renamed as long as they retain a recognized suffix; however they must remain in the root of the asset directory.
-Any number of runcoms may be added to the root of the asset directory; the additional runcoms will take effect after the shell reload.
-
-== Overwriting policy
-
-The `config-shell` deployment backs up any clashing pre-existing files in the home directory.
-The backup directory is at `state/backups/config-shell/`.
-
-The <<config-shell-blanks,blank>> files, however, do not overwrite the pre-existing files.
-
-== Deployment removal notes
-
-The `config-shell` deployment is fully reversible: the displaced pre-existing files are restored.
-Any files that have been re-used remain in place.
-
-The removal does not touch anything in the asset directory.
+* `01-bash-it.bash` — initializes the Bash-it framework for the <<bash-it-main,`bash-it`>> deployment.
+* `01-oh-my-zsh.zsh` — initializes the oh-my-zsh framework for the <<oh-my-zsh-main,`oh-my-zsh`>> deployment.
+* `02-env.sh` — ensures that all flavors of `bin` directory are on the `$PATH` variable for the <<home-dirs-main,`home-dirs`>> and <<portable-bin-main,`portable-bin`>> deployments.
+* `06-addons.zsh` — initializes the Zsh addons for the <<zsh-addons-main,`zsh-addons`>> deployment.
