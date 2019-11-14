@@ -3,7 +3,7 @@
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
 :revdate: 2019.11.14
-:revremark: Restore horizontal attribute to config-shell readme intro
+:revremark: Experiment with readme intro layout
 :doctype: article
 // Visual
 :toc:
@@ -18,17 +18,17 @@
 The `config-shell` deployment symlinks the configuration files (https://en.wikipedia.org/wiki/Run_commands['runcoms']) for https://www.gnu.org/software/bash/[Bash] and https://sourceforge.net/projects/zsh[Zsh] into the home directory.
 
 [[config-shell-mtdt]]
-[horizontal]
-Deployment name:: `config-shell`
-Priority:: `333`
-Flags:: _none_
-Deployment directory +++<br>+++ (`_<dpl-dir>_`):: `https://github.com/no-simpler/divine-dotfiles#fmwk-state[state]/bundles/no-simpler/divine-bundle-essentials/config-shell/`
-Asset directory +++<br>+++ (`_<asset-dir>_`):: `https://github.com/no-simpler/divine-dotfiles#fmwk-grail[grail]/assets/config-shell/`
-Backup directory +++<br>+++ (`_<backup-dir>_`):: `https://github.com/no-simpler/divine-dotfiles#fmwk-state[state]/backups/config-shell/`
-https://github.com/no-simpler/divine-dotfiles#fmwk-zero-data-loss[Zero data loss]:: Displaced originals backed up.
-https://github.com/no-simpler/divine-dotfiles#fmwk-reversibility[Reversibility]:: Upon removal: backed up originals restored, re-used originals untouched.
+[none]
+* https://github.com/no-simpler/divine-dotfiles#mtdt-name-and-desc[*Deployment name*]: `config-shell`
+* https://github.com/no-simpler/divine-dotfiles#mtdt-priority[*Priority*]: `333`
+* https://github.com/no-simpler/divine-dotfiles#mtdt-flags[*Flags*]: _none_
+* https://github.com/no-simpler/divine-dotfiles#indct-dpl-dir[*Deployment directory*] (`_<dpl-dir>_`): `https://github.com/no-simpler/divine-dotfiles#fmwk-state[state]/bundles/no-simpler/divine-bundle-essentials/config-shell/`
+* https://github.com/no-simpler/divine-dotfiles#indct-dpl-asset-dir[*Asset directory*] (`_<asset-dir>_`): `https://github.com/no-simpler/divine-dotfiles#fmwk-grail[grail]/assets/config-shell/`
+* https://github.com/no-simpler/divine-dotfiles#indct-dpl-backup-dir[*Backup directory*] (`_<backup-dir>_`): `https://github.com/no-simpler/divine-dotfiles#fmwk-state[state]/backups/config-shell/`
+* https://github.com/no-simpler/divine-dotfiles#fmwk-zero-data-loss[*Zero data loss*]: Displaced originals backed up.
+* https://github.com/no-simpler/divine-dotfiles#fmwk-reversibility[*Reversibility*]: Backed up originals restored, re-used originals untouched.
 
-== Deployment installation map
+== Installation map
 
 .Installation map for the `config-shell` deployment
 [%noheader,cols="<.<a",stripes=none]
