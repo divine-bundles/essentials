@@ -1,8 +1,9 @@
+[[config-git-main]]
 = Deployment `config-git` (`333`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revdate: 2019.11.12
-:revremark: Rewrite for D.d v2, pt. 2
+:revdate: 2019.11.14
+:revremark: Systematize readmes for git & vim
 :doctype: article
 // Visual
 :toc:
@@ -16,41 +17,53 @@
 
 The `config-git` deployment symlinks the configuration files for https://git-scm.com[Git] into the home directory.
 
-The `config-git` deployment has the priority of `*333*`.
+[[config-git-mtdt]]
+[none]
+* https://github.com/no-simpler/divine-dotfiles#mtdt-name-and-desc[*Deployment name*]: `config-git`
+* https://github.com/no-simpler/divine-dotfiles#mtdt-priority[*Priority*]: `333`
+* https://github.com/no-simpler/divine-dotfiles#mtdt-flags[*Flags*]: _none_
+* https://github.com/no-simpler/divine-dotfiles#indct-dpl-dir[*Deployment directory*] (`_<dpl-dir>_`): `https://github.com/no-simpler/divine-dotfiles#fmwk-state[state]/bundles/no-simpler/divine-bundle-essentials/config-git/`
+* https://github.com/no-simpler/divine-dotfiles#indct-dpl-asset-dir[*Asset directory*] (`_<asset-dir>_`): `https://github.com/no-simpler/divine-dotfiles#fmwk-grail[grail]/assets/config-git/`
+* https://github.com/no-simpler/divine-dotfiles#indct-dpl-backup-dir[*Backup directory*] (`_<backup-dir>_`): `https://github.com/no-simpler/divine-dotfiles#fmwk-state[state]/backups/config-git/`
+* https://github.com/no-simpler/divine-dotfiles#fmwk-zero-data-loss[*Zero data loss*]: any displaced files are backed up.
+* https://github.com/no-simpler/divine-dotfiles#fmwk-reversibility[*Reversibility*]: backed up files are restored, re-used ones untouched.
 
-== Deployment installation notes
+== Installation map
 
-The `config-git` deployment supplants any pre-existing Git configuration, while keeping backups of whatever is replaced.
-
-.Map of asset installation for the `config-git` deployment
-[%header,cols="<.^3a,^.^1,<.^3a,<.^3a",stripes=none]
+.Installation map for the `config-git` deployment
+[%noheader,cols="<.<a",stripes=none]
 |===
 
-^.^| Asset
-^.^| Method
-^.^| Destination
-^.^| Description
+| +++<p align="center">+++
+*Symlinking*
++++</p>+++
 
-| `*.gitconfig*`
-| symlinked
-| `~/*.gitconfig*`
-| The global Git config <<config-git-config,^1^>>
+[%noheader,cols="4*<.^",stripes=none]
+!===
 
-| `*.gitattributes*`
-| symlinked
-| `~/*.gitattributes*`
-| The global Git attributes file <<config-git-attributes,^2^>>
+! `<<config-git-mtdt,_<asset-dir>_>>/*.gitconfig*`
+! =>
+! `~/*.gitconfig*`
+! <<config-git-gc,^1^>>
+
+! `<<config-git-mtdt,_<asset-dir>_>>/*.gitattributes*`
+! =>
+! `~/*.gitattributes*`
+! <<config-git-ga,^2^>>
+
+!===
+
+Installation:: Symlinked, displacing any original.
+Removal:: Unlinked; original restored.
 
 |===
 
 == Included assets
 
-The `config-git` deployment's *asset directory* is located at `grail/assets/config-git`.
+[[config-git-gc]][[config-git-ga]]The two global configuration files for https://git-scm.com[Git] are provided:
 
-The two global configuration files for https://git-scm.com[Git] are provided:
-
-- [[config-git-config]]`*.gitconfig*` — this file is interacted with by the https://git-scm.com/docs/git-config[`git config --global`] command.
-- [[config-git-attributes]]`*.gitattributes*` — this file globally influences certain Git operations by https://git-scm.com/docs/gitattributes[assigning attributes] to the certain file path patterns.
+- `*.gitconfig*` — this file is interacted with by the https://git-scm.com/docs/git-config[`git config --global`] command.
+- `*.gitattributes*` — this file globally influences certain Git operations by https://git-scm.com/docs/gitattributes[assigning attributes] to the certain file path patterns.
 
 A small amount of opinionated configuration is included in the specified files.
 
@@ -58,22 +71,4 @@ A small amount of opinionated configuration is included in the specified files.
 
 The `config-git` deployment is stand-alone.
 
-The Divinefile included with the current bundle ensures that Git is installed.
-
-== Supported asset modifications
-
-The included configuration files may be freely modified in the asset directory; the modifications will take effect immediately.
-Renaming or moving any of the configuration files will break them.
-
-The `config-git` deployment does not support any additional assets.
-
-== Overwriting policy
-
-The `config-git` deployment backs up any clashing pre-existing files in the home directory.
-The backup directory is at `state/backups/config-git/`.
-
-== Deployment removal notes
-
-The `config-git` deployment is fully reversible: the displaced pre-existing files are restored.
-
-The removal does not touch anything in the asset directory.
+The <<dpls-dfls,Divinefile>> included with the current bundle ensures that Git is installed.

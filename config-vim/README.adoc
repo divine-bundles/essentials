@@ -1,8 +1,8 @@
 = Deployment `config-vim` (`333`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revdate: 2019.11.12
-:revremark: Rewrite for D.d v2, pt. 2
+:revdate: 2019.11.14
+:revremark: Systematize readmes for git & vim
 :doctype: article
 // Visual
 :toc:
@@ -16,35 +16,49 @@
 
 The `config-vim` deployment symlinks the configuration and customization files for https://www.vim.org[Vim] into the home directory.
 
-The `config-vim` deployment has the priority of `*333*`.
+[[config-vim-mtdt]]
+[none]
+* https://github.com/no-simpler/divine-dotfiles#mtdt-name-and-desc[*Deployment name*]: `config-vim`
+* https://github.com/no-simpler/divine-dotfiles#mtdt-priority[*Priority*]: `333`
+* https://github.com/no-simpler/divine-dotfiles#mtdt-flags[*Flags*]: _none_
+* https://github.com/no-simpler/divine-dotfiles#indct-dpl-dir[*Deployment directory*] (`_<dpl-dir>_`): `https://github.com/no-simpler/divine-dotfiles#fmwk-state[state]/bundles/no-simpler/divine-bundle-essentials/config-vim/`
+* https://github.com/no-simpler/divine-dotfiles#indct-dpl-asset-dir[*Asset directory*] (`_<asset-dir>_`): `https://github.com/no-simpler/divine-dotfiles#fmwk-grail[grail]/assets/config-vim/`
+* https://github.com/no-simpler/divine-dotfiles#indct-dpl-backup-dir[*Backup directory*] (`_<backup-dir>_`): `https://github.com/no-simpler/divine-dotfiles#fmwk-state[state]/backups/config-vim/`
+* https://github.com/no-simpler/divine-dotfiles#fmwk-zero-data-loss[*Zero data loss*]: any displaced files are backed up.
+* https://github.com/no-simpler/divine-dotfiles#fmwk-reversibility[*Reversibility*]: backed up files are restored, re-used ones untouched.
 
-== Deployment installation notes
+== Installation map
 
-The `config-vim` deployment supplants any pre-existing Vim configuration, while keeping backups of whatever is replaced.
-
-.Map of asset installation for the `config-vim` deployment
-[%header,cols="<.^3a,^.^1,<.^3a,<.^3a",stripes=none]
+.Installation map for the `config-vim` deployment
+[%noheader,cols="<.<a",stripes=none]
 |===
 
-^.^| Asset
-^.^| Method
-^.^| Destination
-^.^| Description
+| +++<p align="center">+++
+*Symlinking*
++++</p>+++
 
-| `*.vimrc*`
-| symlinked
-| `~/*.vimrc*`
-| The main Vim config <<config-vim-vimrc,^1^>>
+[%noheader,cols="4*<.^",stripes=none]
+!===
 
-| `*.ideavimrc*`
-| symlinked
-| `~/*.ideavimrc*`
-| The optional IdeaVim config <<config-vim-ideavimrc,^2^>>
+! `<<config-vim-mtdt,_<asset-dir>_>>/*.vimrc*`
+! =>
+! `~/*.vimrc*`
+! <<config-vim-rc,^1^>>
 
-| `.vim/**__<name>__**/`
-| symlinked
-| `~/.vim/**__<name>__**/`
-| The Vim customization directories <<config-vim-customization-dirs,^3^>>
+! `<<config-vim-mtdt,_<asset-dir>_>>/*.ideavimrc*`
+! =>
+! `~/*.ideavimrc*`
+! <<config-vim-idearc,^2^>>
+
+! `<<config-vim-mtdt,_<asset-dir>_>>/.vim/**__<name>__**/`
+! =>
+! `~/.vim/**__<name>__**/`
+! <<config-vim-dirs,^3^>>
+
+!===
+
+Installation:: Symlinked, displacing any original.
+Removal:: Unlinked; original restored.
 
 |===
 
@@ -54,14 +68,14 @@ The `config-vim` deployment's *asset directory* is located at `grail/assets/conf
 
 The native configuration files, containing an opinionated set of Vim startup commands:
 
-* [[config-vim-vimrc]]`*.vimrc*` — the primary Vim configuration file.
+* [[config-vim-rc]]`*.vimrc*` — the primary Vim configuration file.
 +
 This file includes an installation command for the https://github.com/junegunn/vim-plug[vim-plug] (_a minimalist Vim plugin manager_) along with a number of plugins and settings.
-* [[config-vim-ideavimrc]]`*.ideavimrc*` — the configuration file for the https://github.com/JetBrains/ideavim[IdeaVim] (_a Vim emulation plugin for IDEs based on the IntelliJ Platform_).
+* [[config-vim-idearc]]`*.ideavimrc*` — the configuration file for the https://github.com/JetBrains/ideavim[IdeaVim] (_a Vim emulation plugin for IDEs based on the IntelliJ Platform_).
 +
 If you don't use any of the IntelliJ products, this file is harmless.
 
-[[config-vim-customization-dirs]]
+[[config-vim-dirs]]
 A number of Vim *customization directories* can be created in the root of the `.vim/` directory, as containers for your customizations.
 Most of these directories are not included with the deployment to prevent clutter.
 One keymap is provided as an example:
@@ -91,29 +105,4 @@ Refer to the Vim https://vimhelp.org[help] for more information on the semantics
 
 The `config-vim` deployment is stand-alone.
 
-The Divinefile included with the current bundle ensures that Vim is installed.
-
-== Supported asset modifications
-
-The `.vimrc` and `.ideavim` files may be freely modified in the asset directory; the modifications will take effect on the next Vim startup.
-Renaming or moving any of the configuration files will break them.
-
-The `.ideavim` file can be safely removed from the asset directory before installing the deployment.
-
-The symlinked content of the Vim customization directories may be freely modified in the asset directory; the modifications will take effect on the next Vim startup.
-
-The additional customization directories or files may be freely added to the root of the `.vim/` directory.
-For the additions to be symlinked into `~/.vim/` directory, the deployment must be (re-)installed.
-
-== Overwriting policy
-
-The `config-vim` deployment backs up any clashing pre-existing files in the home directory.
-The backup directory is at `state/backups/config-vim/`.
-
-A pre-existing `~/.vim/` directory is not replaced as a whole, but the files and directories in its root are.
-
-== Deployment removal notes
-
-The `config-git` deployment is fully reversible: the displaced pre-existing files are restored.
-
-The removal does not touch anything in the asset directory.
+The <<dpls-dfls,Divinefile>> included with the current bundle ensures that Vim is installed.
