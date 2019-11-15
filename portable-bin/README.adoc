@@ -2,8 +2,8 @@
 = Deployment `portable-bin` (`500`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revdate: 2019.11.14
-:revremark: Systematize the rest of the readmes
+:revdate: 2019.11.15
+:revremark: Improve wording on rules of engagement in readmes
 :doctype: article
 // Visual
 :toc:
@@ -50,8 +50,8 @@ Assets are never removed from the Grail, even when uninstalling the deployment.
 
 !===
 
-Installation:: Symlinked, displacing any original.
-Removal:: Unlinked; backed up original restored, if any.
+Installation:: Symlinked, any pre-existing original backed up and replaced.
+Removal:: Unlinked; any backed up original restored.
 
 |===
 
