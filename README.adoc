@@ -2,7 +2,7 @@
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
 :revdate: 2019.11.15
-:revremark: Improve wording
+:revremark: Semicolons are more fun than commas
 :doctype: article
 // Visual
 :toc: macro
@@ -258,7 +258,7 @@ It is located in the root of the attached bundle's directory at:
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
 :revdate: 2019.11.15
-:revremark: Improve wording
+:revremark: Semicolons are more fun than commas
 :doctype: article
 // Visual
 :toc:
@@ -322,7 +322,7 @@ Assets are never removed from the Grail, even when uninstalling the deployment.
 
 !===
 
-Installation:: Symlinked, any pre-existing original backed up and replaced.
+Installation:: Symlinked; any pre-existing original backed up and replaced.
 Removal:: Unlinked; any backed up original restored.
 
 | +++<p align="center">+++
@@ -434,7 +434,7 @@ However, it provides the support for other deployments in the current bundle (vi
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
 :revdate: 2019.11.15
-:revremark: Improve wording
+:revremark: Semicolons are more fun than commas
 :doctype: article
 // Visual
 :toc:
@@ -486,7 +486,7 @@ Assets are never removed from the Grail, even when uninstalling the deployment.
 
 !===
 
-Installation:: Symlinked, any pre-existing original backed up and replaced.
+Installation:: Symlinked; any pre-existing original backed up and replaced.
 Removal:: Unlinked; any backed up original restored.
 
 |===
@@ -515,7 +515,7 @@ The <<dpls-dfls,Divinefile>> included with the current bundle ensures that Git i
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
 :revdate: 2019.11.15
-:revremark: Improve wording
+:revremark: Semicolons are more fun than commas
 :doctype: article
 // Visual
 :toc:
@@ -572,7 +572,7 @@ Assets are never removed from the Grail, even when uninstalling the deployment.
 
 !===
 
-Installation:: Symlinked, any pre-existing original backed up and replaced.
+Installation:: Symlinked; any pre-existing original backed up and replaced.
 Removal:: Unlinked; any backed up original restored.
 
 |===
@@ -628,7 +628,7 @@ The <<dpls-dfls,Divinefile>> included with the current bundle ensures that Vim i
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
 :revdate: 2019.11.15
-:revremark: Improve wording
+:revremark: Semicolons are more fun than commas
 :doctype: article
 // Visual
 :toc:
@@ -675,7 +675,7 @@ Assets are never removed from the Grail, even when uninstalling the deployment.
 
 !===
 
-Installation:: Symlinked, any pre-existing original backed up and replaced.
+Installation:: Symlinked; any pre-existing original backed up and replaced.
 Removal:: Unlinked; any backed up original restored.
 
 |===
@@ -700,7 +700,7 @@ The `~/.pbin/` directory is put on the `$PATH` variable from the runcom script a
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
 :revdate: 2019.11.15
-:revremark: Improve wording
+:revremark: Semicolons are more fun than commas
 :doctype: article
 // Visual
 :toc:
@@ -797,7 +797,7 @@ The `home-dirs` deployment is stand-alone.
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
 :revdate: 2019.11.15
-:revremark: Improve wording
+:revremark: Semicolons are more fun than commas
 :doctype: article
 // Visual
 :toc:
@@ -854,7 +854,7 @@ Assets are never removed from the Grail, even when uninstalling the deployment.
 
 !===
 
-Installation:: Cloned/downloaded, any pre-existing original backed up and replaced.
+Installation:: Cloned/downloaded; any pre-existing original backed up and replaced.
 Removal:: Displaced; any backed up original restored.
 
 |===
@@ -877,7 +877,7 @@ The retrieved addons are initialized from the runcom script at `grail/assets/con
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
 :revdate: 2019.11.15
-:revremark: Improve wording
+:revremark: Semicolons are more fun than commas
 :doctype: article
 // Visual
 :toc:
@@ -929,7 +929,7 @@ On some systems, the <<dpls-dfls,Divinefile>> included with the current bundle e
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
 :revdate: 2019.11.15
-:revremark: Improve wording
+:revremark: Semicolons are more fun than commas
 :doctype: article
 // Visual
 :toc:
@@ -1022,7 +1022,7 @@ On macOS, the _Divine.dotfiles_ framework itself ensures that https://brew.sh/[H
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
 :revdate: 2019.11.15
-:revremark: Improve wording
+:revremark: Semicolons are more fun than commas
 :doctype: article
 // Visual
 :toc:
@@ -1069,7 +1069,7 @@ Assets are never removed from the Grail, even when uninstalling the deployment.
 
 !===
 
-Installation:: Cloned/downloaded, any pre-existing original backed up and replaced.
+Installation:: Cloned/downloaded; any pre-existing original backed up and replaced.
 Removal:: Displaced; any backed up original restored.
 
 | +++<p align="center">+++
@@ -1103,7 +1103,7 @@ Removal:: Displaced; any backed up original restored.
 
 !===
 
-Installation:: Symlinked, any pre-existing original backed up and replaced.
+Installation:: Symlinked; any pre-existing original backed up and replaced.
 Removal:: Unlinked; any backed up original restored.
 
 |===
@@ -1147,7 +1147,7 @@ The same file may and should be used to customize the Bash-it framework's loadou
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
 :revdate: 2019.11.15
-:revremark: Improve wording
+:revremark: Semicolons are more fun than commas
 :doctype: article
 // Visual
 :toc:
@@ -1194,7 +1194,7 @@ Assets are never removed from the Grail, even when uninstalling the deployment.
 
 !===
 
-Installation:: Cloned/downloaded, any pre-existing original backed up and replaced.
+Installation:: Cloned/downloaded; any pre-existing original backed up and replaced.
 Removal:: Displaced; any backed up original restored.
 
 | +++<p align="center">+++
@@ -1216,7 +1216,7 @@ Removal:: Displaced; any backed up original restored.
 
 !===
 
-Installation:: Symlinked, any pre-existing original backed up and replaced.
+Installation:: Symlinked; any pre-existing original backed up and replaced.
 Removal:: Unlinked; any backed up original restored.
 
 |===

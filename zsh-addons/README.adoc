@@ -3,7 +3,7 @@
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
 :revdate: 2019.11.15
-:revremark: Improve wording on rules of engagement in readmes
+:revremark: Semicolons are more fun than commas
 :doctype: article
 // Visual
 :toc:
@@ -60,7 +60,7 @@ Assets are never removed from the Grail, even when uninstalling the deployment.
 
 !===
 
-Installation:: Cloned/downloaded, any pre-existing original backed up and replaced.
+Installation:: Cloned/downloaded; any pre-existing original backed up and replaced.
 Removal:: Displaced; any backed up original restored.
 
 |===
