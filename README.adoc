@@ -1,8 +1,8 @@
 = Deployment bundle `essentials`
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revdate: 2019.11.14
-:revremark: Systematize the rest of the readmes
+:revdate: 2019.11.15
+:revremark: Fix Divinefile path
 :doctype: article
 // Visual
 :toc: macro
@@ -209,10 +209,8 @@ The bundle `essentials` includes a https://github.com/no-simpler/divine-dotfiles
 Below is the list of the more prominent packages in the Divinefile.
 For the full list, refer to the `Divinefile` itself, located in the root of the attached bundle's directory at:
 
-[source]
-----
-https://github.com/no-simpler/divine-dotfiles#fmwk-state[state]/bundles/no-simpler/divine-bundle-essentials/Divinefile
-----
+[none]
+* `https://github.com/no-simpler/divine-dotfiles#fmwk-state[state]/bundles/no-simpler/divine-bundle-essentials/Divinefile`
 
 .Highlights of Divinefile packages for the bundle `essentials`
 [%header,cols="^.^1a,<.^2a,<.<3a",stripes=none]
@@ -258,8 +256,8 @@ https://github.com/no-simpler/divine-dotfiles#fmwk-state[state]/bundles/no-simpl
 = Deployment `config-shell` (`333`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revdate: 2019.11.14
-:revremark: Systematize the rest of the readmes
+:revdate: 2019.11.15
+:revremark: Fix Divinefile path
 :doctype: article
 // Visual
 :toc:
@@ -434,8 +432,8 @@ However, it provides the support for other deployments in the current bundle (vi
 = Deployment `config-git` (`333`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revdate: 2019.11.14
-:revremark: Systematize the rest of the readmes
+:revdate: 2019.11.15
+:revremark: Fix Divinefile path
 :doctype: article
 // Visual
 :toc:
@@ -515,8 +513,8 @@ The <<dpls-dfls,Divinefile>> included with the current bundle ensures that Git i
 = Deployment `config-vim` (`333`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revdate: 2019.11.14
-:revremark: Systematize the rest of the readmes
+:revdate: 2019.11.15
+:revremark: Fix Divinefile path
 :doctype: article
 // Visual
 :toc:
@@ -628,8 +626,8 @@ The <<dpls-dfls,Divinefile>> included with the current bundle ensures that Vim i
 = Deployment `portable-bin` (`500`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revdate: 2019.11.14
-:revremark: Systematize the rest of the readmes
+:revdate: 2019.11.15
+:revremark: Fix Divinefile path
 :doctype: article
 // Visual
 :toc:
@@ -700,8 +698,8 @@ The `~/.pbin/` directory is put on the `$PATH` variable from the runcom script a
 = Deployment `home-dirs` (`500`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revdate: 2019.11.14
-:revremark: Systematize the rest of the readmes
+:revdate: 2019.11.15
+:revremark: Fix Divinefile path
 :doctype: article
 // Visual
 :toc:
@@ -797,8 +795,8 @@ The `home-dirs` deployment is stand-alone.
 = Deployment `zsh-addons` (`1000`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revdate: 2019.11.14
-:revremark: Systematize the rest of the readmes
+:revdate: 2019.11.15
+:revremark: Fix Divinefile path
 :doctype: article
 // Visual
 :toc:
@@ -877,8 +875,8 @@ The retrieved addons are initialized from the runcom script at `grail/assets/con
 = Deployment `zsh-default` (`1333`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revdate: 2019.11.14
-:revremark: Systematize the rest of the readmes
+:revdate: 2019.11.15
+:revremark: Fix Divinefile path
 :doctype: article
 // Visual
 :toc:
@@ -929,8 +927,8 @@ On some systems, the <<dpls-dfls,Divinefile>> included with the current bundle e
 = Deployment `brewfile` (`3000!`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revdate: 2019.11.14
-:revremark: Systematize the rest of the readmes
+:revdate: 2019.11.15
+:revremark: Fix Divinefile path
 :doctype: article
 // Visual
 :toc:
@@ -1022,8 +1020,8 @@ On macOS, the _Divine.dotfiles_ framework itself ensures that https://brew.sh/[H
 = Deployment `bash-it` (`3333`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revdate: 2019.11.14
-:revremark: Systematize the rest of the readmes
+:revdate: 2019.11.15
+:revremark: Fix Divinefile path
 :doctype: article
 // Visual
 :toc:
@@ -1147,8 +1145,8 @@ The same file may and should be used to customize the Bash-it framework's loadou
 = Deployment `oh-my-zsh` (`3333`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revdate: 2019.11.14
-:revremark: Systematize the rest of the readmes
+:revdate: 2019.11.15
+:revremark: Fix Divinefile path
 :doctype: article
 // Visual
 :toc:

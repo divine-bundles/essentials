@@ -1,8 +1,8 @@
 = Deployment bundle `essentials`
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revdate: 2019.11.14
-:revremark: Systematize readme for config-shell
+:revdate: 2019.11.15
+:revremark: Fix Divinefile path
 :doctype: article
 // Visual
 :toc: macro
@@ -209,10 +209,8 @@ The bundle `essentials` includes a https://github.com/no-simpler/divine-dotfiles
 Below is the list of the more prominent packages in the Divinefile.
 For the full list, refer to the `Divinefile` itself, located in the root of the attached bundle's directory at:
 
-[source]
-----
-https://github.com/no-simpler/divine-dotfiles#fmwk-state[state]/bundles/no-simpler/divine-bundle-essentials/Divinefile
-----
+[none]
+* `https://github.com/no-simpler/divine-dotfiles#fmwk-state[state]/bundles/no-simpler/divine-bundle-essentials/Divinefile`
 
 .Highlights of Divinefile packages for the bundle `essentials`
 [%header,cols="^.^1a,<.^2a,<.<3a",stripes=none]
