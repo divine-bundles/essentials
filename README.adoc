@@ -2,7 +2,7 @@
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
 :revdate: 2019.11.15
-:revremark: Fix adoc syntax for repos
+:revremark: Fix oh-my-zsh repo handle in readme
 :doctype: article
 // Visual
 :toc: macro
@@ -257,7 +257,7 @@ For the full list, refer to the `Divinefile` itself, located in the root of the 
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
 :revdate: 2019.11.15
-:revremark: Fix adoc syntax for repos
+:revremark: Fix oh-my-zsh repo handle in readme
 :doctype: article
 // Visual
 :toc:
@@ -433,7 +433,7 @@ However, it provides the support for other deployments in the current bundle (vi
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
 :revdate: 2019.11.15
-:revremark: Fix adoc syntax for repos
+:revremark: Fix oh-my-zsh repo handle in readme
 :doctype: article
 // Visual
 :toc:
@@ -514,7 +514,7 @@ The <<dpls-dfls,Divinefile>> included with the current bundle ensures that Git i
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
 :revdate: 2019.11.15
-:revremark: Fix adoc syntax for repos
+:revremark: Fix oh-my-zsh repo handle in readme
 :doctype: article
 // Visual
 :toc:
@@ -627,7 +627,7 @@ The <<dpls-dfls,Divinefile>> included with the current bundle ensures that Vim i
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
 :revdate: 2019.11.15
-:revremark: Fix adoc syntax for repos
+:revremark: Fix oh-my-zsh repo handle in readme
 :doctype: article
 // Visual
 :toc:
@@ -699,7 +699,7 @@ The `~/.pbin/` directory is put on the `$PATH` variable from the runcom script a
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
 :revdate: 2019.11.15
-:revremark: Fix adoc syntax for repos
+:revremark: Fix oh-my-zsh repo handle in readme
 :doctype: article
 // Visual
 :toc:
@@ -796,7 +796,7 @@ The `home-dirs` deployment is stand-alone.
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
 :revdate: 2019.11.15
-:revremark: Fix adoc syntax for repos
+:revremark: Fix oh-my-zsh repo handle in readme
 :doctype: article
 // Visual
 :toc:
@@ -876,7 +876,7 @@ The retrieved addons are initialized from the runcom script at `grail/assets/con
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
 :revdate: 2019.11.15
-:revremark: Fix adoc syntax for repos
+:revremark: Fix oh-my-zsh repo handle in readme
 :doctype: article
 // Visual
 :toc:
@@ -928,7 +928,7 @@ On some systems, the <<dpls-dfls,Divinefile>> included with the current bundle e
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
 :revdate: 2019.11.15
-:revremark: Fix adoc syntax for repos
+:revremark: Fix oh-my-zsh repo handle in readme
 :doctype: article
 // Visual
 :toc:
@@ -1021,7 +1021,7 @@ On macOS, the _Divine.dotfiles_ framework itself ensures that https://brew.sh/[H
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
 :revdate: 2019.11.15
-:revremark: Fix adoc syntax for repos
+:revremark: Fix oh-my-zsh repo handle in readme
 :doctype: article
 // Visual
 :toc:
@@ -1146,7 +1146,7 @@ The same file may and should be used to customize the Bash-it framework's loadou
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
 :revdate: 2019.11.15
-:revremark: Fix adoc syntax for repos
+:revremark: Fix oh-my-zsh repo handle in readme
 :doctype: article
 // Visual
 :toc:
@@ -1186,7 +1186,7 @@ Assets are never removed from the Grail, even when uninstalling the deployment.
 [%noheader,cols="4*<.^",stripes=none]
 !===
 
-! Repository https://github.com/robbyrussell/oh-my-zsh[`Bash-it/oh-my-zsh`]
+! Repository https://github.com/robbyrussell/oh-my-zsh[`robbyrussell/oh-my-zsh`]
 ! =>
 ! `~/**.oh-my-zsh**/`
 ! <<oh-my-zsh-fmwk,^1^>>
