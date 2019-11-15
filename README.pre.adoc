@@ -2,7 +2,7 @@
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
 :revdate: 2019.11.15
-:revremark: Improve wording
+:revremark: Fix D.d link in readme head
 :doctype: article
 // Visual
 :toc: macro
@@ -18,7 +18,7 @@
 
 ++++
 <p align="center">
-<em>A deployment bundle for <a href="https://github\.com/no-simpler/divine-dotfiles">Divine.dotfiles</a></em>
+<em>A deployment bundle for <a href="https://github.com/no-simpler/divine-dotfiles">Divine.dotfiles</a></em>
 </p>
 ++++
 

@@ -2,7 +2,7 @@
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
 :revdate: 2019.11.15
-:revremark: Semicolons are more fun than commas
+:revremark: Fix D.d link in readme head
 :doctype: article
 // Visual
 :toc: macro
@@ -18,7 +18,7 @@
 
 ++++
 <p align="center">
-<em>A deployment bundle for <a href="https://github\.com/no-simpler/divine-dotfiles">Divine.dotfiles</a></em>
+<em>A deployment bundle for <a href="https://github.com/no-simpler/divine-dotfiles">Divine.dotfiles</a></em>
 </p>
 ++++
 
@@ -258,7 +258,7 @@ It is located in the root of the attached bundle's directory at:
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
 :revdate: 2019.11.15
-:revremark: Semicolons are more fun than commas
+:revremark: Fix D.d link in readme head
 :doctype: article
 // Visual
 :toc:
@@ -434,7 +434,7 @@ However, it provides the support for other deployments in the current bundle (vi
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
 :revdate: 2019.11.15
-:revremark: Semicolons are more fun than commas
+:revremark: Fix D.d link in readme head
 :doctype: article
 // Visual
 :toc:
@@ -515,7 +515,7 @@ The <<dpls-dfls,Divinefile>> included with the current bundle ensures that Git i
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
 :revdate: 2019.11.15
-:revremark: Semicolons are more fun than commas
+:revremark: Fix D.d link in readme head
 :doctype: article
 // Visual
 :toc:
@@ -628,7 +628,7 @@ The <<dpls-dfls,Divinefile>> included with the current bundle ensures that Vim i
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
 :revdate: 2019.11.15
-:revremark: Semicolons are more fun than commas
+:revremark: Fix D.d link in readme head
 :doctype: article
 // Visual
 :toc:
@@ -700,7 +700,7 @@ The `~/.pbin/` directory is put on the `$PATH` variable from the runcom script a
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
 :revdate: 2019.11.15
-:revremark: Semicolons are more fun than commas
+:revremark: Fix D.d link in readme head
 :doctype: article
 // Visual
 :toc:
@@ -797,7 +797,7 @@ The `home-dirs` deployment is stand-alone.
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
 :revdate: 2019.11.15
-:revremark: Semicolons are more fun than commas
+:revremark: Fix D.d link in readme head
 :doctype: article
 // Visual
 :toc:
@@ -877,7 +877,7 @@ The retrieved addons are initialized from the runcom script at `grail/assets/con
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
 :revdate: 2019.11.15
-:revremark: Semicolons are more fun than commas
+:revremark: Fix D.d link in readme head
 :doctype: article
 // Visual
 :toc:
@@ -929,7 +929,7 @@ On some systems, the <<dpls-dfls,Divinefile>> included with the current bundle e
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
 :revdate: 2019.11.15
-:revremark: Semicolons are more fun than commas
+:revremark: Fix D.d link in readme head
 :doctype: article
 // Visual
 :toc:
@@ -1022,7 +1022,7 @@ On macOS, the _Divine.dotfiles_ framework itself ensures that https://brew.sh/[H
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
 :revdate: 2019.11.15
-:revremark: Semicolons are more fun than commas
+:revremark: Fix D.d link in readme head
 :doctype: article
 // Visual
 :toc:
@@ -1147,7 +1147,7 @@ The same file may and should be used to customize the Bash-it framework's loadou
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
 :revdate: 2019.11.15
-:revremark: Semicolons are more fun than commas
+:revremark: Fix D.d link in readme head
 :doctype: article
 // Visual
 :toc:
