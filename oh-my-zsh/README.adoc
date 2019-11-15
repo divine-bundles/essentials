@@ -2,8 +2,8 @@
 = Deployment `oh-my-zsh` (`3333`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revdate: 2019.11.14
-:revremark: Systematize the rest of the readmes
+:revdate: 2019.11.15
+:revremark: Fix adoc syntax for repos
 :doctype: article
 // Visual
 :toc:
@@ -43,7 +43,7 @@ Assets are never removed from the Grail, even when uninstalling the deployment.
 [%noheader,cols="4*<.^",stripes=none]
 !===
 
-! Repository 'https://github.com/robbyrussell/oh-my-zsh[`Bash-it/oh-my-zsh`]'
+! Repository https://github.com/robbyrussell/oh-my-zsh[`Bash-it/oh-my-zsh`]
 ! =>
 ! `~/**.oh-my-zsh**/`
 ! <<oh-my-zsh-fmwk,^1^>>
