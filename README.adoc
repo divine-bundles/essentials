@@ -2,7 +2,7 @@
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
 :revdate: 2019.11.15
-:revremark: Improve wording on rules of engagement in readmes
+:revremark: Improve wording
 :doctype: article
 // Visual
 :toc: macro
@@ -207,7 +207,8 @@ f \$TMP; exit 2; }; chmod +x \$TMP && \$TMP \"\$@\"; RC=\$?; rm -f \$TMP; ((RC\
 
 The bundle `essentials` includes a https://github.com/no-simpler/divine-dotfiles#dfls-main[Divinefile] that maintains the following system packages.
 Below is the list of the more prominent packages in the Divinefile.
-For the full list, refer to the `Divinefile` itself, located in the root of the attached bundle's directory at:
+The `Divinefile` itself provides the full list.
+It is located in the root of the attached bundle's directory at:
 
 [none]
 * `https://github.com/no-simpler/divine-dotfiles#fmwk-state[state]/bundles/no-simpler/divine-bundle-essentials/Divinefile`
@@ -257,7 +258,7 @@ For the full list, refer to the `Divinefile` itself, located in the root of the 
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
 :revdate: 2019.11.15
-:revremark: Improve wording on rules of engagement in readmes
+:revremark: Improve wording
 :doctype: article
 // Visual
 :toc:
@@ -433,7 +434,7 @@ However, it provides the support for other deployments in the current bundle (vi
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
 :revdate: 2019.11.15
-:revremark: Improve wording on rules of engagement in readmes
+:revremark: Improve wording
 :doctype: article
 // Visual
 :toc:
@@ -514,7 +515,7 @@ The <<dpls-dfls,Divinefile>> included with the current bundle ensures that Git i
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
 :revdate: 2019.11.15
-:revremark: Improve wording on rules of engagement in readmes
+:revremark: Improve wording
 :doctype: article
 // Visual
 :toc:
@@ -610,7 +611,7 @@ Overall, the following customization directories are supported by Vim:
 * `*syntax/*` — the syntax highlighting plugins.
 * `*tools/*`
 
-Refer to the Vim https://vimhelp.org[help] for more information on the semantics of each directory.
+The Vim https://vimhelp.org[help] provides more information on the semantics of each directory.
 
 == Dependencies
 
@@ -627,7 +628,7 @@ The <<dpls-dfls,Divinefile>> included with the current bundle ensures that Vim i
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
 :revdate: 2019.11.15
-:revremark: Improve wording on rules of engagement in readmes
+:revremark: Improve wording
 :doctype: article
 // Visual
 :toc:
@@ -699,7 +700,7 @@ The `~/.pbin/` directory is put on the `$PATH` variable from the runcom script a
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
 :revdate: 2019.11.15
-:revremark: Improve wording on rules of engagement in readmes
+:revremark: Improve wording
 :doctype: article
 // Visual
 :toc:
@@ -796,7 +797,7 @@ The `home-dirs` deployment is stand-alone.
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
 :revdate: 2019.11.15
-:revremark: Improve wording on rules of engagement in readmes
+:revremark: Improve wording
 :doctype: article
 // Visual
 :toc:
@@ -876,7 +877,7 @@ The retrieved addons are initialized from the runcom script at `grail/assets/con
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
 :revdate: 2019.11.15
-:revremark: Improve wording on rules of engagement in readmes
+:revremark: Improve wording
 :doctype: article
 // Visual
 :toc:
@@ -928,7 +929,7 @@ On some systems, the <<dpls-dfls,Divinefile>> included with the current bundle e
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
 :revdate: 2019.11.15
-:revremark: Improve wording on rules of engagement in readmes
+:revremark: Improve wording
 :doctype: article
 // Visual
 :toc:
@@ -1021,7 +1022,7 @@ On macOS, the _Divine.dotfiles_ framework itself ensures that https://brew.sh/[H
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
 :revdate: 2019.11.15
-:revremark: Improve wording on rules of engagement in readmes
+:revremark: Improve wording
 :doctype: article
 // Visual
 :toc:
@@ -1146,7 +1147,7 @@ The same file may and should be used to customize the Bash-it framework's loadou
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
 :revdate: 2019.11.15
-:revremark: Improve wording on rules of engagement in readmes
+:revremark: Improve wording
 :doctype: article
 // Visual
 :toc:

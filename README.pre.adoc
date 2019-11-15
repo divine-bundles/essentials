@@ -2,7 +2,7 @@
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
 :revdate: 2019.11.15
-:revremark: Fix Divinefile path
+:revremark: Improve wording
 :doctype: article
 // Visual
 :toc: macro
@@ -207,7 +207,8 @@ f \$TMP; exit 2; }; chmod +x \$TMP && \$TMP \"\$@\"; RC=\$?; rm -f \$TMP; ((RC\
 
 The bundle `essentials` includes a https://github.com/no-simpler/divine-dotfiles#dfls-main[Divinefile] that maintains the following system packages.
 Below is the list of the more prominent packages in the Divinefile.
-For the full list, refer to the `Divinefile` itself, located in the root of the attached bundle's directory at:
+The `Divinefile` itself provides the full list.
+It is located in the root of the attached bundle's directory at:
 
 [none]
 * `https://github.com/no-simpler/divine-dotfiles#fmwk-state[state]/bundles/no-simpler/divine-bundle-essentials/Divinefile`

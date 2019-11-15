@@ -3,7 +3,7 @@
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
 :revdate: 2019.11.15
-:revremark: Improve wording on rules of engagement in readmes
+:revremark: Improve wording
 :doctype: article
 // Visual
 :toc:
@@ -99,7 +99,7 @@ Overall, the following customization directories are supported by Vim:
 * `*syntax/*` — the syntax highlighting plugins.
 * `*tools/*`
 
-Refer to the Vim https://vimhelp.org[help] for more information on the semantics of each directory.
+The Vim https://vimhelp.org[help] provides more information on the semantics of each directory.
 
 == Dependencies
 
