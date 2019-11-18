@@ -1,8 +1,8 @@
 #:title:        Divine deployment: config-shell
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
-#:revdate:      2019.11.12
-#:revremark:    Rewrite for D.d v2, pt. 2
+#:revdate:      2019.11.18
+#:revremark:    Fix queue building in config-shell
 #:created_at:   2019.06.30
 
 D_DPL_NAME='config-shell'
@@ -19,19 +19,26 @@ d_dpl_remove()  {                 d__mltsk_remove;  }
 
 assemble_tasks()
 {
-  D_MLTSK_MAIN=( 'blanks' 'runcoms' 'env_vars' )
-  D_QUEUE_MAIN+=('.runcoms')
-  D_QUEUE_ASSETS+=("$D__DPL_ASSET_DIR")
-  D_QUEUE_TARGETS+=("$HOME/.runcoms")
+  D_MLTSK_MAIN=( 'blanks' 'base_rc' 'custom_rc_dir' 'env_vars' )
 }
 
 d_blanks_check()    { d__copy_queue_check;    }
 d_blanks_install()  { d__copy_queue_install;  }
 d_blanks_remove()   { d__copy_queue_remove;   }
 
-d_runcoms_check()   { d__link_queue_check;    }
-d_runcoms_install() { d__link_queue_install;  }
-d_runcoms_remove()  { d__link_queue_remove;   }
+d_base_rc_check()   { d__link_queue_check;    }
+d_base_rc_install() { d__link_queue_install;  }
+d_base_rc_remove()  { d__link_queue_remove;   }
+
+d_custom_rc_dir_pre_check()
+{
+  D_QUEUE_MAIN+=('.runcoms')
+  D_QUEUE_ASSETS+=("$D__DPL_ASSET_DIR")
+  D_QUEUE_TARGETS+=("$HOME/.runcoms")
+}
+d_custom_rc_dir_check()   { d__link_queue_check;    }
+d_custom_rc_dir_install() { d__link_queue_install;  }
+d_custom_rc_dir_remove()  { d__link_queue_remove;   }
 
 d_env_vars_pre_check()
 {
