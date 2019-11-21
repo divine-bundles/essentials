@@ -1,8 +1,8 @@
 #:title:        Divine deployment: home-dirs
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
-#:revdate:      2019.11.06
-#:revremark:    Shift queue mnf override to add-status
+#:revdate:      2019.11.21
+#:revremark:    Update to D.d v2.2 API
 #:created_at:   2019.06.30
 
 D_DPL_NAME='home-dirs'
@@ -10,6 +10,7 @@ D_DPL_DESC='Commonly used directories within home directory'
 D_DPL_PRIORITY=500
 D_DPL_FLAGS=
 D_DPL_WARNING=
+D_DPL_OS=( any )
 
 D_ADDST_QUEUE_MNF_PATH="$D__DPL_ASSET_DIR/home-dirs.cfg"
 
