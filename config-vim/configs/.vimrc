@@ -79,7 +79,10 @@ syntax on
 set foldmethod=marker
 
 " Open all folds on file open
+augroup BufWinEnterGroup
+au!
 au BufWinEnter * normal zR
+augroup END
 
 " Color of folded marker background
 hi Folded ctermbg=DarkGray
@@ -216,7 +219,7 @@ command! -nargs=* Wrap set wrap! wrap?
 
 " Fancy wrap toggle
 noremap <Space>w :call ToggleWrap()<CR>
-function ToggleWrap()
+function! ToggleWrap()
   if &wrap
     echo "Wrap OFF"
     set nowrap
@@ -306,7 +309,7 @@ set splitbelow splitright
 
 " https://stackoverflow.com/questions/4292733/vim-creating-parent-directories-on-save
 
-function s:MkNonExDir(file, buf)
+function! s:MkNonExDir(file, buf)
     if empty(getbufvar(a:buf, '&buftype')) && a:file!~#'\v^\w+\:\/'
         let dir=fnamemodify(a:file, ':h')
         if !isdirectory(dir)
