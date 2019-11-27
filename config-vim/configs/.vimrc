@@ -5,8 +5,12 @@
 ":revremark:    Release version
 ":created_at:   2019.04.11
 
-" --- vim-plug {{{1
+" --- Plugins {{{1
+"
+" Use vim-plug for managing Vim plugins.
+
 " Install vim-plug if it isn't there already
+" Reference: https://github.com/junegunn/vim-plug
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -14,62 +18,43 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 " Initialize vim-plug
-" Specify a directory for plugins
-" - For Neovim: ~/.local/share/nvim/plugged
-" - Avoid using standard Vim directory names like 'plugin'
 call plug#begin('~/.vim/plugged')
-" Make sure you use single quotes
 
-" https://github.com/tpope/vim-sensible
+" Plugin 'sensible.vim'
+" Reference: https://github.com/tpope/vim-sensible
 Plug 'tpope/vim-sensible'
 
-" https://github.com/w0ng/vim-hybrid
-" Plug 'w0ng/vim-hybrid'
-
+" Plugin 'sneak.vim' (alternative to EasyMotion; two character jumps)
 " https://github.com/justinmk/vim-sneak
 Plug 'justinmk/vim-sneak'
 
-" https://github.com/junegunn/fzf.vim
-" Plug '/usr/local/opt/fzf'
-" Plug 'junegunn/fzf.vim'
-
-" https://github.com/vim-airline/vim-airline
-" Plug 'vim-airline/vim-airline'
-" Plug 'vim-airline/vim-airline-themes'
-
+" Plugin 'lightline.vim' (lightweight status/tab line)
 " https://github.com/itchyny/lightline.vim
 Plug 'itchyny/lightline.vim'
 
+" Plugin 'eunuch.vim' (shell commands from Vim)
 " https://github.com/tpope/vim-eunuch
 Plug 'tpope/vim-eunuch'
 
+" Plugin 'surround.vim' (surrounding text with delimiter characters)
 " https://github.com/tpope/vim-surround
 Plug 'tpope/vim-surround'
 
-" https://github.com/terryma/vim-multiple-cursors
-Plug 'terryma/vim-multiple-cursors'
-
-" https://github.com/scrooloose/nerdtree
-Plug 'scrooloose/nerdtree'
-
-" https://github.com/editorconfig/editorconfig-vim
-Plug 'editorconfig/editorconfig-vim'
-
+" Plugin 'Emmet-vim' (emmet-like abbrebiation expanding)
 " https://github.com/mattn/emmet-vim
 Plug 'https://github.com/mattn/emmet-vim'
 
+" Plugin 'Asynchronous Lint Engine' (syntax checking and semantic errors)
 " https://github.com/w0rp/ale
 Plug 'w0rp/ale'
 
+" Plugin 'vim-gitgutter' (git diff icons in gutter column)
 " https://github.com/airblade/vim-gitgutter
 Plug 'airblade/vim-gitgutter'
 
-" https://github.com/plasticboy/vim-markdown
-Plug 'godlygeek/tabular'
-Plug 'plasticboy/vim-markdown'
-
-" Initialize plugin system
+" Done initializing vim-plug
 call plug#end()
+
 " }}}
 
 
@@ -98,7 +83,9 @@ au BufWinEnter * normal zR
 
 " Color of folded marker background
 hi Folded ctermbg=DarkGray
+
 " }}}
+
 
 " --- Must Have Options {{{1
 "
@@ -139,7 +126,9 @@ set hlsearch
 " such, it may be a good idea to disable them and use the securemodelines
 " script, <http://www.vim.org/scripts/script.php?script_id=1876>.
 set nomodeline
+
 " }}}
+
 
 " --- Usability options {{{1
 "
@@ -198,7 +187,9 @@ set timeout ttimeout timeoutlen=500 ttimeoutlen=200
 
 " Use <F11> to toggle between 'paste' and 'nopaste'
 set pastetoggle=<F11>
+
 " }}}
+
 
 " --- Wrapping options {{{1
 " 
@@ -235,6 +226,9 @@ function ToggleWrap()
   endif
 endfunction
 
+" }}}
+
+
 " --- Spelling {{{1
 
 set spell spelllang=en
@@ -242,13 +236,11 @@ set spell spelllang=en
 " }}}
 
 
-" }}}
-
 " --- Indentation options {{{1
 "
 " Indentation settings according to personal preference.
 
-" Indentation settings for using 4 spaces instead of tabs.
+" Indentation settings for using spaces instead of tabs.
 " Do not change 'tabstop' from its default value of 8 with this setup.
 set shiftwidth=2
 set softtabstop=2
@@ -259,13 +251,16 @@ set smarttab
 " four characters wide.
 "set shiftwidth=4
 "set tabstop=4
+
 " }}}
+
 
 " --- Commands {{{1
 "
 " Custom commands
 
 " }}}
+
 
 " --- Mappings {{{1
 "
@@ -291,7 +286,9 @@ inoremap yy <ESC>
 " vnoremap <down> <nop>
 " vnoremap <left> <nop>
 " vnoremap <right> <nop>
+
 " }}}
+
 
 " --- Tabs, windows & splits {{{1
 "
@@ -299,27 +296,9 @@ inoremap yy <ESC>
 
 " Make splits appear intuitively below and to the right
 set splitbelow splitright
-" }}}
-
-" --- Plugins {{{1
-"
-" Plugin-specific config
-
-" https://github.com/w0ng/vim-hybrid
-" set background=dark
-" colorscheme hybrid
-
-" https://github.com/junegunn/fzf.vim
-map ; :Files<CR>
-
-" https://github.com/scrooloose/nerdtree
-map <C-o> :NERDTreeToggle<CR>
-
-" https://github.com/vim-airline/vim-airline
-" let g:airline_powerline_fonts = 1
-" let g:airline_solarized_bg='dark'
 
 " }}}
+
 
 " --- Before write {{{1
 "
@@ -341,6 +320,7 @@ augroup BWCCreateDir
 augroup END
 
 " }}}
+
 
 " --- Shifted mode {{{1
 "
