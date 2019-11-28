@@ -1,8 +1,8 @@
 #:title:        Divine shared runcom: 04-aliases
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
-#:revdate:      2019.11.12
-#:revremark:    Rewrite for D.d v2, pt. 2
+#:revdate:      2019.11.28
+#:revremark:    Improve path aliases in config-shell
 #:created_at:   2019.04.09
 
 ## Universal shell utility aliases. Must use compatible syntax.
@@ -89,9 +89,9 @@ alias gll='\git log --all --decorate=full --show-signature'
 ## $PATH aliases
 ##
 
-alias path='\printf "${PATH//:/\\n}\n"'
-alias manpath='\printf "${MANPATH//:/\\n}\n"'
-alias libpath='\printf "${LD_LIBRARY_PATH//:/\\n}\n"'
+alias path='\printf "%b\n" "${PATH//:/\\n}\n"'
+alias manpath='\printf "%b\n" "${MANPATH//:/\\n}\n"'
+alias libpath='\printf "%b\n" "${LD_LIBRARY_PATH//:/\\n}\n"'
 
 
 ##
