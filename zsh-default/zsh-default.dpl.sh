@@ -2,7 +2,7 @@
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
 #:revdate:      2019.11.28
-#:revremark:    Halt routine if removal of zsh-default fails
+#:revremark:    If reverting def shell fails, halt mltsk as well
 #:created_at:   2019.06.30
 
 D_DPL_NAME='zsh-default'
@@ -179,7 +179,7 @@ d_zsh_default_remove()
   d__notify -l!h -- 'User password might be required'
   if ! d__cmd chsh -s "$D_OLD_SHELL" \
     --else-- 'Unable to revert default shell'
-  then D_ADDST_HALT=true; return 1; fi
+  then D_ADDST_HALT=true D_ADDST_MLTSK_HALT=true; return 1; fi
   local asr='to finilize default shell reversal'; case $D__OS_FAMILY in
     macos)  asr="Please, re-log into the system $asr";;
     *)      asr="Please, reload your shell $asr";;
