@@ -1,8 +1,8 @@
 #:title:        Divine deployment: zsh-default
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
-#:revdate:      2019.11.21
-#:revremark:    Update to D.d v2.2 API
+#:revdate:      2019.11.28
+#:revremark:    Halt routine if removal of zsh-default fails
 #:created_at:   2019.06.30
 
 D_DPL_NAME='zsh-default'
@@ -177,8 +177,9 @@ d_zsh_default_remove()
   d__context -- notch; d__context -- push 'Reverting default shell from' \
     "'$D_NEW_SHELL' to '$D_OLD_SHELL'"
   d__notify -l!h -- 'User password might be required'
-  d__cmd chsh -s "$D_OLD_SHELL" \
-    --else-- 'Unable to revert default shell' || return 1
+  if ! d__cmd chsh -s "$D_OLD_SHELL" \
+    --else-- 'Unable to revert default shell'
+  then D_ADDST_HALT=true; return 1; fi
   local asr='to finilize default shell reversal'; case $D__OS_FAMILY in
     macos)  asr="Please, re-log into the system $asr";;
     *)      asr="Please, reload your shell $asr";;
