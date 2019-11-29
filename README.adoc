@@ -1,8 +1,8 @@
 = Deployment bundle `essentials`
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revdate: 2019.11.15
-:revremark: Fix D.d link in readme head
+:revdate: 2019.11.29
+:revremark: Revise Grail references to reflect its move to home dir
 :doctype: article
 // Visual
 :toc: macro
@@ -46,56 +46,56 @@ Once the bundle is fully <<inun-inst,installed>>, and the shell reloaded, _voil√
 * Opinionated configs are plugged in for Git, Vim, Bash, and Zsh.
 * Any pre-existing files that have gotten in the way are safely backed up or re-used.
 
-All of the above is controlled and customized through the key configuration files, which are located at `https://github.com/no-simpler/divine-dotfiles#fmwk-grail[grail]/assets/`.
+All of the above is controlled and customized through the key configuration files, which are located at `~/https://github.com/no-simpler/divine-dotfiles#fmwk-grail[.grail]/assets/`.
 
 .Overview of asset directories for the bundle `essentials`
 [%noheader,cols="<.<a",stripes=none]
 |===
 
 | +++<p align="center">+++
-`https://github.com/no-simpler/divine-dotfiles#fmwk-grail[grail]/assets/*bash-it*/` *&dagger;*
+`~/https://github.com/no-simpler/divine-dotfiles#fmwk-grail[.grail]/assets/*bash-it*/` *&dagger;*
 +++</p>+++
 
 Custom assets for the https://github.com/Bash-it/bash-it[Bash-it] shell framework.
 
 | +++<p align="center">+++
-`https://github.com/no-simpler/divine-dotfiles#fmwk-grail[grail]/assets/*brewfile*/` *&dagger;*
+`~/https://github.com/no-simpler/divine-dotfiles#fmwk-grail[.grail]/assets/*brewfile*/` *&dagger;*
 +++</p>+++
 
 The https://github.com/Homebrew/homebrew-bundle[Brewfile], maintained on macOS.
 
 | +++<p align="center">+++
-`https://github.com/no-simpler/divine-dotfiles#fmwk-grail[grail]/assets/*config-git*/`
+`~/https://github.com/no-simpler/divine-dotfiles#fmwk-grail[.grail]/assets/*config-git*/`
 +++</p>+++
 
 The global configuration for Git.
 
 | +++<p align="center">+++
-`https://github.com/no-simpler/divine-dotfiles#fmwk-grail[grail]/assets/*config-shell*/`
+`~/https://github.com/no-simpler/divine-dotfiles#fmwk-grail[.grail]/assets/*config-shell*/`
 +++</p>+++
 
 The startup scripts (https://en.wikipedia.org/wiki/Run_commands[runcoms]) for Bash and Zsh.
 
 | +++<p align="center">+++
-`https://github.com/no-simpler/divine-dotfiles#fmwk-grail[grail]/assets/*config-vim*/`
+`~/https://github.com/no-simpler/divine-dotfiles#fmwk-grail[.grail]/assets/*config-vim*/`
 +++</p>+++
 
 The global configuration for Vim.
 
 | +++<p align="center">+++
-`https://github.com/no-simpler/divine-dotfiles#fmwk-grail[grail]/assets/*home-dirs*/` *&dagger;*
+`~/https://github.com/no-simpler/divine-dotfiles#fmwk-grail[.grail]/assets/*home-dirs*/` *&dagger;*
 +++</p>+++
 
 The file `*home-dirs.cfg*` defines a sub-directory tree to be maintained under the home directory.
 
 | +++<p align="center">+++
-`https://github.com/no-simpler/divine-dotfiles#fmwk-grail[grail]/assets/*oh-my-zsh*/` *&dagger;*
+`~/https://github.com/no-simpler/divine-dotfiles#fmwk-grail[.grail]/assets/*oh-my-zsh*/` *&dagger;*
 +++</p>+++
 
 Custom assets for the https://ohmyz.sh[oh-my-zsh] shell framework.
 
 | +++<p align="center">+++
-`https://github.com/no-simpler/divine-dotfiles#fmwk-grail[grail]/assets/*portable-bin*/`
+`~/https://github.com/no-simpler/divine-dotfiles#fmwk-grail[.grail]/assets/*portable-bin*/`
 +++</p>+++
 
 The container for the personal executables (this directory is maintained on the `$PATH`).
@@ -257,8 +257,8 @@ It is located in the root of the attached bundle's directory at:
 = Deployment `config-shell` (`333`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revdate: 2019.11.15
-:revremark: Fix D.d link in readme head
+:revdate: 2019.11.29
+:revremark: Revise Grail references to reflect its move to home dir
 :doctype: article
 // Visual
 :toc:
@@ -278,7 +278,7 @@ The `config-shell` deployment symlinks the configuration files (https://en.wikip
 * https://github.com/no-simpler/divine-dotfiles#mtdt-priority[*Priority*]: `333`
 * https://github.com/no-simpler/divine-dotfiles#mtdt-flags[*Flags*]: _none_
 * https://github.com/no-simpler/divine-dotfiles#indct-dpl-dir[*Deployment directory*] (`_<dpl-dir>_`): `https://github.com/no-simpler/divine-dotfiles#fmwk-state[state]/bundles/no-simpler/divine-bundle-essentials/config-shell/`
-* https://github.com/no-simpler/divine-dotfiles#indct-dpl-asset-dir[*Asset directory*] (`_<asset-dir>_`): `https://github.com/no-simpler/divine-dotfiles#fmwk-grail[grail]/assets/config-shell/`
+* https://github.com/no-simpler/divine-dotfiles#indct-dpl-asset-dir[*Asset directory*] (`_<asset-dir>_`): `~/https://github.com/no-simpler/divine-dotfiles#fmwk-grail[.grail]/assets/config-shell/`
 +
 Assets are never removed from the Grail, even when uninstalling the deployment.
 * https://github.com/no-simpler/divine-dotfiles#indct-dpl-backup-dir[*Backup directory*] (`_<backup-dir>_`): `https://github.com/no-simpler/divine-dotfiles#fmwk-state[state]/backups/config-shell/`
@@ -433,8 +433,8 @@ However, it provides the support for other deployments in the current bundle (vi
 = Deployment `config-git` (`333`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revdate: 2019.11.15
-:revremark: Fix D.d link in readme head
+:revdate: 2019.11.29
+:revremark: Revise Grail references to reflect its move to home dir
 :doctype: article
 // Visual
 :toc:
@@ -454,7 +454,7 @@ The `config-git` deployment symlinks the configuration files for https://git-scm
 * https://github.com/no-simpler/divine-dotfiles#mtdt-priority[*Priority*]: `333`
 * https://github.com/no-simpler/divine-dotfiles#mtdt-flags[*Flags*]: _none_
 * https://github.com/no-simpler/divine-dotfiles#indct-dpl-dir[*Deployment directory*] (`_<dpl-dir>_`): `https://github.com/no-simpler/divine-dotfiles#fmwk-state[state]/bundles/no-simpler/divine-bundle-essentials/config-git/`
-* https://github.com/no-simpler/divine-dotfiles#indct-dpl-asset-dir[*Asset directory*] (`_<asset-dir>_`): `https://github.com/no-simpler/divine-dotfiles#fmwk-grail[grail]/assets/config-git/`
+* https://github.com/no-simpler/divine-dotfiles#indct-dpl-asset-dir[*Asset directory*] (`_<asset-dir>_`): `~/https://github.com/no-simpler/divine-dotfiles#fmwk-grail[.grail]/assets/config-git/`
 +
 Assets are never removed from the Grail, even when uninstalling the deployment.
 * https://github.com/no-simpler/divine-dotfiles#indct-dpl-backup-dir[*Backup directory*] (`_<backup-dir>_`): `https://github.com/no-simpler/divine-dotfiles#fmwk-state[state]/backups/config-git/`
@@ -514,8 +514,8 @@ The <<dpls-dfls,Divinefile>> included with the current bundle ensures that Git i
 = Deployment `config-vim` (`333`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revdate: 2019.11.15
-:revremark: Fix D.d link in readme head
+:revdate: 2019.11.29
+:revremark: Revise Grail references to reflect its move to home dir
 :doctype: article
 // Visual
 :toc:
@@ -535,7 +535,7 @@ The `config-vim` deployment symlinks the configuration and customization files f
 * https://github.com/no-simpler/divine-dotfiles#mtdt-priority[*Priority*]: `333`
 * https://github.com/no-simpler/divine-dotfiles#mtdt-flags[*Flags*]: _none_
 * https://github.com/no-simpler/divine-dotfiles#indct-dpl-dir[*Deployment directory*] (`_<dpl-dir>_`): `https://github.com/no-simpler/divine-dotfiles#fmwk-state[state]/bundles/no-simpler/divine-bundle-essentials/config-vim/`
-* https://github.com/no-simpler/divine-dotfiles#indct-dpl-asset-dir[*Asset directory*] (`_<asset-dir>_`): `https://github.com/no-simpler/divine-dotfiles#fmwk-grail[grail]/assets/config-vim/`
+* https://github.com/no-simpler/divine-dotfiles#indct-dpl-asset-dir[*Asset directory*] (`_<asset-dir>_`): `~/https://github.com/no-simpler/divine-dotfiles#fmwk-grail[.grail]/assets/config-vim/`
 +
 Assets are never removed from the Grail, even when uninstalling the deployment.
 * https://github.com/no-simpler/divine-dotfiles#indct-dpl-backup-dir[*Backup directory*] (`_<backup-dir>_`): `https://github.com/no-simpler/divine-dotfiles#fmwk-state[state]/backups/config-vim/`
@@ -627,8 +627,8 @@ The <<dpls-dfls,Divinefile>> included with the current bundle ensures that Vim i
 = Deployment `portable-bin` (`500`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revdate: 2019.11.15
-:revremark: Fix D.d link in readme head
+:revdate: 2019.11.29
+:revremark: Revise Grail references to reflect its move to home dir
 :doctype: article
 // Visual
 :toc:
@@ -648,7 +648,7 @@ The `portable-bin` deployment uses its own asset directory as a portable contain
 * https://github.com/no-simpler/divine-dotfiles#mtdt-priority[*Priority*]: `500`
 * https://github.com/no-simpler/divine-dotfiles#mtdt-flags[*Flags*]: _none_
 * https://github.com/no-simpler/divine-dotfiles#indct-dpl-dir[*Deployment directory*] (`_<dpl-dir>_`): `https://github.com/no-simpler/divine-dotfiles#fmwk-state[state]/bundles/no-simpler/divine-bundle-essentials/portable-bin/`
-* https://github.com/no-simpler/divine-dotfiles#indct-dpl-asset-dir[*Asset directory*] (`_<asset-dir>_`): `https://github.com/no-simpler/divine-dotfiles#fmwk-grail[grail]/assets/portable-bin/`
+* https://github.com/no-simpler/divine-dotfiles#indct-dpl-asset-dir[*Asset directory*] (`_<asset-dir>_`): `~/https://github.com/no-simpler/divine-dotfiles#fmwk-grail[.grail]/assets/portable-bin/`
 +
 Assets are never removed from the Grail, even when uninstalling the deployment.
 * https://github.com/no-simpler/divine-dotfiles#indct-dpl-backup-dir[*Backup directory*] (`_<backup-dir>_`): `https://github.com/no-simpler/divine-dotfiles#fmwk-state[state]/backups/portable-bin/`
@@ -689,7 +689,7 @@ The included asset directory starts out empty.
 == Dependencies
 
 The `portable-bin` deployment depends on the <<config-shell-main,`*config-shell*`>> deployment (included in the current bundle).
-The `~/.pbin/` directory is put on the `$PATH` variable from the runcom script at `https://github.com/no-simpler/divine-dotfiles#fmwk-grail[grail]/assets/config-shell/02-env.sh`.
+The `~/.pbin/` directory is put on the `$PATH` variable from the runcom script at `~/https://github.com/no-simpler/divine-dotfiles#fmwk-grail[.grail]/assets/config-shell/02-env.sh`.
 
 :leveloffset!:
 
@@ -699,8 +699,8 @@ The `~/.pbin/` directory is put on the `$PATH` variable from the runcom script a
 = Deployment `home-dirs` (`500`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revdate: 2019.11.15
-:revremark: Fix D.d link in readme head
+:revdate: 2019.11.29
+:revremark: Revise Grail references to reflect its move to home dir
 :doctype: article
 // Visual
 :toc:
@@ -720,7 +720,7 @@ The `home-dirs` deployment maintains a stable tree of personal directories under
 * https://github.com/no-simpler/divine-dotfiles#mtdt-priority[*Priority*]: `500`
 * https://github.com/no-simpler/divine-dotfiles#mtdt-flags[*Flags*]: _none_
 * https://github.com/no-simpler/divine-dotfiles#indct-dpl-dir[*Deployment directory*] (`_<dpl-dir>_`): `https://github.com/no-simpler/divine-dotfiles#fmwk-state[state]/bundles/no-simpler/divine-bundle-essentials/home-dirs/`
-* https://github.com/no-simpler/divine-dotfiles#indct-dpl-asset-dir[*Asset directory*] (`_<asset-dir>_`): `https://github.com/no-simpler/divine-dotfiles#fmwk-grail[grail]/assets/home-dirs/`
+* https://github.com/no-simpler/divine-dotfiles#indct-dpl-asset-dir[*Asset directory*] (`_<asset-dir>_`): `~/https://github.com/no-simpler/divine-dotfiles#fmwk-grail[.grail]/assets/home-dirs/`
 +
 Assets are never removed from the Grail, even when uninstalling the deployment.
 * https://github.com/no-simpler/divine-dotfiles#indct-dpl-backup-dir[*Backup directory*] (`_<backup-dir>_`): `https://github.com/no-simpler/divine-dotfiles#fmwk-state[state]/backups/home-dirs/`
@@ -796,8 +796,8 @@ The `home-dirs` deployment is stand-alone.
 = Deployment `zsh-addons` (`1000`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revdate: 2019.11.15
-:revremark: Fix D.d link in readme head
+:revdate: 2019.11.29
+:revremark: Revise Grail references to reflect its move to home dir
 :doctype: article
 // Visual
 :toc:
@@ -817,7 +817,7 @@ The `zsh-addons` deployment retrieves a number of community addons for Zsh: http
 * https://github.com/no-simpler/divine-dotfiles#mtdt-priority[*Priority*]: `1000`
 * https://github.com/no-simpler/divine-dotfiles#mtdt-flags[*Flags*]: _none_
 * https://github.com/no-simpler/divine-dotfiles#indct-dpl-dir[*Deployment directory*] (`_<dpl-dir>_`): `https://github.com/no-simpler/divine-dotfiles#fmwk-state[state]/bundles/no-simpler/divine-bundle-essentials/zsh-addons/`
-* https://github.com/no-simpler/divine-dotfiles#indct-dpl-asset-dir[*Asset directory*] (`_<asset-dir>_`): `https://github.com/no-simpler/divine-dotfiles#fmwk-grail[grail]/assets/zsh-addons/`
+* https://github.com/no-simpler/divine-dotfiles#indct-dpl-asset-dir[*Asset directory*] (`_<asset-dir>_`): `~/https://github.com/no-simpler/divine-dotfiles#fmwk-grail[.grail]/assets/zsh-addons/`
 +
 Assets are never removed from the Grail, even when uninstalling the deployment.
 * https://github.com/no-simpler/divine-dotfiles#indct-dpl-backup-dir[*Backup directory*] (`_<backup-dir>_`): `https://github.com/no-simpler/divine-dotfiles#fmwk-state[state]/backups/zsh-addons/`
@@ -866,7 +866,7 @@ The `zsh-addons` deployment does not include any assets.
 == Dependencies
 
 The `zsh-addons` deployment depends on the <<config-shell-main,`*config-shell*`>> deployment (included in the current bundle).
-The retrieved addons are initialized from the runcom script at `grail/assets/config-shell/06-addons.zsh`.
+The retrieved addons are initialized from the runcom script at `~/.grail/assets/config-shell/06-addons.zsh`.
 
 :leveloffset!:
 
@@ -876,8 +876,8 @@ The retrieved addons are initialized from the runcom script at `grail/assets/con
 = Deployment `zsh-default` (`1333`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revdate: 2019.11.15
-:revremark: Fix D.d link in readme head
+:revdate: 2019.11.29
+:revremark: Revise Grail references to reflect its move to home dir
 :doctype: article
 // Visual
 :toc:
@@ -897,7 +897,7 @@ The `zsh-default` deployment ensures that https://sourceforge.net/projects/zsh[Z
 * https://github.com/no-simpler/divine-dotfiles#mtdt-priority[*Priority*]: `1333`
 * https://github.com/no-simpler/divine-dotfiles#mtdt-flags[*Flags*]: _none_
 * https://github.com/no-simpler/divine-dotfiles#indct-dpl-dir[*Deployment directory*] (`_<dpl-dir>_`): `https://github.com/no-simpler/divine-dotfiles#fmwk-state[state]/bundles/no-simpler/divine-bundle-essentials/zsh-default/`
-* https://github.com/no-simpler/divine-dotfiles#indct-dpl-asset-dir[*Asset directory*] (`_<asset-dir>_`): `https://github.com/no-simpler/divine-dotfiles#fmwk-grail[grail]/assets/zsh-default/`
+* https://github.com/no-simpler/divine-dotfiles#indct-dpl-asset-dir[*Asset directory*] (`_<asset-dir>_`): `~/https://github.com/no-simpler/divine-dotfiles#fmwk-grail[.grail]/assets/zsh-default/`
 +
 Assets are never removed from the Grail, even when uninstalling the deployment.
 * https://github.com/no-simpler/divine-dotfiles#indct-dpl-backup-dir[*Backup directory*] (`_<backup-dir>_`): `https://github.com/no-simpler/divine-dotfiles#fmwk-state[state]/backups/zsh-default/`
@@ -928,8 +928,8 @@ On some systems, the <<dpls-dfls,Divinefile>> included with the current bundle e
 = Deployment `brewfile` (`3000!`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revdate: 2019.11.15
-:revremark: Fix D.d link in readme head
+:revdate: 2019.11.29
+:revremark: Revise Grail references to reflect its move to home dir
 :doctype: article
 // Visual
 :toc:
@@ -949,7 +949,7 @@ The `brewfile` deployment maintains a set of system dependencies on macOS using 
 * https://github.com/no-simpler/divine-dotfiles#mtdt-priority[*Priority*]: `3000`
 * https://github.com/no-simpler/divine-dotfiles#mtdt-flags[*Flags*]: `!`
 * https://github.com/no-simpler/divine-dotfiles#indct-dpl-dir[*Deployment directory*] (`_<dpl-dir>_`): `https://github.com/no-simpler/divine-dotfiles#fmwk-state[state]/bundles/no-simpler/divine-bundle-essentials/brewfile/`
-* https://github.com/no-simpler/divine-dotfiles#indct-dpl-asset-dir[*Asset directory*] (`_<asset-dir>_`): `https://github.com/no-simpler/divine-dotfiles#fmwk-grail[grail]/assets/brewfile/`
+* https://github.com/no-simpler/divine-dotfiles#indct-dpl-asset-dir[*Asset directory*] (`_<asset-dir>_`): `~/https://github.com/no-simpler/divine-dotfiles#fmwk-grail[.grail]/assets/brewfile/`
 +
 Assets are never removed from the Grail, even when uninstalling the deployment.
 * https://github.com/no-simpler/divine-dotfiles#indct-dpl-backup-dir[*Backup directory*] (`_<backup-dir>_`): `https://github.com/no-simpler/divine-dotfiles#fmwk-state[state]/backups/brewfile/`
@@ -1021,8 +1021,8 @@ On macOS, the _Divine.dotfiles_ framework itself ensures that https://brew.sh/[H
 = Deployment `bash-it` (`3333`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revdate: 2019.11.15
-:revremark: Fix D.d link in readme head
+:revdate: 2019.11.29
+:revremark: Revise Grail references to reflect its move to home dir
 :doctype: article
 // Visual
 :toc:
@@ -1042,7 +1042,7 @@ The `bash-it` deployment introduces the https://github.com/Bash-it/bash-it[Bash-
 * https://github.com/no-simpler/divine-dotfiles#mtdt-priority[*Priority*]: `3333`
 * https://github.com/no-simpler/divine-dotfiles#mtdt-flags[*Flags*]: _none_
 * https://github.com/no-simpler/divine-dotfiles#indct-dpl-dir[*Deployment directory*] (`_<dpl-dir>_`): `https://github.com/no-simpler/divine-dotfiles#fmwk-state[state]/bundles/no-simpler/divine-bundle-essentials/bash-it/`
-* https://github.com/no-simpler/divine-dotfiles#indct-dpl-asset-dir[*Asset directory*] (`_<asset-dir>_`): `https://github.com/no-simpler/divine-dotfiles#fmwk-grail[grail]/assets/bash-it/`
+* https://github.com/no-simpler/divine-dotfiles#indct-dpl-asset-dir[*Asset directory*] (`_<asset-dir>_`): `~/https://github.com/no-simpler/divine-dotfiles#fmwk-grail[.grail]/assets/bash-it/`
 +
 Assets are never removed from the Grail, even when uninstalling the deployment.
 * https://github.com/no-simpler/divine-dotfiles#indct-dpl-backup-dir[*Backup directory*] (`_<backup-dir>_`): `https://github.com/no-simpler/divine-dotfiles#fmwk-state[state]/backups/bash-it/`
@@ -1135,7 +1135,7 @@ This theme is also defaulted to in the provided initialization commands.
 == Dependencies
 
 The `bash-it` deployment depends on the <<config-shell-main,`*config-shell*`>> deployment (included in the current bundle).
-The retrieved Bash-it framework is initialized from the runcom script at `https://github.com/no-simpler/divine-dotfiles#fmwk-grail[grail]/assets/config-shell/01-bash-it.bash`.
+The retrieved Bash-it framework is initialized from the runcom script at `~/https://github.com/no-simpler/divine-dotfiles#fmwk-grail[.grail]/assets/config-shell/01-bash-it.bash`.
 The same file may and should be used to customize the Bash-it framework's loadout.
 
 :leveloffset!:
@@ -1146,8 +1146,8 @@ The same file may and should be used to customize the Bash-it framework's loadou
 = Deployment `oh-my-zsh` (`3333`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revdate: 2019.11.15
-:revremark: Fix D.d link in readme head
+:revdate: 2019.11.29
+:revremark: Revise Grail references to reflect its move to home dir
 :doctype: article
 // Visual
 :toc:
@@ -1167,7 +1167,7 @@ The `oh-my-zsh` deployment introduces the https://ohmyz.sh[oh-my-zsh framework] 
 * https://github.com/no-simpler/divine-dotfiles#mtdt-priority[*Priority*]: `3333`
 * https://github.com/no-simpler/divine-dotfiles#mtdt-flags[*Flags*]: _none_
 * https://github.com/no-simpler/divine-dotfiles#indct-dpl-dir[*Deployment directory*] (`_<dpl-dir>_`): `https://github.com/no-simpler/divine-dotfiles#fmwk-state[state]/bundles/no-simpler/divine-bundle-essentials/oh-my-zsh/`
-* https://github.com/no-simpler/divine-dotfiles#indct-dpl-asset-dir[*Asset directory*] (`_<asset-dir>_`): `https://github.com/no-simpler/divine-dotfiles#fmwk-grail[grail]/assets/oh-my-zsh/`
+* https://github.com/no-simpler/divine-dotfiles#indct-dpl-asset-dir[*Asset directory*] (`_<asset-dir>_`): `~/https://github.com/no-simpler/divine-dotfiles#fmwk-grail[.grail]/assets/oh-my-zsh/`
 +
 Assets are never removed from the Grail, even when uninstalling the deployment.
 * https://github.com/no-simpler/divine-dotfiles#indct-dpl-backup-dir[*Backup directory*] (`_<backup-dir>_`): `https://github.com/no-simpler/divine-dotfiles#fmwk-state[state]/backups/oh-my-zsh/`
@@ -1245,7 +1245,7 @@ This theme is also defaulted to in the provided initialization commands.
 == Dependencies
 
 The `oh-my-zsh` deployment depends on the <<config-shell-main,`*config-shell*`>> deployment (included in the current bundle).
-The retrieved oh-my-zsh framework is initialized from the runcom script at `https://github.com/no-simpler/divine-dotfiles#fmwk-grail[grail]/assets/config-shell/01-oh-my-zsh.zsh`.
+The retrieved oh-my-zsh framework is initialized from the runcom script at `~/https://github.com/no-simpler/divine-dotfiles#fmwk-grail[.grail]/assets/config-shell/01-oh-my-zsh.zsh`.
 The same file may and should be used to customize the oh-my-zsh framework's loadout.
 
 :leveloffset!:

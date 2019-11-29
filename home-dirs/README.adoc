@@ -2,8 +2,8 @@
 = Deployment `home-dirs` (`500`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revdate: 2019.11.14
-:revremark: Systematize the rest of the readmes
+:revdate: 2019.11.29
+:revremark: Revise Grail references to reflect its move to home dir
 :doctype: article
 // Visual
 :toc:
@@ -23,7 +23,7 @@ The `home-dirs` deployment maintains a stable tree of personal directories under
 * https://github.com/no-simpler/divine-dotfiles#mtdt-priority[*Priority*]: `500`
 * https://github.com/no-simpler/divine-dotfiles#mtdt-flags[*Flags*]: _none_
 * https://github.com/no-simpler/divine-dotfiles#indct-dpl-dir[*Deployment directory*] (`_<dpl-dir>_`): `https://github.com/no-simpler/divine-dotfiles#fmwk-state[state]/bundles/no-simpler/divine-bundle-essentials/home-dirs/`
-* https://github.com/no-simpler/divine-dotfiles#indct-dpl-asset-dir[*Asset directory*] (`_<asset-dir>_`): `https://github.com/no-simpler/divine-dotfiles#fmwk-grail[grail]/assets/home-dirs/`
+* https://github.com/no-simpler/divine-dotfiles#indct-dpl-asset-dir[*Asset directory*] (`_<asset-dir>_`): `~/https://github.com/no-simpler/divine-dotfiles#fmwk-grail[.grail]/assets/home-dirs/`
 +
 Assets are never removed from the Grail, even when uninstalling the deployment.
 * https://github.com/no-simpler/divine-dotfiles#indct-dpl-backup-dir[*Backup directory*] (`_<backup-dir>_`): `https://github.com/no-simpler/divine-dotfiles#fmwk-state[state]/backups/home-dirs/`

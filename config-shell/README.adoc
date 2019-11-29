@@ -2,8 +2,8 @@
 = Deployment `config-shell` (`333`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revdate: 2019.11.15
-:revremark: Semicolons are more fun than commas
+:revdate: 2019.11.29
+:revremark: Revise Grail references to reflect its move to home dir
 :doctype: article
 // Visual
 :toc:
@@ -23,7 +23,7 @@ The `config-shell` deployment symlinks the configuration files (https://en.wikip
 * https://github.com/no-simpler/divine-dotfiles#mtdt-priority[*Priority*]: `333`
 * https://github.com/no-simpler/divine-dotfiles#mtdt-flags[*Flags*]: _none_
 * https://github.com/no-simpler/divine-dotfiles#indct-dpl-dir[*Deployment directory*] (`_<dpl-dir>_`): `https://github.com/no-simpler/divine-dotfiles#fmwk-state[state]/bundles/no-simpler/divine-bundle-essentials/config-shell/`
-* https://github.com/no-simpler/divine-dotfiles#indct-dpl-asset-dir[*Asset directory*] (`_<asset-dir>_`): `https://github.com/no-simpler/divine-dotfiles#fmwk-grail[grail]/assets/config-shell/`
+* https://github.com/no-simpler/divine-dotfiles#indct-dpl-asset-dir[*Asset directory*] (`_<asset-dir>_`): `~/https://github.com/no-simpler/divine-dotfiles#fmwk-grail[.grail]/assets/config-shell/`
 +
 Assets are never removed from the Grail, even when uninstalling the deployment.
 * https://github.com/no-simpler/divine-dotfiles#indct-dpl-backup-dir[*Backup directory*] (`_<backup-dir>_`): `https://github.com/no-simpler/divine-dotfiles#fmwk-state[state]/backups/config-shell/`

@@ -2,8 +2,8 @@
 = Deployment `zsh-addons` (`1000`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revdate: 2019.11.15
-:revremark: Semicolons are more fun than commas
+:revdate: 2019.11.29
+:revremark: Revise Grail references to reflect its move to home dir
 :doctype: article
 // Visual
 :toc:
@@ -23,7 +23,7 @@ The `zsh-addons` deployment retrieves a number of community addons for Zsh: http
 * https://github.com/no-simpler/divine-dotfiles#mtdt-priority[*Priority*]: `1000`
 * https://github.com/no-simpler/divine-dotfiles#mtdt-flags[*Flags*]: _none_
 * https://github.com/no-simpler/divine-dotfiles#indct-dpl-dir[*Deployment directory*] (`_<dpl-dir>_`): `https://github.com/no-simpler/divine-dotfiles#fmwk-state[state]/bundles/no-simpler/divine-bundle-essentials/zsh-addons/`
-* https://github.com/no-simpler/divine-dotfiles#indct-dpl-asset-dir[*Asset directory*] (`_<asset-dir>_`): `https://github.com/no-simpler/divine-dotfiles#fmwk-grail[grail]/assets/zsh-addons/`
+* https://github.com/no-simpler/divine-dotfiles#indct-dpl-asset-dir[*Asset directory*] (`_<asset-dir>_`): `~/https://github.com/no-simpler/divine-dotfiles#fmwk-grail[.grail]/assets/zsh-addons/`
 +
 Assets are never removed from the Grail, even when uninstalling the deployment.
 * https://github.com/no-simpler/divine-dotfiles#indct-dpl-backup-dir[*Backup directory*] (`_<backup-dir>_`): `https://github.com/no-simpler/divine-dotfiles#fmwk-state[state]/backups/zsh-addons/`
@@ -72,4 +72,4 @@ The `zsh-addons` deployment does not include any assets.
 == Dependencies
 
 The `zsh-addons` deployment depends on the <<config-shell-main,`*config-shell*`>> deployment (included in the current bundle).
-The retrieved addons are initialized from the runcom script at `grail/assets/config-shell/06-addons.zsh`.
+The retrieved addons are initialized from the runcom script at `~/.grail/assets/config-shell/06-addons.zsh`.

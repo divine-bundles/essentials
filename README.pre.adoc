@@ -1,8 +1,8 @@
 = Deployment bundle `essentials`
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revdate: 2019.11.15
-:revremark: Fix D.d link in readme head
+:revdate: 2019.11.29
+:revremark: Revise Grail references to reflect its move to home dir
 :doctype: article
 // Visual
 :toc: macro
@@ -46,56 +46,56 @@ Once the bundle is fully <<inun-inst,installed>>, and the shell reloaded, _voil√
 * Opinionated configs are plugged in for Git, Vim, Bash, and Zsh.
 * Any pre-existing files that have gotten in the way are safely backed up or re-used.
 
-All of the above is controlled and customized through the key configuration files, which are located at `https://github.com/no-simpler/divine-dotfiles#fmwk-grail[grail]/assets/`.
+All of the above is controlled and customized through the key configuration files, which are located at `~/https://github.com/no-simpler/divine-dotfiles#fmwk-grail[.grail]/assets/`.
 
 .Overview of asset directories for the bundle `essentials`
 [%noheader,cols="<.<a",stripes=none]
 |===
 
 | +++<p align="center">+++
-`https://github.com/no-simpler/divine-dotfiles#fmwk-grail[grail]/assets/*bash-it*/` *&dagger;*
+`~/https://github.com/no-simpler/divine-dotfiles#fmwk-grail[.grail]/assets/*bash-it*/` *&dagger;*
 +++</p>+++
 
 Custom assets for the https://github.com/Bash-it/bash-it[Bash-it] shell framework.
 
 | +++<p align="center">+++
-`https://github.com/no-simpler/divine-dotfiles#fmwk-grail[grail]/assets/*brewfile*/` *&dagger;*
+`~/https://github.com/no-simpler/divine-dotfiles#fmwk-grail[.grail]/assets/*brewfile*/` *&dagger;*
 +++</p>+++
 
 The https://github.com/Homebrew/homebrew-bundle[Brewfile], maintained on macOS.
 
 | +++<p align="center">+++
-`https://github.com/no-simpler/divine-dotfiles#fmwk-grail[grail]/assets/*config-git*/`
+`~/https://github.com/no-simpler/divine-dotfiles#fmwk-grail[.grail]/assets/*config-git*/`
 +++</p>+++
 
 The global configuration for Git.
 
 | +++<p align="center">+++
-`https://github.com/no-simpler/divine-dotfiles#fmwk-grail[grail]/assets/*config-shell*/`
+`~/https://github.com/no-simpler/divine-dotfiles#fmwk-grail[.grail]/assets/*config-shell*/`
 +++</p>+++
 
 The startup scripts (https://en.wikipedia.org/wiki/Run_commands[runcoms]) for Bash and Zsh.
 
 | +++<p align="center">+++
-`https://github.com/no-simpler/divine-dotfiles#fmwk-grail[grail]/assets/*config-vim*/`
+`~/https://github.com/no-simpler/divine-dotfiles#fmwk-grail[.grail]/assets/*config-vim*/`
 +++</p>+++
 
 The global configuration for Vim.
 
 | +++<p align="center">+++
-`https://github.com/no-simpler/divine-dotfiles#fmwk-grail[grail]/assets/*home-dirs*/` *&dagger;*
+`~/https://github.com/no-simpler/divine-dotfiles#fmwk-grail[.grail]/assets/*home-dirs*/` *&dagger;*
 +++</p>+++
 
 The file `*home-dirs.cfg*` defines a sub-directory tree to be maintained under the home directory.
 
 | +++<p align="center">+++
-`https://github.com/no-simpler/divine-dotfiles#fmwk-grail[grail]/assets/*oh-my-zsh*/` *&dagger;*
+`~/https://github.com/no-simpler/divine-dotfiles#fmwk-grail[.grail]/assets/*oh-my-zsh*/` *&dagger;*
 +++</p>+++
 
 Custom assets for the https://ohmyz.sh[oh-my-zsh] shell framework.
 
 | +++<p align="center">+++
-`https://github.com/no-simpler/divine-dotfiles#fmwk-grail[grail]/assets/*portable-bin*/`
+`~/https://github.com/no-simpler/divine-dotfiles#fmwk-grail[.grail]/assets/*portable-bin*/`
 +++</p>+++
 
 The container for the personal executables (this directory is maintained on the `$PATH`).
