@@ -1,8 +1,8 @@
 #:title:        Divine runcom: .bash_profile
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
-#:revdate:      2019.11.12
-#:revremark:    Rewrite for D.d v2, pt. 2
+#:revdate:      2019.11.29
+#:revremark:    Revert config-shell to keeping base runcoms in asset dir
 #:created_at:   2019.04.05
 
 # Startup file for Bash login shells

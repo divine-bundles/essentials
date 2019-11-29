@@ -1,8 +1,8 @@
 #:title:        Divine deployment: config-shell
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
-#:revdate:      2019.11.21
-#:revremark:    Remove extra queue task from config-shell
+#:revdate:      2019.11.29
+#:revremark:    Revert config-shell to keeping base runcoms in asset dir
 #:created_at:   2019.06.30
 
 D_DPL_NAME='config-shell'
@@ -24,10 +24,29 @@ assemble_tasks()
   # Auto-target the asset queue
   d__queue_target "$HOME"
 
-  # Manually add one item to the last queue section
-  D_QUEUE_MAIN+=('.runcoms')
-  D_QUEUE_ASSETS+=("$D__DPL_ASSET_DIR")
-  D_QUEUE_TARGETS+=("$HOME/.runcoms")
+  # Manually add a second queue section
+  d__queue_split
+  D_QUEUE_MAIN+=( \
+    '.runcoms' \
+    'base/.bash_profile' \
+    'base/.bashrc' \
+    'base/.zprofile' \
+    'base/.zshrc' \
+  )
+  D_QUEUE_ASSETS+=( \
+    "$D__DPL_ASSET_DIR" \
+    "$D__DPL_ASSET_DIR/base/.bash_profile" \
+    "$D__DPL_ASSET_DIR/base/.bashrc" \
+    "$D__DPL_ASSET_DIR/base/.zprofile" \
+    "$D__DPL_ASSET_DIR/base/.zshrc" \
+  )
+  D_QUEUE_TARGETS+=( \
+    "$HOME/.runcoms" \
+    "$HOME/.bash_profile" \
+    "$HOME/.bashrc" \
+    "$HOME/.zprofile" \
+    "$HOME/.zshrc" \
+  )
 }
 
 d_blanks_check()    { d__copy_queue_check;    }

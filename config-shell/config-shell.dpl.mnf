@@ -6,6 +6,12 @@
 (prefix: runcoms)
 (rno) [^/]+.(ba|z)?sh
 
+(prefix:) (flags:n)
+base/.bash_profile
+base/.bashrc
+base/.zprofile
+base/.zshrc
+
 #
 # First task: blanks
 #
@@ -17,12 +23,3 @@
       .post.bash
       .post.zsh
       .post.sh
-
-#
-# Second task: base runcoms
-#
-(queue: split) (prefix: configs) (flags: d)
-.bash_profile
-.bashrc
-.zprofile
-.zshrc
