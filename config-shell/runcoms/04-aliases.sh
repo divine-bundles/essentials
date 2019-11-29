@@ -1,8 +1,8 @@
 #:title:        Divine shared runcom: 04-aliases
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
-#:revdate:      2019.11.28
-#:revremark:    Improve path aliases in config-shell
+#:revdate:      2019.11.29
+#:revremark:    Remove always-sign from gc alias in config-shell
 #:created_at:   2019.04.09
 
 ## Universal shell utility aliases. Must use compatible syntax.
@@ -79,7 +79,7 @@ alias gaa='\git add --all'
 alias grc='\git rm --cached -rf .'
 alias  gs='\git status'
 alias  gu='\git rm --cached -rf . &>/dev/null; \git add --all; \git status'
-alias  gc='\git commit -S'
+alias  gc='\git commit'
 alias  gp='\git push'
 alias  gl='\git --no-pager log --oneline --all --graph --decorate=full -20'
 alias gll='\git log --all --decorate=full --show-signature'
