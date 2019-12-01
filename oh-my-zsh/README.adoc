@@ -3,7 +3,7 @@
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
 :revdate: 2019.12.01
-:revremark: Rewrite all Gh references to point to moved repo
+:revremark: Fix URL links in readmes
 :doctype: article
 // Visual
 :toc:
@@ -14,21 +14,22 @@
 :dus: __
 :as: *
 :das: **
+:url_dd: https://github.com/divine-dotfiles/divine-dotfiles
 
 The `oh-my-zsh` deployment introduces the https://ohmyz.sh[oh-my-zsh framework] and custom assets for it into the home directory.
 
 [[oh-my-zsh-mtdt]]
 [none]
-* *Deployment* https://github.com/divine-dotfiles/divine-dotfiles#mtdt-name-and-desc[*name*]: `oh-my-zsh`
-* https://github.com/divine-dotfiles/divine-dotfiles#mtdt-priority[*Priority*]: `3333`
-* https://github.com/divine-dotfiles/divine-dotfiles#mtdt-flags[*Flags*]: _none_
-* https://github.com/divine-dotfiles/divine-dotfiles#indct-dpl-dir[*Deployment directory*] (`_<dpl-dir>_`): `https://github.com/divine-dotfiles/divine-dotfiles#fmwk-state[state]/bundles/divine-bundles/essentials/oh-my-zsh/`
-* https://github.com/divine-dotfiles/divine-dotfiles#indct-dpl-asset-dir[*Asset directory*] (`_<asset-dir>_`): `~/https://github.com/divine-dotfiles/divine-dotfiles#fmwk-grail[.grail]/assets/oh-my-zsh/`
+* *Deployment* link:{url_dd}#mtdt-name-and-desc[*name*]: `oh-my-zsh`
+* link:{url_dd}#mtdt-priority[*Priority*]: `3333`
+* link:{url_dd}#mtdt-flags[*Flags*]: _none_
+* link:{url_dd}#indct-dpl-dir[*Deployment directory*] (`_<dpl-dir>_`): `link:{url_dd}#fmwk-state[state]/bundles/divine-bundles/essentials/oh-my-zsh/`
+* link:{url_dd}#indct-dpl-asset-dir[*Asset directory*] (`_<asset-dir>_`): `~/link:{url_dd}#fmwk-grail[.grail]/assets/oh-my-zsh/`
 +
 Assets are never removed from the Grail, even when uninstalling the deployment.
-* https://github.com/divine-dotfiles/divine-dotfiles#indct-dpl-backup-dir[*Backup directory*] (`_<backup-dir>_`): `https://github.com/divine-dotfiles/divine-dotfiles#fmwk-state[state]/backups/oh-my-zsh/`
-* https://github.com/divine-dotfiles/divine-dotfiles#fmwk-zero-data-loss[*Zero data loss*]: any displaced files are backed up.
-* https://github.com/divine-dotfiles/divine-dotfiles#fmwk-reversibility[*Reversibility*]: backed up files are restored, re-used ones untouched.
+* link:{url_dd}#indct-dpl-backup-dir[*Backup directory*] (`_<backup-dir>_`): `link:{url_dd}#fmwk-state[state]/backups/oh-my-zsh/`
+* link:{url_dd}#fmwk-zero-data-loss[*Zero data loss*]: any displaced files are backed up.
+* link:{url_dd}#fmwk-reversibility[*Reversibility*]: backed up files are restored, re-used ones untouched.
 
 == Installation map
 
@@ -101,5 +102,5 @@ This theme is also defaulted to in the provided initialization commands.
 == Dependencies
 
 The `oh-my-zsh` deployment depends on the <<config-shell-main,`*config-shell*`>> deployment (included in the current bundle).
-The retrieved oh-my-zsh framework is initialized from the runcom script at `~/https://github.com/divine-dotfiles/divine-dotfiles#fmwk-grail[.grail]/assets/config-shell/01-oh-my-zsh.zsh`.
+The retrieved oh-my-zsh framework is initialized from the runcom script at `~/link:{url_dd}#fmwk-grail[.grail]/assets/config-shell/01-oh-my-zsh.zsh`.
 The same file may and should be used to customize the oh-my-zsh framework's loadout.

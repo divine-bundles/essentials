@@ -2,7 +2,7 @@
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
 :revdate: 2019.12.01
-:revremark: Add msg about showcase purpose to readme
+:revremark: Fix URL links in readmes
 :doctype: article
 // Visual
 :toc: macro
@@ -15,6 +15,7 @@
 :das: **
 :lsb: [
 :rsb: ]
+:url_dd: https://github.com/divine-dotfiles/divine-dotfiles
 
 ++++
 <p align="center">
@@ -22,16 +23,16 @@
 </p>
 ++++
 
-The deployment bundle `*essentials*` for https://github.com/divine-dotfiles/divine-dotfiles[_Divine.dotfiles_] is a collection of opinionated system set-up scripts.
+The deployment bundle `*essentials*` for link:{url_dd}[_Divine.dotfiles_] is a collection of opinionated system set-up scripts.
 It is intended as a useful starting point for any https://en.wikipedia.org/wiki/Unix-like[Unix-like] box.
 
-(Additionally, this bundle showcases the recommended use of the mechanisms built into the current version of the https://github.com/divine-dotfiles/divine-dotfiles[_Divine.dotfiles_] framework.)
+(Additionally, this bundle showcases the recommended use of the mechanisms built into the current version of the link:{url_dd}[_Divine.dotfiles_] framework.)
 
 [horizontal]
 Bundle name:: `essentials`
 <<dpls-main,Deployments>>:: 10
 <<dpls-dfls,Divinefile>> entries:: 9
-<<inun-inst-bundle,Attached>> bundle location:: `https://github.com/divine-dotfiles/divine-dotfiles#fmwk-state[state]/bundles/divine-bundles/essentials`
+<<inun-inst-bundle,Attached>> bundle location:: `link:{url_dd}#fmwk-state[state]/bundles/divine-bundles/essentials`
 
 toc::[]
 
@@ -48,56 +49,56 @@ Once the bundle is fully <<inun-inst,installed>>, and the shell reloaded, _voil√
 * Opinionated configs are plugged in for Git, Vim, Bash, and Zsh.
 * Any pre-existing files that have gotten in the way are safely backed up or re-used.
 
-All of the above is controlled and customized through the key configuration files, which are located at `~/https://github.com/divine-dotfiles/divine-dotfiles#fmwk-grail[.grail]/assets/`.
+All of the above is controlled and customized through the key configuration files, which are located at `~/link:{url_dd}#fmwk-grail[.grail]/assets/`.
 
 .Overview of asset directories for the bundle `essentials`
 [%noheader,cols="<.<a",stripes=none]
 |===
 
 | +++<p align="center">+++
-`~/https://github.com/divine-dotfiles/divine-dotfiles#fmwk-grail[.grail]/assets/*bash-it*/` *&dagger;*
+`~/link:{url_dd}#fmwk-grail[.grail]/assets/*bash-it*/` *&dagger;*
 +++</p>+++
 
 Custom assets for the https://github.com/Bash-it/bash-it[Bash-it] shell framework.
 
 | +++<p align="center">+++
-`~/https://github.com/divine-dotfiles/divine-dotfiles#fmwk-grail[.grail]/assets/*brewfile*/` *&dagger;*
+`~/link:{url_dd}#fmwk-grail[.grail]/assets/*brewfile*/` *&dagger;*
 +++</p>+++
 
 The https://github.com/Homebrew/homebrew-bundle[Brewfile], maintained on macOS.
 
 | +++<p align="center">+++
-`~/https://github.com/divine-dotfiles/divine-dotfiles#fmwk-grail[.grail]/assets/*config-git*/`
+`~/link:{url_dd}#fmwk-grail[.grail]/assets/*config-git*/`
 +++</p>+++
 
 The global configuration for Git.
 
 | +++<p align="center">+++
-`~/https://github.com/divine-dotfiles/divine-dotfiles#fmwk-grail[.grail]/assets/*config-shell*/`
+`~/link:{url_dd}#fmwk-grail[.grail]/assets/*config-shell*/`
 +++</p>+++
 
 The startup scripts (https://en.wikipedia.org/wiki/Run_commands[runcoms]) for Bash and Zsh.
 
 | +++<p align="center">+++
-`~/https://github.com/divine-dotfiles/divine-dotfiles#fmwk-grail[.grail]/assets/*config-vim*/`
+`~/link:{url_dd}#fmwk-grail[.grail]/assets/*config-vim*/`
 +++</p>+++
 
 The global configuration for Vim.
 
 | +++<p align="center">+++
-`~/https://github.com/divine-dotfiles/divine-dotfiles#fmwk-grail[.grail]/assets/*home-dirs*/` *&dagger;*
+`~/link:{url_dd}#fmwk-grail[.grail]/assets/*home-dirs*/` *&dagger;*
 +++</p>+++
 
 The file `*home-dirs.cfg*` defines a sub-directory tree to be maintained under the home directory.
 
 | +++<p align="center">+++
-`~/https://github.com/divine-dotfiles/divine-dotfiles#fmwk-grail[.grail]/assets/*oh-my-zsh*/` *&dagger;*
+`~/link:{url_dd}#fmwk-grail[.grail]/assets/*oh-my-zsh*/` *&dagger;*
 +++</p>+++
 
 Custom assets for the https://ohmyz.sh[oh-my-zsh] shell framework.
 
 | +++<p align="center">+++
-`~/https://github.com/divine-dotfiles/divine-dotfiles#fmwk-grail[.grail]/assets/*portable-bin*/`
+`~/link:{url_dd}#fmwk-grail[.grail]/assets/*portable-bin*/`
 +++</p>+++
 
 The container for the personal executables (this directory is maintained on the `$PATH`).
@@ -113,7 +114,7 @@ The container for the personal executables (this directory is maintained on the 
 [[inun-main]]
 == Installing and uninstalling the bundle
 
-The bundle `essentials` requires the https://github.com/divine-dotfiles/divine-dotfiles[_Divine.dotfiles_] framework.
+The bundle `essentials` requires the link:{url_dd}[_Divine.dotfiles_] framework.
 The (un)installation guide assumes that _Divine.dotfiles_ is installed into the default path: `~/.divine/`, and that the shortcut command `di` is available.
 
 [[inun-inst]]
@@ -122,7 +123,7 @@ The (un)installation guide assumes that _Divine.dotfiles_ is installed into the 
 [[inun-inst-bundle]]
 ==== Framework already installed
 
-If _Divine.dotfiles_ is already installed, the following Terminal command *attaches* the bundle `essentials` to the https://github.com/divine-dotfiles/divine-dotfiles#fmwk-grail[Grail directory]:
+If _Divine.dotfiles_ is already installed, the following Terminal command *attaches* the bundle `essentials` to the link:{url_dd}#fmwk-grail[Grail directory]:
 
 [source,bash]
 ----
@@ -175,7 +176,7 @@ The following Terminal command *uninstalls* the bundle `essentials`:
 di remove --bundle essentials
 ----
 
-And this Terminal command *detaches the bundle* from the https://github.com/divine-dotfiles/divine-dotfiles#fmwk-grail[Grail directory]:
+And this Terminal command *detaches the bundle* from the link:{url_dd}#fmwk-grail[Grail directory]:
 
 [source,bash]
 ----
@@ -207,13 +208,13 @@ it 2; }; chmod +x \$TMP && \$TMP \"\$@\"; RC=\$?; rm -f \$TMP; ((RC)) && exit \
 [[dpls-dfls]]
 === Divinefile
 
-The bundle `essentials` includes a https://github.com/divine-dotfiles/divine-dotfiles#dfls-main[Divinefile] that maintains the following system packages.
+The bundle `essentials` includes a link:{url_dd}#dfls-main[Divinefile] that maintains the following system packages.
 Below is the list of the more prominent packages in the Divinefile.
 The `Divinefile` itself provides the full list.
 It is located in the root of the attached bundle's directory at:
 
 [none]
-* `https://github.com/divine-dotfiles/divine-dotfiles#fmwk-state[state]/bundles/divine-bundles/essentials/Divinefile`
+* `link:{url_dd}#fmwk-state[state]/bundles/divine-bundles/essentials/Divinefile`
 
 .Highlights of Divinefile packages for the bundle `essentials`
 [%header,cols="^.^1a,<.^2a,<.<3a",stripes=none]

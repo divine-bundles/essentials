@@ -3,7 +3,7 @@
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
 :revdate: 2019.12.01
-:revremark: Rewrite all Gh references to point to moved repo
+:revremark: Fix URL links in readmes
 :doctype: article
 // Visual
 :toc:
@@ -14,21 +14,22 @@
 :dus: __
 :as: *
 :das: **
+:url_dd: https://github.com/divine-dotfiles/divine-dotfiles
 
 The `bash-it` deployment introduces the https://github.com/Bash-it/bash-it[Bash-it framework] and custom assets for it into the home directory.
 
 [[bash-it-mtdt]]
 [none]
-* *Deployment* https://github.com/divine-dotfiles/divine-dotfiles#mtdt-name-and-desc[*name*]: `bash-it`
-* https://github.com/divine-dotfiles/divine-dotfiles#mtdt-priority[*Priority*]: `3333`
-* https://github.com/divine-dotfiles/divine-dotfiles#mtdt-flags[*Flags*]: _none_
-* https://github.com/divine-dotfiles/divine-dotfiles#indct-dpl-dir[*Deployment directory*] (`_<dpl-dir>_`): `https://github.com/divine-dotfiles/divine-dotfiles#fmwk-state[state]/bundles/divine-bundles/essentials/bash-it/`
-* https://github.com/divine-dotfiles/divine-dotfiles#indct-dpl-asset-dir[*Asset directory*] (`_<asset-dir>_`): `~/https://github.com/divine-dotfiles/divine-dotfiles#fmwk-grail[.grail]/assets/bash-it/`
+* *Deployment* link:{url_dd}#mtdt-name-and-desc[*name*]: `bash-it`
+* link:{url_dd}#mtdt-priority[*Priority*]: `3333`
+* link:{url_dd}#mtdt-flags[*Flags*]: _none_
+* link:{url_dd}#indct-dpl-dir[*Deployment directory*] (`_<dpl-dir>_`): `link:{url_dd}#fmwk-state[state]/bundles/divine-bundles/essentials/bash-it/`
+* link:{url_dd}#indct-dpl-asset-dir[*Asset directory*] (`_<asset-dir>_`): `~/link:{url_dd}#fmwk-grail[.grail]/assets/bash-it/`
 +
 Assets are never removed from the Grail, even when uninstalling the deployment.
-* https://github.com/divine-dotfiles/divine-dotfiles#indct-dpl-backup-dir[*Backup directory*] (`_<backup-dir>_`): `https://github.com/divine-dotfiles/divine-dotfiles#fmwk-state[state]/backups/bash-it/`
-* https://github.com/divine-dotfiles/divine-dotfiles#fmwk-zero-data-loss[*Zero data loss*]: any displaced files are backed up.
-* https://github.com/divine-dotfiles/divine-dotfiles#fmwk-reversibility[*Reversibility*]: backed up files are restored, re-used ones untouched.
+* link:{url_dd}#indct-dpl-backup-dir[*Backup directory*] (`_<backup-dir>_`): `link:{url_dd}#fmwk-state[state]/backups/bash-it/`
+* link:{url_dd}#fmwk-zero-data-loss[*Zero data loss*]: any displaced files are backed up.
+* link:{url_dd}#fmwk-reversibility[*Reversibility*]: backed up files are restored, re-used ones untouched.
 
 == Installation map
 
@@ -116,5 +117,5 @@ This theme is also defaulted to in the provided initialization commands.
 == Dependencies
 
 The `bash-it` deployment depends on the <<config-shell-main,`*config-shell*`>> deployment (included in the current bundle).
-The retrieved Bash-it framework is initialized from the runcom script at `~/https://github.com/divine-dotfiles/divine-dotfiles#fmwk-grail[.grail]/assets/config-shell/01-bash-it.bash`.
+The retrieved Bash-it framework is initialized from the runcom script at `~/link:{url_dd}#fmwk-grail[.grail]/assets/config-shell/01-bash-it.bash`.
 The same file may and should be used to customize the Bash-it framework's loadout.

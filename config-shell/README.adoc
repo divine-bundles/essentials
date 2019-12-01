@@ -3,7 +3,7 @@
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
 :revdate: 2019.12.01
-:revremark: Rewrite all Gh references to point to moved repo
+:revremark: Fix URL links in readmes
 :doctype: article
 // Visual
 :toc:
@@ -14,21 +14,22 @@
 :dus: __
 :as: *
 :das: **
+:url_dd: https://github.com/divine-dotfiles/divine-dotfiles
 
 The `config-shell` deployment symlinks the configuration files (https://en.wikipedia.org/wiki/Run_commands['runcoms']) for https://www.gnu.org/software/bash/[Bash] and https://sourceforge.net/projects/zsh[Zsh] into the home directory.
 
 [[config-shell-mtdt]]
 [none]
-* *Deployment* https://github.com/divine-dotfiles/divine-dotfiles#mtdt-name-and-desc[*name*]: `config-shell`
-* https://github.com/divine-dotfiles/divine-dotfiles#mtdt-priority[*Priority*]: `333`
-* https://github.com/divine-dotfiles/divine-dotfiles#mtdt-flags[*Flags*]: _none_
-* https://github.com/divine-dotfiles/divine-dotfiles#indct-dpl-dir[*Deployment directory*] (`_<dpl-dir>_`): `https://github.com/divine-dotfiles/divine-dotfiles#fmwk-state[state]/bundles/divine-bundles/essentials/config-shell/`
-* https://github.com/divine-dotfiles/divine-dotfiles#indct-dpl-asset-dir[*Asset directory*] (`_<asset-dir>_`): `~/https://github.com/divine-dotfiles/divine-dotfiles#fmwk-grail[.grail]/assets/config-shell/`
+* *Deployment* link:{url_dd}#mtdt-name-and-desc[*name*]: `config-shell`
+* link:{url_dd}#mtdt-priority[*Priority*]: `333`
+* link:{url_dd}#mtdt-flags[*Flags*]: _none_
+* link:{url_dd}#indct-dpl-dir[*Deployment directory*] (`_<dpl-dir>_`): `link:{url_dd}#fmwk-state[state]/bundles/divine-bundles/essentials/config-shell/`
+* link:{url_dd}#indct-dpl-asset-dir[*Asset directory*] (`_<asset-dir>_`): `~/link:{url_dd}#fmwk-grail[.grail]/assets/config-shell/`
 +
 Assets are never removed from the Grail, even when uninstalling the deployment.
-* https://github.com/divine-dotfiles/divine-dotfiles#indct-dpl-backup-dir[*Backup directory*] (`_<backup-dir>_`): `https://github.com/divine-dotfiles/divine-dotfiles#fmwk-state[state]/backups/config-shell/`
-* https://github.com/divine-dotfiles/divine-dotfiles#fmwk-zero-data-loss[*Zero data loss*]: any displaced files are backed up.
-* https://github.com/divine-dotfiles/divine-dotfiles#fmwk-reversibility[*Reversibility*]: backed up files are restored, re-used ones untouched.
+* link:{url_dd}#indct-dpl-backup-dir[*Backup directory*] (`_<backup-dir>_`): `link:{url_dd}#fmwk-state[state]/backups/config-shell/`
+* link:{url_dd}#fmwk-zero-data-loss[*Zero data loss*]: any displaced files are backed up.
+* link:{url_dd}#fmwk-reversibility[*Reversibility*]: backed up files are restored, re-used ones untouched.
 
 == Installation map
 
@@ -137,7 +138,7 @@ A sample set of opinionated runcoms is <<config-shell-included,included>>.
 *** `~/*.pre.zsh*` — exclusive to Zsh.
 *** `~/*.pre.sh*` — universal.
 +
-This particular runcom is pre-loaded with the definitions of the https://github.com/divine-dotfiles/divine-dotfiles#indct-os-family[`D{dus}OS_FAMILY`], https://github.com/divine-dotfiles/divine-dotfiles#indct-os-distro[`D{dus}OS_DISTRO`], and https://github.com/divine-dotfiles/divine-dotfiles#indct-os-pkgmgr[`D{dus}OS_PKGMGR`] variables, which describe the current OS.
+This particular runcom is pre-loaded with the definitions of the link:{url_dd}#indct-os-family[`D{dus}OS_FAMILY`], link:{url_dd}#indct-os-distro[`D{dus}OS_DISTRO`], and link:{url_dd}#indct-os-pkgmgr[`D{dus}OS_PKGMGR`] variables, which describe the current OS.
 ** Sourced _after_ the <<config-shell-runcoms,custom>> runcoms:
 *** `~/*.post.bash*` — exclusive to Bash.
 *** `~/*.post.zsh*` — exclusive to Zsh.
