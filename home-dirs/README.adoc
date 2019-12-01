@@ -3,7 +3,7 @@
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
 :revdate: 2019.12.01
-:revremark: Fix URL links in readmes
+:revremark: Tweak readme syntax
 :doctype: article
 // Visual
 :toc:
@@ -44,7 +44,7 @@ Assets are never removed from the Grail, even when uninstalling the deployment.
 [%noheader,cols="4*<.^",stripes=none]
 !===
 
-! `*_<dir-path>_*` entries from `<<home-dirs-mtdt,_<asset-dir>_>>/*home-dirs.cfg*
+! `*_<dir-path>_*` entries from `<<home-dirs-mtdt,_<asset-dir>_>>/*home-dirs.cfg*`
 ! =>
 ! `~/*_<dir-path>_*/`
 ! 

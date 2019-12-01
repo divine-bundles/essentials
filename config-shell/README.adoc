@@ -3,7 +3,7 @@
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
 :revdate: 2019.12.01
-:revremark: Fix URL links in readmes
+:revremark: Tweak readme syntax
 :doctype: article
 // Visual
 :toc:
@@ -75,35 +75,28 @@ Removal:: Unlinked; any backed up original restored.
 *Creating*
 +++</p>+++
 
-[%noheader,cols="4*<.^",stripes=none]
+[%noheader,cols="3*<.^",stripes=none]
 !===
 
-! 
 ! =>
 ! `~/*.pre.bash*`
 .6+! <<config-shell-box-specific,^3^>>
 
-! 
 ! =>
 ! `~/*.pre.zsh*`
 
-! 
 ! =>
 ! `~/*.pre.sh*`
 
-! 
 ! =>
 ! `~/*.post.bash*`
 
-! 
 ! =>
 ! `~/*.post.zsh*`
 
-! 
 ! =>
 ! `~/*.post.sh*`
 
-! 
 ! =>
 ! `~/*.hushlogin*`
 ! <<config-shell-hushlogin,^4^>>
