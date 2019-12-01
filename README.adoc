@@ -2,7 +2,7 @@
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
 :revdate: 2019.12.01
-:revremark: Rewrite all Gh references to point to moved repo
+:revremark: Add msg about showcase purpose to readme
 :doctype: article
 // Visual
 :toc: macro
@@ -24,6 +24,8 @@
 
 The deployment bundle `*essentials*` for https://github.com/divine-dotfiles/divine-dotfiles[_Divine.dotfiles_] is a collection of opinionated system set-up scripts.
 It is intended as a useful starting point for any https://en.wikipedia.org/wiki/Unix-like[Unix-like] box.
+
+(Additionally, this bundle showcases the recommended use of the mechanisms built into the current version of the https://github.com/divine-dotfiles/divine-dotfiles[_Divine.dotfiles_] framework.)
 
 [horizontal]
 Bundle name:: `essentials`
