@@ -3,7 +3,7 @@
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
 :revdate: 2019.12.01
-:revremark: Tweak readme syntax
+:revremark: Bring config-shell readme up-to-date
 :doctype: article
 // Visual
 :toc:
@@ -44,20 +44,20 @@ Assets are never removed from the Grail, even when uninstalling the deployment.
 [%noheader,cols="4*<.^",stripes=none]
 !===
 
-! `<<config-shell-mtdt,_<dpl-dir>_>>/*.bashprofile*`
+! `<<config-shell-mtdt,_<asset-dir>_>>/base/*.bashprofile*`
 ! =>
 ! `~/*.bashprofile*`
 .4+! <<config-shell-base,^1^>>
 
-! `<<config-shell-mtdt,_<dpl-dir>_>>/*.zprofile*`
+! `<<config-shell-mtdt,_<asset-dir>_>>/base/*.zprofile*`
 ! =>
 ! `~/*.zprofile*`
 
-! `<<config-shell-mtdt,_<dpl-dir>_>>/*.bashrc*`
+! `<<config-shell-mtdt,_<asset-dir>_>>/base/*.bashrc*`
 ! =>
 ! `~/*.bashrc*`
 
-! `<<config-shell-mtdt,_<dpl-dir>_>>/*.zshrc*`
+! `<<config-shell-mtdt,_<asset-dir>_>>/base/*.zshrc*`
 ! =>
 ! `~/*.zshrc*`
 
@@ -110,10 +110,8 @@ Removal:: Removed, or untouched if re-used.
 
 == Included assets
 
-* [[config-shell-base]]The *base runcoms* (the `.*profile` and `.*rc` files recognized by Bash and Zsh) are kept in the deployment directory because they are not intended for manual modification.
-+
-These do little on top of sequentially sourcing the <<config-shell-runcoms,custom>> and <<config-shell-box-specific,box-specific>> runcoms.
-* [[config-shell-runcoms]]The <<config-shell-mtdt,asset directory>> is home for the *custom runcoms*.
+* [[config-shell-base]]The *base runcoms* (the `.*profile` and `.*rc` files recognized by Bash and Zsh) do little on top of sequentially sourcing the <<config-shell-runcoms,custom>> and <<config-shell-box-specific,box-specific>> runcoms.
+* [[config-shell-runcoms]]The root of the <<config-shell-mtdt,asset directory>> is home for the *custom runcoms*.
 +
 During the shell startup, both `.bashrc` and `.zshrc` source files from this directory, in the ascending alphanumerical order:
 +
