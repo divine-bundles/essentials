@@ -2,8 +2,8 @@
 = Deployment `home-dirs` (`500`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revdate: 2019.11.29
-:revremark: Revise Grail references to reflect its move to home dir
+:revdate: 2019.12.01
+:revremark: Fix URL links in readmes
 :doctype: article
 // Visual
 :toc:
@@ -14,21 +14,22 @@
 :dus: __
 :as: *
 :das: **
+:url_dd: https://github.com/divine-dotfiles/divine-dotfiles
 
 The `home-dirs` deployment maintains a stable tree of personal directories under the home directory.
 
 [[home-dirs-mtdt]]
 [none]
-* *Deployment* https://github.com/no-simpler/divine-dotfiles#mtdt-name-and-desc[*name*]: `home-dirs`
-* https://github.com/no-simpler/divine-dotfiles#mtdt-priority[*Priority*]: `500`
-* https://github.com/no-simpler/divine-dotfiles#mtdt-flags[*Flags*]: _none_
-* https://github.com/no-simpler/divine-dotfiles#indct-dpl-dir[*Deployment directory*] (`_<dpl-dir>_`): `https://github.com/no-simpler/divine-dotfiles#fmwk-state[state]/bundles/no-simpler/divine-bundle-essentials/home-dirs/`
-* https://github.com/no-simpler/divine-dotfiles#indct-dpl-asset-dir[*Asset directory*] (`_<asset-dir>_`): `~/https://github.com/no-simpler/divine-dotfiles#fmwk-grail[.grail]/assets/home-dirs/`
+* *Deployment* link:{url_dd}#mtdt-name-and-desc[*name*]: `home-dirs`
+* link:{url_dd}#mtdt-priority[*Priority*]: `500`
+* link:{url_dd}#mtdt-flags[*Flags*]: _none_
+* link:{url_dd}#indct-dpl-dir[*Deployment directory*] (`_<dpl-dir>_`): `link:{url_dd}#fmwk-state[state]/bundles/divine-bundles/essentials/home-dirs/`
+* link:{url_dd}#indct-dpl-asset-dir[*Asset directory*] (`_<asset-dir>_`): `~/link:{url_dd}#fmwk-grail[.grail]/assets/home-dirs/`
 +
 Assets are never removed from the Grail, even when uninstalling the deployment.
-* https://github.com/no-simpler/divine-dotfiles#indct-dpl-backup-dir[*Backup directory*] (`_<backup-dir>_`): `https://github.com/no-simpler/divine-dotfiles#fmwk-state[state]/backups/home-dirs/`
-* https://github.com/no-simpler/divine-dotfiles#fmwk-zero-data-loss[*Zero data loss*]: any displaced files are backed up.
-* https://github.com/no-simpler/divine-dotfiles#fmwk-reversibility[*Reversibility*]: backed up files are restored, re-used ones untouched.
+* link:{url_dd}#indct-dpl-backup-dir[*Backup directory*] (`_<backup-dir>_`): `link:{url_dd}#fmwk-state[state]/backups/home-dirs/`
+* link:{url_dd}#fmwk-zero-data-loss[*Zero data loss*]: any displaced files are backed up.
+* link:{url_dd}#fmwk-reversibility[*Reversibility*]: backed up files are restored, re-used ones untouched.
 
 == Installation map
 
@@ -57,13 +58,13 @@ Removal:: Removed, or untouched if re-used.
 
 The `home-dirs` deployment:
 
-* parses the `*home-dirs.cfg*` file as a https://github.com/no-simpler/divine-dotfiles#queue-mnf[queue manifest];
+* parses the `*home-dirs.cfg*` file as a link:{url_dd}#queue-mnf[queue manifest];
 * treats entries as relative paths;
 * ensures that the paths correspond to sub-directories under the home directory.
 
 == Included assets
 
-The `home-dirs.cfg` is a https://github.com/no-simpler/divine-dotfiles#queue-mnf[queue manifest].
+The `home-dirs.cfg` is a link:{url_dd}#queue-mnf[queue manifest].
 It uses the key-value pairs to denote sections or entries that are only relevant for particular OS's.
 By default, every entry is relevant everywhere.
 
@@ -84,7 +85,7 @@ A key-value on the same line with an entry affects only that entry.
 [.note]
 [%noheader,cols="<.<a"]
 |===
-| The queue manifest syntax is documented in the framework's https://github.com/no-simpler/divine-dotfiles#queue-mnf[documentation].
+| The queue manifest syntax is documented in the framework's link:{url_dd}#queue-mnf[documentation].
 |===
 
 == Dependencies
