@@ -2,8 +2,8 @@
 = Deployment `config-vim` (`333`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revdate: 2019.11.29
-:revremark: Revise Grail references to reflect its move to home dir
+:revdate: 2019.12.01
+:revremark: Rewrite all Gh references to point to moved repo
 :doctype: article
 // Visual
 :toc:
@@ -19,16 +19,16 @@ The `config-vim` deployment symlinks the configuration and customization files f
 
 [[config-vim-mtdt]]
 [none]
-* *Deployment* https://github.com/no-simpler/divine-dotfiles#mtdt-name-and-desc[*name*]: `config-vim`
-* https://github.com/no-simpler/divine-dotfiles#mtdt-priority[*Priority*]: `333`
-* https://github.com/no-simpler/divine-dotfiles#mtdt-flags[*Flags*]: _none_
-* https://github.com/no-simpler/divine-dotfiles#indct-dpl-dir[*Deployment directory*] (`_<dpl-dir>_`): `https://github.com/no-simpler/divine-dotfiles#fmwk-state[state]/bundles/no-simpler/divine-bundle-essentials/config-vim/`
-* https://github.com/no-simpler/divine-dotfiles#indct-dpl-asset-dir[*Asset directory*] (`_<asset-dir>_`): `~/https://github.com/no-simpler/divine-dotfiles#fmwk-grail[.grail]/assets/config-vim/`
+* *Deployment* https://github.com/divine-dotfiles/divine-dotfiles#mtdt-name-and-desc[*name*]: `config-vim`
+* https://github.com/divine-dotfiles/divine-dotfiles#mtdt-priority[*Priority*]: `333`
+* https://github.com/divine-dotfiles/divine-dotfiles#mtdt-flags[*Flags*]: _none_
+* https://github.com/divine-dotfiles/divine-dotfiles#indct-dpl-dir[*Deployment directory*] (`_<dpl-dir>_`): `https://github.com/divine-dotfiles/divine-dotfiles#fmwk-state[state]/bundles/divine-bundles/essentials/config-vim/`
+* https://github.com/divine-dotfiles/divine-dotfiles#indct-dpl-asset-dir[*Asset directory*] (`_<asset-dir>_`): `~/https://github.com/divine-dotfiles/divine-dotfiles#fmwk-grail[.grail]/assets/config-vim/`
 +
 Assets are never removed from the Grail, even when uninstalling the deployment.
-* https://github.com/no-simpler/divine-dotfiles#indct-dpl-backup-dir[*Backup directory*] (`_<backup-dir>_`): `https://github.com/no-simpler/divine-dotfiles#fmwk-state[state]/backups/config-vim/`
-* https://github.com/no-simpler/divine-dotfiles#fmwk-zero-data-loss[*Zero data loss*]: any displaced files are backed up.
-* https://github.com/no-simpler/divine-dotfiles#fmwk-reversibility[*Reversibility*]: backed up files are restored, re-used ones untouched.
+* https://github.com/divine-dotfiles/divine-dotfiles#indct-dpl-backup-dir[*Backup directory*] (`_<backup-dir>_`): `https://github.com/divine-dotfiles/divine-dotfiles#fmwk-state[state]/backups/config-vim/`
+* https://github.com/divine-dotfiles/divine-dotfiles#fmwk-zero-data-loss[*Zero data loss*]: any displaced files are backed up.
+* https://github.com/divine-dotfiles/divine-dotfiles#fmwk-reversibility[*Reversibility*]: backed up files are restored, re-used ones untouched.
 
 == Installation map
 
