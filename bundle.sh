@@ -1,2 +1,2 @@
 D_BUNDLE_NAME='essentials'
-D_BUNDLE_VERSION='1.0.1'
+D_BUNDLE_VERSION='1.0.1+dev'

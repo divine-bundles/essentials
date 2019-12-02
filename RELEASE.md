@@ -1,2 +1,0 @@
-* [**`fix`**] Destroy a syntax error in the `zsh-default` deployment.
-* [**`other`**] Revise all references to the Grail directory to reflect its new default location in the root of the home directory.
