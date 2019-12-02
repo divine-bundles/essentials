@@ -1,8 +1,8 @@
 #:title:        Divine deployment: zsh-default
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
-#:revdate:      2019.11.28
-#:revremark:    If reverting def shell fails, halt mltsk as well
+#:revdate:      2019.12.02
+#:revremark:    Fix syntax error in zsh-default
 #:created_at:   2019.06.30
 
 D_DPL_NAME='zsh-default'
@@ -138,7 +138,7 @@ d_zsh_default_check()
 
   # Ensure default shell is not already zsh
   if $D_ALREADY_ZSH; then
-    if [ "$D_ZSH_PATH" = "$SHELL"]; then
+    if [ "$D_ZSH_PATH" = "$SHELL" ]; then
       d__notify -ls -- "Default shell is already zsh: $SHELL"; return 3
     else
       d__notify -lv -- "Default shell is already zsh: $SHELL"; return 7
