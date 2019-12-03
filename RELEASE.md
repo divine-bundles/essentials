@@ -1,1 +1,2 @@
 * [**`improvement`**] Make the `home-dirs` deployment use the stashing system to track previous installations/removals.
+* [**`improvement`**] Remove full ref decoration from the alias for the `git log` command.

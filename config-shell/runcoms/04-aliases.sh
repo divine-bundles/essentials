@@ -2,7 +2,7 @@
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
 #:revdate:      2019.12.03
-#:revremark:    A round of asset polishing for the house
+#:revremark:    Fix unupdated git alias
 #:created_at:   2019.04.09
 
 ## Universal shell utility aliases. Must use compatible syntax.
@@ -84,7 +84,7 @@ alias gs='\git status'
 alias gu='\git rm --cached -rf . &>/dev/null; \git add --all; \git status'
 alias gc='\git commit'
 alias gp='\git push'
-alias gl='\git --no-pager log --oneline --all --graph --decorate=full -20'
+alias gl='\git --no-pager log --oneline --all --graph -20'
 alias gll='\git log --all --decorate=full --show-signature'
 
 
