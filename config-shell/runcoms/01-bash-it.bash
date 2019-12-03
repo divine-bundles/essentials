@@ -1,8 +1,8 @@
-#:title:        Divine Bash runcom: 00-bash-it
+#:title:        Divine runcom sample: 01-bash-it.bash
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
-#:revdate:      2019.11.12
-#:revremark:    Rewrite for D.d v2, pt. 2
+#:revdate:      2019.12.03
+#:revremark:    A round of asset polishing for the house
 #:created_at:   2019.04.09
 
 # Bash shell framework initialization

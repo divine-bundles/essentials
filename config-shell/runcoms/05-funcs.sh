@@ -1,8 +1,8 @@
-#:title:        Divine shared runcom: 05-funcs
+#:title:        Divine runcom sample: 05-funcs.sh
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
-#:revdate:      2019.11.12
-#:revremark:    Rewrite for D.d v2, pt. 2
+#:revdate:      2019.12.03
+#:revremark:    A round of asset polishing for the house
 #:created_at:   2019.04.09
 
 ## Universal shell utility functions. Must use compatible syntax.
@@ -13,6 +13,12 @@
 ##
 ## General purpose helper functions
 ##
+
+#>  mcd PATH
+#
+## Creates path using mkdir -p, and, upon success, cd's into it
+#
+mcd() { mkdir -p -- "$1" && cd -- "$1"; }
 
 #>  up
 #
@@ -123,16 +129,12 @@ up()
   fi
 
   # All done
-  if $anything_updated
-  then printf >&2 '%s\n' "${bold}==>${normal} Update routine complete"
-  else printf >&2 '%s\n' "${bold}==>${normal} Nothing to update"; fi
+  if $anything_updated; then
+    printf >&2 '%s\n' "${bold}==>${normal} Update routine complete"
+  else
+    printf >&2 '%s\n' "${bold}==>${normal} Nothing to update"
+  fi
 
   # Return 0 regardless
   return 0
 }
-
-#>  mcd PATH
-#
-## Creates path using mkdir -p, and, upon success, cd's into it
-#
-mcd() { mkdir -p -- "$1" && cd -- "$1"; }
