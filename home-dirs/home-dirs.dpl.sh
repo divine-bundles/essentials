@@ -2,7 +2,7 @@
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
 #:revdate:      2019.12.03
-#:revremark:    In home-dirs, use proper stash keys
+#:revremark:    In home-dirs, use proper name of checksum function
 #:created_at:   2019.06.30
 
 D_DPL_NAME='home-dirs'
@@ -34,13 +34,13 @@ d_item_check()
       D_ADDST_PROMPT=true
       D_ADDST_WARNING+=("Directory not empty: $D__ITEM_NAME")
     fi
-    d__stash -s -- has "$( dmd5 -s "$D__ITEM_NAME" )" && return 1 || return 7
+    d__stash -s -- has "$( d__md5 -s "$D__ITEM_NAME" )" && return 1 || return 7
   elif [ -e "$hdr" ]; then
     [ "$D__REQ_ROUTINE" = remove ] && D_ADDST_PROMPT=true
     D_ADDST_ATTENTION+=("Existing non-directory: $hdr")
     return 3
   else
-    d__stash -s -- has "$( dmd5 -s "$D__ITEM_NAME" )" && return 6 || return 2
+    d__stash -s -- has "$( d__md5 -s "$D__ITEM_NAME" )" && return 6 || return 2
   fi
 }
 
@@ -49,7 +49,7 @@ d_item_install()
   # Compose directory path; make directory
   local hdr="$HOME/$D__ITEM_NAME"
   if mkdir -p -m 0700 -- "$hdr" &>/dev/null; then
-    if ! d__stash -s -- set "$( dmd5 -s "$D__ITEM_NAME" )"; then
+    if ! d__stash -s -- set "$( d__md5 -s "$D__ITEM_NAME" )"; then
       d__notify -lx -- \
         "Failed to set stash record for directory: $D__ITEM_NAME"
     fi
@@ -81,7 +81,7 @@ d_item_remove()
 
   # Proceed to removal
   if rm -rf -- "$hdr" &>/dev/null; then
-    if ! d__stash -s -- unset "$( dmd5 -s "$D__ITEM_NAME" )"; then
+    if ! d__stash -s -- unset "$( d__md5 -s "$D__ITEM_NAME" )"; then
       d__notify -lx -- \
         "Failed to unset stash record for directory: $D__ITEM_NAME"
     fi
