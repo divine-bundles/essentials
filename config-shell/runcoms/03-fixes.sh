@@ -1,8 +1,8 @@
-#:title:        Divine shared runcom: 03-fixes
+#:title:        Divine runcom sample: 03-fixes.sh
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
-#:revdate:      2019.11.12
-#:revremark:    Rewrite for D.d v2, pt. 2
+#:revdate:      2019.12.03
+#:revremark:    A round of asset polishing for the house
 #:created_at:   2019.04.09
 
 ## Universal shell bug fixes. Must use compatible syntax.
@@ -28,8 +28,9 @@ export LANG=en_US.UTF-8
 ## https://www.gnupg.org/documentation/manuals/gnupg/Invoking-GPG_002dAGENT.html
 ##
 
-if which gpg &>/dev/null || which gnupg &>/dev/null
-then export GPG_TTY=$(tty); fi
+if gpg --version &>/dev/null || gnupg --version &>/dev/null; then
+  export GPG_TTY=$(tty)
+fi
 
 
 ##

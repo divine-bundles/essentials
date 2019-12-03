@@ -1,8 +1,8 @@
-#:title:        Divine shared runcom: 02-env
+#:title:        Divine runcom sample: 02-env.sh
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
-#:revdate:      2019.11.12
-#:revremark:    Rewrite for D.d v2, pt. 2
+#:revdate:      2019.12.03
+#:revremark:    A round of asset polishing for the house
 #:created_at:   2019.04.09
 
 ## Universal shell environment variables. Must use compatible syntax.
@@ -11,7 +11,7 @@
 #
 
 ##
-## Personal binaries directory
+## Personal /**/bin directories
 ##
 
 for DIR in .bin bin .pbin; do if [ -d "$HOME/$DIR" ]; then
@@ -58,7 +58,7 @@ if command -v pyenv &>/dev/null; then
     [[ :$PATH: = *":$PYENV_ROOT/bin:"* ]] \
       || export PATH="$PYENV_ROOT/bin:$PATH"
   fi
-  [ -z ${PYENV_SHELL+isset} ] && eval "$( pyenv init - )"
+  [ "$PYENV_SHELL" = "$D__SHELL" ] || eval "$( pyenv init - )"
 fi
 
 
@@ -67,7 +67,7 @@ fi
 ##
 
 if [ -x /usr/local/bin/lesspipe.sh ]; then
-  export LESSOPEN="| /usr/local/bin/lesspipe.sh %s"
+  export LESSOPEN='| /usr/local/bin/lesspipe.sh %s'
   export LESS_ADVANCED_PREPROCESSOR=1
   export LESS=' -R '
 fi
