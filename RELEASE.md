@@ -1,0 +1,1 @@
+* [**`improvement`**] Make the `home-dirs` deployment use the stashing system to track previous installations/removals.
