@@ -1,3 +1,4 @@
+* [**`improvement`**] Remove the framework (un)installation commands, leaving them to be described in the framework's `README`.
 * [**`improvement`**] Make the `home-dirs` deployment use the stashing system to track previous installations/removals.
 * [**`improvement`**] Remove full ref decoration from the alias for the `git log` command.
 * [**`improvement`**] On macOS:
