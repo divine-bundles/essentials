@@ -1,8 +1,8 @@
 #:title:        Divine deployment: zsh-default
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
-#:revdate:      2019.12.02
-#:revremark:    Fix syntax error in zsh-default
+#:revdate:      2019.12.05
+#:revremark:    Fix help addst name
 #:created_at:   2019.06.30
 
 D_DPL_NAME='zsh-default'
@@ -159,7 +159,7 @@ d_zsh_default_install()
   local asr='to finilize default shell change'; case $D__OS_FAMILY in
     macos)  asr="Please, re-log into the system $asr";;
     *)      asr="Please, reload your shell $asr";;
-  esac; D_ADDST_REBOOT+=("$asr")
+  esac; D_ADDST_HELP+=("$asr")
   local els=( --else-- 'Records will be inconsistent' )
   if [ -n "$D_OLD_SHELL" ]; then
     d__cmd d__stash -s -- set new_shell "$D_ZSH_PATH" "${els[@]}" \
@@ -183,7 +183,7 @@ d_zsh_default_remove()
   local asr='to finilize default shell reversal'; case $D__OS_FAMILY in
     macos)  asr="Please, re-log into the system $asr";;
     *)      asr="Please, reload your shell $asr";;
-  esac; D_ADDST_REBOOT+=("$asr")
+  esac; D_ADDST_HELP+=("$asr")
   local els=( --else-- 'Records will be inconsistent' ) algd=true
   d__cmd d__stash -s -- unset old_shell "${els[@]}" || algd=false
   d__cmd d__stash -s -- unset new_shell "${els[@]}" || algd=false

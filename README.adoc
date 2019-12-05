@@ -1,8 +1,8 @@
 = Deployment bundle `essentials`
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revdate: 2019.12.01
-:revremark: Fix URL links in readmes
+:revdate: 2019.12.05
+:revremark: Remove fmwk install cmds from readme
 :doctype: article
 // Visual
 :toc: macro
@@ -120,40 +120,18 @@ The (un)installation guide assumes that _Divine.dotfiles_ is installed into the 
 [[inun-inst]]
 === Installing the bundle
 
-[[inun-inst-bundle]]
-==== Framework already installed
-
-If _Divine.dotfiles_ is already installed, the following Terminal command *attaches* the bundle `essentials` to the link:{url_dd}#fmwk-grail[Grail directory]:
+With _Divine.dotfiles_ already link:{url_dd}#fmwk-install[installed], the following Terminal command *attaches* the bundle `essentials` to the link:{url_dd}#fmwk-grail[Grail directory]:
 
 [source,bash]
 ----
 di attach essentials
 ----
 
-And this Terminal command *installs* the attached bundle:
+And the following Terminal command *installs* the attached bundle:
 
 [source,bash]
 ----
 di install --bundle essentials
-----
-
-[[inun-inst-both]]
-==== Installing framework and bundle
-
-The following Terminal command *installs both the _Divine.dotfiles_ framework and the bundle* `*essentials*` in one go and without prompts:
-
-[source,bash]
-----
-bash -c "TMP=\$(mktemp); URL=https:\
-//raw.github.com/divine-dotfiles/divine-dotfiles/master/lib/install/install.sh\
-; if curl --version &>/dev/null; then curl -fsSL \$URL >\$TMP; elif wget --ver\
-sion &>/dev/null; then wget -qO \$TMP \$URL; else printf >&2 \"\n==> Error: fa\
-iled to detect neither curl nor wget\n\"; rm -f \$TMP; exit 1; fi || { printf \
->&2 \"\n==> Error: failed to download installation script\n\"; rm -f \$TMP; ex\
-it 2; }; chmod +x \$TMP && \$TMP \"\$@\"; RC=\$?; rm -f \$TMP; ((RC)) && exit \
-3 || exit 0" bash --yes \
-&& ~/.divine/intervene.sh attach essentials --yes \
-&& ~/.divine/intervene.sh install --yes
 ----
 
 [.note]
@@ -166,9 +144,6 @@ Upon the uninstallation, such files are restored into their original places.
 [[inun-uninst]]
 === Uninstalling the bundle
 
-[[inun-uninst-bundle]]
-==== Keeping framework
-
 The following Terminal command *uninstalls* the bundle `essentials`:
 
 [source,bash]
@@ -176,30 +151,11 @@ The following Terminal command *uninstalls* the bundle `essentials`:
 di remove --bundle essentials
 ----
 
-And this Terminal command *detaches the bundle* from the link:{url_dd}#fmwk-grail[Grail directory]:
+And the following Terminal command *detaches the bundle* from the link:{url_dd}#fmwk-grail[Grail directory]:
 
 [source,bash]
 ----
 di detach essentials
-----
-
-[[inun-uninst-both]]
-==== Uninstalling framework and bundle
-
-The following command *uninstalls both the bundle* `*essentials*` *and the _Divine.dotfiles_ framework* in one go and without prompts or backups:
-
-[source,bash]
-----
-~/.divine/intervene.sh remove --yes --obliterate \
-&& ~/.divine/intervene.sh detach essentials --yes \
-&& bash -c "TMP=\$(mktemp); URL=https://raw.\
-github.com/divine-dotfiles/divine-dotfiles/master/lib/uninstall/uninstall.sh; \
-if curl --version &>/dev/null; then curl -fsSL \$URL >\$TMP; elif wget --versi\
-on &>/dev/null; then wget -qO \$TMP \$URL; else printf >&2 \"\n==> Error: fail\
-ed to detect neither curl nor wget\n\"; rm -f \$TMP; exit 1; fi || { printf >&\
-2 \"\n==> Error: failed to download uninstallation script\n\"; rm -f \$TMP; ex\
-it 2; }; chmod +x \$TMP && \$TMP \"\$@\"; RC=\$?; rm -f \$TMP; ((RC)) && exit \
-3 || exit 0" bash --yes --obliterate
 ----
 
 [[dpls-main]]

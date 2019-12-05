@@ -2,7 +2,7 @@
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
 #:revdate:      2019.12.03
-#:revremark:    A round of asset polishing for the house
+#:revremark:    Silence bash deprecation on Catalina
 #:created_at:   2019.04.09
 
 ## Universal shell environment variables. Must use compatible syntax.
@@ -71,3 +71,10 @@ if [ -x /usr/local/bin/lesspipe.sh ]; then
   export LESS_ADVANCED_PREPROCESSOR=1
   export LESS=' -R '
 fi
+
+
+##
+## macOS Catalina & onward: silence warning about default shell change
+##
+
+[ "$D__OS_FAMILY" = macos ] && export BASH_SILENCE_DEPRECATION_WARNING=1
