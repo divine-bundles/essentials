@@ -1105,8 +1105,8 @@ The same file may and should be used to customize the Bash-it framework's loadou
 = Deployment `oh-my-zsh` (`3333`)
 :author: Grove Pyree
 :email: grayarea@protonmail.ch
-:revdate: 2019.12.01
-:revremark: Fix URL links in readmes
+:revdate: 2019.12.12
+:revremark: Mirror move of official oh-my-zsh repository
 :doctype: article
 // Visual
 :toc:
@@ -1147,7 +1147,7 @@ Assets are never removed from the Grail, even when uninstalling the deployment.
 [%noheader,cols="4*<.^",stripes=none]
 !===
 
-! Repository https://github.com/robbyrussell/oh-my-zsh[`robbyrussell/oh-my-zsh`]
+! Repository https://github.com/ohmyzsh/ohmyzsh[`ohmyzsh/ohmyzsh`]
 ! =>
 ! `~/**.oh-my-zsh**/`
 ! <<oh-my-zsh-fmwk,^1^>>
@@ -1181,11 +1181,11 @@ Removal:: Unlinked; any backed up original restored.
 
 |===
 
-The `oh-my-zsh` deployment clones or downloads the https://github.com/robbyrussell/oh-my-zsh[`robbyrussell/oh-my-zsh`] repository into the `~/.oh-my-zsh/` directory.
+The `oh-my-zsh` deployment clones or downloads the https://github.com/ohmyzsh/ohmyzsh[`ohmyzsh/ohmyzsh`] repository into the `~/.oh-my-zsh/` directory.
 Having succeeded, it symlinks additional assets into the framework.
 
 [[oh-my-zsh-fmwk]]
-The oh-my-zsh framework is installed only by cloning its https://github.com/robbyrussell/oh-my-zsh[Github repository].
+The oh-my-zsh framework is installed only by cloning its https://github.com/ohmyzsh/ohmyzsh[Github repository].
 The included installation script (which normally adds initialization commands to the `~/.zshrc` runcom) is not executed, because the current bundle already includes necessary initialization commands.
 
 == Included assets

@@ -1,8 +1,8 @@
 #:title:        Divine deployment: oh-my-zsh
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
-#:revdate:      2019.11.21
-#:revremark:    Update to D.d v2.2 API
+#:revdate:      2019.12.12
+#:revremark:    Mirror move of official oh-my-zsh repository
 #:created_at:   2019.06.30
 
 D_DPL_NAME='oh-my-zsh'
@@ -13,7 +13,7 @@ D_DPL_WARNING=
 D_DPL_OS=( any )
 
 D_OMZ_PATH="$HOME/.oh-my-zsh"
-D_OMZ_REPO='robbyrussell/oh-my-zsh'
+D_OMZ_REPO='ohmyzsh/ohmyzsh'
 
 d_dpl_check()   { assemble_tasks; d__mltsk_check;   }
 d_dpl_install() {                 d__mltsk_install; }

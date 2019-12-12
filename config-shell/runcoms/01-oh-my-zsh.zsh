@@ -1,8 +1,8 @@
 #:title:        Divine runcom sample: 01-oh-my-zsh.zsh
 #:author:       Grove Pyree
 #:email:        grayarea@protonmail.ch
-#:revdate:      2019.12.03
-#:revremark:    A round of asset polishing for the house
+#:revdate:      2019.12.12
+#:revremark:    Mirror move of official oh-my-zsh repository
 #:created_at:   2019.04.09
 
 # Zsh shell framework initialization
@@ -23,7 +23,7 @@ then
 
   ## oh-my-zsh startup configuration follows within the if-statement. Latest 
   #. template from the developers of oh-my-zsh can be found at:
-  #.  https://github.com/robbyrussell/oh-my-zsh/blob/master/templates/zshrc.zsh-template
+  #.  https://github.com/ohmyzsh/ohmyzsh/blob/master/templates/zshrc.zsh-template
 
   # Only the (*)-marked commands are required to run oh-my-zsh
 
